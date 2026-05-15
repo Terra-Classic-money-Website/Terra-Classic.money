@@ -360,57 +360,170 @@ function Capabilities() {
 }
 
 function ProtocolShowcase() {
+  const protocolLinks: Record<string, string[]> = {
+    staking: [links.stakingDocs, "#", links.stakingDocs],
+    swap: [links.swapDocs],
+    forex: [links.forexDocs],
+  };
+
   return (
     <section id="roadmap" className="protocols" aria-label="Protocol showcase">
-      {protocols.map((protocol) => (
-        <article key={protocol.id} className="protocol-panel">
-          <div className="protocol-head">
-            <div><span className={`protocol-icon ${protocol.accent}`} /><h2>{protocol.title}</h2></div>
-            <span className="status">{protocol.status}</span>
-            <p>{protocol.body}</p>
-          </div>
-          <div className="protocol-visual">
-            {protocol.ui.map((ui) => <img key={ui} className="protocol-ui" src={asset(ui)} alt="" loading="lazy" />)}
-            <img className="protocol-orb" src={asset(protocol.image)} alt="" loading="lazy" />
-          </div>
-          <div className="protocol-bottom">
-            <h3>How it works:</h3>
-            <div className="steps">
-              {protocol.steps.map((step, index) => (
-                <div key={step} className="step"><strong>Step {index + 1}</strong><p>{step}</p></div>
-              ))}
+      {protocols.map((protocol) => {
+        const buttonLinks = protocolLinks[protocol.id] || [];
+
+        return (
+          <article key={protocol.id} className={`protocol-panel protocol-panel--${protocol.id}`}>
+            <div className="protocol-lines" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
             </div>
-            <div className="protocol-actions">
-              {protocol.buttons.map((button, index) => <LinkButton key={button} href="#" dark={index > 0}>{button}</LinkButton>)}
+            <div className="protocol-head">
+              <div className="protocol-title-row">
+                <img className="protocol-icon" src={asset(protocol.icon)} alt="" aria-hidden="true" />
+                <h2>{protocol.title}</h2>
+              </div>
+              <span className={`status status--${protocol.status === "ACTIVE" ? "active" : "soon"}`}>
+                {protocol.status}
+                {protocol.status === "ACTIVE" && <img src={asset("protocol-badge-active-arrow.svg")} alt="" aria-hidden="true" />}
+              </span>
+              <p>{protocol.body}</p>
             </div>
-          </div>
-        </article>
-      ))}
+            <div className="protocol-visual" aria-hidden="true">
+              <img className="protocol-orb" src={asset(protocol.image)} alt="" loading="lazy" />
+              {protocol.id === "staking" && (
+                <>
+                  <img className="protocol-ui protocol-ui--staking-validator" src={asset(protocol.ui[0])} alt="" loading="lazy" />
+                  <img className="protocol-ui protocol-ui--staking-stake" src={asset(protocol.ui[1])} alt="" loading="lazy" />
+                  <img className="protocol-ui protocol-ui--staking-confirmed" src={asset("protocol-staking-confirmed.png")} alt="" loading="lazy" />
+                </>
+              )}
+              {protocol.id === "swap" && (
+                <>
+                  <img className="protocol-ui protocol-ui--swap-form" src={asset(protocol.ui[0])} alt="" loading="lazy" />
+                  <img className="protocol-ui protocol-ui--swap-confirmed" src={asset("protocol-blue-confirmed.png")} alt="" loading="lazy" />
+                </>
+              )}
+              {protocol.id === "forex" && (
+                <>
+                  <img className="protocol-ui protocol-ui--forex-deposit" src={asset(protocol.ui[0])} alt="" loading="lazy" />
+                  <img className="protocol-ui protocol-ui--forex-mint" src={asset(protocol.ui[1])} alt="" loading="lazy" />
+                  <img className="protocol-ui protocol-ui--forex-confirmed" src={asset("protocol-blue-confirmed.png")} alt="" loading="lazy" />
+                </>
+              )}
+            </div>
+            <div className="protocol-bottom">
+              <h3>How it works:</h3>
+              <div className="steps">
+                {protocol.steps.map((step, index) => (
+                  <div key={step} className="step">
+                    <div className="step-title">
+                      <strong>Step {index + 1}</strong>
+                      <span className={`step-arrow ${index < 2 ? "step-arrow--long" : "step-arrow--short"}`} aria-hidden="true">
+                        <img src={asset(index < 2 ? "protocol-step-arrow-long.svg" : "protocol-step-arrow-short.svg")} alt="" />
+                      </span>
+                    </div>
+                    <p>{step}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="protocol-actions">
+                {protocol.buttons.map((button, index) => {
+                  const rawHref = buttonLinks[index] || "#";
+                  const href = isPlaceholderLink(rawHref) ? "#" : rawHref;
+                  const isExternal = href.startsWith("http");
+
+                  return (
+                    <a key={button} className={`protocol-button protocol-button--${index === 0 ? "primary" : "secondary"}`} href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                      <span>{button}</span>
+                      {index === 0 && <img src={asset("protocol-button-arrow.svg")} alt="" aria-hidden="true" />}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </article>
+        );
+      })}
     </section>
   );
 }
 
 function NativeAssets() {
+  const assetPhases = [1, 2, 3, 4].map((phase) => ({
+    phase,
+    status: phase === 1 ? "IN PROGRESS" : "COMMING SOON",
+    items: assets.filter((item) => item.phase === phase),
+  }));
+  const coinMarketCapHref = isPlaceholderLink(links.coinMarketCap) ? "#" : links.coinMarketCap;
+  const coinGeckoHref = isPlaceholderLink(links.coinGecko) ? "#" : links.coinGecko;
+  const nativeAssetsContactHref = isPlaceholderLink(links.nativeAssetsContact) ? "#" : links.nativeAssetsContact;
+
   return (
     <section className="section native-assets" aria-labelledby="assets-title">
-      <h2 id="assets-title">Terra Classic native assets:</h2>
-      <p className="section-intro">Terra Classic is engineered for a broader monetary universe: LUNC as the native speculative asset, plus a multi-currency suite of 20+ assets, ready to be progressively collateralized on-chain.</p>
-      <h3>Speculative assets:</h3>
-      <div className="lunc-row">
-        <div><img src={asset("lunc-logo.svg")} alt="" /><strong>LUNC</strong><span>Terra LUNA Classic</span></div>
-        <div className="asset-links"><span>CMC</span><span>CG</span></div>
+      <div className="native-assets__header">
+        <h2 id="assets-title">Terra Classic native assets:</h2>
+        <p>Terra Classic is engineered for a broader monetary universe: LUNC as the native speculative asset, plus a multi-currency suite of 20+ assets, ready to be progressively collateralized on-chain.</p>
       </div>
-      <h3>Multi-currency suite</h3>
-      {[1, 2, 3, 4].map((phase) => (
-        <div key={phase} className="asset-phase">
-          <div className="phase-title"><span>🌐</span><strong>Forex Protocol - Phase {phase}</strong><i /> <em>{phase === 1 ? "IN PROGRESS" : "COMMING SOON"}</em></div>
-          <div className="token-grid">
-            {assets.filter((item) => item.phase === phase).map((item) => <div className="token" key={`${phase}-${item.code}-${item.name}`}><strong>{item.code}</strong><span>{item.name}</span></div>)}
+
+      <div className="native-assets__group native-assets__group--speculative">
+        <h3>Speculative assets:</h3>
+        <div className="native-lunc-row">
+          <img className="native-lunc-row__bg" src={asset("native-lunc-bg.png")} alt="" aria-hidden="true" loading="lazy" width="385" height="386" />
+          <div className="native-lunc-row__identity">
+            <img src={asset("native-lunc-logo.svg")} alt="" aria-hidden="true" width="72" height="72" />
+            <div className="native-lunc-row__copy">
+              <strong>LUNC</strong>
+              <span>Terra LUNA Classic</span>
+            </div>
+          </div>
+          <div className="native-lunc-row__links" aria-label="LUNC market links">
+            <a href={coinMarketCapHref} target={coinMarketCapHref.startsWith("http") ? "_blank" : undefined} rel={coinMarketCapHref.startsWith("http") ? "noopener noreferrer" : undefined} aria-label="LUNC on CoinMarketCap">
+              <img src={asset("native-cmc-icon.svg")} alt="" aria-hidden="true" />
+            </a>
+            <a href={coinGeckoHref} target={coinGeckoHref.startsWith("http") ? "_blank" : undefined} rel={coinGeckoHref.startsWith("http") ? "noopener noreferrer" : undefined} aria-label="LUNC on CoinGecko">
+              <img src={asset("native-cg-icon.svg")} alt="" aria-hidden="true" />
+            </a>
           </div>
         </div>
-      ))}
-      <p className="lead">Looking to bring a new fiat-pegged stable asset on-chain—whether as an issuer, institution, or public-sector partner—connect with the Terra Classic community to explore integration, collateralization, and governance-led rollout.</p>
-      <LinkButton href="#" dark>Requirements and contact</LinkButton>
+      </div>
+
+      <div className="native-assets__group native-assets__group--suite">
+        <h3>Multi-currency suite</h3>
+        {assetPhases.map(({ phase, status, items }) => (
+          <div className={`native-phase native-phase--${phase}`} key={phase}>
+            <div className="native-phase__header">
+              <div className="native-phase__label">
+                <img src={asset("native-phase-icon.svg")} alt="" aria-hidden="true" width="32" height="32" />
+                <strong>Forex Protocol - Phase {phase}</strong>
+              </div>
+              <span className="native-phase__rule" aria-hidden="true" />
+              <span className={`native-phase__badge native-phase__badge--${phase === 1 ? "active" : "soon"}`}>{status}</span>
+            </div>
+            <ul className="native-token-grid" aria-label={`Forex Protocol phase ${phase} assets`}>
+              {items.map((item) => (
+                <li className="native-token-card" key={`${phase}-${item.code}-${item.name}`}>
+                  <img className={`native-token-card__icon ${item.compactIcon ? "native-token-card__icon--compact" : ""}`} src={asset(item.icon)} alt="" aria-hidden="true" loading="lazy" width={item.compactIcon ? "40" : "50"} height={item.compactIcon ? "40" : "50"} />
+                  <div className="native-token-card__text">
+                    <strong className="native-token-card__code" aria-label={item.code}>
+                      <span>{item.code.slice(0, -2)}</span>
+                      <small>{item.code.slice(-2)}</small>
+                    </strong>
+                    <span>{item.name}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <p className="native-assets__closing">Looking to bring a new fiat-pegged stable asset on-chain—whether as an issuer, institution, or public-sector partner—connect with the Terra Classic community to explore integration, collateralization, and governance-led rollout.</p>
+      <a className="native-assets__button" href={nativeAssetsContactHref} target={nativeAssetsContactHref.startsWith("http") ? "_blank" : undefined} rel={nativeAssetsContactHref.startsWith("http") ? "noopener noreferrer" : undefined}>
+        <span>Requirements and contact</span>
+        <img src={asset("native-button-arrow.svg")} alt="" aria-hidden="true" />
+      </a>
     </section>
   );
 }
