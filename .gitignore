@@ -6,3 +6,9 @@ PROMPTS.md
 
 # macOS local metadata
 .DS_Store
+
+# Node/Vite local output
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
