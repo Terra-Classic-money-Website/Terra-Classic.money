@@ -24,23 +24,28 @@ https://github.com/Terra-Classic-money-Website/Terra-Classic.money.git
 - Local stable branch: `main`
 - Remote stable branch: `origin/main`
 
-## Important history note
+## History reconciliation
 
-The local repository and GitHub repository currently have separate initial histories.
+The GitHub repository was confirmed by the owner to be a fresh repository containing only a disposable one-line `README.md`.
+
+The local `dev` branch has reconciled the remote `origin/main` history using a normal merge commit with `--allow-unrelated-histories`.
+
+This avoids needing a future force-push to publish the website.
 
 - Local `main` / `dev`: `a2f45f8 chore: bootstrap git repository`
 - Remote `origin/main`: `6d505ed Initial commit`
+- Reconciliation merge on local `dev`: includes `origin/main` as history
 
-The remote `origin/main` currently contains only `README.md`.
+The remote `README.md` content is not canonical and may be replaced later.
 
-Do not force-push, overwrite, merge, or publish until the owner explicitly asks for the live GitHub update and the reconciliation path is chosen.
+Do not push, overwrite, or publish until the owner explicitly asks for the live GitHub update.
 
 ## Recommended future publish path
 
 When the project is ready to test through GitHub Pages:
 
 1. Reconcile `origin/main` with local project history deliberately.
-2. Preserve the remote `README.md` content if it is still useful.
+2. Replace the temporary remote `README.md` with the project README when ready.
 3. Merge validated `dev` work into local `main`.
 4. Push `main` to GitHub only after explicit owner confirmation.
 5. Return local working context to `dev`.
@@ -53,4 +58,5 @@ Validation performed for this setup:
 - fetched `origin/main`;
 - confirmed local working branch remains `dev`;
 - inspected remote `README.md`;
+- merged `origin/main` into local `dev` using `--allow-unrelated-histories`;
 - confirmed no push was performed.
