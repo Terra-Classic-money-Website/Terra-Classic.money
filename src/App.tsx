@@ -103,7 +103,21 @@ function Sidebar({ activeId }: { activeId: string }) {
           <div className="sidebar-nav-wrap">{nav}</div>
         </div>
         {collapsed ? (
-          <div className="vertical-url">www.terra-classic.money</div>
+          <div className="sidebar-collapsed-bottom">
+            <div className="vertical-url">www.terra-classic.money</div>
+            <button className="collapsed-language-button" aria-label={`Language - ${language}`} aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
+              <img src={asset("language-icon.svg")} alt="" />
+            </button>
+            {langOpen && (
+              <div className="language-menu language-menu--collapsed" role="listbox">
+                {languages.map((option) => (
+                  <button key={option} onClick={() => { setLanguage(option); setLangOpen(false); }}>
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         ) : (
           <div className="sidebar-bottom">
             <div className="language">

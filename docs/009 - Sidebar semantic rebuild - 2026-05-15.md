@@ -47,6 +47,8 @@ The existing interactions were preserved:
 
 This pass focuses on the expanded desktop sidebar fidelity. The collapsed state uses the Figma `80 x 48` collapsed-logo asset, which includes the Terra icon and dotted control in the correct proportions. The whole collapsed mark acts as the expand control.
 
+Follow-up fix: the collapsed state now also includes the Figma `32 x 32` language icon button below the vertical `www.terra-classic.money` badge, with an `8px` gap.
+
 ## Validation Notes
 
 - `npm run check` passed.
@@ -59,4 +61,7 @@ This pass focuses on the expanded desktop sidebar fidelity. The collapsed state 
   - language trigger: `264 x 32`
   - language icon: `11 x 12`
   - language arrow: `10 x 9`
+- Browser-measured collapsed sidebar follow-up:
+  - vertical badge: `32 / 656 / 32 / 172`
+  - collapsed language button: `32 / 836 / 32 / 32`
 - QA screenshot saved to `docs/audit-screenshots/sidebar-semantic-pass-2026-05-15.png`.
