@@ -21,66 +21,75 @@ export const sidebarDisclaimer =
 export const heroGroups = [
   {
     title: "Users:",
+    logo: "hero-users-logos.svg",
+    logoWidth: 75,
     links: ["Understand Terra Classic", "Find wallet", "Stake your LUNC"],
   },
   {
     title: "Developers:",
+    logo: "hero-developers-logos.svg",
+    logoWidth: 89,
     links: ["Quick start guide", "Check complete documentation"],
   },
   {
     title: "Institutions:",
+    logo: "hero-institution-logo.svg",
+    logoWidth: 32,
     links: ["Utilise multi-currency suite (20+ assets)", "Build payment gateway"],
   },
 ];
 
-export const popularTopics = ["Staking Protocol", "Forex Protocol", "Terra Classic native assets"];
+export const popularTopics = ["How to stake LUNC", "Terra Classic ecosystem", "Terra Classic Roadmap"];
 
 export const capabilities = [
   {
+    slug: "staking",
     title: "Passive income",
     body: "Stake LUNC and participate in on-chain opportunities designed to help you put idle assets to work—directly from your wallet.",
     cta: "More about Staking Protocol",
-    image: "capability-staking.png",
+    image: "capability-staking-figma.png",
   },
   {
+    slug: "forex",
     title: "Trade various stablecoins just like on Forex",
     body: "Swap and route between multiple stablecoin markets with transparent on-chain execution and real-time price discovery.",
     cta: "More about Forex Protocol",
-    image: "capability-forex.png",
+    image: "capability-forex-figma.png",
   },
   {
+    slug: "defi",
     title: "Use financial products",
     body: "Access DeFi primitives—swaps, liquidity, and yield strategies—without giving up custody or control.",
     cta: "Explore DeFi on Terra Classic",
-    image: "capability-defi.png",
-    tall: true,
+    image: "capability-defi-figma.png",
   },
   {
+    slug: "build",
     title: "Build",
     body: "Launch anything from a simple contract to a full product stack on an open, composable Layer-2 and 1 built for iteration.",
     cta: "Terra Classic documentation",
-    image: "capability-build.png",
-    wide: true,
+    image: "capability-build-figma.png",
   },
   {
+    slug: "ecosystem",
     title: "Check multiple applications",
     body: "Discover a growing ecosystem of apps across DeFi, tools, and community utilities—ready to use in minutes.",
     cta: "Explore ecosystem",
-    image: "capability-ecosystem.png",
+    image: "capability-ecosystem-figma.png",
   },
   {
+    slug: "layer2",
     title: "The network of networks",
     body: "Explore Terra Classic’s Layer-2 universe—independent projects with their own tokens and ecosystems, expanding what the chain can do through specialized apps and tooling.",
     cta: "Explore Layer-2 projects",
-    image: "capability-l2.png",
-    wide: true,
+    image: "capability-layer2-figma.png",
   },
   {
+    slug: "nft",
     title: "Buy, sell, trade and create assets and collectibles",
     body: "Create and exchange tokens and digital collectibles with on-chain ownership and verifiable provenance.",
     cta: "NFTs on Terra classic",
-    image: "capability-nft.png",
-    wide: true,
+    image: "capability-nft-figma.png",
   },
 ];
 

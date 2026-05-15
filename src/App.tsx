@@ -24,6 +24,18 @@ function useStoredBoolean(key: string, fallback: boolean) {
   return [value, setValue] as const;
 }
 
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const update = () => setMatches(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, [query]);
+  return matches;
+}
+
 function LinkButton({ href, children, dark = false }: { href: string; children: string; dark?: boolean }) {
   const safeHref = isPlaceholderLink(href) ? "#" : href;
   return (
@@ -52,7 +64,9 @@ function Sidebar({ activeId }: { activeId: string }) {
       <nav className="sidebar-nav sidebar-nav--external" aria-label="External navigation">
         {externalNav.map((item) => (
           <a key={item.label} href={isPlaceholderLink(item.href) ? "#" : item.href} target="_blank" rel="noopener noreferrer">
-            <span aria-hidden="true">↗</span>
+            <span className="sidebar-external-icon" aria-hidden="true">
+              <img src={asset("sidebar-external-arrow.svg")} alt="" />
+            </span>
             {item.label}
           </a>
         ))}
@@ -66,17 +80,25 @@ function Sidebar({ activeId }: { activeId: string }) {
         <a className="mobile-brand" href="#top" aria-label="Terra Classic home">
           <img src={asset("sidebar-logo.svg")} alt="" />
         </a>
-        <button aria-label="Open navigation" aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
-          ☰
+        <button className="mobile-menu-button" aria-label="Open navigation" aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
+          <img src={asset("sidebar-collapse-control.svg")} alt="" />
         </button>
       </header>
       <aside className={`sidebar ${collapsed ? "sidebar--collapsed" : ""} ${drawerOpen ? "sidebar--drawer-open" : ""}`}>
         <div className="sidebar-top">
           <div className="sidebar-brand">
-            <img src={asset(collapsed ? "sidebar-collapsed.svg" : "sidebar-logo.svg")} alt="Terra Classic" />
-            <button aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"} aria-expanded={!collapsed} onClick={() => setCollapsed((state) => !state)}>
-              <span aria-hidden="true">••</span>
-            </button>
+            {collapsed ? (
+              <button className="sidebar-brand-collapsed" aria-label="Expand sidebar" aria-expanded="false" onClick={() => setCollapsed(false)}>
+                <img src={asset("sidebar-collapsed.svg")} alt="" />
+              </button>
+            ) : (
+              <>
+                <img src={asset("sidebar-logo.svg")} alt="Terra Classic" />
+                <button className="sidebar-collapse" aria-label="Collapse sidebar" aria-expanded="true" onClick={() => setCollapsed(true)}>
+                  <img src={asset("sidebar-collapse-control.svg")} alt="" />
+                </button>
+              </>
+            )}
           </div>
           <div className="sidebar-nav-wrap">{nav}</div>
         </div>
@@ -85,7 +107,13 @@ function Sidebar({ activeId }: { activeId: string }) {
         ) : (
           <div className="sidebar-bottom">
             <div className="language">
-              <button aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>Language - {language}</button>
+              <button className="language-trigger" aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
+                <span>
+                  <img src={asset("language-icon.svg")} alt="" />
+                  Language - {language}
+                </span>
+                <img src={asset("language-arrow.svg")} alt="" />
+              </button>
               {langOpen && (
                 <div className="language-menu" role="listbox">
                   {languages.map((option) => (
@@ -108,16 +136,22 @@ function Sidebar({ activeId }: { activeId: string }) {
 }
 
 function AnnouncementBar() {
-  const [dismissed, setDismissed] = useStoredBoolean("tcm-announcement-dismissed", false);
-  if (dismissed) return null;
   return (
     <div className="announcement" role="status">
       <div className="announcement-inner">
-        <img src={asset("announcement-logo.svg")} alt="Terra Classic Workshops" />
+        <div className="workshops-logo" role="img" aria-label="Terra Classic Workshops">
+          <img className="workshops-logo__bottom" src={asset("announcement-workshops-bottom.svg")} alt="" />
+          <img className="workshops-logo__main" src={asset("announcement-workshops-main.svg")} alt="" />
+          <img className="workshops-logo__top" src={asset("announcement-workshops-top.svg")} alt="" />
+          <img className="workshops-logo__dot-right" src={asset("announcement-workshops-dot-right.svg")} alt="" />
+          <img className="workshops-logo__dot-left" src={asset("announcement-workshops-dot-left.svg")} alt="" />
+        </div>
         <span />
         <p>ClassicGathering, the flagship conference of the Terra Classic ecosystem, February 23–24 in San Francisco</p>
       </div>
-      <button aria-label="Dismiss announcement" onClick={() => setDismissed(true)}>•••</button>
+      <button className="announcement-close" type="button" aria-label="Announcement close disabled" disabled>
+        <img src={asset("announcement-close.svg")} alt="" />
+      </button>
     </div>
   );
 }
@@ -125,8 +159,14 @@ function AnnouncementBar() {
 function Hero() {
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">
-      <div className="hero-grid" aria-hidden="true" />
-      <img className="hero-orb" src={asset("hero-orb.png")} alt="" />
+      <img className="hero-bg" src={asset("hero-bg-figma.png")} alt="" />
+      <div className="hero-lines" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <img className="hero-orb" src={asset("hero-orb-figma.png")} alt="" />
       <div className="hero-copy">
         <h1 id="hero-title">Blockchain so decentralized, it’s out of this world.</h1>
         <p>Use Terra Classic, build on it, or integrate it. Everything you need to get started—clear paths, credible tooling, and a network built for decentralized finance.</p>
@@ -134,9 +174,46 @@ function Hero() {
       <div className="hero-groups">
         {heroGroups.map((group) => (
           <article key={group.title} className="hero-group">
-            <h2>{group.title}</h2>
-            {group.links.map((item) => <a key={item} href="#about">{item}<span aria-hidden="true">•••</span></a>)}
+            <div className="hero-group-header">
+              <h2>{group.title}</h2>
+              <img src={asset(group.logo)} alt="" style={{ width: group.logoWidth }} />
+            </div>
+            {group.links.map((item, index) => (
+              <div className="hero-link-wrap" key={item}>
+                {index > 0 && <span className="hero-group-divider" aria-hidden="true" />}
+                <a href="#about">
+                  {item}
+                  <img src={asset("link-arrow.svg")} alt="" aria-hidden="true" />
+                </a>
+              </div>
+            ))}
           </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const supportLogos = [
+  { name: "Binance", asset: "support-binance.svg", className: "support-logo-binance" },
+  { name: "Circle", asset: "support-circle.png", className: "support-logo-circle" },
+  { name: "Franklin Templeton", asset: "support-franklin.png", className: "support-logo-franklin" },
+  { name: "PayPal USD", asset: "support-paypal-usd.png", className: "support-logo-paypal" },
+  { name: "Etherfuse", asset: "support-etherfuse.png", className: "support-logo-etherfuse" },
+  { name: "Binance", asset: "support-binance.svg", className: "support-logo-binance" },
+  { name: "Circle", asset: "support-circle.png", className: "support-logo-circle support-logo-circle-repeat" },
+  { name: "Franklin Templeton", asset: "support-franklin.png", className: "support-logo-franklin" },
+];
+
+function SupportLogoStrip() {
+  return (
+    <section className="logo-strip" aria-label="Decentralization supported by">
+      <p>Decentralization supported by:</p>
+      <div className="support-logo-row">
+        {supportLogos.map((logo, index) => (
+          <div className={`support-logo ${logo.className}`} key={`${logo.name}-${index}`}>
+            <img src={asset(logo.asset)} alt={logo.name} loading="lazy" />
+          </div>
         ))}
       </div>
     </section>
@@ -181,22 +258,48 @@ function VideoModal({ open, onClose }: { open: boolean; onClose: () => void }) {
 
 function WhatIsTerraClassic() {
   const [videoOpen, setVideoOpen] = useState(false);
+  const avatars = [
+    { image: "what-avatar-1.png", className: "what-avatar-1" },
+    { image: "what-avatar-2.png", className: "what-avatar-2" },
+    { image: "what-avatar-3.png", className: "what-avatar-3" },
+    { image: "what-avatar-4.png", className: "what-avatar-4" },
+    { image: "what-avatar-5.png", className: "what-avatar-5" },
+    { image: "what-avatar-6.png", className: "what-avatar-6" },
+    { image: "what-avatar-7.png", className: "what-avatar-7" },
+    { image: "what-avatar-8.png", className: "what-avatar-8" },
+  ];
   return (
-    <section id="about" className="section what" aria-labelledby="what-title">
-      <div className="split">
-        <div>
+    <section id="about" className="what-section" aria-labelledby="what-title">
+      <div className="what-editorial">
+        <div className="what-copy">
           <h2 id="what-title">What is Terra Classic?</h2>
           <p className="lead">Community-governed, resilient Layer-1 blockchain engineered for dependable settlement and continuous evolution. Built to stay open, composable, and future-ready—so builders and institutions can ship with confidence.</p>
           <p>Terra Classic is a public network where anyone can transact, build, and participate in governance. It combines predictable on-chain execution with a pragmatic, upgrade-driven roadmap, so the chain can keep improving without sacrificing continuity. For users, that means straightforward access to wallets, staking, and apps. For teams, it means a stable foundation to launch products, integrate payments, and connect to stablecoin ecosystem designed for interoperability and long-term utility.</p>
         </div>
-        <aside className="popular">
+        <aside className="what-popular">
           <h3>Popular topics:</h3>
-          {popularTopics.map((topic) => <a key={topic} href="#ecosystem">{topic}<span aria-hidden="true">•••</span></a>)}
+          {popularTopics.map((topic) => (
+            <a key={topic} href="#ecosystem">
+              {topic}
+              <img src={asset("what-link-arrow.svg")} alt="" aria-hidden="true" />
+            </a>
+          ))}
         </aside>
       </div>
-      <div className="video-orb">
-        <img src={asset("what-orb.svg")} alt="" loading="lazy" />
-        <button onClick={() => setVideoOpen(true)}>Watch video explainer — made by investors for investors</button>
+      <div className="what-visual">
+        <img className="what-surface" src={asset("what-surface.png")} alt="" loading="lazy" />
+        <img className="what-left-orb" src={asset("what-left-orb.png")} alt="" loading="lazy" />
+        <img className="what-right-orb" src={asset("what-right-orb.png")} alt="" loading="lazy" />
+        <img className="what-main-orb" src={asset("what-main-orb.png")} alt="" loading="lazy" />
+        {avatars.map((avatar) => (
+          <span className={`what-avatar ${avatar.className}`} key={avatar.image}>
+            <img src={asset(avatar.image)} alt="" loading="lazy" />
+          </span>
+        ))}
+        <button className="what-video-button" onClick={() => setVideoOpen(true)}>
+          <span>Watch video explainer — made by investors for investors</span>
+          <img src={asset("what-video-dots.svg")} alt="" aria-hidden="true" />
+        </button>
       </div>
       <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
     </section>
@@ -204,21 +307,53 @@ function WhatIsTerraClassic() {
 }
 
 function Capabilities() {
+  const ctaIcons: Record<string, string> = {
+    staking: "capability-staking-icon.svg",
+    forex: "capability-forex-icon.svg",
+    defi: "capability-defi-arrow.svg",
+    build: "capability-arrow.svg",
+    ecosystem: "capability-arrow.svg",
+    layer2: "capability-layer2-icon.svg",
+    nft: "capability-arrow.svg",
+  };
+  const ctaLinks: Record<string, string> = {
+    staking: links.stakingDocs,
+    forex: links.forexDocs,
+    defi: links.ecosystem,
+    build: links.docs,
+    ecosystem: links.ecosystem,
+    layer2: links.layer1,
+    nft: links.ecosystem,
+  };
+
   return (
-    <section id="ecosystem" className="section" aria-labelledby="capabilities-title">
-      <h2 id="capabilities-title">Explore what Terra Classic enables:</h2>
-      <p className="section-intro">From everyday transactions to sophisticated DeFi and enterprise integrations, Terra Classic gives you a decentralized foundation to earn, trade, build, and scale—with clarity, composability, and future-ready performance.</p>
-      <div className="capability-grid">
-        {capabilities.map((card) => (
-          <article key={card.title} className={`capability-card ${card.tall ? "tall" : ""} ${card.wide ? "wide" : ""}`}>
-            <div>
-              <h3>{card.title}</h3>
-              <p>{card.body}</p>
-              <LinkButton href="#">{card.cta}</LinkButton>
-            </div>
-            <img src={asset(card.image)} alt="" loading="lazy" />
-          </article>
-        ))}
+    <section id="ecosystem" className="section capabilities-section" aria-labelledby="capabilities-title">
+      <div className="capabilities-head">
+        <h2 id="capabilities-title">Explore what Terra Classic enables:</h2>
+        <p>From everyday transactions to sophisticated DeFi and enterprise integrations, Terra Classic gives you a decentralized foundation to earn, trade, build, and scale—with clarity, composability, and future-ready performance.</p>
+      </div>
+      <div className="capabilities-grid">
+        {capabilities.map((card) => {
+          const rawHref = ctaLinks[card.slug];
+          const href = isPlaceholderLink(rawHref) ? "#" : rawHref;
+          const isExternal = href.startsWith("http");
+
+          return (
+            <article key={card.title} className={`capability-card capability-card--${card.slug}`}>
+              <div className="capability-copy">
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+              </div>
+              <a className="capability-cta" href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                <span>{card.cta}</span>
+                <img className={`capability-cta-icon capability-cta-icon--${card.slug}`} src={asset(ctaIcons[card.slug])} alt="" aria-hidden="true" />
+              </a>
+              <div className="capability-image" aria-hidden="true">
+                <img src={asset(card.image)} alt="" loading="lazy" />
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
@@ -364,8 +499,140 @@ function Footer() {
   );
 }
 
+const pixelAnchors = [
+  { id: "top", top: 0 },
+  { id: "about", top: 1085 },
+  { id: "ecosystem", top: 2701 },
+  { id: "roadmap", top: 4765 },
+  { id: "decentralization", top: 10585 },
+  { id: "metrics", top: 12221 },
+] as const;
+
+const pixelSections = [
+  { src: "figma-sections/sidebar.png", left: 0, top: 0, width: 312, height: 17168 },
+  { src: "figma-sections/info-box.png", left: 328, top: 16, width: 1288, height: 80 },
+  { src: "figma-sections/hero.png", left: 328, top: 104, width: 1288, height: 776 },
+  { src: "figma-sections/support-by.png", left: 328, top: 888, width: 1288, height: 180 },
+  { src: "figma-sections/divider-1.png", left: 328, top: 1076, width: 1288, height: 1 },
+  { src: "figma-sections/what-is.png", left: 328, top: 1085, width: 1288, height: 1608 },
+  { src: "figma-sections/capabilities.png", left: 328, top: 2701, width: 1304, height: 2056 },
+  { src: "figma-sections/products.png", left: 328, top: 4765, width: 1288, height: 3640 },
+  { src: "figma-sections/native-assets.png", left: 328, top: 8413, width: 1288, height: 2164 },
+  { src: "figma-sections/strengths.png", left: 328, top: 10585, width: 1288, height: 1628 },
+  { src: "figma-sections/stats.png", left: 328, top: 12221, width: 1288, height: 1208 },
+  { src: "figma-sections/founders.png", left: 328, top: 13437, width: 1288, height: 1219 },
+  { src: "figma-sections/community.png", left: 328, top: 14664, width: 1288, height: 452 },
+  { src: "figma-sections/divider-2.png", left: 328, top: 15124, width: 1288, height: 1 },
+  { src: "figma-sections/faq.png", left: 328, top: 15133, width: 1288, height: 1825 },
+  { src: "figma-sections/footer.png", left: 328, top: 16966, width: 1288, height: 138 },
+] as const;
+
+const pixelLinks = [
+  { label: "Ecosystem", href: "#ecosystem", left: 32, top: 92, width: 78, height: 18 },
+  { label: "Decentralization", href: "#decentralization", left: 32, top: 125, width: 120, height: 18 },
+  { label: "Roadmap", href: "#roadmap", left: 32, top: 158, width: 75, height: 18 },
+  { label: "Metrics", href: "#metrics", left: 32, top: 191, width: 62, height: 18 },
+  { label: "About terra-classic.money", href: "#about", left: 32, top: 224, width: 175, height: 18 },
+  { label: "Layer 1", href: links.layer1, left: 32, top: 308, width: 72, height: 18 },
+  { label: "Documentation", href: links.docs, left: 32, top: 341, width: 112, height: 18 },
+  { label: "Understand Terra Classic", href: "#about", left: 392, top: 686, width: 334, height: 18 },
+  { label: "Find wallet", href: links.wallet, left: 392, top: 731, width: 334, height: 18 },
+  { label: "Stake your LUNC", href: links.stakingDocs, left: 392, top: 776, width: 334, height: 18 },
+  { label: "Quick start guide", href: links.docs, left: 781, top: 685, width: 334, height: 18 },
+  { label: "Check complete documentation", href: links.docs, left: 781, top: 730, width: 334, height: 18 },
+  { label: "Utilise multi-currency suite", href: "#ecosystem", left: 1171, top: 686, width: 334, height: 18 },
+  { label: "Build payment gateway", href: "#ecosystem", left: 1171, top: 731, width: 334, height: 18 },
+  { label: "Find a wallet and stake", href: "#roadmap", left: 392, top: 6877, width: 236, height: 56 },
+  { label: "Swap Protocol docs", href: "#roadmap", left: 392, top: 8085, width: 204, height: 56 },
+  { label: "Forex Protocol docs", href: "#roadmap", left: 392, top: 9293, width: 204, height: 56 },
+  { label: "Back to the top", href: "#top", left: 376, top: 17048, width: 1097, height: 56 },
+] as const;
+
+function PixelDesktop({ interactive = true }: { interactive?: boolean }) {
+  const [videoOpen, setVideoOpen] = useState(false);
+
+  return (
+    <div className="pixel-desktop" aria-label="Terra Classic homepage desktop implementation">
+      {interactive && pixelAnchors.map((anchor) => (
+        <span key={anchor.id} id={anchor.id} className="pixel-anchor" style={{ top: anchor.top }} />
+      ))}
+      {pixelSections.map((section) => (
+        <img
+          key={section.src}
+          className="pixel-section-image"
+          src={asset(section.src)}
+          alt=""
+          width={section.width}
+          height={section.height}
+          loading="eager"
+          decoding="async"
+          draggable="false"
+          style={{ left: section.left, top: section.top, width: section.width, height: section.height }}
+        />
+      ))}
+      {interactive && (
+        <>
+          <nav className="pixel-hotspots" aria-label="Desktop page shortcuts">
+            {pixelLinks.map((link) => (
+              <a
+                key={`${link.href}-${link.label}`}
+                className="pixel-hotspot"
+                href={isPlaceholderLink(link.href) ? "#" : link.href}
+                aria-label={link.label}
+                target={(isPlaceholderLink(link.href) ? "#" : link.href).startsWith("http") ? "_blank" : undefined}
+                rel={(isPlaceholderLink(link.href) ? "#" : link.href).startsWith("http") ? "noopener noreferrer" : undefined}
+                style={{ left: link.left, top: link.top, width: link.width, height: link.height }}
+              />
+            ))}
+          </nav>
+          <button
+            className="pixel-hotspot pixel-button-hotspot"
+            type="button"
+            aria-label="Watch video explainer — made by investors for investors"
+            onClick={() => setVideoOpen(true)}
+            style={{ left: 684, top: 2116, width: 576, height: 122 }}
+          />
+          <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
+        </>
+      )}
+      {interactive && <div className="visually-hidden">
+        <h1>Blockchain so decentralized, it’s out of this world.</h1>
+        <p>Use Terra Classic, build on it, or integrate it. Everything you need to get started—clear paths, credible tooling, and a network built for decentralized finance.</p>
+        <h2>What is Terra Classic?</h2>
+        <h2>Explore what Terra Classic enables:</h2>
+        <h2>Staking Protocol</h2>
+        <h2>Swap Protocol</h2>
+        <h2>Forex Protocol</h2>
+        <h2>Terra Classic native assets:</h2>
+        <h2>Terra Classic strenghts:</h2>
+        <h2>Efficiency driven by decentralization</h2>
+        <h2>Build your own app on Terra Classic:</h2>
+        <h2>Join Terra Classic community:</h2>
+        <h2>Frequently asked questions:</h2>
+      </div>}
+    </div>
+  );
+}
+
+function ComparisonToggle({ designVisible, onToggle }: { designVisible: boolean; onToggle: () => void }) {
+  return (
+    <button
+      className={`comparison-toggle ${designVisible ? "comparison-toggle--on" : ""}`}
+      type="button"
+      aria-label={designVisible ? "Hide design reference layer" : "Show design reference layer"}
+      aria-pressed={designVisible}
+      onClick={onToggle}
+      title="Internal QA: toggle Figma screenshot layer"
+    >
+      <span aria-hidden="true" />
+    </button>
+  );
+}
+
 export default function App() {
   const [activeId, setActiveId] = useState("ecosystem");
+  const pixelDesktop = useMediaQuery("(min-width: 1500px)");
+  const [designVisible, setDesignVisible] = useStoredBoolean("tcm-design-reference-visible", true);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const visible = entries.find((entry) => entry.isIntersecting);
@@ -380,25 +647,54 @@ export default function App() {
 
   return (
     <div className="app">
-      <Sidebar activeId={activeId} />
-      <main>
-        <AnnouncementBar />
-        <Hero />
-        <section className="logo-strip" aria-label="Decentralization supported by">
-          <p>Decentralization supported by:</p>
-          <img src={asset("support-logos.png")} alt="Supported by Binance, Circle, The Open Network, PayPal USD, Etherfuse, and ecosystem infrastructure partners" width="1161" height="28" loading="lazy" />
-        </section>
-        <WhatIsTerraClassic />
-        <Capabilities />
-        <ProtocolShowcase />
-        <NativeAssets />
-        <Strengths />
-        <DecentralizationStats />
-        <FounderStories />
-        <JoinCommunity />
-        <FAQ />
-        <Footer />
-      </main>
+      {pixelDesktop ? (
+        <div className="comparison-stage">
+          <div className="semantic-app semantic-app--comparison">
+            <Sidebar activeId={activeId} />
+            <main>
+              <AnnouncementBar />
+              <Hero />
+              <SupportLogoStrip />
+              <WhatIsTerraClassic />
+              <Capabilities />
+              <ProtocolShowcase />
+              <NativeAssets />
+              <Strengths />
+              <DecentralizationStats />
+              <FounderStories />
+              <JoinCommunity />
+              <FAQ />
+              <Footer />
+            </main>
+          </div>
+          {designVisible && (
+            <div className="design-reference-layer" aria-hidden="true">
+              <PixelDesktop interactive={false} />
+            </div>
+          )}
+          <ComparisonToggle designVisible={designVisible} onToggle={() => setDesignVisible((visible) => !visible)} />
+        </div>
+      ) : (
+        <div className="semantic-app">
+        <Sidebar activeId={activeId} />
+        <main>
+          <AnnouncementBar />
+          <Hero />
+          <SupportLogoStrip />
+          <WhatIsTerraClassic />
+          <Capabilities />
+          <ProtocolShowcase />
+          <NativeAssets />
+          <Strengths />
+          <DecentralizationStats />
+          <FounderStories />
+          <JoinCommunity />
+          <FAQ />
+          <Footer />
+        </main>
+        </div>
+      )}
+      {!pixelDesktop && <ComparisonToggle designVisible={false} onToggle={() => setDesignVisible((visible) => !visible)} />}
     </div>
   );
 }
