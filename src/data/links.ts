@@ -19,6 +19,7 @@ export const links = {
   videoExplainer: "",
   brandAssets: "TODO_REPLACE_WITH_FINAL_BRAND_ASSETS_URL",
   privacy: "TODO_REPLACE_WITH_FINAL_PRIVACY_POLICY_URL",
+  dawidSkinder: "https://www.dawidskinder.pl",
 };
 
 export const isPlaceholderLink = (href: string) => href.startsWith("TODO_REPLACE");

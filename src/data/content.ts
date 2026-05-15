@@ -149,7 +149,7 @@ export const assets = [
   { code: "HKTC", name: "Terra Classic Hong Kong Dollar", phase: 2, icon: "native-token-hktc.png" },
   { code: "NOTC", name: "Terra Classic Norwegian Krone", phase: 2, icon: "native-token-notc.png" },
   { code: "PHTC", name: "Terra Classic Philippine Peso", phase: 2, icon: "native-token-phtc.png" },
-  { code: "HKTC", name: "Terra Classic Australian Dollar", phase: 3, icon: "native-token-autc.png" },
+  { code: "AUTC", name: "Terra Classic Australian Dollar", phase: 3, icon: "native-token-autc.png" },
   { code: "CATC", name: "Terra Classic Canadian Dollar", phase: 3, icon: "native-token-catc.png" },
   { code: "CHTC", name: "Terra Classic Swiss Franc", phase: 3, icon: "native-token-chtc.png" },
   { code: "CNTC", name: "Terra Classic Chinese Yuan Renminbi", phase: 3, icon: "native-token-cntc.png" },

@@ -534,54 +534,136 @@ function Strengths() {
       <h2 id="strengths-title">Terra Classic strenghts:</h2>
       <p className="section-intro">A resilient, community-governed Layer-1 built for speed, uptime, and composability—where decentralization translates into real-world reliability for users, builders, and institutions.</p>
       <div className="strength-grid">
-        {strengths.slice(0, 4).map(([title, body]) => <StrengthCard key={title} title={title} body={body} />)}
-        <div className="strength-visual"><img src={asset("strength-orb.png")} alt="" loading="lazy" /></div>
-        {strengths.slice(4).map(([title, body]) => <StrengthCard key={title} title={title} body={body} />)}
+        {strengths.slice(0, 4).map(([title, body], index) => <StrengthCard key={title} index={index} title={title} body={body} />)}
+        <div className="strength-visual"><img src={asset("strength-visual-card.png")} alt="" loading="lazy" width="384" height="384" /></div>
+        {strengths.slice(4).map(([title, body], index) => <StrengthCard key={title} index={index + 4} title={title} body={body} />)}
       </div>
     </section>
   );
 }
 
-function StrengthCard({ title, body }: { title: string; body: string }) {
-  return <article className="strength-card"><h3>{title}</h3><p>{body}</p>{title !== "6s block time" && title !== "Deflationary ecosystem" && title !== "Revival narrative" && <LinkButton href="#">Find out more</LinkButton>}</article>;
+function StrengthCard({ index, title, body }: { index: number; title: string; body: string }) {
+  const hasButton = title !== "6s block time" && title !== "Deflationary ecosystem" && title !== "Revival narrative";
+
+  return (
+    <article className={`strength-card strength-card--${index + 1}`}>
+      <div className="strength-card__copy">
+        <h3>{title}</h3>
+        <p>{body}</p>
+      </div>
+      {hasButton && (
+        <a className="strength-card__button" href="#">
+          <span>Find out more</span>
+          <img src={asset("strength-button-arrow.svg")} alt="" aria-hidden="true" />
+        </a>
+      )}
+    </article>
+  );
 }
 
 function DecentralizationStats() {
   return (
     <section id="metrics" className="stats-panel" aria-labelledby="stats-title">
-      <img className="stats-orb" src={asset("stats-orb.png")} alt="" loading="lazy" />
-      <div className="stats-copy"><h2 id="stats-title">Efficiency driven by decentralization</h2><p>Terra Classic is governed in the open—no CEO, no single company, and no central authority—just a decentralized network where validators, builders, and stakeholders steer the roadmap together.</p></div>
-      <div className="stats-row">{stats.map(([number, label]) => <div key={number}><strong>{number}</strong><span>{label}</span></div>)}</div>
-      <LinkButton href="#decentralization">Find out more about Terra Classic decentralization</LinkButton>
-    </section>
-  );
-}
-
-function FounderStories() {
-  return (
-    <section className="section founders" aria-labelledby="founders-title">
-      <h2 id="founders-title">Build your own app on Terra Classic:</h2>
-      <p className="section-intro">Explore founder stories from teams already scaling real products across the ecosystem. Then launch your product / service with a fast, composable Layer-1 and a community that ships.</p>
-      <LinkButton href={links.docs} dark>Check Terra Classic documentation</LinkButton>
-      <div className="founder-head"><h3>Founder’s stories:</h3><div><button aria-label="Previous founder story">‹</button><button aria-label="Next founder story">›</button></div></div>
-      <div className="founder-grid">
-        {founders.map(([name, role]) => <article key={name} className="founder-card"><img src={asset("founder-portrait.png")} alt={`${name} portrait`} loading="lazy" /><h4>{name}</h4><p>{role}</p></article>)}
+      <img className="stats-visual-bg" src={asset("stats-visual-bg.png")} alt="" aria-hidden="true" loading="lazy" width="1288" height="1208" />
+      <div className="stats-copy">
+        <h2 id="stats-title">Efficiency driven by decentralization</h2>
+        <p>Terra Classic is governed in the open—no CEO, no single company, and no central authority—just a decentralized network where validators, builders, and stakeholders steer the roadmap together.</p>
+      </div>
+      <div className="stats-bottom">
+        <dl className="stats-row">
+          {stats.map(([number, label], index) => (
+            <div className={`stats-metric stats-metric--${index + 1}`} key={number}>
+              <dt>
+                <span>{number}</span>
+                {index === 2 && <img src={asset("lunc-logo.svg")} alt="" aria-hidden="true" width="50" height="50" />}
+              </dt>
+              <dd>{label}</dd>
+            </div>
+          ))}
+        </dl>
+        <a className="stats-button" href="#decentralization">
+          <span>Find out more about Terra Classic decentralization</span>
+          <img src={asset("strength-button-arrow.svg")} alt="" aria-hidden="true" />
+        </a>
       </div>
     </section>
   );
 }
 
+function FounderStories() {
+  const docsHref = isPlaceholderLink(links.docs) ? "#" : links.docs;
+
+  return (
+    <section className="section founders" aria-labelledby="founders-title">
+      <div className="founders-intro">
+        <h2 id="founders-title">Build your own app on Terra Classic:</h2>
+        <p>Explore founder stories from teams already scaling real products across the ecosystem. Then launch your product / service with a fast, composable Layer-1 and a community that ships.</p>
+        <a className="founders-docs-button" href={docsHref} target={docsHref.startsWith("http") ? "_blank" : undefined} rel={docsHref.startsWith("http") ? "noopener noreferrer" : undefined}>
+          <span>Check Terra Classic documentation</span>
+          <img src={asset("founder-button-arrow.svg")} alt="" aria-hidden="true" />
+        </a>
+      </div>
+      <div className="founder-head">
+        <h3>Founder’s stories:</h3>
+        <div className="founder-controls">
+          <button aria-label="Previous founder story"><img src={asset("founder-arrow-left.svg")} alt="" aria-hidden="true" /></button>
+          <button aria-label="Next founder story"><img src={asset("founder-arrow-right.svg")} alt="" aria-hidden="true" /></button>
+        </div>
+      </div>
+      <div className="founder-grid">
+        {founders.map(([name, role]) => <FounderStoryCard key={name} name={name} role={role} />)}
+      </div>
+    </section>
+  );
+}
+
+function FounderStoryCard({ name, role }: { name: string; role: string }) {
+  return (
+    <article className="founder-card">
+      <div className="founder-card__media">
+        <img className="founder-card__portrait" src={asset("founder-story-portrait.png")} alt={`${name} portrait`} loading="lazy" width="768" height="1024" />
+        <div className="founder-card__play" aria-hidden="true">
+          <img className="founder-card__dot founder-card__dot--1" src={asset("founder-play-dot.svg")} alt="" />
+          <img className="founder-card__dot founder-card__dot--2" src={asset("founder-play-dot.svg")} alt="" />
+          <img className="founder-card__dot founder-card__dot--3" src={asset("founder-play-dot.svg")} alt="" />
+          <img className="founder-card__dot founder-card__dot--4" src={asset("founder-play-dot-alt.svg")} alt="" />
+          <img className="founder-card__dot founder-card__dot--5" src={asset("founder-play-dot.svg")} alt="" />
+          <img className="founder-card__dot founder-card__dot--6" src={asset("founder-play-dot.svg")} alt="" />
+        </div>
+      </div>
+      <div className="founder-card__copy">
+        <h4>{name}</h4>
+        <p>{role}</p>
+      </div>
+    </article>
+  );
+}
+
 function JoinCommunity() {
   const buttons = [
-    ["Agora - Official Terra classic forum", links.agoraForum, "community-agora.png"],
-    ["Official Github account", links.github, "community-github.svg"],
-    ["Unofficial Discord channel", links.discord, "community-discord.png"],
+    ["Agora - Official Terra classic forum", links.agoraForum, "community-agora-figma.png", "agora"],
+    ["Official Github account", links.github, "community-github-figma.svg", "github"],
+    ["Unofficial Discord channel", links.discord, "community-discord-figma.png", "discord"],
   ];
   return (
     <section className="section community" aria-labelledby="community-title">
-      <h2 id="community-title">Join Terra Classic community:</h2>
-      <p className="section-intro">Track upgrades, evaluate opportunities, and shape what ships next—collaborating with builders, validators, investors, and institutions across governance, code, and real-time discussion.</p>
-      <div className="community-buttons">{buttons.map(([label, href, icon]) => <a key={label} href={isPlaceholderLink(href) ? "#" : href} target="_blank" rel="noopener noreferrer">{label}<img src={asset(icon)} alt="" /></a>)}</div>
+      <div className="community-copy">
+        <h2 id="community-title">Join Terra Classic community:</h2>
+        <p>Track upgrades, evaluate opportunities, and shape what ships next—collaborating with builders, validators, investors, and institutions across governance, code, and real-time discussion.</p>
+      </div>
+      <div className="community-buttons">
+        {buttons.map(([label, href, icon, variant]) => {
+          const safeHref = isPlaceholderLink(href) ? "#" : href;
+          return (
+            <a key={label} href={safeHref} target={safeHref.startsWith("http") ? "_blank" : undefined} rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}>
+              <span>{label}</span>
+              <span className={`community-button-icon community-button-icon--${variant}`} aria-hidden="true">
+                <img src={asset(icon)} alt="" />
+              </span>
+            </a>
+          );
+        })}
+      </div>
     </section>
   );
 }
@@ -595,7 +677,15 @@ function FAQ() {
         {faqGroups.map(([group, questions]) => <div key={group} className="faq-group"><h3>{group}</h3>{questions.map((question) => {
           const id = question.toLowerCase().replace(/[^a-z0-9]+/g, "-");
           const expanded = open === id;
-          return <div className="faq-item" key={question}><button aria-expanded={expanded} aria-controls={`${id}-answer`} onClick={() => setOpen(expanded ? null : id)}>{question}<span aria-hidden="true">⌄</span></button><p id={`${id}-answer`} hidden={!expanded}>Answer content is pending final editorial approval. This placeholder preserves the accessible accordion behavior without inventing Figma-missing answer copy.</p></div>;
+          return (
+            <div className="faq-item" key={question}>
+              <button aria-expanded={expanded} aria-controls={`${id}-answer`} onClick={() => setOpen(expanded ? null : id)}>
+                <span>{question}</span>
+                <img src={asset("faq-link-arrow.svg")} alt="" aria-hidden="true" />
+              </button>
+              <p id={`${id}-answer`} hidden={!expanded}>Answer content is pending final editorial approval. This placeholder preserves the accessible accordion behavior without inventing Figma-missing answer copy.</p>
+            </div>
+          );
         })}</div>)}
       </div>
     </section>
@@ -605,9 +695,16 @@ function FAQ() {
 function Footer() {
   return (
     <footer className="footer">
-      <div><a href={isPlaceholderLink(links.privacy) ? "#" : links.privacy}>Privacy Policy</a><a href={isPlaceholderLink(links.brandAssets) ? "#" : links.brandAssets}>Terra Classic brand assets</a></div>
-      <p>Terra-Classic.money designed and developed with ♥ by DawidSkinder.pl, with help from various community members.</p>
-      <a className="back-top" href="#top">Back to the top <span aria-hidden="true">↑</span></a>
+      <div className="footer-links"><a href={isPlaceholderLink(links.privacy) ? "#" : links.privacy}>Privacy Policy</a><a href={isPlaceholderLink(links.brandAssets) ? "#" : links.brandAssets}>Terra Classic brand assets</a></div>
+      <p className="footer-credit">
+        <span>Terra-Classic.money designed and developed with</span>
+        <img src={asset("footer-heart.svg")} alt="love" width="20" height="19" />
+        <span>by <a href={links.dawidSkinder} target="_blank" rel="noopener noreferrer">DawidSkinder.pl</a>, with help from various community members.</span>
+      </p>
+      <a className="back-top" href="#top">
+        <span>Back to the top</span>
+        <img src={asset("footer-back-top-arrow.svg")} alt="" aria-hidden="true" />
+      </a>
     </footer>
   );
 }
