@@ -6,7 +6,7 @@ import {
   faqGroups,
   founders,
   heroGroups,
-  languages,
+  languageOptions,
   popularTopics,
   protocols,
   sections,
@@ -81,7 +81,7 @@ function Sidebar({ activeId }: { activeId: string }) {
           <img src={asset("sidebar-logo.svg")} alt="" />
         </a>
         <button className="mobile-menu-button" aria-label="Open navigation" aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
-          <img src={asset("sidebar-collapse-control.svg")} alt="" />
+          <span className="collapse-control collapse-control--collapsed" aria-hidden="true"><span /><span /><span /><span /><span /><span /></span>
         </button>
       </header>
       <aside className={`sidebar ${collapsed ? "sidebar--collapsed" : ""} ${drawerOpen ? "sidebar--drawer-open" : ""}`}>
@@ -89,13 +89,14 @@ function Sidebar({ activeId }: { activeId: string }) {
           <div className="sidebar-brand">
             {collapsed ? (
               <button className="sidebar-brand-collapsed" aria-label="Expand sidebar" aria-expanded="false" onClick={() => setCollapsed(false)}>
-                <img src={asset("sidebar-collapsed.svg")} alt="" />
+                <img src={asset("sidebar-logo-icon.svg")} alt="" />
+                <span className="collapse-control collapse-control--collapsed" aria-hidden="true"><span /><span /><span /><span /><span /><span /></span>
               </button>
             ) : (
               <>
                 <img src={asset("sidebar-logo.svg")} alt="Terra Classic" />
                 <button className="sidebar-collapse" aria-label="Collapse sidebar" aria-expanded="true" onClick={() => setCollapsed(true)}>
-                  <img src={asset("sidebar-collapse-control.svg")} alt="" />
+                  <span className="collapse-control collapse-control--opened" aria-hidden="true"><span /><span /><span /></span>
                 </button>
               </>
             )}
@@ -104,34 +105,59 @@ function Sidebar({ activeId }: { activeId: string }) {
         </div>
         {collapsed ? (
           <div className="sidebar-collapsed-bottom">
-            <div className="vertical-url">www.terra-classic.money</div>
-            <button className="collapsed-language-button" aria-label={`Language - ${language}`} aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
-              <img src={asset("language-icon.svg")} alt="" />
-            </button>
-            {langOpen && (
-              <div className="language-menu language-menu--collapsed" role="listbox">
-                {languages.map((option) => (
-                  <button key={option} onClick={() => { setLanguage(option); setLangOpen(false); }}>
-                    {option}
-                  </button>
-                ))}
+            <div className="collapsed-buttons-stack">
+              <div className="vertical-url">www.terra-classic.money</div>
+              <div className="collapsed-language-slot">
+                <button className={`collapsed-language-button ${langOpen ? "collapsed-language-button--open" : ""}`} aria-label={`${langOpen ? "Close" : "Open"} language selector`} aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
+                  {langOpen ? (
+                    <>
+                    <img className="language-x-icon language-x-icon--default" src={asset("language-x.svg")} alt="" />
+                    <img className="language-x-icon language-x-icon--hover" src={asset("language-x-hover.svg")} alt="" />
+                    </>
+                  ) : (
+                    <img src={asset("language-icon.svg")} alt="" />
+                  )}
+                </button>
+                {langOpen && (
+                  <div className="collapsed-language-options" role="listbox" aria-label="Language options">
+                    {languageOptions.map((option, index) => (
+                      <button key={`${option}-${index}`} onClick={() => { setLanguage(option); setLangOpen(false); }}>
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
+            <div className="collapsed-disclaimer">
+              <div>
+                Terra-Classic.money is not the official website of Terra Classic. Just as no one owns the technology behind email, no one owns the Terra Classic blockchain. Accordingly, no single entity can speak with authority on behalf of Terra Classic.
+              </div>
+            </div>
           </div>
         ) : (
           <div className="sidebar-bottom">
-            <div className="language">
+            <div className={`language ${langOpen ? "language--open" : ""}`}>
               <button className="language-trigger" aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
-                <span>
-                  <img src={asset("language-icon.svg")} alt="" />
-                  Language - {language}
+                <span className="language-trigger-label">
+                  <span>
+                    <img src={asset("language-icon.svg")} alt="" />
+                    Language - {language}
+                  </span>
+                  {langOpen ? (
+                    <img src={asset("language-arrow-open.svg")} alt="" />
+                  ) : (
+                    <>
+                      <img className="language-arrow language-arrow--default" src={asset("language-arrow.svg")} alt="" />
+                      <img className="language-arrow language-arrow--hover" src={asset("language-arrow-hover.svg")} alt="" />
+                    </>
+                  )}
                 </span>
-                <img src={asset("language-arrow.svg")} alt="" />
               </button>
               {langOpen && (
-                <div className="language-menu" role="listbox">
-                  {languages.map((option) => (
-                    <button key={option} onClick={() => { setLanguage(option); setLangOpen(false); }}>
+                <div className="language-options" role="listbox" aria-label="Language options">
+                  {languageOptions.map((option, index) => (
+                    <button key={`${option}-${index}`} onClick={() => { setLanguage(option); setLangOpen(false); }}>
                       {option}
                     </button>
                   ))}
@@ -336,7 +362,7 @@ function Capabilities() {
     defi: links.ecosystem,
     build: links.docs,
     ecosystem: links.ecosystem,
-    layer2: links.layer1,
+    layer2: links.layer2,
     nft: links.ecosystem,
   };
 
@@ -755,9 +781,9 @@ const pixelLinks = [
   { label: "Ecosystem", href: "#ecosystem", left: 32, top: 92, width: 78, height: 18 },
   { label: "Decentralization", href: "#decentralization", left: 32, top: 125, width: 120, height: 18 },
   { label: "Roadmap", href: "#roadmap", left: 32, top: 158, width: 75, height: 18 },
-  { label: "Metrics", href: "#metrics", left: 32, top: 191, width: 62, height: 18 },
+  { label: "Markets", href: "#metrics", left: 32, top: 191, width: 62, height: 18 },
   { label: "About terra-classic.money", href: "#about", left: 32, top: 224, width: 175, height: 18 },
-  { label: "Layer 1", href: links.layer1, left: 32, top: 308, width: 72, height: 18 },
+  { label: "Layer 2", href: links.layer2, left: 32, top: 308, width: 72, height: 18 },
   { label: "Documentation", href: links.docs, left: 32, top: 341, width: 112, height: 18 },
   { label: "Understand Terra Classic", href: "#about", left: 392, top: 686, width: 334, height: 18 },
   { label: "Find wallet", href: links.wallet, left: 392, top: 731, width: 334, height: 18 },

@@ -4,16 +4,16 @@ export const sections = [
   { id: "ecosystem", label: "Ecosystem" },
   { id: "decentralization", label: "Decentralization" },
   { id: "roadmap", label: "Roadmap" },
-  { id: "metrics", label: "Metrics" },
+  { id: "metrics", label: "Markets" },
   { id: "about", label: "About terra-classic.money" },
 ] as const;
 
 export const externalNav = [
-  { label: "Layer 1", href: links.layer1 },
+  { label: "Layer 2", href: links.layer2 },
   { label: "Documentation", href: links.docs },
 ];
 
-export const languages = ["EN", "PL", "ES", "DE", "FR"];
+export const languageOptions = ["EN", "PL", "EN", "PL", "EN", "PL", "PL", "EN"];
 
 export const sidebarDisclaimer =
   "Terra-Classic.money is not the official website of Terra Classic. Just as no one owns the technology behind email, no one owns the Terra Classic blockchain. Accordingly, no single entity can speak with authority on behalf of Terra Classic.\n\nThis website is provided for informational purposes only and does not constitute investment advice, a solicitation, or an offer to buy or sell any securities, tokens, or other financial instruments. The content presented is intended to offer insight into the Terra Classic blockchain and its native assets (LUNC and USTC), and should not be interpreted as legal or financial guidance. Visitors are strongly encouraged to conduct their own independent research, and to consult with qualified legal and financial professionals before making any investment decisions. The authors, contributors, and affiliated entities expressly disclaim all liability for any actions taken based on the content of this website.";

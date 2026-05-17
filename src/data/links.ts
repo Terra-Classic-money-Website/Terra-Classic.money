@@ -4,7 +4,7 @@ export const links = {
   roadmap: "#roadmap",
   metrics: "#metrics",
   about: "#about",
-  layer1: "TODO_REPLACE_WITH_FINAL_LAYER_1_URL",
+  layer2: "TODO_REPLACE_WITH_FINAL_LAYER_2_URL",
   docs: "TODO_REPLACE_WITH_FINAL_DOCUMENTATION_URL",
   wallet: "TODO_REPLACE_WITH_FINAL_WALLET_GUIDE_URL",
   stakingDocs: "TODO_REPLACE_WITH_FINAL_STAKING_DOCS_URL",
