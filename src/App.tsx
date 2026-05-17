@@ -440,13 +440,11 @@ function ProtocolShowcase() {
 
         return (
           <article key={protocol.id} className={`protocol-panel protocol-panel--${protocol.id}`}>
-            {protocol.id === "staking" && (
-              <div className="protocol-glow protocol-glow--staking" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </div>
-            )}
+            <div className={`protocol-glow protocol-glow--${protocol.id}`} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
             <div className="protocol-lines" aria-hidden="true">
               <span />
               <span />
