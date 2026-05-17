@@ -19,6 +19,14 @@ npm run dev
 
 Vite prints the local URL, normally `http://127.0.0.1:5173/`.
 
+Open the internal local design-system tool at:
+
+```text
+http://127.0.0.1:5173/designsystem.html
+```
+
+`designsystem.html` is intentionally a local Vite-served tool. The GitHub Pages workflow uploads only `dist` from `npm run build`, and this page is not part of that production build.
+
 ## Build and checks
 
 ```bash

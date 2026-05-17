@@ -95,7 +95,7 @@ main { margin-left: var(--sidebar-width-expanded); width: min(var(--content-widt
 .collapsed-language-button { width: 32px; height: 32px; padding: 0 16px; border: 0; border-radius: var(--radius-pill); background: var(--color-grey-50); display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .collapsed-language-button:hover, .collapsed-language-button:focus-visible, .collapsed-language-button--open { background: var(--color-grey-100); }
 .collapsed-language-button img { width: 11px; height: 12px; max-width: none; flex: 0 0 auto; }
-.language-x-icon { width: 14px; height: 14px; max-width: none; }
+.collapsed-language-button .language-x-icon { width: 14px; height: 14px; max-width: none; }
 .language-x-icon--hover { display: none; }
 .collapsed-language-button:hover .language-x-icon--default,
 .collapsed-language-button:focus-visible .language-x-icon--default { display: none; }

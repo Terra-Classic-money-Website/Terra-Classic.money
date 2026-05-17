@@ -1,4 +1,14 @@
 :root {
+  --lunc-black: #101010;
+  --lunc-white: #ffffff;
+  --lunc-ultra-light-gray: #f3f3f3;
+  --lunc-light-gray: #e7e7e7;
+  --lunc-gray: #a9a9a9;
+  --lunc-dark-gray: #737373;
+  --lunc-orange: #ee7730;
+  --lunc-yellow: #f9d85e;
+  --lunc-light-blue: #5493f7;
+  --lunc-dark-blue: #0e3ca5;
   --color-white: #ffffff;
   --color-black: #101010;
   --color-navy: #020a1b;
