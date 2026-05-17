@@ -216,7 +216,14 @@ function AnnouncementBar() {
 function Hero() {
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">
-      <img className="hero-bg" src={asset("hero-bg-figma.png")} alt="" />
+      <div className="hero-glow" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
       <div className="hero-lines" aria-hidden="true">
         <span />
         <span />
