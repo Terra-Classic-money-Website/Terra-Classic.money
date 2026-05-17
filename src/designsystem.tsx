@@ -126,13 +126,11 @@ function LanguageButton({ compact = false, open = false, onToggle }: { compact?:
           )}
         </span>
       </button>
-      {open && (
-        <div className="language-options">
-          {languageOptions.map((option, index) => (
-            <button type="button" key={`${option}-${index}`}>{option}</button>
-          ))}
-        </div>
-      )}
+      <div className="language-options ds-language-options-panel" aria-hidden={!open}>
+        {languageOptions.map((option, index) => (
+          <button type="button" key={`${option}-${index}`}>{option}</button>
+        ))}
+      </div>
     </div>
   );
 }
@@ -154,13 +152,11 @@ function InteractiveLanguageButton() {
             <img src={asset("language-icon.svg")} alt="" />
           )}
         </button>
-        {compactOpen && (
-          <div className="collapsed-language-options">
-            {languageOptions.map((option, index) => (
-              <button type="button" key={`${option}-${index}`}>{option}</button>
-            ))}
-          </div>
-        )}
+        <div className="collapsed-language-options ds-collapsed-language-panel" aria-hidden={!compactOpen}>
+          {languageOptions.map((option, index) => (
+            <button type="button" key={`${option}-${index}`}>{option}</button>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -180,13 +176,11 @@ function CompactLanguageDemo() {
           <img src={asset("language-icon.svg")} alt="" />
         )}
       </button>
-      {open && (
-        <div className="collapsed-language-options ds-compact-language-options">
-          {languageOptions.map((option, index) => (
-            <button type="button" key={`${option}-${index}`}>{option}</button>
-          ))}
-        </div>
-      )}
+      <div className="collapsed-language-options ds-compact-language-options ds-collapsed-language-panel" aria-hidden={!open}>
+        {languageOptions.map((option, index) => (
+          <button type="button" key={`${option}-${index}`}>{option}</button>
+        ))}
+      </div>
     </>
   );
 }
@@ -194,8 +188,7 @@ function CompactLanguageDemo() {
 function CollapseControl({ collapsed = false, hoverable = false }: { collapsed?: boolean; hoverable?: boolean }) {
   return (
     <span className={`collapse-control ${collapsed ? "collapse-control--collapsed" : "collapse-control--opened"} ${hoverable ? "ds-collapse-control" : ""}`} aria-hidden="true">
-      <span /><span /><span />
-      {collapsed && <><span /><span /><span /></>}
+      <span /><span /><span /><span /><span /><span />
     </span>
   );
 }
@@ -342,9 +335,44 @@ function FounderStoryPreview() {
 function LeftSectionPreview() {
   const [collapsed, setCollapsed] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
-  if (collapsed) {
-    return (
-      <div className="ds-left-section-preview ds-left-section-preview--collapsed">
+  return (
+    <div className={`ds-left-section-preview ${collapsed ? "ds-left-section-preview--collapsed" : ""}`}>
+      <div className="ds-left-section-panel ds-left-section-panel--expanded" aria-hidden={collapsed}>
+        <div className="sidebar-top">
+          <div className="sidebar-brand">
+            <img src={asset("sidebar-logo.svg")} alt="Terra Classic" />
+            <button className="sidebar-collapse ds-left-collapse-button" type="button" aria-label="Collapse sidebar specimen" onClick={() => setCollapsed(true)}>
+              <CollapseControl hoverable />
+            </button>
+          </div>
+          <div className="sidebar-nav-wrap">
+            <nav className="sidebar-nav">
+              {sections.map((section, index) => (
+                <a className={index === 0 ? "active" : ""} href="#components" onClick={stopNavigation} key={section.id}>{section.label}</a>
+              ))}
+            </nav>
+            <nav className="sidebar-nav sidebar-nav--external">
+              {externalNav.map((item) => (
+                <a href="#components" onClick={stopNavigation} key={item.label}>
+                  <span className="sidebar-external-icon" aria-hidden="true">
+                    <img src={asset("sidebar-external-arrow.svg")} alt="" />
+                  </span>
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+        <div className="ds-left-section-preview__bottom">
+          <LanguageButton open={languageOpen} onToggle={() => setLanguageOpen((value) => !value)} />
+          <div className="disclaimer">
+            <strong>Disclaimers:</strong>
+            <p>{sidebarDisclaimer}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="ds-left-section-panel ds-left-section-panel--collapsed" aria-hidden={!collapsed}>
         <div className="sidebar-top">
           <div className="sidebar-brand">
             <button className="sidebar-brand-collapsed ds-left-collapse-button" type="button" aria-label="Expand sidebar specimen" aria-expanded="false" onClick={() => setCollapsed(false)}>
@@ -364,39 +392,6 @@ function LeftSectionPreview() {
           <div className="collapsed-disclaimer">
             <div>{collapsedSidebarDisclaimer}</div>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="ds-left-section-preview">
-      <div className="sidebar-brand">
-        <img src={asset("sidebar-logo.svg")} alt="Terra Classic" />
-        <button className="sidebar-collapse ds-left-collapse-button" type="button" aria-label="Collapse sidebar specimen" onClick={() => setCollapsed(true)}>
-          <CollapseControl hoverable />
-        </button>
-      </div>
-      <nav className="sidebar-nav">
-        {sections.map((section, index) => (
-          <a className={index === 0 ? "active" : ""} href="#components" onClick={stopNavigation} key={section.id}>{section.label}</a>
-        ))}
-      </nav>
-      <nav className="sidebar-nav sidebar-nav--external">
-        {externalNav.map((item) => (
-          <a href="#components" onClick={stopNavigation} key={item.label}>
-            <span className="sidebar-external-icon" aria-hidden="true">
-              <img src={asset("sidebar-external-arrow.svg")} alt="" />
-            </span>
-            {item.label}
-          </a>
-        ))}
-      </nav>
-      <div className="ds-left-section-preview__bottom">
-        <LanguageButton open={languageOpen} onToggle={() => setLanguageOpen((value) => !value)} />
-        <div className="disclaimer">
-          <strong>Disclaimers:</strong>
-          <p>{sidebarDisclaimer}</p>
         </div>
       </div>
     </div>
@@ -543,19 +538,19 @@ function DesignSystemApp() {
   );
 }
 
-declare global {
-  var __tcmDesignSystemRoot: Root | undefined;
-}
+type DesignSystemRootElement = HTMLElement & {
+  __tcmDesignSystemRoot?: Root;
+};
 
-const designSystemContainer = document.getElementById("design-system-root");
+const designSystemContainer = document.getElementById("design-system-root") as DesignSystemRootElement | null;
 
 if (!designSystemContainer) {
   throw new Error("Missing #design-system-root container.");
 }
 
-globalThis.__tcmDesignSystemRoot ??= createRoot(designSystemContainer);
+designSystemContainer.__tcmDesignSystemRoot ??= createRoot(designSystemContainer);
 
-globalThis.__tcmDesignSystemRoot.render(
+designSystemContainer.__tcmDesignSystemRoot.render(
   <StrictMode>
     <DesignSystemApp />
   </StrictMode>,

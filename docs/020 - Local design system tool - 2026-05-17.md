@@ -85,6 +85,37 @@ Validation run:
 npm run check
 ```
 
+## 2026-05-17 component motion polish pass
+
+Applied interaction polish to the local design-system specimens:
+
+- Added shared design-system motion tokens for fast/base/slow transitions and standard/emphasized easing.
+- Smoothed hover transitions for nav links, language controls, info box, FAQ link, link arrow, button variants, community buttons, CMC / CG buttons, arrow buttons, founder story, back-to-top, collapse controls, and X controls.
+- Converted full and compact language option panels to stay mounted and animate opacity/position/height instead of appearing as a hard cut.
+- Added a small enter animation for the left-section opened/collapsed specimen states so sidebar state changes do not feel abrupt.
+- Swapped button and play icon hover assets with opacity transitions instead of instant display changes.
+- Added a scoped local override so `designsystem.html` can show motion even when the app-wide reduced-motion safety rule is active in the browser; production website behavior remains unchanged.
+
+Validation target:
+
+```bash
+npm run check
+```
+
+## 2026-05-17 left-section nav spacing pass
+
+Applied the next owner sidebar review:
+
+- Left section expanded preview now mirrors the main website sidebar structure: logo and both nav groups are packed inside `sidebar-top`, with language/disclaimer kept as bottom content.
+- Restored the production 64px logo-to-nav spacing and 32px primary-to-external nav spacing inside the design-system specimen.
+- Added smooth color/icon transitions to the Left section nav links so they behave like the standalone Nav element component instances, including the scoped design-system override needed when the app-wide reduced-motion safety rule is active in local QA.
+
+Validation target:
+
+```bash
+npm run check
+```
+
 Additional QA:
 
 - Browser QA confirmed the collapsed left-section language menu now opens upward/right from the bottom slot, uses the shorter production collapsed disclaimer copy, and keeps the 14px language X asset.
@@ -177,6 +208,21 @@ Applied the next owner screenshot review:
 - CMC / CG Button component row now has a black background so the white circular buttons can be reviewed correctly.
 
 Validation run:
+
+```bash
+npm run check
+```
+
+## 2026-05-17 motion correction pass
+
+Applied the next owner motion review:
+
+- Left section preview now keeps expanded and collapsed sidebar states mounted at the same time and cross-fades/slides between them while the shell width changes, so the specimen no longer depends on an instant subtree swap.
+- Button hover polish now keeps `Button yellow`, `Button blue`, `Button - Black play`, GitHub/community buttons, and the Back to top specimen fixed in place instead of lifting by 1px on hover.
+- Collapse controls now keep all icon dots mounted and animate dot color, opacity, and shape changes smoothly in both the standalone component specimen and the Left section preview.
+- The local design-system React root is now stored on the design-system container so Vite hot reloads do not create duplicate roots during browser QA.
+
+Validation target:
 
 ```bash
 npm run check
