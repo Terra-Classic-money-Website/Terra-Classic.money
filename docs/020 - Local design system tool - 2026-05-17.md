@@ -164,6 +164,10 @@ Started pushing the `designsystem.html` component contract back into the main we
 - Fixed sidebar logo-symbol jump in both the main website and `designsystem.html` by removing horizontal panel translation during expanded/collapsed crossfade. The sidebar width still animates, but the logo mark now stays anchored instead of crossfading between shifted positions.
 - Fixed the expanded language button hover in both surfaces by removing the layered hover-arrow image swap. The left language glyph is now explicitly stable on hover, while the right arrow resolves to black through CSS.
 - Changed the shared `Link - Normal` typography token from Figtree Semibold / weight 600 to Figtree Medium / weight 500. Because the main website uses `tc-type-link-normal`, this propagates automatically to matching website links and labels.
+- Kept the shared `H4` typography token at Figtree Semibold / weight 600, and added a scoped main-site hero paragraph override to weight 500 so the dark hero copy reads lighter without weakening all H4 instances.
+- Kept the shared `H5` typography token at Figtree Semibold / weight 600, and added a scoped hero-card headline override to weight 500 for the three hero group titles.
+- Added scoped typography overrides for the three product/protocol panels so the visible section body, `How it works` heading, step titles, and step descriptions render one weight lighter without changing the shared design-system typography tokens.
+- Added the same scoped weight-500 override to the stats/decentralization panel H4 copy while keeping the shared H4 token at weight 600.
 
 Validation target:
 

@@ -156,7 +156,7 @@ main { margin-left: var(--sidebar-width-expanded); width: min(var(--content-widt
 h1, h2, h3, p { letter-spacing: 0; }
 h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); font-weight: var(--tc-type-h1-weight); }
 .hero-copy p, .section-intro, .lead { font-size: var(--tc-type-h4-size); line-height: var(--tc-type-h4-line-height); font-weight: var(--tc-type-h4-weight); }
-.hero-copy p { margin: 0; }
+.hero-copy p { margin: 0; font-weight: 500; }
 .hero-groups { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; align-items: start; }
 .hero-group { background: var(--color-black); border-radius: var(--radius-card); padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 14px; }
 .hero-group:nth-child(1) { height: 192px; }
@@ -165,6 +165,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .hero-group-header { display: flex; align-items: center; justify-content: space-between; height: 32px; }
 .hero-group-header img { display: block; height: auto; max-height: 32px; }
 .hero-group h2 { font-size: var(--tc-type-h5-size); line-height: var(--tc-type-h5-line-height); margin: 0; font-weight: var(--tc-type-h5-weight); }
+.hero .hero-group h2 { font-weight: 500; }
 .hero-link-wrap { display: flex; flex-direction: column; gap: 14px; }
 .hero-group-divider { height: 1px; width: 100%; background: rgba(255,255,255,.1); }
 .hero-group a { display: flex; align-items: center; justify-content: space-between; height: 16px; font-size: var(--tc-type-link-normal-size); line-height: var(--tc-type-link-normal-line-height); font-weight: var(--tc-type-link-normal-weight); transition: color var(--tc-motion-fast) var(--tc-ease-standard); }
@@ -327,6 +328,8 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .protocol-icon { display: block; width: 88px; height: 88px; flex: 0 0 auto; }
 .protocol-head h2, .stats-panel h2 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); font-weight: var(--tc-type-h1-weight); letter-spacing: 0; white-space: nowrap; }
 .protocol-head p, .stats-copy p { margin: 0; width: 1160px; font-size: var(--tc-type-h4-size); line-height: var(--tc-type-h4-line-height); font-weight: var(--tc-type-h4-weight); letter-spacing: 0; }
+.protocol-head p { font-weight: 500; }
+.stats-copy p { font-weight: 500; }
 .status { position: absolute; right: 0; top: 28px; height: 32px; border: 1px solid rgba(255,255,255,.2); border-radius: 256px; padding: 0 16px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: 10px; line-height: 12px; font-weight: 800; letter-spacing: 5px; white-space: nowrap; }
 .status--active { width: 128px; }
 .status--soon { width: 170px; }
@@ -352,6 +355,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .protocol-panel--swap .protocol-bottom { height: 288px; }
 .protocol-panel--forex .protocol-bottom { height: 312px; }
 .protocol-bottom h3 { font-size: var(--tc-type-h5-size); line-height: var(--tc-type-h5-line-height); font-weight: var(--tc-type-h5-weight); margin: 0; }
+.protocol-bottom h3 { font-weight: 500; }
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 1160px; }
 .protocol-panel--staking .steps { height: 136px; }
 .protocol-panel--swap .steps { height: 160px; }
@@ -366,6 +370,8 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .step-arrow--short img { height: 22px; }
 .step strong { display: block; margin: 0; font-size: var(--tc-type-h5-size); line-height: var(--tc-type-h5-line-height); font-weight: var(--tc-type-h5-weight); }
 .step p { margin: 0; font-size: var(--tc-type-body-small-size); line-height: var(--tc-type-body-small-line-height); font-weight: var(--tc-type-body-small-weight); }
+.protocol-panel .step strong { font-weight: 500; }
+.protocol-panel .step p { font-weight: 500; }
 .protocol-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .protocol-button { height: 56px; border-radius: var(--radius-pill); padding: 0 32px; display: inline-flex; align-items: center; justify-content: center; gap: 24px; font-size: var(--tc-type-link-big-size); line-height: var(--tc-type-link-big-line-height); font-weight: var(--tc-type-link-big-weight); transition: background-color var(--tc-motion-base) var(--tc-ease-standard), color var(--tc-motion-base) var(--tc-ease-standard), transform var(--tc-motion-base) var(--tc-ease-standard), box-shadow var(--tc-motion-base) var(--tc-ease-standard); }
 .protocol-button:hover, .protocol-button:focus-visible { background: var(--color-black); color: var(--color-white); transform: none; box-shadow: none; }
