@@ -161,6 +161,9 @@ Started pushing the `designsystem.html` component contract back into the main we
 - Updated founder cards to use the same smooth portrait reveal behavior as the local design-system preview.
 - Narrowed the global reduced-motion media rule so it no longer disables all component transitions. It now only disables smooth scrolling, allowing the requested button/sidebar/language polish to remain visible.
 - Corrected main-site link-arrow instances in the hero and popular-topic links to use an inline current-color dot-arrow icon, so hover turns the icon fully LUNC light blue instead of relying on filtered low-opacity image assets.
+- Fixed sidebar logo-symbol jump in both the main website and `designsystem.html` by removing horizontal panel translation during expanded/collapsed crossfade. The sidebar width still animates, but the logo mark now stays anchored instead of crossfading between shifted positions.
+- Fixed the expanded language button hover in both surfaces by removing the layered hover-arrow image swap. The left language glyph is now explicitly stable on hover, while the right arrow resolves to black through CSS.
+- Changed the shared `Link - Normal` typography token from Figtree Semibold / weight 600 to Figtree Medium / weight 500. Because the main website uses `tc-type-link-normal`, this propagates automatically to matching website links and labels.
 
 Validation target:
 

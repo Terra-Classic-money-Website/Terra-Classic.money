@@ -127,16 +127,13 @@ function LanguageButton({ compact = false, open = false, onToggle }: { compact?:
       <button className="language-trigger" type="button" aria-expanded={open} onClick={onToggle}>
         <span className="language-trigger-label">
           <span>
-          <img src={asset("language-icon.svg")} alt="" />
+          <img className="language-icon" src={asset("language-icon.svg")} alt="" />
           Language - EN
         </span>
           {open ? (
-            <img src={asset("language-arrow-open.svg")} alt="" />
+            <img className="language-arrow language-arrow--open" src={asset("language-arrow-open.svg")} alt="" />
           ) : (
-            <>
-              <img className="language-arrow language-arrow--default" src={asset("language-arrow.svg")} alt="" />
-              <img className="language-arrow language-arrow--hover" src={asset("language-arrow-hover.svg")} alt="" />
-            </>
+            <img className="language-arrow" src={asset("language-arrow.svg")} alt="" />
           )}
         </span>
       </button>
@@ -486,15 +483,17 @@ function TypographySection() {
 
 function TypographyRow({ item }: { item: TypographyToken }) {
   const sampleRef = useRef<HTMLParagraphElement>(null);
-  const [meta, setMeta] = useState({ size: "", lineHeight: "", weight: "" });
+  const [meta, setMeta] = useState({ size: "", lineHeight: "", weight: "", face: "" });
 
   useEffect(() => {
     if (!sampleRef.current) return;
     const style = window.getComputedStyle(sampleRef.current);
+    const weight = style.fontWeight;
     setMeta({
       size: Math.round(parseFloat(style.fontSize)).toString(),
       lineHeight: Math.round(parseFloat(style.lineHeight)).toString(),
-      weight: style.fontWeight,
+      weight,
+      face: weight === "500" ? "Figtree Medium" : weight === "600" ? "Figtree Semibold" : weight === "800" ? "Figtree ExtraBold" : "Figtree Regular",
     });
   }, [item.className]);
 
@@ -504,7 +503,7 @@ function TypographyRow({ item }: { item: TypographyToken }) {
         <strong>{item.name}</strong>
         {meta.size && <span>{meta.size}/{meta.lineHeight}</span>}
         {meta.weight && <span>Weight {meta.weight}</span>}
-        <span>Figtree Semibold</span>
+        {meta.face && <span>{meta.face}</span>}
         <code>{item.className}</code>
       </div>
       <p className={item.className} ref={sampleRef}>{item.sample}</p>

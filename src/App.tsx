@@ -121,16 +121,13 @@ function Sidebar({ activeId }: { activeId: string }) {
               <button className="language-trigger tc-type-link-small" aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
                 <span className="language-trigger-label">
                   <span>
-                    <img src={asset("language-icon.svg")} alt="" />
+                    <img className="language-icon" src={asset("language-icon.svg")} alt="" />
                     Language - {language}
                   </span>
                   {langOpen ? (
-                    <img src={asset("language-arrow-open.svg")} alt="" />
+                    <img className="language-arrow language-arrow--open" src={asset("language-arrow-open.svg")} alt="" />
                   ) : (
-                    <>
-                      <img className="language-arrow language-arrow--default" src={asset("language-arrow.svg")} alt="" />
-                      <img className="language-arrow language-arrow--hover" src={asset("language-arrow-hover.svg")} alt="" />
-                    </>
+                    <img className="language-arrow" src={asset("language-arrow.svg")} alt="" />
                   )}
                 </span>
               </button>
