@@ -1,4 +1,4 @@
-import { StrictMode, useState, type MouseEvent } from "react";
+import { StrictMode, useEffect, useRef, useState, type MouseEvent } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { externalNav, languageOptions, sections, sidebarDisclaimer } from "./data/content";
 import "./styles/tokens.css";
@@ -14,42 +14,40 @@ function stopNavigation(event: MouseEvent<HTMLElement>) {
 type TypographyToken = {
   name: string;
   sample: string;
-  size: number;
-  lineHeight: number;
-  weight: number;
+  className: string;
 };
 
 type ColorToken = {
   name: string;
-  hex: string;
+  variable: string;
   border?: boolean;
 };
 
 const typography: TypographyToken[] = [
-  { name: "H1", sample: "Terra Classic", size: 72, lineHeight: 72, weight: 600 },
-  { name: "H2", sample: "Explore the ecosystem", size: 56, lineHeight: 56, weight: 600 },
-  { name: "H3", sample: "Trade various stablecoins just like on Forex", size: 32, lineHeight: 40, weight: 600 },
-  { name: "H4", sample: "Founder stories", size: 24, lineHeight: 32, weight: 600 },
-  { name: "H5", sample: "Popular topics", size: 20, lineHeight: 24, weight: 600 },
-  { name: "Body", sample: "Clear, neutral, source-aware information for Terra Classic users and builders.", size: 16, lineHeight: 24, weight: 600 },
-  { name: "Body - Small", sample: "Short supporting text and dense interface copy.", size: 14, lineHeight: 24, weight: 600 },
-  { name: "Body - Very small", sample: "Disclaimers, helper copy and compact labels.", size: 12, lineHeight: 16, weight: 600 },
-  { name: "Link - Normal", sample: "Ecosystem", size: 14, lineHeight: 16, weight: 600 },
-  { name: "Link - Small", sample: "Language - EN", size: 12, lineHeight: 16, weight: 600 },
-  { name: "Link - Big", sample: "Understand Terra Classic", size: 16, lineHeight: 24, weight: 600 },
+  { name: "H1", sample: "Terra Classic", className: "tc-type-h1" },
+  { name: "H2", sample: "Explore the ecosystem", className: "tc-type-h2" },
+  { name: "H3", sample: "Trade various stablecoins just like on Forex", className: "tc-type-h3" },
+  { name: "H4", sample: "Founder stories", className: "tc-type-h4" },
+  { name: "H5", sample: "Popular topics", className: "tc-type-h5" },
+  { name: "Body", sample: "Clear, neutral, source-aware information for Terra Classic users and builders.", className: "tc-type-body" },
+  { name: "Body - Small", sample: "Short supporting text and dense interface copy.", className: "tc-type-body-small" },
+  { name: "Body - Very small", sample: "Disclaimers, helper copy and compact labels.", className: "tc-type-body-very-small" },
+  { name: "Link - Normal", sample: "Ecosystem", className: "tc-type-link-normal" },
+  { name: "Link - Small", sample: "Language - EN", className: "tc-type-link-small" },
+  { name: "Link - Big", sample: "Understand Terra Classic", className: "tc-type-link-big" },
 ];
 
 const colors: ColorToken[] = [
-  { name: "LUNC BLACK", hex: "#101010" },
-  { name: "LUNC WHITE", hex: "#FFFFFF", border: true },
-  { name: "LUNC ULTRA LIGHT GRAY", hex: "#F3F3F3", border: true },
-  { name: "LUNC LIGHT GRAY", hex: "#E7E7E7", border: true },
-  { name: "LUNC GRAY", hex: "#A9A9A9" },
-  { name: "LUNC DARK GRAY", hex: "#737373" },
-  { name: "LUNC ORANGE", hex: "#EE7730" },
-  { name: "LUNC YELLOW", hex: "#F9D85E" },
-  { name: "LUNC LIGHT BLUE", hex: "#5493F7" },
-  { name: "LUNC DARK BLUE", hex: "#0E3CA5" },
+  { name: "LUNC BLACK", variable: "--lunc-black" },
+  { name: "LUNC WHITE", variable: "--lunc-white", border: true },
+  { name: "LUNC ULTRA LIGHT GRAY", variable: "--lunc-ultra-light-gray", border: true },
+  { name: "LUNC LIGHT GRAY", variable: "--lunc-light-gray", border: true },
+  { name: "LUNC GRAY", variable: "--lunc-gray" },
+  { name: "LUNC DARK GRAY", variable: "--lunc-dark-gray" },
+  { name: "LUNC ORANGE", variable: "--lunc-orange" },
+  { name: "LUNC YELLOW", variable: "--lunc-yellow" },
+  { name: "LUNC LIGHT BLUE", variable: "--lunc-light-blue" },
+  { name: "LUNC DARK BLUE", variable: "--lunc-dark-blue" },
 ];
 
 const componentNames = [
@@ -79,6 +77,22 @@ function hexToRgb(hex: string) {
   const clean = hex.replace("#", "");
   const value = Number.parseInt(clean, 16);
   return `${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}`;
+}
+
+function rgbToHex(value: string) {
+  const trimmed = value.trim();
+  if (trimmed.startsWith("#")) {
+    if (trimmed.length === 4) {
+      return `#${trimmed.slice(1).split("").map((channel) => `${channel}${channel}`).join("").toUpperCase()}`;
+    }
+    return trimmed.toUpperCase();
+  }
+  const [r, g, b] = value.match(/\d+(\.\d+)?/g)?.slice(0, 3).map(Number) ?? [0, 0, 0];
+  return `#${[r, g, b].map((channel) => Math.round(channel).toString(16).padStart(2, "0")).join("").toUpperCase()}`;
+}
+
+function readCssColor(variable: string) {
+  return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 }
 
 function Sidebar() {
@@ -464,19 +478,37 @@ function TypographySection() {
         <h1 id="typography-title">Typography</h1>
       </div>
       <div className="ds-type-list">
-        {typography.map((item) => (
-          <article className="ds-type-row" key={item.name}>
-            <div className="ds-type-meta">
-              <strong>{item.name}</strong>
-              <span>{item.size}/{item.lineHeight}</span>
-              <span>Weight {item.weight}</span>
-              <span>Figtree Semibold</span>
-            </div>
-            <p style={{ fontSize: item.size, lineHeight: `${item.lineHeight}px`, fontWeight: item.weight }}>{item.sample}</p>
-          </article>
-        ))}
+        {typography.map((item) => <TypographyRow item={item} key={item.name} />)}
       </div>
     </section>
+  );
+}
+
+function TypographyRow({ item }: { item: TypographyToken }) {
+  const sampleRef = useRef<HTMLParagraphElement>(null);
+  const [meta, setMeta] = useState({ size: "", lineHeight: "", weight: "" });
+
+  useEffect(() => {
+    if (!sampleRef.current) return;
+    const style = window.getComputedStyle(sampleRef.current);
+    setMeta({
+      size: Math.round(parseFloat(style.fontSize)).toString(),
+      lineHeight: Math.round(parseFloat(style.lineHeight)).toString(),
+      weight: style.fontWeight,
+    });
+  }, [item.className]);
+
+  return (
+    <article className="ds-type-row">
+      <div className="ds-type-meta">
+        <strong>{item.name}</strong>
+        {meta.size && <span>{meta.size}/{meta.lineHeight}</span>}
+        {meta.weight && <span>Weight {meta.weight}</span>}
+        <span>Figtree Semibold</span>
+        <code>{item.className}</code>
+      </div>
+      <p className={item.className} ref={sampleRef}>{item.sample}</p>
+    </article>
   );
 }
 
@@ -487,18 +519,29 @@ function ColorsSection() {
         <h1 id="colors-title">Colors</h1>
       </div>
       <div className="ds-color-grid">
-        {colors.map((color) => (
-          <article className="ds-color-card" key={color.name}>
-            <span className={`ds-swatch ${color.border ? "ds-swatch--border" : ""}`} style={{ background: color.hex }} />
-            <div>
-              <strong>{color.name}</strong>
-              <span>{color.hex}</span>
-              <span>RGB {hexToRgb(color.hex)}</span>
-            </div>
-          </article>
-        ))}
+        {colors.map((color) => <ColorCard color={color} key={color.name} />)}
       </div>
     </section>
+  );
+}
+
+function ColorCard({ color }: { color: ColorToken }) {
+  const [hex, setHex] = useState("");
+
+  useEffect(() => {
+    setHex(rgbToHex(readCssColor(color.variable)));
+  }, [color.variable]);
+
+  return (
+    <article className="ds-color-card">
+      <span className={`ds-swatch ${color.border ? "ds-swatch--border" : ""}`} style={{ background: `var(${color.variable})` }} />
+      <div>
+        <strong>{color.name}</strong>
+        <span>{hex || color.variable}</span>
+        {hex && <span>RGB {hexToRgb(hex)}</span>}
+        <code>{color.variable}</code>
+      </div>
+    </article>
   );
 }
 

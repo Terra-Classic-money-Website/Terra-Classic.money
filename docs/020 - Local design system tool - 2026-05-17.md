@@ -116,6 +116,58 @@ Validation target:
 npm run check
 ```
 
+## 2026-05-17 shared typography token pass
+
+Applied the first main-site synchronization pass from `designsystem.html`:
+
+- Moved typography style definitions into shared `tc-type-*` classes and CSS variables in `src/styles/tokens.css`, which is imported by both `designsystem.html` and the main website.
+- Updated `designsystem.html` typography rows to render the actual shared typography classes and read their displayed size, line-height, and weight from computed CSS instead of hard-coded TypeScript numbers.
+- Added explicit `tc-type-*` typography classes to the main website markup for headings, body copy, links, and buttons where those elements correspond to the design-system typography styles.
+- Replaced matching hard-coded main-site font values with shared typography variables so future changes to the typography token definitions propagate into the website instead of remaining duplicated in page CSS.
+- Left component-specific micro typography, such as badges and tiny legal/sidebar labels, under component CSS where no matching typography token exists yet.
+
+Validation target:
+
+```bash
+npm run check
+```
+
+## 2026-05-17 shared color token pass
+
+Applied the color synchronization pass from `designsystem.html`:
+
+- Kept `--lunc-*` variables in `src/styles/tokens.css` as the canonical color source for the project.
+- Rewired legacy main-site aliases such as `--color-black`, `--color-blue`, `--color-yellow`, and gray aliases to resolve through canonical `--lunc-*` variables instead of duplicating HEX values.
+- Updated `designsystem.html` color cards to bind swatches to actual CSS variables and display computed HEX/RGB values from those variables.
+- Added each color variable name to the color card metadata so future edits can identify the exact token to change.
+- Left non-design-system effect colors, gradients, shadows, overlays, and protocol-specific visual treatment values outside the LUNC color token set for now.
+
+Validation target:
+
+```bash
+npm run check
+```
+
+## 2026-05-17 main-site component parity pass
+
+Started pushing the `designsystem.html` component contract back into the main website:
+
+- Added shared motion variables in `src/styles/tokens.css` so production components and the local design system can use the same transition durations and easing.
+- Reworked the main sidebar to keep expanded and collapsed panels mounted while opacity/position and width transition, reducing abrupt state swaps.
+- Updated main-site collapse controls to use the same six-dot markup and animated dot transitions as the design-system specimen.
+- Kept full and compact language option panels mounted and animated their open/closed states instead of conditionally rendering them.
+- Replaced text-based arrow placeholders in pill buttons with the same SVG arrow assets and opacity-swap hover model used in `designsystem.html`.
+- Ported the design-system hover model to repeated website button/link instances: no hover lift on yellow/blue/play/community/back-top/founder/market buttons, smooth color/icon transitions, CMC / CG muted icon hover, black-play icon swap, black-only FAQ arrow states, and dot-based Info box X hover.
+- Updated founder cards to use the same smooth portrait reveal behavior as the local design-system preview.
+- Narrowed the global reduced-motion media rule so it no longer disables all component transitions. It now only disables smooth scrolling, allowing the requested button/sidebar/language polish to remain visible.
+- Corrected main-site link-arrow instances in the hero and popular-topic links to use an inline current-color dot-arrow icon, so hover turns the icon fully LUNC light blue instead of relying on filtered low-opacity image assets.
+
+Validation target:
+
+```bash
+npm run check
+```
+
 Additional QA:
 
 - Browser QA confirmed the collapsed left-section language menu now opens upward/right from the bottom slot, uses the shorter production collapsed disclaimer copy, and keeps the 14px language X asset.
