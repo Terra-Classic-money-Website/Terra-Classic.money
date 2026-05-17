@@ -1,5 +1,6 @@
 import { StrictMode, useEffect, useRef, useState, type MouseEvent } from "react";
 import { createRoot, type Root } from "react-dom/client";
+import { AprBadge } from "./components/AprBadge";
 import { externalNav, languageOptions, sections, sidebarDisclaimer } from "./data/content";
 import "./styles/tokens.css";
 import "./styles/global.css";
@@ -68,6 +69,7 @@ const componentNames = [
   "Founder story",
   "Back to top button",
   "Collaps button",
+  "APR badge",
 ];
 
 const collapsedSidebarDisclaimer =
@@ -453,6 +455,8 @@ function ComponentPreview({ name }: { name: string }) {
       return <ButtonGallery />;
     case "Badge":
       return <BadgeGallery />;
+    case "APR badge":
+      return <div className="ds-apr-badge-stage"><AprBadge value="3.42%" /></div>;
     case "CMC / CG Button":
       return <MarketButtons />;
     case "Arrow button":

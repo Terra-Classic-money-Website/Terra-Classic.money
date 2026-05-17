@@ -15,8 +15,51 @@ import {
   strengths,
 } from "./data/content";
 import { isPlaceholderLink, links } from "./data/links";
+import { AprBadge } from "./components/AprBadge";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
+const APR_INFO_ENDPOINT = "https://validator.info/api/terra-classic/blockchain/apr-info";
+
+type AprInfoState = {
+  status: "loading" | "ready" | "error";
+  value: number | null;
+};
+
+function formatAprValue(value: number | null) {
+  if (value === null) return "--";
+  return `${new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value)}%`;
+}
+
+function useAprInfo(): AprInfoState {
+  const [aprInfo, setAprInfo] = useState<AprInfoState>({ status: "loading", value: null });
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadAprInfo() {
+      try {
+        const response = await fetch(APR_INFO_ENDPOINT, { signal: controller.signal });
+        if (!response.ok) throw new Error(`APR request failed with ${response.status}`);
+
+        const data: unknown = await response.json();
+        const apr = typeof data === "object" && data !== null && "apr" in data ? Number(data.apr) : NaN;
+        if (!Number.isFinite(apr)) throw new Error("APR response did not include a valid apr number");
+
+        setAprInfo({ status: "ready", value: apr });
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        console.warn("APR_INFO_FETCH_FAILED", error);
+        setAprInfo({ status: "error", value: null });
+      }
+    }
+
+    void loadAprInfo();
+
+    return () => controller.abort();
+  }, []);
+
+  return aprInfo;
+}
 
 function useStoredBoolean(key: string, fallback: boolean) {
   const [value, setValue] = useState(() => localStorage.getItem(key) === null ? fallback : localStorage.getItem(key) === "true");
@@ -427,6 +470,7 @@ function Capabilities() {
 }
 
 function ProtocolShowcase() {
+  const stakingApr = useAprInfo();
   const protocolLinks: Record<string, string[]> = {
     staking: [links.stakingDocs, "#", links.stakingDocs],
     swap: [links.swapDocs],
@@ -455,6 +499,7 @@ function ProtocolShowcase() {
               <div className="protocol-title-row">
                 <img className="protocol-icon" src={asset(protocol.icon)} alt="" aria-hidden="true" />
                 <h2 className="tc-type-h1">{protocol.title}</h2>
+                {protocol.id === "staking" && <AprBadge className="protocol-apr" value={formatAprValue(stakingApr.value)} state={stakingApr.status} />}
               </div>
               <span className={`status status--${protocol.status === "ACTIVE" ? "active" : "soon"}`}>
                 {protocol.status}
@@ -636,7 +681,13 @@ function StrengthCard({ index, title, body }: { index: number; title: string; bo
 function DecentralizationStats() {
   return (
     <section id="metrics" className="stats-panel" aria-labelledby="stats-title">
-      <img className="stats-visual-bg" src={asset("stats-visual-bg.png")} alt="" aria-hidden="true" loading="lazy" width="1288" height="1208" />
+      <div className="stats-glow" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
+      <img className="stats-decagon-pattern" src={asset("decagon.svg")} alt="" aria-hidden="true" loading="lazy" width="1288" height="1208" />
+      <img className="stats-planets" src={asset("stats-planets-figma.png")} alt="" aria-hidden="true" loading="lazy" width="1161" height="636" />
       <div className="stats-copy">
         <h2 className="tc-type-h1" id="stats-title">Efficiency driven by decentralization</h2>
         <p className="tc-type-h4">Terra Classic is governed in the open—no CEO, no single company, and no central authority—just a decentralized network where validators, builders, and stakeholders steer the roadmap together.</p>

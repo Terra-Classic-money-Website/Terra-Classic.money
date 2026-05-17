@@ -140,6 +140,7 @@ body:has(.ds-app) { background: var(--lunc-white); }
 .ds-badge-gallery .status { position: relative; right: auto; top: auto; color: var(--lunc-white); background: transparent; }
 .ds-badge { height: 32px; border-radius: var(--radius-pill); padding: 0 16px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; line-height: 12px; letter-spacing: 5px; font-weight: 800; }
 .ds-badge--black { border: 1px solid rgba(255,255,255,.24); background: var(--lunc-black); color: var(--lunc-white); }
+.ds-apr-badge-stage { min-width: 240px; min-height: 120px; padding: 32px; display: flex; align-items: center; background: var(--lunc-black); }
 .ds-component-card--13 { background: var(--lunc-white); color: var(--lunc-black); }
 .ds-component-card--13 .ds-component-stage { padding: 32px; background: var(--lunc-black); }
 .ds-market-buttons { position: relative; z-index: 1; }
