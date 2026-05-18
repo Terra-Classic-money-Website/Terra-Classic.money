@@ -12,6 +12,7 @@ Adjust the homepage hero so it keeps the approved `776px` desktop composition on
 - Hero max height is capped at `776px`.
 - Mobile keeps auto height so stacked mobile content is not clipped.
 - Hero vertical guide lines now use `height: 100%` so they follow the actual hero height instead of staying hardcoded to `776px`.
+- Hero vertical guide lines are placed at `20%`, `40%`, `60%`, and `80%` so the hero is always divided into five equal columns, matching the product section guide-line behavior.
 
 ## Expected behavior
 
@@ -32,4 +33,5 @@ Rendered QA should verify:
 - Desktop Big tall viewport keeps `776px`.
 - Desktop/tablet short viewport uses `95vh`.
 - Mobile remains auto-height.
+- Hero guide-line positions divide the rendered hero width into five equal parts.
 - No horizontal overflow.

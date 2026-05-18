@@ -154,10 +154,10 @@ main { margin-left: var(--sidebar-width-expanded); padding: var(--tc-padding-pag
 .hero-glow span:nth-child(6) { right: -18px; top: 148px; width: 760px; height: 620px; background: radial-gradient(ellipse at 56% 44%, rgba(84,245,255,.96) 0%, rgba(84,245,255,.76) 22%, rgba(45,203,255,.5) 44%, rgba(28,116,255,.25) 66%, rgba(28,116,255,0) 82%); filter: blur(52px); opacity: .72; animation: hero-glow-cyan-source 19s ease-in-out infinite alternate; }
 .hero-lines { position: absolute; inset: 0; pointer-events: none; }
 .hero-lines span { position: absolute; top: 0; width: 1px; height: 100%; background: rgba(255,255,255,.1); }
-.hero-lines span:nth-child(1) { left: 257px; }
-.hero-lines span:nth-child(2) { left: 515px; }
-.hero-lines span:nth-child(3) { left: 773px; }
-.hero-lines span:nth-child(4) { left: 1031px; }
+.hero-lines span:nth-child(1) { left: 20%; }
+.hero-lines span:nth-child(2) { left: 40%; }
+.hero-lines span:nth-child(3) { left: 60%; }
+.hero-lines span:nth-child(4) { left: 80%; }
 .hero-orb { position: absolute; right: -484px; top: -80px; width: 924.49px; height: 918.31px; max-width: none; object-fit: cover; pointer-events: none; }
 .hero-copy { position: relative; width: 703px; height: 383px; max-width: 62%; z-index: 1; display: flex; flex-direction: column; gap: 64px; }
 h1, h2, h3, p { letter-spacing: 0; }
