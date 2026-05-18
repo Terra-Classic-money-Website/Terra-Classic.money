@@ -67,18 +67,6 @@ function useStoredBoolean(key: string, fallback: boolean) {
   return [value, setValue] as const;
 }
 
-function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
-  useEffect(() => {
-    const media = window.matchMedia(query);
-    const update = () => setMatches(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, [query]);
-  return matches;
-}
-
 function LinkButton({ href, children, dark = false }: { href: string; children: string; dark?: boolean }) {
   const safeHref = isPlaceholderLink(href) ? "#" : href;
   return (
@@ -836,140 +824,8 @@ function Footer() {
   );
 }
 
-const pixelAnchors = [
-  { id: "top", top: 0 },
-  { id: "about", top: 1085 },
-  { id: "ecosystem", top: 2701 },
-  { id: "roadmap", top: 4765 },
-  { id: "decentralization", top: 10585 },
-  { id: "metrics", top: 12221 },
-] as const;
-
-const pixelSections = [
-  { src: "figma-sections/sidebar.png", left: 0, top: 0, width: 312, height: 17168 },
-  { src: "figma-sections/info-box.png", left: 328, top: 16, width: 1288, height: 80 },
-  { src: "figma-sections/hero.png", left: 328, top: 104, width: 1288, height: 776 },
-  { src: "figma-sections/support-by.png", left: 328, top: 888, width: 1288, height: 180 },
-  { src: "figma-sections/divider-1.png", left: 328, top: 1076, width: 1288, height: 1 },
-  { src: "figma-sections/what-is.png", left: 328, top: 1085, width: 1288, height: 1608 },
-  { src: "figma-sections/capabilities.png", left: 328, top: 2701, width: 1304, height: 2056 },
-  { src: "figma-sections/products.png", left: 328, top: 4765, width: 1288, height: 3640 },
-  { src: "figma-sections/native-assets.png", left: 328, top: 8413, width: 1288, height: 2164 },
-  { src: "figma-sections/strengths.png", left: 328, top: 10585, width: 1288, height: 1628 },
-  { src: "figma-sections/stats.png", left: 328, top: 12221, width: 1288, height: 1208 },
-  { src: "figma-sections/founders.png", left: 328, top: 13437, width: 1288, height: 1219 },
-  { src: "figma-sections/community.png", left: 328, top: 14664, width: 1288, height: 452 },
-  { src: "figma-sections/divider-2.png", left: 328, top: 15124, width: 1288, height: 1 },
-  { src: "figma-sections/faq.png", left: 328, top: 15133, width: 1288, height: 1825 },
-  { src: "figma-sections/footer.png", left: 328, top: 16966, width: 1288, height: 138 },
-] as const;
-
-const pixelLinks = [
-  { label: "Ecosystem", href: "#ecosystem", left: 32, top: 92, width: 78, height: 18 },
-  { label: "Decentralization", href: "#decentralization", left: 32, top: 125, width: 120, height: 18 },
-  { label: "Roadmap", href: "#roadmap", left: 32, top: 158, width: 75, height: 18 },
-  { label: "Markets", href: "#metrics", left: 32, top: 191, width: 62, height: 18 },
-  { label: "About terra-classic.money", href: "#about", left: 32, top: 224, width: 175, height: 18 },
-  { label: "Layer 2", href: links.layer2, left: 32, top: 308, width: 72, height: 18 },
-  { label: "Documentation", href: links.docs, left: 32, top: 341, width: 112, height: 18 },
-  { label: "Understand Terra Classic", href: "#about", left: 392, top: 686, width: 334, height: 18 },
-  { label: "Find wallet", href: links.wallet, left: 392, top: 731, width: 334, height: 18 },
-  { label: "Stake your LUNC", href: links.stakingDocs, left: 392, top: 776, width: 334, height: 18 },
-  { label: "Quick start guide", href: links.docs, left: 781, top: 685, width: 334, height: 18 },
-  { label: "Check complete documentation", href: links.docs, left: 781, top: 730, width: 334, height: 18 },
-  { label: "Utilise multi-currency suite", href: "#ecosystem", left: 1171, top: 686, width: 334, height: 18 },
-  { label: "Build payment gateway", href: "#ecosystem", left: 1171, top: 731, width: 334, height: 18 },
-  { label: "Find a wallet and stake", href: "#roadmap", left: 392, top: 6877, width: 236, height: 56 },
-  { label: "Swap Protocol docs", href: "#roadmap", left: 392, top: 8085, width: 204, height: 56 },
-  { label: "Forex Protocol docs", href: "#roadmap", left: 392, top: 9293, width: 204, height: 56 },
-  { label: "Back to the top", href: "#top", left: 376, top: 17048, width: 1097, height: 56 },
-] as const;
-
-function PixelDesktop({ interactive = true }: { interactive?: boolean }) {
-  const [videoOpen, setVideoOpen] = useState(false);
-
-  return (
-    <div className="pixel-desktop" aria-label="Terra Classic homepage desktop implementation">
-      {interactive && pixelAnchors.map((anchor) => (
-        <span key={anchor.id} id={anchor.id} className="pixel-anchor" style={{ top: anchor.top }} />
-      ))}
-      {pixelSections.map((section) => (
-        <img
-          key={section.src}
-          className="pixel-section-image"
-          src={asset(section.src)}
-          alt=""
-          width={section.width}
-          height={section.height}
-          loading="eager"
-          decoding="async"
-          draggable="false"
-          style={{ left: section.left, top: section.top, width: section.width, height: section.height }}
-        />
-      ))}
-      {interactive && (
-        <>
-          <nav className="pixel-hotspots" aria-label="Desktop page shortcuts">
-            {pixelLinks.map((link) => (
-              <a
-                key={`${link.href}-${link.label}`}
-                className="pixel-hotspot"
-                href={isPlaceholderLink(link.href) ? "#" : link.href}
-                aria-label={link.label}
-                target={(isPlaceholderLink(link.href) ? "#" : link.href).startsWith("http") ? "_blank" : undefined}
-                rel={(isPlaceholderLink(link.href) ? "#" : link.href).startsWith("http") ? "noopener noreferrer" : undefined}
-                style={{ left: link.left, top: link.top, width: link.width, height: link.height }}
-              />
-            ))}
-          </nav>
-          <button
-            className="pixel-hotspot pixel-button-hotspot"
-            type="button"
-            aria-label="Watch video explainer — made by investors for investors"
-            onClick={() => setVideoOpen(true)}
-            style={{ left: 684, top: 2116, width: 576, height: 122 }}
-          />
-          <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
-        </>
-      )}
-      {interactive && <div className="visually-hidden">
-        <h1>Blockchain so decentralized, it’s out of this world.</h1>
-        <p>Use Terra Classic, build on it, or integrate it. Everything you need to get started—clear paths, credible tooling, and a network built for decentralized finance.</p>
-        <h2>What is Terra Classic?</h2>
-        <h2>Explore what Terra Classic enables:</h2>
-        <h2>Staking Protocol</h2>
-        <h2>Swap Protocol</h2>
-        <h2>Forex Protocol</h2>
-        <h2>Terra Classic native assets:</h2>
-        <h2>Terra Classic strenghts:</h2>
-        <h2>Efficiency driven by decentralization</h2>
-        <h2>Build your own app on Terra Classic:</h2>
-        <h2>Join Terra Classic community:</h2>
-        <h2>Frequently asked questions:</h2>
-      </div>}
-    </div>
-  );
-}
-
-function ComparisonToggle({ designVisible, onToggle }: { designVisible: boolean; onToggle: () => void }) {
-  return (
-    <button
-      className={`comparison-toggle ${designVisible ? "comparison-toggle--on" : ""}`}
-      type="button"
-      aria-label={designVisible ? "Hide design reference layer" : "Show design reference layer"}
-      aria-pressed={designVisible}
-      onClick={onToggle}
-      title="Internal QA: toggle Figma screenshot layer"
-    >
-      <span aria-hidden="true" />
-    </button>
-  );
-}
-
 export default function App() {
   const [activeId, setActiveId] = useState("ecosystem");
-  const pixelDesktop = useMediaQuery("(min-width: 1500px)");
-  const [designVisible, setDesignVisible] = useStoredBoolean("tcm-design-reference-visible", true);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const visible = entries.find((entry) => entry.isIntersecting);
@@ -984,35 +840,7 @@ export default function App() {
 
   return (
     <div className="app">
-      {pixelDesktop ? (
-        <div className="comparison-stage">
-          <div className="semantic-app semantic-app--comparison">
-            <Sidebar activeId={activeId} />
-            <main>
-              <AnnouncementBar />
-              <Hero />
-              <SupportLogoStrip />
-              <WhatIsTerraClassic />
-              <Capabilities />
-              <ProtocolShowcase />
-              <NativeAssets />
-              <Strengths />
-              <DecentralizationStats />
-              <FounderStories />
-              <JoinCommunity />
-              <FAQ />
-              <Footer />
-            </main>
-          </div>
-          {designVisible && (
-            <div className="design-reference-layer" aria-hidden="true">
-              <PixelDesktop interactive={false} />
-            </div>
-          )}
-          <ComparisonToggle designVisible={designVisible} onToggle={() => setDesignVisible((visible) => !visible)} />
-        </div>
-      ) : (
-        <div className="semantic-app">
+      <div className="semantic-app">
         <Sidebar activeId={activeId} />
         <main>
           <AnnouncementBar />
@@ -1029,9 +857,7 @@ export default function App() {
           <FAQ />
           <Footer />
         </main>
-        </div>
-      )}
-      {!pixelDesktop && <ComparisonToggle designVisible={false} onToggle={() => setDesignVisible((visible) => !visible)} />}
+      </div>
     </div>
   );
 }

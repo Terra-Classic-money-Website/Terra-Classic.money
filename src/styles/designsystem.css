@@ -274,11 +274,11 @@ body:has(.ds-app) { background: var(--lunc-white); }
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1299px) {
   .ds-sidebar { position: relative; width: 100%; height: auto; padding: 24px; gap: 40px; }
   .ds-main { margin-left: 0; width: 100%; padding: 8px; }
   .ds-section { padding: 48px 24px; }
-  .ds-section__head h1 { font-size: 52px; line-height: 56px; }
+  .ds-section__head h1 { font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); }
   .ds-scale-headings, .ds-scale-row { grid-template-columns: 1fr; }
   .ds-scale-row { gap: 0; }
   .ds-type-row { min-height: 0; }
@@ -286,7 +286,7 @@ body:has(.ds-app) { background: var(--lunc-white); }
 }
 
 @media (max-width: 767px) {
-  .ds-section__head h1 { font-size: 40px; line-height: 44px; }
+  .ds-section__head h1 { font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); }
   .ds-button-gallery { grid-template-columns: 1fr; }
   .ds-announcement, .ds-back-top { width: 760px; }
 }
