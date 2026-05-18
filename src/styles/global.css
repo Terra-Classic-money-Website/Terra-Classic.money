@@ -356,10 +356,10 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .pill-button:focus-visible .button-arrow-icon__hover { opacity: 1; }
 
 .protocols { display: grid; gap: 8px; margin-top: 8px; }
-.protocol-panel { width: 100%; height: 1208px; position: relative; overflow: hidden; border-radius: var(--radius-card); color: var(--color-white); padding: var(--tc-padding-immersive-panel); background-color: var(--color-black); display: flex; flex-direction: column; justify-content: space-between; }
-.protocol-panel--staking { background: var(--color-black); }
-.protocol-panel--swap { background: var(--color-black); }
-.protocol-panel--forex { background: var(--color-black); }
+.protocol-panel { width: 100%; height: 95vh; position: relative; overflow: hidden; border-radius: var(--radius-card); color: var(--color-white); padding: var(--tc-padding-immersive-panel); background-color: var(--color-black); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
+.protocol-panel--staking { --protocol-visual-width: 892px; --protocol-visual-height: 512px; --protocol-visual-ratio: 892 / 512; --protocol-visual-center-offset: -5.83%; background: var(--color-black); }
+.protocol-panel--swap { --protocol-visual-width: 987px; --protocol-visual-height: 512px; --protocol-visual-ratio: 987 / 512; --protocol-visual-center-offset: -5.315%; background: var(--color-black); }
+.protocol-panel--forex { --protocol-visual-width: 908px; --protocol-visual-height: 512px; --protocol-visual-ratio: 908 / 512; --protocol-visual-center-offset: -4.735%; background: var(--color-black); }
 .protocol-glow { position: absolute; pointer-events: none; z-index: 0; mix-blend-mode: screen; transform: translateZ(0); }
 .protocol-glow span { position: absolute; display: block; border-radius: 999px; will-change: transform, opacity, border-radius, filter; }
 .protocol-glow--staking, .protocol-glow--swap, .protocol-glow--forex { left: -220px; right: -220px; top: -80px; bottom: -220px; filter: saturate(1.12); mask-image: linear-gradient(to bottom, transparent 0%, transparent 22%, rgba(0,0,0,.32) 29%, #000 40%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 22%, rgba(0,0,0,.32) 29%, #000 40%); }
@@ -392,22 +392,19 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .status--active { width: 128px; }
 .status--soon { width: 170px; }
 .status img { width: 22px; height: 16px; flex: 0 0 auto; }
-.protocol-visual { position: absolute; z-index: 2; pointer-events: none; }
-.protocol-panel--staking .protocol-visual { left: calc(50% - 498px); top: 368px; width: 892px; height: 512px; }
-.protocol-panel--swap .protocol-visual { left: calc(50% - 546px); top: 312px; width: 987px; height: 512px; }
-.protocol-panel--forex .protocol-visual { left: calc(50% - 497px); top: 312px; width: 908px; height: 512px; }
+.protocol-visual { position: relative; z-index: 2; justify-self: center; align-self: center; width: auto; height: min(100%, var(--protocol-visual-height)); aspect-ratio: var(--protocol-visual-ratio); max-width: 100%; pointer-events: none; transform: translateX(var(--protocol-visual-center-offset, 0)); }
 .protocol-orb, .protocol-ui { position: absolute; display: block; max-width: none; object-fit: cover; filter: drop-shadow(0 24px 44px rgba(0,0,0,.22)); }
-.protocol-panel--staking .protocol-orb { left: 242px; top: 0; width: 512px; height: 512px; animation: protocol-orb-hover 7s ease-in-out infinite; will-change: transform; }
-.protocol-panel--swap .protocol-orb { left: 290px; top: 0; width: 512px; height: 512px; animation: protocol-orb-hover 7s ease-in-out infinite; will-change: transform; }
-.protocol-panel--forex .protocol-orb { left: 246px; top: 0; width: 502px; height: 512px; animation: protocol-orb-hover 7s ease-in-out infinite; will-change: transform; }
-.protocol-ui--staking-validator { left: 0; top: 63px; width: 223px; height: 195px; }
-.protocol-ui--staking-stake { left: 151px; top: 266px; width: 223px; height: 182px; border-radius: 8px; }
-.protocol-ui--staking-confirmed { left: 685px; top: 104px; width: 207px; height: 147px; }
-.protocol-ui--swap-form { left: 0; top: 74px; width: 318px; height: 364px; }
-.protocol-ui--swap-confirmed { left: 764px; top: 280px; width: 223px; height: 158px; }
-.protocol-ui--forex-deposit { left: 0; top: 33px; width: 223px; height: 181px; }
-.protocol-ui--forex-mint { left: 135px; top: 222px; width: 223px; height: 256px; }
-.protocol-ui--forex-confirmed { left: 685px; top: 44px; width: 223px; height: 158px; }
+.protocol-panel--staking .protocol-orb { left: 27.13%; top: 0; width: 57.4%; height: 100%; animation: protocol-orb-hover 7s ease-in-out infinite; will-change: transform; }
+.protocol-panel--swap .protocol-orb { left: 29.38%; top: 0; width: 51.87%; height: 100%; animation: protocol-orb-hover 7s ease-in-out infinite; will-change: transform; }
+.protocol-panel--forex .protocol-orb { left: 27.09%; top: 0; width: 55.29%; height: 100%; animation: protocol-orb-hover 7s ease-in-out infinite; will-change: transform; }
+.protocol-ui--staking-validator { left: 0; top: 12.3%; width: 25%; height: 38.09%; }
+.protocol-ui--staking-stake { left: 16.93%; top: 51.95%; width: 25%; height: 35.55%; border-radius: 8px; }
+.protocol-ui--staking-confirmed { left: 76.79%; top: 20.31%; width: 23.21%; height: 28.71%; }
+.protocol-ui--swap-form { left: 0; top: 14.45%; width: 32.22%; height: 71.09%; }
+.protocol-ui--swap-confirmed { left: 77.41%; top: 54.69%; width: 22.59%; height: 30.86%; }
+.protocol-ui--forex-deposit { left: 0; top: 6.45%; width: 24.56%; height: 35.35%; }
+.protocol-ui--forex-mint { left: 14.87%; top: 43.36%; width: 24.56%; height: 50%; }
+.protocol-ui--forex-confirmed { left: 75.44%; top: 8.59%; width: 24.56%; height: 30.86%; }
 .protocol-bottom { position: relative; z-index: 3; width: 100%; display: flex; flex-direction: column; gap: 24px; }
 .protocol-panel--staking .protocol-bottom { height: 264px; }
 .protocol-panel--swap .protocol-bottom { height: 288px; }
@@ -562,18 +559,19 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   linear-gradient(180deg, #050a20 0%, #07133c 48%, #0d4fb9 100%); }
 .strength-visual__orb { position: relative; z-index: 1; display: block; width: 292px; height: auto; max-width: none; }
 
-.stats-panel { width: 100%; height: 1208px; margin-top: 8px; position: relative; overflow: hidden; border-radius: var(--radius-card); background: var(--color-black); color: var(--color-white); padding: 0; }
+.stats-panel { --stats-copy-block-height: 168px; --stats-planets-top: calc(var(--tc-padding-immersive-panel) + var(--stats-copy-block-height) + 40px); --stats-small-planets-height: 636px; --stats-big-planet-width: 270px; --stats-big-planet-height: 268px; --stats-web-center-y-offset: 11px; width: 100%; height: 95vh; margin-top: 8px; position: relative; overflow: hidden; border-radius: var(--radius-card); background: var(--color-black); color: var(--color-white); padding: var(--tc-padding-immersive-panel); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
 .stats-glow { position: absolute; inset: -120px -220px -220px; z-index: 1; pointer-events: none; mix-blend-mode: screen; filter: saturate(1.16); transform: translateZ(0); mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,.26) 28%, #000 42%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,.26) 28%, #000 42%); }
 .stats-glow span { position: absolute; display: block; border-radius: 999px; will-change: transform, opacity, border-radius, filter; }
 .stats-glow span:nth-child(1) { left: -70px; right: -70px; top: 100px; bottom: 20px; background: radial-gradient(ellipse at 54% 58%, rgba(14,60,165,.72) 0%, rgba(14,50,146,.62) 25%, rgba(11,36,118,.5) 52%, rgba(8,24,82,.24) 73%, rgba(5,9,32,0) 91%); filter: blur(82px); opacity: .86; animation: stats-blue-field 23s ease-in-out infinite alternate; }
 .stats-glow span:nth-child(2) { left: 470px; right: 260px; bottom: 42px; height: 650px; background: radial-gradient(ellipse at 52% 70%, rgba(84,245,255,.95) 0%, rgba(84,245,255,.7) 22%, rgba(42,156,255,.48) 45%, rgba(13,84,205,.22) 68%, rgba(13,84,205,0) 88%); filter: blur(62px); opacity: .9; animation: stats-cyan-core 15s var(--tc-ease-emphasized) infinite alternate; }
 .stats-glow span:nth-child(3) { left: 560px; right: 370px; bottom: -20px; height: 430px; background: radial-gradient(ellipse at 52% 46%, rgba(168,252,255,.78) 0%, rgba(84,245,255,.52) 34%, rgba(84,245,255,0) 76%); filter: blur(70px); opacity: .7; animation: stats-cyan-source 19s ease-in-out infinite alternate; }
 .stats-decagon-pattern { position: absolute; inset: 0; z-index: 2; display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; pointer-events: none; }
-.stats-planets { position: absolute; left: 50%; top: 368px; z-index: 3; display: block; width: 1161px; height: 636px; max-width: none; object-fit: contain; pointer-events: none; transform: translateX(-50%); }
-.stats-copy { position: absolute; z-index: 4; left: 64px; top: 64px; width: calc(100% - 128px); height: 240px; }
+.stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); z-index: 3; display: block; width: auto; height: var(--stats-small-planets-height); aspect-ratio: 1161 / 636; max-width: none; object-fit: contain; pointer-events: none; transform: translateX(-50.302%); }
+.stats-big-planet { position: absolute; left: 50%; top: calc(50% + var(--stats-web-center-y-offset)); z-index: 3; display: block; width: var(--stats-big-planet-width); height: var(--stats-big-planet-height); max-width: none; object-fit: contain; pointer-events: none; transform: translate(-50%, -50%); }
+.stats-copy { position: relative; z-index: 4; grid-row: 1; left: auto; top: auto; width: 100%; height: auto; }
 .stats-panel h2 { width: 100%; max-width: none; height: auto; white-space: nowrap; }
 .stats-copy p { margin-top: 32px; }
-.stats-bottom { position: absolute; z-index: 4; left: 64px; top: 912px; width: calc(100% - 128px); height: 232px; }
+.stats-bottom { position: relative; z-index: 4; grid-row: 3; left: auto; top: auto; width: 100%; height: 232px; }
 .stats-row { position: relative; width: 822px; height: 152px; margin: 0; padding: 0; display: block; }
 .stats-metric { position: absolute; top: 0; height: 152px; background: var(--color-black); border-radius: var(--radius-card); padding: var(--tc-padding-compact-card); color: var(--color-white); }
 .stats-metric--1 { left: 0; width: 225px; }
@@ -672,15 +670,11 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 
 @media (max-width: 1499px) {
   .pixel-desktop { display: none; }
-  .protocol-panel { height: auto; min-height: 960px; gap: 420px; }
+  .protocol-panel { height: 95vh; min-height: 0; row-gap: 40px; }
   .protocol-head, .protocol-head p, .protocol-bottom, .steps { width: 100%; }
   .protocol-title-row { height: auto; align-items: flex-start; }
   .protocol-head h2 { white-space: normal; }
-  .status { position: static; margin: 0; }
-  .protocol-visual { left: 50% !important; top: 320px !important; transform: translateX(-50%) scale(.72); transform-origin: top center; }
-  .protocol-panel--staking .protocol-visual { left: calc(50% - 37px) !important; }
-  .protocol-panel--swap .protocol-visual { left: calc(50% - 38px) !important; }
-  .protocol-panel--forex .protocol-visual { left: calc(50% - 31px) !important; }
+  .status { right: 0; top: 28px; margin: 0; }
   .protocol-bottom,
   .protocol-panel--staking .protocol-bottom,
   .protocol-panel--swap .protocol-bottom,
@@ -729,9 +723,10 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .strength-card__copy,
   .strength-card__button { width: 100%; }
   .strength-visual__orb { width: 292px; height: auto; }
-  .stats-panel { height: auto; min-height: 960px; padding: var(--tc-padding-immersive-panel); display: flex; flex-direction: column; gap: 420px; }
+  .stats-panel { --stats-copy-block-height: 148px; --stats-small-planets-height: 515px; --stats-big-planet-width: 219px; --stats-big-planet-height: 217px; --stats-web-center-y-offset: 9px; height: 95vh; min-height: 0; padding: var(--tc-padding-immersive-panel); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
   .stats-decagon-pattern { width: 100%; height: 100%; object-fit: cover; }
-  .stats-planets { left: 50%; top: 430px; width: 1161px; height: 636px; transform: translateX(-50%) scale(.82); transform-origin: top center; }
+  .stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); width: auto; height: var(--stats-small-planets-height); transform: translateX(-50.302%); transform-origin: center; }
+  .stats-big-planet { width: var(--stats-big-planet-width); height: var(--stats-big-planet-height); }
   .stats-copy,
   .stats-bottom { position: relative; left: auto; top: auto; width: 100%; height: auto; }
   .stats-panel h2,
@@ -795,19 +790,15 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .hero-glow span:nth-child(1) { right: 20px; top: 150px; }
   .hero-glow span:nth-child(2) { right: 0; top: -20px; }
   .hero-orb { left: auto; right: -520px; opacity: .55; }
-  .strength-grid, .native-token-grid, .steps, .founder-grid, .community-buttons, .faq-grid { grid-template-columns: 1fr; }
+  .strength-grid, .native-token-grid, .founder-grid, .community-buttons, .faq-grid { grid-template-columns: 1fr; }
   .native-phase--1 .native-token-grid, .native-phase--4 .native-token-grid { grid-template-columns: 1fr; }
   .native-lunc-row__bg { left: 42%; }
   .strength-grid { grid-template-columns: 1fr; }
-  .protocol-panel { height: auto; min-height: 960px; gap: 420px; }
+  .protocol-panel { height: 95vh; min-height: 0; row-gap: 40px; }
   .protocol-head, .protocol-head p, .protocol-bottom, .steps { width: 100%; }
   .protocol-title-row { height: auto; align-items: flex-start; }
   .protocol-head h2 { white-space: normal; }
-  .status { position: static; width: max-content; margin: 0; }
-  .protocol-visual { left: 50% !important; top: 320px !important; transform: translateX(-50%) scale(.72); transform-origin: top center; }
-  .protocol-panel--staking .protocol-visual { left: calc(50% - 37px) !important; }
-  .protocol-panel--swap .protocol-visual { left: calc(50% - 38px) !important; }
-  .protocol-panel--forex .protocol-visual { left: calc(50% - 31px) !important; }
+  .status { right: 0; top: 28px; width: max-content; margin: 0; }
   .protocol-bottom,
   .protocol-panel--staking .protocol-bottom,
   .protocol-panel--swap .protocol-bottom,
@@ -890,16 +881,17 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .what-video-button span { white-space: normal; font-size: 14px; line-height: 20px; }
   .what-video-button img { width: 46px; height: 40px; }
   .protocol-panel, .stats-panel { min-height: auto; }
-  .protocol-panel { gap: 430px; }
+  .protocol-panel { height: auto; display: flex; flex-direction: column; justify-content: space-between; gap: 430px; }
   .protocol-title-row { gap: 16px; }
   .protocol-apr { margin-left: 64px; }
   .protocol-icon { width: 48px; height: 48px; }
-  .protocol-visual { top: 460px !important; transform: translateX(-50%) scale(.42); }
-  .protocol-panel--staking .protocol-visual { left: calc(50% - 22px) !important; }
+  .status { position: static; width: max-content; margin: 0; }
+  .protocol-visual { position: absolute; left: 50% !important; top: 460px !important; width: var(--protocol-visual-width); height: var(--protocol-visual-height); transform: translateX(-50%) scale(.42); transform-origin: top center; }
+  .protocol-panel--staking .protocol-visual { left: calc(50% - 9px) !important; }
   .protocol-panel--swap .protocol-visual,
   .protocol-panel--forex .protocol-visual { top: 540px !important; }
-  .protocol-panel--swap .protocol-visual { left: calc(50% - 22px) !important; }
-  .protocol-panel--forex .protocol-visual { left: calc(50% - 18px) !important; }
+  .protocol-panel--swap .protocol-visual { left: calc(50% - 8px) !important; }
+  .protocol-panel--forex .protocol-visual { left: calc(50% - 7px) !important; }
   .protocol-actions { flex-direction: column; align-items: flex-start; }
   .protocol-button { width: 100%; min-width: 0; }
   .native-assets { gap: 48px; }
@@ -919,7 +911,9 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .native-token-card__text { flex-direction: column; align-items: flex-start; gap: 0; }
   .native-token-card__text > span { padding-bottom: 0; white-space: normal; }
   .native-assets__button { width: 100%; }
-  .stats-panel { padding: var(--tc-padding-immersive-panel); gap: 280px; }
+  .stats-panel { --stats-copy-block-height: 320px; --stats-small-planets-height: 580px; --stats-big-planet-width: 246px; --stats-big-planet-height: 244px; --stats-web-center-y-offset: 11px; height: auto; padding: var(--tc-padding-immersive-panel); display: flex; flex-direction: column; gap: 280px; }
+  .stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); width: auto; height: var(--stats-small-planets-height); transform: translateX(-50.302%); transform-origin: top center; }
+  .stats-big-planet { width: var(--stats-big-planet-width); height: var(--stats-big-planet-height); }
   .stats-row { width: 100%; height: auto; display: grid; grid-template-columns: 1fr; gap: 8px; }
   .stats-metric,
   .stats-metric--1,

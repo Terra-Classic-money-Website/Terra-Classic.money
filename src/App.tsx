@@ -690,7 +690,8 @@ function DecentralizationStats() {
         <span />
       </div>
       <img className="stats-decagon-pattern" src={asset("decagon.svg")} alt="" aria-hidden="true" loading="lazy" width="1288" height="1208" />
-      <img className="stats-planets" src={asset("stats-planets-figma.png")} alt="" aria-hidden="true" loading="lazy" width="1161" height="636" />
+      <img className="stats-small-planets" src={asset("stats-small-planets.png")} alt="" aria-hidden="true" loading="lazy" width="1161" height="636" />
+      <img className="stats-big-planet" src={asset("stats-big-planet.png")} alt="" aria-hidden="true" loading="lazy" width="270" height="268" />
       <div className="stats-copy">
         <h2 className="tc-type-h1" id="stats-title">Efficiency driven by decentralization</h2>
         <p className="tc-type-h4">Terra Classic is governed in the open—no CEO, no single company, and no central authority—just a decentralized network where validators, builders, and stakeholders steer the roadmap together.</p>
