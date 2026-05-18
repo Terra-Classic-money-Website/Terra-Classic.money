@@ -652,7 +652,10 @@ function Strengths() {
       <p className="section-intro tc-type-h4">A resilient, community-governed Layer-1 built for speed, uptime, and composability—where decentralization translates into real-world reliability for users, builders, and institutions.</p>
       <div className="strength-grid">
         {strengths.slice(0, 4).map(([title, body], index) => <StrengthCard key={title} index={index} title={title} body={body} />)}
-        <div className="strength-visual"><img src={asset("strength-visual-card.png")} alt="" loading="lazy" width="384" height="384" /></div>
+        <div className="strength-visual" aria-hidden="true">
+          <span className="strength-visual__bg" />
+          <img className="strength-visual__orb" src={asset("strength-orb.png")} alt="" loading="lazy" width="1400" height="1390" />
+        </div>
         {strengths.slice(4).map(([title, body], index) => <StrengthCard key={title} index={index + 4} title={title} body={body} />)}
       </div>
     </section>
