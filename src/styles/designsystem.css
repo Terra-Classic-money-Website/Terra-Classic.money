@@ -2,21 +2,22 @@ body:has(.ds-app) { background: var(--lunc-white); }
 
 .ds-app { min-height: 100vh; background: var(--lunc-white); color: var(--lunc-black); }
 .ds-app {
+  --ds-sidebar-width: 128px;
   --ds-motion-fast: 160ms;
   --ds-motion-base: 220ms;
   --ds-motion-slow: 320ms;
   --ds-ease-standard: cubic-bezier(.2, 0, 0, 1);
   --ds-ease-emphasized: cubic-bezier(.16, 1, .3, 1);
 }
-.ds-main { margin-left: var(--sidebar-width-expanded); width: calc(100vw - var(--sidebar-width-expanded)); min-height: 100vh; padding: 16px; }
-.ds-sidebar { position: fixed; inset: 0 auto 0 0; z-index: 20; width: var(--sidebar-width-expanded); height: 100vh; padding: 32px 16px 32px 32px; border-right: 1px solid var(--lunc-light-gray); background: var(--lunc-white); display: flex; flex-direction: column; justify-content: flex-start; }
-.ds-sidebar__brand { display: block; width: 221.245px; height: 46px; margin-bottom: 64px; }
-.ds-sidebar__brand img { display: block; width: 221.245px; height: 46px; }
+.ds-main { margin-left: var(--ds-sidebar-width); width: calc(100vw - var(--ds-sidebar-width)); min-height: 100vh; padding: 16px; }
+.ds-sidebar { position: fixed; inset: 0 auto 0 0; z-index: 20; width: var(--ds-sidebar-width); height: 100vh; padding: 32px 16px 32px 24px; border-right: 1px solid var(--lunc-light-gray); background: var(--lunc-white); display: flex; flex-direction: column; justify-content: flex-start; }
+.ds-sidebar__brand { display: block; width: 48px; height: 46px; margin-bottom: 64px; }
+.ds-sidebar__brand img { display: block; width: 48px; height: 46px; }
 .ds-sidebar__nav { display: flex; flex-direction: column; gap: 16px; font-size: var(--tc-type-link-normal-size); line-height: var(--tc-type-link-normal-line-height); font-weight: var(--tc-type-link-normal-weight); }
 .ds-sidebar__nav a { width: fit-content; transition: color var(--ds-motion-fast) var(--ds-ease-standard); }
 .ds-sidebar__nav a:hover, .ds-sidebar__nav a:focus-visible { color: var(--lunc-light-blue); }
 .ds-sidebar__bottom { display: flex; flex-direction: column; gap: 32px; margin-top: auto; }
-.ds-sidebar__bottom p { margin: 0; max-width: 264px; color: var(--lunc-gray); font-size: 8px; line-height: 12px; font-weight: 600; }
+.ds-sidebar__bottom p { margin: 0; max-width: 88px; color: var(--lunc-gray); font-size: 8px; line-height: 12px; font-weight: 600; }
 
 .ds-section { width: 100%; padding: 64px; border-bottom: 1px solid var(--lunc-light-gray); scroll-margin-top: 24px; }
 .ds-section__head { margin-bottom: 64px; }

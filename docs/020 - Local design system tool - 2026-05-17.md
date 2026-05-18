@@ -168,6 +168,7 @@ Started pushing the `designsystem.html` component contract back into the main we
 - Kept the shared `H5` typography token at Figtree Semibold / weight 600, and added a scoped hero-card headline override to weight 500 for the three hero group titles.
 - Added scoped typography overrides for the three product/protocol panels so the visible section body, `How it works` heading, step titles, and step descriptions render one weight lighter without changing the shared design-system typography tokens.
 - Added the same scoped weight-500 override to the stats/decentralization panel H4 copy while keeping the shared H4 token at weight 600.
+- Compactified the `designsystem.html` navigation sidebar: it now uses only the Terra Classic planet mark, has its own 128px local sidebar width, and shifts the design-system content to fill the newly available viewport space.
 
 Validation target:
 

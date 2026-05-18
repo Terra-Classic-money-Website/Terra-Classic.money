@@ -101,7 +101,7 @@ function Sidebar() {
   return (
     <aside className="ds-sidebar" aria-label="Design system navigation">
       <a className="ds-sidebar__brand" href="#typography" aria-label="Terra Classic design system">
-        <img src={asset("sidebar-logo.svg")} alt="Terra Classic" />
+        <img src={asset("sidebar-logo-icon.svg")} alt="Terra Classic" />
       </a>
       <nav className="ds-sidebar__nav">
         <a href="#typography">Typography</a>
