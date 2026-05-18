@@ -756,7 +756,7 @@ function FounderStoryCard({ name, role }: { name: string; role: string }) {
 
 function JoinCommunity() {
   const buttons = [
-    ["Agora - Official Terra classic forum", links.agoraForum, "community-agora-figma.png", "agora"],
+    ["Official Terra Classic forum", links.agoraForum, "community-agora-figma.png", "agora"],
     ["Official Github account", links.github, "community-github-figma.svg", "github"],
     ["Unofficial Discord channel", links.discord, "community-discord-figma.png", "discord"],
   ];

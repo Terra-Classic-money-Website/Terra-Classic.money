@@ -416,6 +416,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .capability-card--layer2 .capability-image { width: min(100%, 213px); }
   .capability-card--nft .capability-image { width: min(100%, 271px); }
 }
+
 .strength-card h3 { margin: 0; font-size: var(--tc-type-h3-size); line-height: var(--tc-type-h3-line-height); font-weight: var(--tc-type-h3-weight); }
 .strength-card p { margin: 16px 0 0; font-size: var(--tc-type-body-size); line-height: var(--tc-type-body-line-height); font-weight: var(--tc-type-body-weight); }
 .pill-button { display: inline-flex; align-items: center; justify-content: space-between; min-height: 56px; gap: 24px; padding: var(--tc-padding-pill-control); background: var(--color-white); color: var(--color-black); border-radius: var(--radius-pill); font-size: var(--tc-type-link-big-size); line-height: var(--tc-type-link-big-line-height); font-weight: var(--tc-type-link-big-weight); transition: background-color var(--tc-motion-base) var(--tc-ease-standard), color var(--tc-motion-base) var(--tc-ease-standard), transform var(--tc-motion-base) var(--tc-ease-standard), box-shadow var(--tc-motion-base) var(--tc-ease-standard); }
@@ -454,7 +455,8 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .protocol-head { position: relative; z-index: 3; width: 100%; display: flex; flex-direction: column; gap: 32px; }
 .protocol-title-row { display: flex; align-items: center; gap: 32px; height: 88px; flex-wrap: wrap; }
 .protocol-icon { display: block; width: 88px; height: 88px; flex: 0 0 auto; }
-.protocol-head h2, .stats-panel h2 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); font-weight: var(--tc-type-h1-weight); letter-spacing: 0; white-space: nowrap; }
+.protocol-head h2, .stats-panel h2 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); font-weight: var(--tc-type-h1-weight); letter-spacing: 0; }
+.protocol-head h2 { white-space: nowrap; }
 .protocol-head p, .stats-copy p { margin: 0; width: 100%; font-size: var(--tc-type-h4-size); line-height: var(--tc-type-h4-line-height); font-weight: var(--tc-type-h4-weight); letter-spacing: 0; }
 .protocol-head p { font-weight: 500; }
 .stats-copy p { font-weight: 500; }
@@ -643,10 +645,10 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .stats-decagon-pattern { position: absolute; inset: 0; z-index: 2; display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; pointer-events: none; }
 .stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); z-index: 3; display: block; width: auto; height: var(--stats-small-planets-height); aspect-ratio: 1161 / 636; max-width: none; object-fit: contain; pointer-events: none; transform: translateX(-50.302%); }
 .stats-big-planet { position: absolute; left: 50%; top: calc(50% + var(--stats-web-center-y-offset)); z-index: 3; display: block; width: var(--stats-big-planet-width); height: var(--stats-big-planet-height); max-width: none; object-fit: contain; pointer-events: none; transform: translate(-50%, -50%); }
-.stats-copy { position: relative; z-index: 4; grid-row: 1; left: auto; top: auto; width: 100%; height: auto; }
-.stats-panel h2 { width: 100%; max-width: none; height: auto; white-space: nowrap; }
-.stats-copy p { margin-top: 32px; }
-.stats-bottom { position: relative; z-index: 4; grid-row: 3; left: auto; top: auto; width: 100%; height: 232px; }
+.stats-copy { position: relative; z-index: 4; grid-row: 1; left: auto; top: auto; width: auto; min-width: 0; height: auto; }
+.stats-panel h2 { width: 100%; max-width: 100%; height: auto; white-space: normal; text-wrap: balance; }
+.stats-copy p { max-width: 100%; margin-top: 32px; text-wrap: balance; }
+.stats-bottom { position: relative; z-index: 4; grid-row: 3; left: auto; top: auto; width: auto; min-width: 0; height: 232px; }
 .stats-row { position: relative; width: 822px; height: 152px; margin: 0; padding: 0; display: block; }
 .stats-metric { position: absolute; top: 0; height: 152px; background: var(--color-black); border-radius: var(--radius-card); padding: var(--tc-padding-compact-card); color: var(--color-white); }
 .stats-metric--1 { left: 0; width: 225px; }
@@ -660,6 +662,14 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .stats-button:hover, .stats-button:focus-visible { background: var(--color-black); color: var(--color-white); transform: none; box-shadow: none; }
 .stats-button img { width: 16px; height: 20px; transform: rotate(-90deg); flex: 0 0 auto; transition: filter var(--tc-motion-fast) var(--tc-ease-standard); }
 .stats-button:hover img, .stats-button:focus-visible img { filter: brightness(0) invert(1); }
+
+@media (min-width: 1500px) and (max-width: 1543px) {
+  .stats-panel { --stats-copy-block-height: 272px; }
+}
+
+@media (min-width: 1544px) and (max-width: 1686px) {
+  .stats-panel { --stats-copy-block-height: 240px; }
+}
 
 .founders { width: 100%; height: 1219px; padding: var(--tc-padding-section-close); }
 .founders-intro { width: 917px; height: 336px; display: flex; flex-direction: column; align-items: flex-start; gap: 64px; }
@@ -679,8 +689,8 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .founder-controls button:hover img, .founder-controls button:focus-visible img { filter: brightness(0) invert(1); }
 .founder-controls button:first-child img { transform: rotate(90deg); }
 .founder-controls button:last-child img { transform: rotate(-90deg); }
-.founder-grid { width: 100%; height: 567px; margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.founder-card { width: 100%; height: 567px; background: var(--color-grey-50); border-radius: var(--radius-card); padding: var(--tc-padding-media-card); display: flex; flex-direction: column; gap: 19px; transition: transform var(--tc-motion-base) var(--tc-ease-standard); }
+.founder-grid { width: 100%; min-height: 567px; margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.founder-card { width: 100%; min-height: 567px; background: var(--color-grey-50); border-radius: var(--radius-card); padding: var(--tc-padding-media-card); display: flex; flex-direction: column; gap: 19px; transition: transform var(--tc-motion-base) var(--tc-ease-standard); }
 .founder-card__media { position: relative; width: 100%; height: 424px; border-radius: var(--radius-card); overflow: hidden; flex: 0 0 auto; }
 .founder-card__portrait { position: absolute; left: 0; top: 0; display: block; width: calc(100% + 8px); height: 470px; max-width: none; object-fit: cover; border-radius: var(--radius-card); opacity: .5; transition: opacity var(--tc-motion-slow) var(--tc-ease-standard), transform var(--tc-motion-slow) var(--tc-ease-standard); }
 .founder-card__play { position: absolute; left: 50%; top: 50%; width: 64px; height: 73px; transform: translate(-50%, -50%); pointer-events: none; }
@@ -693,7 +703,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .founder-card__dot--6 { left: 22.86px; top: 13.71px; }
 .founder-card:hover, .founder-card:focus-within { cursor: pointer; }
 .founder-card:hover .founder-card__portrait, .founder-card:focus-within .founder-card__portrait { opacity: 1; }
-.founder-card__copy { width: 100%; height: 92px; padding: var(--tc-padding-media-card); color: var(--color-black); }
+.founder-card__copy { width: 100%; min-height: 92px; height: auto; padding: var(--tc-padding-media-card); color: var(--color-black); }
 .founder-card h4 { font-size: var(--tc-type-h4-size); line-height: var(--tc-type-h4-line-height); font-weight: var(--tc-type-h4-weight); margin: 0; }
 .founder-card p { margin: 4px 0 0; font-size: var(--tc-type-body-size); line-height: var(--tc-type-body-line-height); font-weight: var(--tc-type-body-weight); }
 
@@ -785,7 +795,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); width: auto; height: var(--stats-small-planets-height); transform: translateX(-50.302%); transform-origin: center; }
   .stats-big-planet { width: var(--stats-big-planet-width); height: var(--stats-big-planet-height); }
   .stats-copy,
-  .stats-bottom { position: relative; left: auto; top: auto; width: 100%; height: auto; }
+  .stats-bottom { position: relative; left: auto; top: auto; width: auto; min-width: 0; height: auto; }
   .stats-panel h2,
   .stats-copy p,
   .stats-row { width: 100%; max-width: 100%; height: auto; }
