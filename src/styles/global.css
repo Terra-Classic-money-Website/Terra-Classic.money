@@ -754,9 +754,20 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .modal iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; }
 
 @media (max-width: 1499px) {
+  .hero-orb { right: -620px; }
+  .hero-group { height: auto; min-height: 147px; }
+  .hero-group:nth-child(1) { min-height: 192px; height: auto; }
+  .hero-group:nth-child(2) { min-height: 146px; height: auto; }
+  .hero-group:nth-child(3) { min-height: 147px; height: auto; }
+  .hero-link-wrap { gap: 14px; }
+  .hero-group a { height: auto; min-height: 16px; align-items: center; gap: 16px; }
+  .support-logo-row { justify-content: flex-start; gap: 18px; }
+  .support-logo { transform: scale(.82); transform-origin: left center; }
+  .what-editorial { grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; }
+  .what-popular { max-width: 320px; }
   .protocol-panel { height: 95vh; min-height: 0; row-gap: 40px; }
   .protocol-head, .protocol-head p, .protocol-bottom, .steps { width: 100%; }
-  .protocol-title-row { height: auto; align-items: flex-start; }
+  .protocol-title-row { min-height: 88px; height: auto; align-items: center; }
   .protocol-head h2 { white-space: normal; }
   .status { right: 0; top: 28px; margin: 0; }
   .protocol-bottom,
@@ -769,6 +780,53 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .capabilities-section { height: auto; }
   .capabilities-head { width: min(895px, 100%); height: auto; gap: 32px; }
   .capabilities-head p { width: 100%; }
+  .capabilities-grid { height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+  .capability-card,
+  .capability-card--staking,
+  .capability-card--forex,
+  .capability-card--defi,
+  .capability-card--build,
+  .capability-card--ecosystem,
+  .capability-card--layer2,
+  .capability-card--nft {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 560px;
+    padding: 24px;
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+  }
+  .capability-copy,
+  .capability-card--build .capability-copy,
+  .capability-card--layer2 .capability-copy,
+  .capability-card--nft .capability-copy { width: auto; margin: 0; }
+  .capability-cta { width: 100%; min-width: 0; margin: 32px 0 0; padding: 0 18px; gap: 10px; }
+  .capability-cta span { min-width: 0; white-space: nowrap; }
+  .capability-card--staking .capability-image,
+  .capability-card--forex .capability-image,
+  .capability-card--defi .capability-image,
+  .capability-card--build .capability-image,
+  .capability-card--ecosystem .capability-image,
+  .capability-card--layer2 .capability-image,
+  .capability-card--nft .capability-image {
+    position: relative;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    grid-row: 3;
+    align-self: center;
+    justify-self: center;
+    transform: none;
+    margin-top: 32px;
+  }
+  .capability-card--staking .capability-image { width: min(100%, 319px); height: auto; aspect-ratio: 1071 / 540; }
+  .capability-card--forex .capability-image { width: min(100%, 314px); height: auto; aspect-ratio: 1003 / 436; }
+  .capability-card--defi .capability-image { width: min(100%, 318px); height: auto; aspect-ratio: 622 / 919; }
+  .capability-card--build .capability-image { width: min(100%, 221px); height: auto; aspect-ratio: 941 / 924; }
+  .capability-card--ecosystem .capability-image { width: min(100%, 214px); height: auto; aspect-ratio: 859 / 864; }
+  .capability-card--layer2 .capability-image { width: min(100%, 213px); height: auto; aspect-ratio: 985 / 827; }
+  .capability-card--nft .capability-image { width: min(100%, 271px); height: auto; aspect-ratio: 1000 / 819; }
   .native-assets { height: auto; }
   .native-assets__header,
   .native-assets__header p,
@@ -780,6 +838,9 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .native-assets__group--speculative,
   .native-assets__group--suite,
   .native-assets__closing { height: auto; }
+  .native-token-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .native-phase--1 .native-token-grid { grid-template-columns: minmax(0, 384px); }
+  .native-phase--4 .native-token-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .strengths { height: auto; }
   .strengths .section-intro,
   .strength-grid { width: 100%; max-width: 100%; }
@@ -789,7 +850,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .strength-card { min-height: 384px; }
   .strength-card__copy,
   .strength-card__button { width: 100%; }
-  .strength-visual__orb { width: 292px; height: auto; }
+  .strength-visual__orb { width: min(72%, 240px); height: auto; }
   .stats-panel { --stats-copy-block-height: 148px; --stats-small-planets-height: 515px; --stats-big-planet-width: 219px; --stats-big-planet-height: 217px; --stats-web-center-y-offset: 9px; height: 95vh; min-height: 0; padding: var(--tc-padding-immersive-panel); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
   .stats-decagon-pattern { width: 100%; height: 100%; object-fit: cover; }
   .stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); width: auto; height: var(--stats-small-planets-height); transform: translateX(-50.302%); transform-origin: center; }
@@ -838,6 +899,14 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .footer-credit { height: auto; }
   .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-credit { white-space: normal; flex-wrap: wrap; }
+}
+
+@media (min-width: 1300px) and (max-width: 1335px) {
+  .stats-panel { --stats-copy-block-height: 236px; }
+}
+
+@media (min-width: 1336px) and (max-width: 1387px) {
+  .stats-panel { --stats-copy-block-height: 208px; }
 }
 
 @media (max-width: 1299px) {
