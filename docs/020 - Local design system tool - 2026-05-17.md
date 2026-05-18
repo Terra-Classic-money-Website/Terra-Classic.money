@@ -219,6 +219,40 @@ Applied the next owner screenshot review:
 - Buttons component section now groups the white-background variants (`Button - White arrow`, `More staking button`, `More forex button`, `More L2 button`) on a gray review surface.
 - Badge component section now groups the first and third badges in a separate black review row.
 
+## 2026-05-18 responsive typography concept pass
+
+Prepared `designsystem.html` for the breakpoint strategy recorded in `029 - Responsive breakpoint strategy change - 2026-05-18.md`:
+
+- Split the Typography section into three conceptual scale columns: Desktop Big (`1500px+`), Desktop Small + Tablet (`1300-1499px` and `768-1299px`), and Mobile (`767px and below`).
+- Kept typography style names, font faces, and weights consistent across all three columns while documenting different size/line-height values per breakpoint set.
+- Added proposed Desktop Small + Tablet and Mobile sizes directly in the design-system surface only. Production website typography tokens and main website implementation were intentionally left unchanged for this conceptual phase.
+
+## 2026-05-18 responsive padding concept pass
+
+Audited production homepage padding usage and added a local-only `Paddings` section directly below Typography in `designsystem.html`:
+
+- Added `Paddings` to the design-system sidebar navigation.
+- Used the same three-column breakpoint model as Typography: Desktop Big, Desktop Small + Tablet, and Mobile.
+- Named the recurring padding schemes from the current homepage instead of listing every one-off value: page gutter, immersive panel inset, editorial section inset, editorial split inset, section close inset, utility band inset, standard card inset, compact card inset, pill control inset, play CTA inset, sidebar chrome inset, and top navigation inset.
+- Desktop Big values reflect the current audited homepage CSS. Desktop Small + Tablet and Mobile values are proposed design-system concepts for the upcoming breakpoint work only; no production website CSS was changed in this pass.
+
+## 2026-05-18 shared typography and padding token sync pass
+
+Converted Typography and Paddings from duplicated design-system display values into shared CSS tokens:
+
+- Added per-breakpoint typography variables in `src/styles/tokens.css`, with active `--tc-type-*` aliases consumed by both the main website and `designsystem.html`.
+- Added per-breakpoint padding variables in `src/styles/tokens.css`, with active `--tc-padding-*` aliases for mapped production selectors.
+- Updated `designsystem.html` so Typography and Paddings read displayed values from CSS variables instead of hard-coded TypeScript numbers.
+- Replaced mapped main-site padding declarations with shared padding aliases for page gutter, immersive panels, editorial sections, editorial split blocks, section-close blocks, community, FAQ, support strip, footer shell, standard cards, compact cards, hero-group cards, pill controls, play CTA, sidebar chrome, and top navigation.
+- Split earlier broad padding families into more accurate schemes before production mapping, so selectors like `.community`, `.faq`, `.footer`, and `.logo-strip` do not accidentally inherit the wrong desktop rhythm.
+- Preserved the current tablet topbar clearance as a local navigation-layout requirement while the broader breakpoint model is still being implemented.
+
+Validation target:
+
+```bash
+npm run check
+```
+
 Validation target:
 
 ```bash

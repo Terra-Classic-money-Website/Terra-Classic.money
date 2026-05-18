@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useRef, useState, type MouseEvent } from "react";
+import { StrictMode, useEffect, useState, type MouseEvent } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { AprBadge } from "./components/AprBadge";
 import { externalNav, languageOptions, sections, sidebarDisclaimer } from "./data/content";
@@ -16,6 +16,29 @@ type TypographyToken = {
   name: string;
   sample: string;
   className: string;
+  token: string;
+};
+
+type TypeMetric = {
+  sizeVar: string;
+  lineHeightVar: string;
+  weightVar: string;
+};
+
+type PaddingToken = {
+  name: string;
+  usage: string;
+  source: string;
+  scales: {
+    desktopBig: PaddingMetric;
+    desktopSmallTablet: PaddingMetric;
+    mobile: PaddingMetric;
+  };
+};
+
+type PaddingMetric = {
+  valueVar: string;
+  note: string;
 };
 
 type ColorToken = {
@@ -25,17 +48,186 @@ type ColorToken = {
 };
 
 const typography: TypographyToken[] = [
-  { name: "H1", sample: "Terra Classic", className: "tc-type-h1" },
-  { name: "H2", sample: "Explore the ecosystem", className: "tc-type-h2" },
-  { name: "H3", sample: "Trade various stablecoins just like on Forex", className: "tc-type-h3" },
-  { name: "H4", sample: "Founder stories", className: "tc-type-h4" },
-  { name: "H5", sample: "Popular topics", className: "tc-type-h5" },
-  { name: "Body", sample: "Clear, neutral, source-aware information for Terra Classic users and builders.", className: "tc-type-body" },
-  { name: "Body - Small", sample: "Short supporting text and dense interface copy.", className: "tc-type-body-small" },
-  { name: "Body - Very small", sample: "Disclaimers, helper copy and compact labels.", className: "tc-type-body-very-small" },
-  { name: "Link - Normal", sample: "Ecosystem", className: "tc-type-link-normal" },
-  { name: "Link - Small", sample: "Language - EN", className: "tc-type-link-small" },
-  { name: "Link - Big", sample: "Understand Terra Classic", className: "tc-type-link-big" },
+  { name: "H1", sample: "Terra Classic", className: "tc-type-h1", token: "h1" },
+  { name: "H2", sample: "Explore the ecosystem", className: "tc-type-h2", token: "h2" },
+  { name: "H3", sample: "Trade various stablecoins just like on Forex", className: "tc-type-h3", token: "h3" },
+  { name: "H4", sample: "Founder stories", className: "tc-type-h4", token: "h4" },
+  { name: "H5", sample: "Popular topics", className: "tc-type-h5", token: "h5" },
+  { name: "Body", sample: "Clear, neutral, source-aware information for Terra Classic users and builders.", className: "tc-type-body", token: "body" },
+  { name: "Body - Small", sample: "Short supporting text and dense interface copy.", className: "tc-type-body-small", token: "body-small" },
+  { name: "Body - Very small", sample: "Disclaimers, helper copy and compact labels.", className: "tc-type-body-very-small", token: "body-very-small" },
+  { name: "Link - Normal", sample: "Ecosystem", className: "tc-type-link-normal", token: "link-normal" },
+  { name: "Link - Small", sample: "Language - EN", className: "tc-type-link-small", token: "link-small" },
+  { name: "Link - Big", sample: "Understand Terra Classic", className: "tc-type-link-big", token: "link-big" },
+];
+
+const typographyScales = [
+  { key: "desktopBig", suffix: "desktop-big", name: "Desktop Big", note: "1500px+" },
+  { key: "desktopSmallTablet", suffix: "desktop-small-tablet", name: "Desktop Small + Tablet", note: "1300-1499px and 768-1299px" },
+  { key: "mobile", suffix: "mobile", name: "Mobile", note: "767px and below" },
+] as const;
+
+const paddings: PaddingToken[] = [
+  {
+    name: "Page gutter",
+    usage: "Outer frame around the page surface.",
+    source: "main",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-page-gutter-desktop-big", note: "Current desktop app frame." },
+      desktopSmallTablet: { valueVar: "--tc-padding-page-gutter-desktop-small-tablet", note: "Keep desktop density; tablet top bar adds vertical offset separately." },
+      mobile: { valueVar: "--tc-padding-page-gutter-mobile", note: "Current phone frame with top navigation clearance." },
+    },
+  },
+  {
+    name: "Immersive panel inset",
+    usage: "Hero and protocol-style full-bleed dark panels.",
+    source: ".hero, .protocol-panel",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-immersive-panel-desktop-big", note: "Current all-side hero/protocol padding." },
+      desktopSmallTablet: { valueVar: "--tc-padding-immersive-panel-desktop-small-tablet", note: "Existing compact panel inset; should carry into Desktop Small + Tablet." },
+      mobile: { valueVar: "--tc-padding-immersive-panel-mobile", note: "Phone panel side inset; keeps content away from curved panel edges." },
+    },
+  },
+  {
+    name: "Editorial section inset",
+    usage: "Large white content sections with section titles and lead copy.",
+    source: ".section, .capabilities-section",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-editorial-section-desktop-big", note: "Current large-section rhythm." },
+      desktopSmallTablet: { valueVar: "--tc-padding-editorial-section-desktop-small-tablet", note: "Already used for compact capabilities/what sections." },
+      mobile: { valueVar: "--tc-padding-editorial-section-mobile", note: "Tighter phone rhythm while preserving clear section starts." },
+    },
+  },
+  {
+    name: "Editorial split inset",
+    usage: "Asymmetric editorial blocks with a heavier top edge.",
+    source: ".what-editorial",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-editorial-split-desktop-big", note: "Current What-is-Terra editorial block." },
+      desktopSmallTablet: { valueVar: "--tc-padding-editorial-split-desktop-small-tablet", note: "Existing compact version for tablet-like layouts." },
+      mobile: { valueVar: "--tc-padding-editorial-split-mobile", note: "Keeps the same top emphasis on phone." },
+    },
+  },
+  {
+    name: "Section close inset",
+    usage: "Large sections with shorter bottom closure.",
+    source: ".native-assets, .founders",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-section-close-desktop-big", note: "Current native/founder section pattern." },
+      desktopSmallTablet: { valueVar: "--tc-padding-section-close-desktop-small-tablet", note: "Proposed smaller desktop/tablet version." },
+      mobile: { valueVar: "--tc-padding-section-close-mobile", note: "Existing mobile close rhythm." },
+    },
+  },
+  {
+    name: "Community section inset",
+    usage: "Short community CTA section.",
+    source: ".community",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-community-section-desktop-big", note: "Current compact community section rhythm." },
+      desktopSmallTablet: { valueVar: "--tc-padding-community-section-desktop-small-tablet", note: "Reduces side pressure while preserving compact height." },
+      mobile: { valueVar: "--tc-padding-community-section-mobile", note: "Current mobile community rhythm." },
+    },
+  },
+  {
+    name: "FAQ section inset",
+    usage: "FAQ block with a shorter top edge.",
+    source: ".faq",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-faq-section-desktop-big", note: "Current FAQ section rhythm." },
+      desktopSmallTablet: { valueVar: "--tc-padding-faq-section-desktop-small-tablet", note: "Preserves FAQ vertical rhythm with smaller side inset." },
+      mobile: { valueVar: "--tc-padding-faq-section-mobile", note: "Current mobile FAQ rhythm." },
+    },
+  },
+  {
+    name: "Support strip inset",
+    usage: "Logo/support proof strip.",
+    source: ".logo-strip",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-support-strip-desktop-big", note: "Current support strip rhythm." },
+      desktopSmallTablet: { valueVar: "--tc-padding-support-strip-desktop-small-tablet", note: "Keeps vertical rhythm while reducing side pressure." },
+      mobile: { valueVar: "--tc-padding-support-strip-mobile", note: "Proposed mobile support strip rhythm." },
+    },
+  },
+  {
+    name: "Footer shell inset",
+    usage: "Footer shell and back-to-top container.",
+    source: ".footer",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-footer-shell-desktop-big", note: "Current desktop footer shell." },
+      desktopSmallTablet: { valueVar: "--tc-padding-footer-shell-desktop-small-tablet", note: "Proposed compact footer shell." },
+      mobile: { valueVar: "--tc-padding-footer-shell-mobile", note: "Current mobile footer shell with bottom closure." },
+    },
+  },
+  {
+    name: "Standard card inset",
+    usage: "Large cards, dark review surfaces, modals, and visual cards.",
+    source: ".strength-card",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-standard-card-desktop-big", note: "Current primary card inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-standard-card-desktop-small-tablet", note: "Better density for narrower columns." },
+      mobile: { valueVar: "--tc-padding-standard-card-mobile", note: "Enough breathing room without wasting phone width." },
+    },
+  },
+  {
+    name: "Compact card inset",
+    usage: "Steps, metrics, hero group cards, and dense cards.",
+    source: ".step, .stats-metric",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-compact-card-desktop-big", note: "Current compact card inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-compact-card-desktop-small-tablet", note: "Can stay stable while typography steps down." },
+      mobile: { valueVar: "--tc-padding-compact-card-mobile", note: "Current smaller dense-card value appears repeatedly on phone rows/cards." },
+    },
+  },
+  {
+    name: "Hero group card inset",
+    usage: "Dense cards inside the hero section.",
+    source: ".hero-group",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-hero-group-card-desktop-big", note: "Current hero group card inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-hero-group-card-desktop-small-tablet", note: "Keep current density for the desktop hero card stack." },
+      mobile: { valueVar: "--tc-padding-hero-group-card-mobile", note: "Simpler one-value phone card inset." },
+    },
+  },
+  {
+    name: "Pill control inset",
+    usage: "Primary buttons, back-to-top, footer/action pills.",
+    source: ".pill-button, .back-top",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-pill-control-desktop-big", note: "Current desktop pill/control horizontal inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-pill-control-desktop-small-tablet", note: "Keep unless label length forces a local override." },
+      mobile: { valueVar: "--tc-padding-pill-control-mobile", note: "Current phone full-width button inset." },
+    },
+  },
+  {
+    name: "Play CTA inset",
+    usage: "Large play/video CTA controls.",
+    source: ".what-video-button",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-play-cta-desktop-big", note: "Current large play button inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-play-cta-desktop-small-tablet", note: "Keep for desktop-grade video CTA." },
+      mobile: { valueVar: "--tc-padding-play-cta-mobile", note: "Current mobile play button inset." },
+    },
+  },
+  {
+    name: "Sidebar chrome inset",
+    usage: "Fixed left navigation shell and drawer surface.",
+    source: ".sidebar",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-sidebar-chrome-desktop-big", note: "Current expanded desktop sidebar shell." },
+      desktopSmallTablet: { valueVar: "--tc-padding-sidebar-chrome-desktop-small-tablet", note: "Desktop Small keeps the fixed-sidebar model." },
+      mobile: { valueVar: "--tc-padding-sidebar-chrome-mobile", note: "Drawer can reuse sidebar shell once topbar owns page chrome." },
+    },
+  },
+  {
+    name: "Top navigation inset",
+    usage: "Tablet/mobile top navigation bar.",
+    source: ".mobile-topbar",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-top-navigation-desktop-big", note: "Not used while fixed sidebar is active." },
+      desktopSmallTablet: { valueVar: "--tc-padding-top-navigation-desktop-small-tablet", note: "Tablet topbar once navigation switches at 1299px." },
+      mobile: { valueVar: "--tc-padding-top-navigation-mobile", note: "Current mobile topbar padding." },
+    },
+  },
 ];
 
 const colors: ColorToken[] = [
@@ -97,6 +289,26 @@ function readCssColor(variable: string) {
   return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 }
 
+function useCssVariable(variable: string) {
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    const readValue = () => setValue(readCssColor(variable));
+    readValue();
+    window.addEventListener("resize", readValue);
+    return () => window.removeEventListener("resize", readValue);
+  }, [variable]);
+
+  return value || `var(${variable})`;
+}
+
+function fontFaceFromWeight(weight: string) {
+  if (weight === "500") return "Figtree Medium";
+  if (weight === "600") return "Figtree Semibold";
+  if (weight === "800") return "Figtree ExtraBold";
+  return "Figtree Regular";
+}
+
 function Sidebar() {
   return (
     <aside className="ds-sidebar" aria-label="Design system navigation">
@@ -105,6 +317,7 @@ function Sidebar() {
       </a>
       <nav className="ds-sidebar__nav">
         <a href="#typography">Typography</a>
+        <a href="#paddings">Paddings</a>
         <a href="#colors">Colors</a>
         <a href="#components">Components</a>
       </nav>
@@ -478,39 +691,104 @@ function TypographySection() {
       <div className="ds-section__head">
         <h1 id="typography-title">Typography</h1>
       </div>
-      <div className="ds-type-list">
-        {typography.map((item) => <TypographyRow item={item} key={item.name} />)}
+      <ScaleHeadings />
+      <div className="ds-scale-row-list">
+        {typography.map((item) => (
+          <div className="ds-scale-row" key={item.name}>
+            {typographyScales.map((scale) => (
+              <TypographyRow
+                item={item}
+                metric={{
+                  sizeVar: `--tc-type-${item.token}-${scale.suffix}-size`,
+                  lineHeightVar: `--tc-type-${item.token}-${scale.suffix}-line-height`,
+                  weightVar: `--tc-type-${item.token}-weight`,
+                }}
+                key={`${scale.key}-${item.name}`}
+              />
+            ))}
+          </div>
+        ))}
       </div>
     </section>
   );
 }
 
-function TypographyRow({ item }: { item: TypographyToken }) {
-  const sampleRef = useRef<HTMLParagraphElement>(null);
-  const [meta, setMeta] = useState({ size: "", lineHeight: "", weight: "", face: "" });
-
-  useEffect(() => {
-    if (!sampleRef.current) return;
-    const style = window.getComputedStyle(sampleRef.current);
-    const weight = style.fontWeight;
-    setMeta({
-      size: Math.round(parseFloat(style.fontSize)).toString(),
-      lineHeight: Math.round(parseFloat(style.lineHeight)).toString(),
-      weight,
-      face: weight === "500" ? "Figtree Medium" : weight === "600" ? "Figtree Semibold" : weight === "800" ? "Figtree ExtraBold" : "Figtree Regular",
-    });
-  }, [item.className]);
+function TypographyRow({ item, metric }: { item: TypographyToken; metric: TypeMetric }) {
+  const size = useCssVariable(metric.sizeVar);
+  const lineHeight = useCssVariable(metric.lineHeightVar);
+  const weight = useCssVariable(metric.weightVar);
 
   return (
     <article className="ds-type-row">
       <div className="ds-type-meta">
         <strong>{item.name}</strong>
-        {meta.size && <span>{meta.size}/{meta.lineHeight}</span>}
-        {meta.weight && <span>Weight {meta.weight}</span>}
-        {meta.face && <span>{meta.face}</span>}
+        <span>{parseInt(size, 10)}/{parseInt(lineHeight, 10)}</span>
+        <span>Weight {weight}</span>
+        <span>{fontFaceFromWeight(weight)}</span>
         <code>{item.className}</code>
       </div>
-      <p className={item.className} ref={sampleRef}>{item.sample}</p>
+      <p
+        className="ds-type-sample"
+        style={{
+          fontSize: `var(${metric.sizeVar})`,
+          lineHeight: `var(${metric.lineHeightVar})`,
+          fontWeight: `var(${metric.weightVar})`,
+        }}
+      >
+        {item.sample}
+      </p>
+    </article>
+  );
+}
+
+function PaddingsSection() {
+  return (
+    <section className="ds-section" id="paddings" aria-labelledby="paddings-title">
+      <div className="ds-section__head">
+        <h1 id="paddings-title">Paddings</h1>
+      </div>
+      <ScaleHeadings />
+      <div className="ds-scale-row-list">
+        {paddings.map((item) => (
+          <div className="ds-scale-row" key={item.name}>
+            {typographyScales.map((scale) => <PaddingRow item={item} metric={item.scales[scale.key]} key={`${scale.key}-${item.name}`} />)}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ScaleHeadings() {
+  return (
+    <div className="ds-scale-headings">
+      {typographyScales.map((scale) => (
+        <header className="ds-type-scale__head" key={scale.key}>
+          <h2>{scale.name}</h2>
+          <span>{scale.note}</span>
+        </header>
+      ))}
+    </div>
+  );
+}
+
+function PaddingRow({ item, metric }: { item: PaddingToken; metric: PaddingMetric }) {
+  const value = useCssVariable(metric.valueVar);
+
+  return (
+    <article className="ds-type-row ds-padding-row">
+      <div className="ds-type-meta ds-padding-meta">
+        <strong>{item.name}</strong>
+        <span>{value}</span>
+        <span>{item.usage}</span>
+        <code>{item.source}</code>
+      </div>
+      <div className="ds-padding-sample" aria-label={`${item.name}: ${value}`}>
+        <div className="ds-padding-sample__frame" style={{ padding: `var(${metric.valueVar})` }}>
+          <div className="ds-padding-sample__content">{value}</div>
+        </div>
+        <p>{metric.note}</p>
+      </div>
     </article>
   );
 }
@@ -577,6 +855,7 @@ function DesignSystemApp() {
       <Sidebar />
       <main className="ds-main">
         <TypographySection />
+        <PaddingsSection />
         <ColorsSection />
         <ComponentsSection />
       </main>
