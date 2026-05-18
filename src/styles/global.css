@@ -324,6 +324,98 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .capability-card--ecosystem .capability-image { left: 50%; top: 311px; width: 214px; height: 217px; transform: translateX(-50%); }
 .capability-card--layer2 .capability-image { left: 73%; top: 40px; width: 213px; height: 184px; transform: translateX(-50%); }
 .capability-card--nft .capability-image { left: 70%; top: 41px; width: 271px; height: 221px; transform: translateX(-50%); }
+
+@media (min-width: 1500px) {
+  .capabilities-section { height: auto; }
+  .capabilities-grid { height: auto; grid-template-rows: 680px 264px auto auto; }
+  .capability-card { --cap-card-pad: 32px; --cap-cta-gap: 32px; --cap-media-gap: 32px; padding: var(--cap-card-pad); }
+  .capability-copy,
+  .capability-card--build .capability-copy,
+  .capability-card--layer2 .capability-copy,
+  .capability-card--nft .capability-copy { width: auto; margin: 0; }
+  .capability-cta { width: min(320px, 100%); min-width: 0; gap: 14px; padding: 0 28px; margin: var(--cap-cta-gap) 0 0; }
+  .capability-cta span { min-width: 0; white-space: nowrap; }
+  .capability-card--staking,
+  .capability-card--forex,
+  .capability-card--defi,
+  .capability-card--ecosystem {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+  }
+  .capability-card--staking .capability-image,
+  .capability-card--forex .capability-image,
+  .capability-card--defi .capability-image,
+  .capability-card--ecosystem .capability-image {
+    position: relative;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    grid-row: 3;
+    align-self: center;
+    justify-self: center;
+    transform: none;
+    margin-top: var(--cap-media-gap);
+  }
+  .capability-card--staking .capability-image { width: min(100%, 319px); height: auto; aspect-ratio: 1071 / 540; }
+  .capability-card--forex .capability-image { width: min(100%, 314px); height: auto; aspect-ratio: 1003 / 436; }
+  .capability-card--defi .capability-image { width: min(100%, 318px); height: auto; aspect-ratio: 622 / 919; }
+  .capability-card--ecosystem .capability-image { width: min(100%, 214px); height: auto; aspect-ratio: 859 / 864; }
+  .capability-card--build,
+  .capability-card--layer2,
+  .capability-card--nft {
+    display: grid;
+    grid-template-columns: minmax(0, 420px) minmax(220px, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
+    column-gap: 56px;
+  }
+  .capability-card--build .capability-copy,
+  .capability-card--layer2 .capability-copy,
+  .capability-card--nft .capability-copy,
+  .capability-card--build .capability-cta,
+  .capability-card--layer2 .capability-cta,
+  .capability-card--nft .capability-cta { grid-column: 1; }
+  .capability-card--build .capability-image,
+  .capability-card--layer2 .capability-image,
+  .capability-card--nft .capability-image {
+    position: relative;
+    left: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    grid-column: 2;
+    grid-row: 1 / 4;
+    align-self: center;
+    justify-self: center;
+    transform: none;
+  }
+  .capability-card--build .capability-image { width: min(100%, 221px); height: auto; aspect-ratio: 941 / 924; }
+  .capability-card--layer2 .capability-image { width: min(100%, 213px); height: auto; aspect-ratio: 985 / 827; }
+  .capability-card--nft .capability-image { width: min(100%, 271px); height: auto; aspect-ratio: 1000 / 819; }
+}
+
+@media (min-width: 1500px) and (max-width: 1680px) {
+  .capability-card { --cap-card-pad: 24px; }
+  .capability-cta { width: 100%; height: 56px; padding: 0 18px; gap: 10px; font-size: 15px; line-height: 22px; }
+  .capability-card--build,
+  .capability-card--layer2,
+  .capability-card--nft {
+    grid-template-columns: minmax(0, 390px) minmax(200px, 1fr);
+    column-gap: 32px;
+  }
+  .capability-card--build .capability-cta,
+  .capability-card--layer2 .capability-cta,
+  .capability-card--nft .capability-cta { width: min(320px, 100%); }
+  .capability-cta-icon--staking,
+  .capability-cta-icon--forex { width: 28px; height: 28px; }
+  .capability-card--staking .capability-image { width: min(100%, 319px); }
+  .capability-card--forex .capability-image { width: min(100%, 314px); }
+  .capability-card--defi .capability-image { width: min(100%, 318px); }
+  .capability-card--ecosystem .capability-image { width: min(100%, 214px); }
+  .capability-card--build .capability-image { width: min(100%, 221px); }
+  .capability-card--layer2 .capability-image { width: min(100%, 213px); }
+  .capability-card--nft .capability-image { width: min(100%, 271px); }
+}
 .strength-card h3 { margin: 0; font-size: var(--tc-type-h3-size); line-height: var(--tc-type-h3-line-height); font-weight: var(--tc-type-h3-weight); }
 .strength-card p { margin: 16px 0 0; font-size: var(--tc-type-body-size); line-height: var(--tc-type-body-line-height); font-weight: var(--tc-type-body-weight); }
 .pill-button { display: inline-flex; align-items: center; justify-content: space-between; min-height: 56px; gap: 24px; padding: var(--tc-padding-pill-control); background: var(--color-white); color: var(--color-black); border-radius: var(--radius-pill); font-size: var(--tc-type-link-big-size); line-height: var(--tc-type-link-big-line-height); font-weight: var(--tc-type-link-big-weight); transition: background-color var(--tc-motion-base) var(--tc-ease-standard), color var(--tc-motion-base) var(--tc-ease-standard), transform var(--tc-motion-base) var(--tc-ease-standard), box-shadow var(--tc-motion-base) var(--tc-ease-standard); }
