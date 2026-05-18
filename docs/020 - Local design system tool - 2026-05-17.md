@@ -102,6 +102,22 @@ Validation target:
 npm run check
 ```
 
+## 2026-05-18 padding taxonomy audit and consolidation pass
+
+Re-audited current production padding declarations after the What-section spacing changes and tightened the token taxonomy:
+
+- Added missing reusable padding families for topbar page gutter, proof-grid sections, info rows, native asset feature rows, native asset cards, media/founder cards, overlay shells, and modal surfaces.
+- Moved the What editorial 64px copy-to-visual handoff into `--tc-padding-editorial-split-*` tokens instead of keeping a local `padding-bottom` override.
+- Replaced remaining production selectors that represented reusable padding families with shared `--tc-padding-*` aliases: `.announcement`, `.native-lunc-row`, `.native-token-card`, `.strengths`, `.founder-card`, `.founder-card__copy`, `.modal-backdrop`, and `.modal`.
+- Consolidated `.capability-cta` onto the existing pill-control padding token instead of keeping a one-pixel local variant.
+- Kept micro paddings local where they are component internals rather than layout families: hidden elements, icon buttons, badge shells, language-option chips, link-divider rows, and alignment nudges.
+
+Validation target:
+
+```bash
+npm run check
+```
+
 ## 2026-05-17 left-section nav spacing pass
 
 Applied the next owner sidebar review:

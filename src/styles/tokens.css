@@ -129,18 +129,24 @@
   --tc-padding-page-gutter-desktop-big: 16px;
   --tc-padding-page-gutter-desktop-small-tablet: 16px;
   --tc-padding-page-gutter-mobile: 88px 8px 8px;
+  --tc-padding-page-gutter-topbar-desktop-big: 16px;
+  --tc-padding-page-gutter-topbar-desktop-small-tablet: 88px 16px 16px;
+  --tc-padding-page-gutter-topbar-mobile: 88px 8px 8px;
   --tc-padding-immersive-panel-desktop-big: 64px;
   --tc-padding-immersive-panel-desktop-small-tablet: 48px;
   --tc-padding-immersive-panel-mobile: 24px;
   --tc-padding-editorial-section-desktop-big: 120px 64px;
   --tc-padding-editorial-section-desktop-small-tablet: 96px 48px;
   --tc-padding-editorial-section-mobile: 72px 24px 56px;
-  --tc-padding-editorial-split-desktop-big: 120px 64px 56px;
-  --tc-padding-editorial-split-desktop-small-tablet: 96px 48px 48px;
-  --tc-padding-editorial-split-mobile: 72px 24px 40px;
+  --tc-padding-editorial-split-desktop-big: 120px 64px 64px;
+  --tc-padding-editorial-split-desktop-small-tablet: 96px 48px 64px;
+  --tc-padding-editorial-split-mobile: 72px 24px 64px;
   --tc-padding-section-close-desktop-big: 120px 64px 60px;
   --tc-padding-section-close-desktop-small-tablet: 96px 48px 56px;
   --tc-padding-section-close-mobile: 72px 24px 56px;
+  --tc-padding-proof-section-desktop-big: 60px 64px 120px;
+  --tc-padding-proof-section-desktop-small-tablet: 60px 48px 96px;
+  --tc-padding-proof-section-mobile: 72px 24px 56px;
   --tc-padding-community-section-desktop-big: 60px 64px 56px;
   --tc-padding-community-section-desktop-small-tablet: 60px 48px 56px;
   --tc-padding-community-section-mobile: 72px 24px 56px;
@@ -162,6 +168,18 @@
   --tc-padding-hero-group-card-desktop-big: 16px 24px 24px;
   --tc-padding-hero-group-card-desktop-small-tablet: 16px 24px 24px;
   --tc-padding-hero-group-card-mobile: 16px;
+  --tc-padding-info-row-desktop-big: 0 32px;
+  --tc-padding-info-row-desktop-small-tablet: 0 32px;
+  --tc-padding-info-row-mobile: 0 24px;
+  --tc-padding-asset-feature-row-desktop-big: 16px 32px;
+  --tc-padding-asset-feature-row-desktop-small-tablet: 16px 32px;
+  --tc-padding-asset-feature-row-mobile: 16px;
+  --tc-padding-asset-card-desktop-big: 0 32px;
+  --tc-padding-asset-card-desktop-small-tablet: 0 32px;
+  --tc-padding-asset-card-mobile: 0 20px;
+  --tc-padding-media-card-desktop-big: 16px;
+  --tc-padding-media-card-desktop-small-tablet: 16px;
+  --tc-padding-media-card-mobile: 16px;
   --tc-padding-pill-control-desktop-big: 0 32px;
   --tc-padding-pill-control-desktop-small-tablet: 0 32px;
   --tc-padding-pill-control-mobile: 0 24px;
@@ -174,11 +192,19 @@
   --tc-padding-top-navigation-desktop-big: 0;
   --tc-padding-top-navigation-desktop-small-tablet: 12px 20px;
   --tc-padding-top-navigation-mobile: 12px 20px;
+  --tc-padding-overlay-shell-desktop-big: 24px;
+  --tc-padding-overlay-shell-desktop-small-tablet: 24px;
+  --tc-padding-overlay-shell-mobile: 24px;
+  --tc-padding-modal-surface-desktop-big: 48px;
+  --tc-padding-modal-surface-desktop-small-tablet: 40px;
+  --tc-padding-modal-surface-mobile: 24px;
   --tc-padding-page-gutter: var(--tc-padding-page-gutter-desktop-big);
+  --tc-padding-page-gutter-topbar: var(--tc-padding-page-gutter-topbar-desktop-big);
   --tc-padding-immersive-panel: var(--tc-padding-immersive-panel-desktop-big);
   --tc-padding-editorial-section: var(--tc-padding-editorial-section-desktop-big);
   --tc-padding-editorial-split: var(--tc-padding-editorial-split-desktop-big);
   --tc-padding-section-close: var(--tc-padding-section-close-desktop-big);
+  --tc-padding-proof-section: var(--tc-padding-proof-section-desktop-big);
   --tc-padding-community-section: var(--tc-padding-community-section-desktop-big);
   --tc-padding-faq-section: var(--tc-padding-faq-section-desktop-big);
   --tc-padding-support-strip: var(--tc-padding-support-strip-desktop-big);
@@ -186,10 +212,16 @@
   --tc-padding-standard-card: var(--tc-padding-standard-card-desktop-big);
   --tc-padding-compact-card: var(--tc-padding-compact-card-desktop-big);
   --tc-padding-hero-group-card: var(--tc-padding-hero-group-card-desktop-big);
+  --tc-padding-info-row: var(--tc-padding-info-row-desktop-big);
+  --tc-padding-asset-feature-row: var(--tc-padding-asset-feature-row-desktop-big);
+  --tc-padding-asset-card: var(--tc-padding-asset-card-desktop-big);
+  --tc-padding-media-card: var(--tc-padding-media-card-desktop-big);
   --tc-padding-pill-control: var(--tc-padding-pill-control-desktop-big);
   --tc-padding-play-cta: var(--tc-padding-play-cta-desktop-big);
   --tc-padding-sidebar-chrome: var(--tc-padding-sidebar-chrome-desktop-big);
   --tc-padding-top-navigation: var(--tc-padding-top-navigation-desktop-big);
+  --tc-padding-overlay-shell: var(--tc-padding-overlay-shell-desktop-big);
+  --tc-padding-modal-surface: var(--tc-padding-modal-surface-desktop-big);
   font-family: "Figtree", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -218,10 +250,12 @@
     --tc-type-link-big-size: var(--tc-type-link-big-desktop-small-tablet-size);
     --tc-type-link-big-line-height: var(--tc-type-link-big-desktop-small-tablet-line-height);
     --tc-padding-page-gutter: var(--tc-padding-page-gutter-desktop-small-tablet);
+    --tc-padding-page-gutter-topbar: var(--tc-padding-page-gutter-topbar-desktop-small-tablet);
     --tc-padding-immersive-panel: var(--tc-padding-immersive-panel-desktop-small-tablet);
     --tc-padding-editorial-section: var(--tc-padding-editorial-section-desktop-small-tablet);
     --tc-padding-editorial-split: var(--tc-padding-editorial-split-desktop-small-tablet);
     --tc-padding-section-close: var(--tc-padding-section-close-desktop-small-tablet);
+    --tc-padding-proof-section: var(--tc-padding-proof-section-desktop-small-tablet);
     --tc-padding-community-section: var(--tc-padding-community-section-desktop-small-tablet);
     --tc-padding-faq-section: var(--tc-padding-faq-section-desktop-small-tablet);
     --tc-padding-support-strip: var(--tc-padding-support-strip-desktop-small-tablet);
@@ -229,10 +263,16 @@
     --tc-padding-standard-card: var(--tc-padding-standard-card-desktop-small-tablet);
     --tc-padding-compact-card: var(--tc-padding-compact-card-desktop-small-tablet);
     --tc-padding-hero-group-card: var(--tc-padding-hero-group-card-desktop-small-tablet);
+    --tc-padding-info-row: var(--tc-padding-info-row-desktop-small-tablet);
+    --tc-padding-asset-feature-row: var(--tc-padding-asset-feature-row-desktop-small-tablet);
+    --tc-padding-asset-card: var(--tc-padding-asset-card-desktop-small-tablet);
+    --tc-padding-media-card: var(--tc-padding-media-card-desktop-small-tablet);
     --tc-padding-pill-control: var(--tc-padding-pill-control-desktop-small-tablet);
     --tc-padding-play-cta: var(--tc-padding-play-cta-desktop-small-tablet);
     --tc-padding-sidebar-chrome: var(--tc-padding-sidebar-chrome-desktop-small-tablet);
     --tc-padding-top-navigation: var(--tc-padding-top-navigation-desktop-small-tablet);
+    --tc-padding-overlay-shell: var(--tc-padding-overlay-shell-desktop-small-tablet);
+    --tc-padding-modal-surface: var(--tc-padding-modal-surface-desktop-small-tablet);
   }
 }
 
@@ -261,10 +301,12 @@
     --tc-type-link-big-size: var(--tc-type-link-big-mobile-size);
     --tc-type-link-big-line-height: var(--tc-type-link-big-mobile-line-height);
     --tc-padding-page-gutter: var(--tc-padding-page-gutter-mobile);
+    --tc-padding-page-gutter-topbar: var(--tc-padding-page-gutter-topbar-mobile);
     --tc-padding-immersive-panel: var(--tc-padding-immersive-panel-mobile);
     --tc-padding-editorial-section: var(--tc-padding-editorial-section-mobile);
     --tc-padding-editorial-split: var(--tc-padding-editorial-split-mobile);
     --tc-padding-section-close: var(--tc-padding-section-close-mobile);
+    --tc-padding-proof-section: var(--tc-padding-proof-section-mobile);
     --tc-padding-community-section: var(--tc-padding-community-section-mobile);
     --tc-padding-faq-section: var(--tc-padding-faq-section-mobile);
     --tc-padding-support-strip: var(--tc-padding-support-strip-mobile);
@@ -272,10 +314,16 @@
     --tc-padding-standard-card: var(--tc-padding-standard-card-mobile);
     --tc-padding-compact-card: var(--tc-padding-compact-card-mobile);
     --tc-padding-hero-group-card: var(--tc-padding-hero-group-card-mobile);
+    --tc-padding-info-row: var(--tc-padding-info-row-mobile);
+    --tc-padding-asset-feature-row: var(--tc-padding-asset-feature-row-mobile);
+    --tc-padding-asset-card: var(--tc-padding-asset-card-mobile);
+    --tc-padding-media-card: var(--tc-padding-media-card-mobile);
     --tc-padding-pill-control: var(--tc-padding-pill-control-mobile);
     --tc-padding-play-cta: var(--tc-padding-play-cta-mobile);
     --tc-padding-sidebar-chrome: var(--tc-padding-sidebar-chrome-mobile);
     --tc-padding-top-navigation: var(--tc-padding-top-navigation-mobile);
+    --tc-padding-overlay-shell: var(--tc-padding-overlay-shell-mobile);
+    --tc-padding-modal-surface: var(--tc-padding-modal-surface-mobile);
   }
 }
 

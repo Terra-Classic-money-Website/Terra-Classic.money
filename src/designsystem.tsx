@@ -79,6 +79,16 @@ const paddings: PaddingToken[] = [
     },
   },
   {
+    name: "Topbar page gutter",
+    usage: "Outer page frame when tablet/mobile top navigation is active.",
+    source: "main at topbar breakpoints",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-page-gutter-topbar-desktop-big", note: "Not used while fixed sidebar is active." },
+      desktopSmallTablet: { valueVar: "--tc-padding-page-gutter-topbar-desktop-small-tablet", note: "Tablet topbar clearance plus desktop-small side gutters." },
+      mobile: { valueVar: "--tc-padding-page-gutter-topbar-mobile", note: "Current phone frame with top navigation clearance." },
+    },
+  },
+  {
     name: "Immersive panel inset",
     usage: "Hero and protocol-style full-bleed dark panels.",
     source: ".hero, .protocol-panel",
@@ -100,12 +110,12 @@ const paddings: PaddingToken[] = [
   },
   {
     name: "Editorial split inset",
-    usage: "Asymmetric editorial blocks with a heavier top edge.",
+    usage: "Asymmetric editorial blocks with a heavier top edge and fixed visual handoff.",
     source: ".what-editorial",
     scales: {
-      desktopBig: { valueVar: "--tc-padding-editorial-split-desktop-big", note: "Current What-is-Terra editorial block." },
-      desktopSmallTablet: { valueVar: "--tc-padding-editorial-split-desktop-small-tablet", note: "Existing compact version for tablet-like layouts." },
-      mobile: { valueVar: "--tc-padding-editorial-split-mobile", note: "Keeps the same top emphasis on phone." },
+      desktopBig: { valueVar: "--tc-padding-editorial-split-desktop-big", note: "Current What-is-Terra editorial block, including 64px visual handoff." },
+      desktopSmallTablet: { valueVar: "--tc-padding-editorial-split-desktop-small-tablet", note: "Compact sides while preserving the 64px visual handoff." },
+      mobile: { valueVar: "--tc-padding-editorial-split-mobile", note: "Keeps the same copy-to-visual handoff on phone." },
     },
   },
   {
@@ -116,6 +126,16 @@ const paddings: PaddingToken[] = [
       desktopBig: { valueVar: "--tc-padding-section-close-desktop-big", note: "Current native/founder section pattern." },
       desktopSmallTablet: { valueVar: "--tc-padding-section-close-desktop-small-tablet", note: "Proposed smaller desktop/tablet version." },
       mobile: { valueVar: "--tc-padding-section-close-mobile", note: "Existing mobile close rhythm." },
+    },
+  },
+  {
+    name: "Proof grid section inset",
+    usage: "Strength/proof sections with shorter entry and heavier bottom closure.",
+    source: ".strengths",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-proof-section-desktop-big", note: "Current strengths section rhythm." },
+      desktopSmallTablet: { valueVar: "--tc-padding-proof-section-desktop-small-tablet", note: "Keeps the short entry while reducing side and bottom pressure." },
+      mobile: { valueVar: "--tc-padding-proof-section-mobile", note: "Aligns proof sections with mobile section rhythm." },
     },
   },
   {
@@ -189,6 +209,46 @@ const paddings: PaddingToken[] = [
     },
   },
   {
+    name: "Info row inset",
+    usage: "Full-width announcement/info rows with compact vertical height.",
+    source: ".announcement",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-info-row-desktop-big", note: "Current desktop horizontal info-row inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-info-row-desktop-small-tablet", note: "Stable because row height stays compact." },
+      mobile: { valueVar: "--tc-padding-info-row-mobile", note: "Current mobile announcement side inset." },
+    },
+  },
+  {
+    name: "Asset feature row inset",
+    usage: "Prominent single asset rows with text and trailing controls.",
+    source: ".native-lunc-row",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-asset-feature-row-desktop-big", note: "Current native LUNC feature row inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-asset-feature-row-desktop-small-tablet", note: "Stable while the row remains horizontal." },
+      mobile: { valueVar: "--tc-padding-asset-feature-row-mobile", note: "Current phone row inset when content stacks tighter." },
+    },
+  },
+  {
+    name: "Asset card inset",
+    usage: "Compact native asset/token cards.",
+    source: ".native-token-card",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-asset-card-desktop-big", note: "Current token-card horizontal inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-asset-card-desktop-small-tablet", note: "Stable for desktop/tablet token cards." },
+      mobile: { valueVar: "--tc-padding-asset-card-mobile", note: "Current phone token-card side inset." },
+    },
+  },
+  {
+    name: "Media card inset",
+    usage: "Founder/media cards and their internal copy blocks.",
+    source: ".founder-card",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-media-card-desktop-big", note: "Current founder card inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-media-card-desktop-small-tablet", note: "Stable because the media card content is image-led." },
+      mobile: { valueVar: "--tc-padding-media-card-mobile", note: "Stable media-card inset on phone." },
+    },
+  },
+  {
     name: "Pill control inset",
     usage: "Primary buttons, back-to-top, footer/action pills.",
     source: ".pill-button, .back-top",
@@ -226,6 +286,26 @@ const paddings: PaddingToken[] = [
       desktopBig: { valueVar: "--tc-padding-top-navigation-desktop-big", note: "Not used while fixed sidebar is active." },
       desktopSmallTablet: { valueVar: "--tc-padding-top-navigation-desktop-small-tablet", note: "Tablet topbar once navigation switches at 1299px." },
       mobile: { valueVar: "--tc-padding-top-navigation-mobile", note: "Current mobile topbar padding." },
+    },
+  },
+  {
+    name: "Overlay shell inset",
+    usage: "Viewport-safe padding around modal overlays.",
+    source: ".modal-backdrop",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-overlay-shell-desktop-big", note: "Keeps modal away from viewport edges." },
+      desktopSmallTablet: { valueVar: "--tc-padding-overlay-shell-desktop-small-tablet", note: "Stable because the overlay already constrains content width." },
+      mobile: { valueVar: "--tc-padding-overlay-shell-mobile", note: "Minimum safe phone edge clearance." },
+    },
+  },
+  {
+    name: "Modal surface inset",
+    usage: "Internal padding for modal content surfaces.",
+    source: ".modal",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-modal-surface-desktop-big", note: "Current desktop modal content inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-modal-surface-desktop-small-tablet", note: "Slightly tighter for tablet-sized overlays." },
+      mobile: { valueVar: "--tc-padding-modal-surface-mobile", note: "Keeps modal content usable on narrow screens." },
     },
   },
 ];
