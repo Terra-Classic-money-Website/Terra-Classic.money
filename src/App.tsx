@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   assets,
   capabilities,
@@ -106,26 +106,38 @@ function DotArrowIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function Sidebar({ activeId }: { activeId: string }) {
+function Sidebar({ activeId, mobileAnnouncement }: { activeId: string; mobileAnnouncement?: ReactNode }) {
   const [collapsed, setCollapsed] = useStoredBoolean("tcm-sidebar-collapsed", false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
   const [langOpen, setLangOpen] = useState(false);
 
+  useEffect(() => {
+    document.body.classList.toggle("mobile-drawer-open", drawerOpen);
+    return () => document.body.classList.remove("mobile-drawer-open");
+  }, [drawerOpen]);
+
   const nav = (
     <>
       <nav className="sidebar-nav" aria-label="Primary navigation">
         {sections.map((section) => (
-          <a key={section.id} className={`${activeId === section.id ? "active " : ""}tc-type-link-normal`} href={`#${section.id}`} onClick={() => setDrawerOpen(false)}>
+          <a key={section.id} className={activeId === section.id ? "active" : ""} href={`#${section.id}`} onClick={() => setDrawerOpen(false)}>
             {section.label}
           </a>
         ))}
       </nav>
       <nav className="sidebar-nav sidebar-nav--external" aria-label="External navigation">
         {externalNav.map((item) => (
-          <a key={item.label} className="tc-type-link-normal" href={isPlaceholderLink(item.href) ? "#" : item.href} target="_blank" rel="noopener noreferrer">
+          <a key={item.label} href={isPlaceholderLink(item.href) ? "#" : item.href} target="_blank" rel="noopener noreferrer" onClick={() => setDrawerOpen(false)}>
             <span className="sidebar-external-icon" aria-hidden="true">
-              <img src={asset("sidebar-external-arrow.svg")} alt="" />
+              {item.label === "Layer 2" ? (
+                <picture>
+                  <source media="(max-width: 767px)" srcSet={asset("capability-layer2-icon.svg")} />
+                  <img src={asset("sidebar-external-arrow.svg")} alt="" />
+                </picture>
+              ) : (
+                <img src={asset("sidebar-external-arrow.svg")} alt="" />
+              )}
             </span>
             {item.label}
           </a>
@@ -136,7 +148,8 @@ function Sidebar({ activeId }: { activeId: string }) {
 
   return (
     <>
-      <header className="mobile-topbar">
+      {mobileAnnouncement && <div className="mobile-announcement-slot">{mobileAnnouncement}</div>}
+      <header className={`mobile-topbar ${drawerOpen ? "mobile-topbar--drawer-open" : ""}`}>
         <div className="mobile-topbar-left">
           <button className="mobile-menu-button" aria-label={`${drawerOpen ? "Close" : "Open"} navigation`} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
             <TabletHamburgerIcon open={drawerOpen} />
@@ -330,7 +343,7 @@ const supportLogos = [
 function SupportLogoStrip() {
   return (
     <section className="logo-strip" aria-label="Decentralization supported by">
-      <p className="tc-type-body-very-small">Decentralization supported by:</p>
+      <p className="tc-type-body-small">Decentralization supported by:</p>
       <div className="support-logo-row">
         {supportLogos.map((logo, index) => (
           <div className={`support-logo ${logo.className}`} key={`${logo.name}-${index}`}>
@@ -642,7 +655,7 @@ function NativeAssets() {
                       <span>{item.code.slice(0, -2)}</span>
                       <small>{item.code.slice(-2)}</small>
                     </strong>
-                    <span className="tc-type-body-very-small">{item.name}</span>
+                    <span className="native-token-card__name">{item.name}</span>
                   </div>
                 </li>
               ))}
@@ -868,9 +881,9 @@ export default function App() {
   return (
     <div className="app">
       <div className="semantic-app">
-        <Sidebar activeId={activeId} />
+        <Sidebar activeId={activeId} mobileAnnouncement={<AnnouncementBar />} />
         <main>
-          <AnnouncementBar />
+          <div className="main-announcement-slot"><AnnouncementBar /></div>
           <Hero />
           <SupportLogoStrip />
           <WhatIsTerraClassic />
