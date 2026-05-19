@@ -88,6 +88,14 @@ function CollapseControl({ collapsed = false }: { collapsed?: boolean }) {
   );
 }
 
+function TabletHamburgerIcon({ open = false }: { open?: boolean }) {
+  return (
+    <span className={`tablet-hamburger ${open ? "tablet-hamburger--open" : ""}`} aria-hidden="true">
+      <span /><span /><span /><span /><span /><span /><span /><span /><span />
+    </span>
+  );
+}
+
 function DotArrowIcon({ className = "" }: { className?: string }) {
   return (
     <svg className={`dot-arrow-icon ${className}`} viewBox="0 0 10 9" aria-hidden="true" focusable="false">
@@ -129,12 +137,31 @@ function Sidebar({ activeId }: { activeId: string }) {
   return (
     <>
       <header className="mobile-topbar">
-        <a className="mobile-brand" href="#top" aria-label="Terra Classic home">
-          <img src={asset("sidebar-logo.svg")} alt="" />
-        </a>
-        <button className="mobile-menu-button" aria-label="Open navigation" aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
-          <CollapseControl collapsed />
-        </button>
+        <div className="mobile-topbar-left">
+          <button className="mobile-menu-button" aria-label={`${drawerOpen ? "Close" : "Open"} navigation`} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
+            <TabletHamburgerIcon open={drawerOpen} />
+          </button>
+          <span className="mobile-topbar-divider" aria-hidden="true" />
+          <a className="mobile-brand" href="#top" aria-label="Terra Classic home">
+            <img src={asset("sidebar-logo.svg")} alt="" />
+          </a>
+        </div>
+        <div className={`mobile-language ${langOpen ? "mobile-language--open" : ""}`}>
+          <button className="mobile-language-trigger tc-type-link-small" aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
+            <span>
+              <img className="language-icon" src={asset("language-icon.svg")} alt="" />
+              Language - {language}
+            </span>
+            <img className="language-arrow" src={asset(langOpen ? "language-arrow-open.svg" : "language-arrow.svg")} alt="" />
+          </button>
+          <div className="mobile-language-options" role="listbox" aria-label="Language options" aria-hidden={!langOpen}>
+            {languageOptions.map((option, index) => (
+              <button className="tc-type-link-small" key={`${option}-${index}`} onClick={() => { setLanguage(option); setLangOpen(false); }}>
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
       </header>
       <aside className={`sidebar ${collapsed ? "sidebar--collapsed" : ""} ${drawerOpen ? "sidebar--drawer-open" : ""}`}>
         <div className="sidebar-panel sidebar-panel--expanded" aria-hidden={collapsed && !drawerOpen}>
@@ -488,11 +515,11 @@ function ProtocolShowcase() {
                 <img className="protocol-icon" src={asset(protocol.icon)} alt="" aria-hidden="true" />
                 <h2 className="tc-type-h1">{protocol.title}</h2>
                 {protocol.id === "staking" && <AprBadge className="protocol-apr" value={formatAprValue(stakingApr.value)} state={stakingApr.status} />}
+                <span className={`status status--${protocol.status === "ACTIVE" ? "active" : "soon"}`}>
+                  {protocol.status}
+                  {protocol.status === "ACTIVE" && <img src={asset("protocol-badge-active-arrow.svg")} alt="" aria-hidden="true" />}
+                </span>
               </div>
-              <span className={`status status--${protocol.status === "ACTIVE" ? "active" : "soon"}`}>
-                {protocol.status}
-                {protocol.status === "ACTIVE" && <img src={asset("protocol-badge-active-arrow.svg")} alt="" aria-hidden="true" />}
-              </span>
               <p className="tc-type-h4">{protocol.body}</p>
             </div>
             <div className="protocol-visual" aria-hidden="true">
