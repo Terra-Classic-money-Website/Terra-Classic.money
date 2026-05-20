@@ -91,15 +91,17 @@ The page follows the supplied lo-fi wireframe at `/Users/dawidskinder/Library/Cl
 ## Category Navigation Correction
 
 - Replaced default category hash jumps with an explicit in-page scroll handler.
-- Replaced native `scrollIntoView({ behavior: "smooth" })` with a small `requestAnimationFrame` scroll animator because Safari did not reliably execute the native smooth-scroll path for the category chips.
-- Preserved reduced-motion behavior by switching to instant scrolling only when the visitor has `prefers-reduced-motion: reduce`.
+- Replaced native `scrollIntoView({ behavior: "smooth" })` with a visible `requestAnimationFrame` scroll animator that writes directly to the page scroll root.
+- Replaced category anchor chips with button controls so native hash navigation cannot jump ahead of the custom animation.
+- Delayed the URL hash update until the animation completes.
+- Removed the reduced-motion bypass for this category navigation because the intended product behavior is a visible navigation animation.
 - Cancelled any previous category-scroll animation before starting a new one, so repeated chip clicks cannot compete.
 - Added category `scroll-margin-top` rules so clicked sections land with the correct visual offset on desktop and mobile.
 
 ## Category Navigation Validation Results
 
 - `npm run check` passed after the category navigation correction.
-- Browser QA clicked the desktop `For developers` category chip and confirmed the page moves, the URL updates to `ecosystem.html#developers`, the section lands at the `32px` desktop scroll margin, no horizontal overflow occurs, and no console warnings or errors are emitted.
+- Browser QA clicked the desktop `For developers` category chip and confirmed the page moves visibly through intermediate scroll positions before the URL updates to `ecosystem.html#developers`, the section lands at the `32px` desktop scroll margin, no horizontal overflow occurs, and no console warnings or errors are emitted.
 - Browser QA clicked the mobile `Blockchain tools` category chip and confirmed the page moves, the URL updates to `ecosystem.html#tools`, the section lands at the `72px` mobile scroll margin under the topbar, no horizontal overflow occurs, and no console warnings or errors are emitted.
 - QA screenshot saved:
   - `docs/audit-screenshots/ecosystem-category-scroll-2026-05-20.png`

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   assets,
   capabilities,
@@ -21,7 +21,7 @@ import { AprBadge } from "./components/AprBadge";
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
 const page = (path = "") => `${import.meta.env.BASE_URL}${path}`;
 const APR_INFO_ENDPOINT = "https://validator.info/api/terra-classic/blockchain/apr-info";
-const CATEGORY_SCROLL_DURATION_MS = 700;
+const CATEGORY_SCROLL_DURATION_MS = 1100;
 let categoryScrollAnimationFrame: number | null = null;
 
 type AprInfoState = {
@@ -43,7 +43,9 @@ function getScrollMarginTop(element: HTMLElement) {
 }
 
 function setPageScrollY(top: number) {
-  window.scrollTo(0, top);
+  const scrollRoot = document.scrollingElement || document.documentElement;
+  scrollRoot.scrollTop = top;
+  document.body.scrollTop = top;
 }
 
 function cancelCategoryScrollAnimation() {
@@ -52,25 +54,31 @@ function cancelCategoryScrollAnimation() {
   categoryScrollAnimationFrame = null;
 }
 
-function animatePageScrollTo(targetTop: number) {
+function animatePageScrollTo(targetTop: number, onComplete?: () => void) {
   cancelCategoryScrollAnimation();
 
   const startTop = getPageScrollY();
   const distance = targetTop - startTop;
-  if (Math.abs(distance) < 1) return;
+  if (Math.abs(distance) < 1) {
+    onComplete?.();
+    return;
+  }
 
-  let startTime: number | null = null;
-  const easeOutCubic = (progress: number) => 1 - Math.pow(1 - progress, 3);
+  const startTime = Date.now();
+  const easeInOutCubic = (progress: number) => (
+    progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2
+  );
 
-  const step = (timestamp: number) => {
-    startTime ??= timestamp;
-    const elapsed = timestamp - startTime;
+  const step = () => {
+    const elapsed = Date.now() - startTime;
     const progress = Math.min(elapsed / CATEGORY_SCROLL_DURATION_MS, 1);
-    setPageScrollY(startTop + distance * easeOutCubic(progress));
+    setPageScrollY(startTop + distance * easeInOutCubic(progress));
     if (progress < 1) {
       categoryScrollAnimationFrame = requestAnimationFrame(step);
     } else {
+      setPageScrollY(targetTop);
       categoryScrollAnimationFrame = null;
+      onComplete?.();
     }
   };
 
@@ -963,20 +971,12 @@ function EcosystemCategorySection({ category }: { category: EcosystemCategory })
 }
 
 function EcosystemDirectory() {
-  const handleCategoryLinkClick = (event: MouseEvent<HTMLAnchorElement>, categoryId: string) => {
+  const handleCategoryLinkClick = (categoryId: string) => {
     const target = document.getElementById(categoryId);
     if (!target) return;
 
-    event.preventDefault();
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const targetTop = target.getBoundingClientRect().top + getPageScrollY() - getScrollMarginTop(target);
-    if (prefersReducedMotion) {
-      cancelCategoryScrollAnimation();
-      setPageScrollY(targetTop);
-    } else {
-      animatePageScrollTo(targetTop);
-    }
-    window.history.pushState(null, "", `#${categoryId}`);
+    animatePageScrollTo(targetTop, () => window.history.pushState(null, "", `#${categoryId}`));
   };
 
   return (
@@ -988,9 +988,9 @@ function EcosystemDirectory() {
       </div>
       <nav className="ecosystem-index" aria-label="Ecosystem categories">
         {ecosystemCategories.map((category) => (
-          <a className="tc-type-link-big" href={`#${category.id}`} key={category.id} onClick={(event) => handleCategoryLinkClick(event, category.id)}>
+          <button className="tc-type-link-big" type="button" key={category.id} onClick={() => handleCategoryLinkClick(category.id)} aria-controls={category.id}>
             {category.title} <span>({category.entries.length})</span>
-          </a>
+          </button>
         ))}
       </nav>
       {ecosystemCategories.map((category) => (

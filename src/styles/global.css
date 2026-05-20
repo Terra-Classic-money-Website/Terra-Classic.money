@@ -815,10 +815,10 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .ecosystem-page__intro h1 { max-width: 1000px; }
 .ecosystem-page__intro p { margin: 0; color: var(--color-black); }
 .ecosystem-index { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 8px; }
-.ecosystem-index a { min-height: 40px; display: inline-flex; align-items: center; gap: 4px; border-radius: var(--radius-pill); background: var(--color-grey-50); padding: 0 18px; transition: background-color var(--tc-motion-base) var(--tc-ease-standard), color var(--tc-motion-base) var(--tc-ease-standard); }
-.ecosystem-index a span { color: var(--color-grey-500); transition: color var(--tc-motion-base) var(--tc-ease-standard); }
-.ecosystem-index a:hover, .ecosystem-index a:focus-visible { background: var(--color-black); color: var(--color-white); }
-.ecosystem-index a:hover span, .ecosystem-index a:focus-visible span { color: var(--color-white); }
+.ecosystem-index button { min-height: 40px; border: 0; display: inline-flex; align-items: center; gap: 4px; border-radius: var(--radius-pill); background: var(--color-grey-50); padding: 0 18px; cursor: pointer; transition: background-color var(--tc-motion-base) var(--tc-ease-standard), color var(--tc-motion-base) var(--tc-ease-standard); }
+.ecosystem-index button span { color: var(--color-grey-500); transition: color var(--tc-motion-base) var(--tc-ease-standard); }
+.ecosystem-index button:hover, .ecosystem-index button:focus-visible { background: var(--color-black); color: var(--color-white); }
+.ecosystem-index button:hover span, .ecosystem-index button:focus-visible span { color: var(--color-white); }
 .ecosystem-category { margin-top: 72px; scroll-margin-top: 32px; }
 .ecosystem-category__header { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
 .ecosystem-category__title { min-width: 0; display: flex; align-items: center; gap: 16px; }
@@ -1476,7 +1476,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .ecosystem-page { padding: var(--tc-padding-editorial-section); }
   .ecosystem-page__intro { gap: 24px; }
   .ecosystem-index { margin-top: 32px; }
-  .ecosystem-index a { width: 100%; justify-content: space-between; }
+  .ecosystem-index button { width: 100%; justify-content: space-between; }
   .ecosystem-category { margin-top: 48px; }
   .ecosystem-category { scroll-margin-top: 72px; }
   .ecosystem-category__header { align-items: flex-start; gap: 12px; }
