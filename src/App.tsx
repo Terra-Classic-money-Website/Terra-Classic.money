@@ -932,8 +932,8 @@ function EcosystemResourceCard({ entry }: { entry: EcosystemEntry }) {
       </span>
       <span className="ecosystem-resource__meta">
         {(entry.badge || entry.status) && <span className={`native-phase__badge ${entry.status ? "ecosystem-resource__badge--muted" : "ecosystem-resource__badge--native"}`}>{entry.status || entry.badge}</span>}
-        {entry.href && <DotArrowIcon />}
       </span>
+      {entry.href && <span className="ecosystem-resource__arrow"><DotArrowIcon /></span>}
     </>
   );
 

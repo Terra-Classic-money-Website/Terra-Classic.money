@@ -121,3 +121,32 @@ The page follows the supplied lo-fi wireframe at `/Users/dawidskinder/Library/Cl
 - QA screenshots saved:
   - `docs/audit-screenshots/ecosystem-tablet-breakpoint-2026-05-20.png`
   - `docs/audit-screenshots/ecosystem-mobile-categories-2026-05-20.png`
+
+## Resource Arrow Breakpoint Corrections
+
+- Split resource row arrows into a dedicated `ecosystem-resource__arrow` grid cell instead of keeping them inside the badge/meta container.
+- Fixed desktop resource rows with an explicit four-column grid: avatar, copy, badge, arrow.
+- Fixed tablet and mobile rows with a right-edge arrow column centered to the avatar row while badges stay below the name/description.
+
+## Resource Arrow Breakpoint Validation Results
+
+- `npm run check` passed after arrow layout corrections.
+- Browser QA checked desktop `1500 x 1000`: arrow exists, sits after the badge in the fourth column, is centered to the avatar, has no right gap, and no horizontal overflow occurs.
+- Browser QA checked tablet `800 x 1080`: arrow exists, sits on the far right, is centered to the avatar, badge/meta remains below copy, and no horizontal overflow occurs.
+- Browser QA checked mobile `463 x 1080`: arrow exists, sits on the far right, is centered to the avatar, badge/meta remains below copy, and no horizontal overflow occurs.
+- QA screenshots saved:
+  - `docs/audit-screenshots/ecosystem-desktop-arrows-2026-05-20.png`
+  - `docs/audit-screenshots/ecosystem-tablet-arrows-2026-05-20.png`
+  - `docs/audit-screenshots/ecosystem-mobile-arrows-2026-05-20.png`
+
+## Mobile CTA Stack Correction
+
+- Fixed the temporary Ecosystem share CTA on mobile by forcing the section to a one-column grid.
+- Set the share button below the text block and full-width within the mobile content column.
+
+## Mobile CTA Stack Validation Results
+
+- `npm run check` passed after the mobile CTA correction.
+- Browser QA checked mobile `463 x 1080`: the CTA button is below the copy, left-aligned with the section content, full-width to the content column, and no horizontal overflow occurs.
+- QA screenshot saved:
+  - `docs/audit-screenshots/ecosystem-mobile-cta-2026-05-20.png`
