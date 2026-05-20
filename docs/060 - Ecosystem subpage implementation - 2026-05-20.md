@@ -105,3 +105,19 @@ The page follows the supplied lo-fi wireframe at `/Users/dawidskinder/Library/Cl
 - Browser QA clicked the mobile `Blockchain tools` category chip and confirmed the page moves, the URL updates to `ecosystem.html#tools`, the section lands at the `72px` mobile scroll margin under the topbar, no horizontal overflow occurs, and no console warnings or errors are emitted.
 - QA screenshot saved:
   - `docs/audit-screenshots/ecosystem-category-scroll-2026-05-20.png`
+
+## Responsive Breakpoint Corrections
+
+- Reduced Ecosystem resource badge typography to `8px` with tighter `4px` letter spacing, scoped to Ecosystem resource rows only.
+- Changed tablet Ecosystem resource rows to a two-column, two-row grid: avatar on the left, name and description on the first content row, and badge/meta below.
+- Restored mobile category chips to content-width pills instead of full-width rows so multiple categories can share a line.
+
+## Responsive Breakpoint Validation Results
+
+- `npm run check` passed after responsive corrections.
+- Browser QA checked tablet `800 x 1080`: badge font size `8px`, badge height `28px`, meta row below copy, no collapsed vertical names, and no horizontal overflow.
+- Browser QA checked mobile `463 x 1080`: category buttons use content-based widths, multiple buttons fit per row, no full-width category buttons, and no horizontal overflow.
+- Browser QA checked narrow mobile `390 x 844`: category buttons still wrap by content width with no overflow and no full-width category buttons.
+- QA screenshots saved:
+  - `docs/audit-screenshots/ecosystem-tablet-breakpoint-2026-05-20.png`
+  - `docs/audit-screenshots/ecosystem-mobile-categories-2026-05-20.png`

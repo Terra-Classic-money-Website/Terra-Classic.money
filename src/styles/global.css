@@ -839,6 +839,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .ecosystem-resource__meta .dot-arrow-icon { color: var(--color-grey-500); transform: rotate(-90deg); }
 .ecosystem-resource:hover .ecosystem-resource__meta .dot-arrow-icon,
 .ecosystem-resource:focus-visible .ecosystem-resource__meta .dot-arrow-icon { color: var(--color-black); }
+.ecosystem-resource .native-phase__badge { height: 28px; font-size: 8px; line-height: 10px; letter-spacing: 4px; padding: 0 12px; }
 .ecosystem-resource__badge--native { min-width: 188px; background: var(--color-white); }
 .ecosystem-resource__badge--muted { min-width: 170px; background: var(--color-white); color: var(--color-grey-500); }
 .ecosystem-share { position: relative; padding: 64px 64px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: end; border-top: 1px solid var(--color-grey-100); }
@@ -1088,6 +1089,12 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .ecosystem-category__header { gap: 16px; }
   .ecosystem-category { scroll-margin-top: 112px; }
   .ecosystem-grid { column-gap: 24px; }
+  .ecosystem-resource { grid-template-columns: 56px minmax(0, 1fr); align-items: center; gap: 8px 16px; padding: 12px 0; }
+  .ecosystem-resource__avatar { grid-column: 1; grid-row: 1 / span 2; align-self: start; }
+  .ecosystem-resource__copy { grid-column: 2; grid-row: 1; }
+  .ecosystem-resource__meta { grid-column: 2; grid-row: 2; justify-content: flex-start; }
+  .ecosystem-resource__badge--native { min-width: 164px; }
+  .ecosystem-resource__badge--muted { min-width: 148px; }
   .ecosystem-share { grid-template-columns: 1fr; gap: 32px; }
   .ecosystem-share .pill-button { width: 100%; }
   .founder-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
@@ -1476,7 +1483,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .ecosystem-page { padding: var(--tc-padding-editorial-section); }
   .ecosystem-page__intro { gap: 24px; }
   .ecosystem-index { margin-top: 32px; }
-  .ecosystem-index button { width: 100%; justify-content: space-between; }
+  .ecosystem-index button { width: auto; max-width: 100%; justify-content: flex-start; }
   .ecosystem-category { margin-top: 48px; }
   .ecosystem-category { scroll-margin-top: 72px; }
   .ecosystem-category__header { align-items: flex-start; gap: 12px; }
@@ -1484,7 +1491,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .ecosystem-category__rule { display: none; }
   .ecosystem-category__count { margin-left: auto; }
   .ecosystem-grid { grid-template-columns: 1fr; }
-  .ecosystem-resource { grid-template-columns: 48px minmax(0, 1fr); gap: 14px; padding: 12px 0; }
+  .ecosystem-resource { grid-template-columns: 48px minmax(0, 1fr); gap: 8px 14px; padding: 12px 0; }
   .ecosystem-resource__avatar { width: 44px; height: 44px; }
   .ecosystem-resource__meta { grid-column: 2; justify-content: flex-start; }
   .ecosystem-resource__meta .dot-arrow-icon { display: none; }
