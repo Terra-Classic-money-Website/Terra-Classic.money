@@ -75,7 +75,7 @@ const paddings: PaddingToken[] = [
     scales: {
       desktopBig: { valueVar: "--tc-padding-page-gutter-desktop-big", note: "Current desktop app frame." },
       desktopSmallTablet: { valueVar: "--tc-padding-page-gutter-desktop-small-tablet", note: "Keep desktop density; tablet top bar adds vertical offset separately." },
-      mobile: { valueVar: "--tc-padding-page-gutter-mobile", note: "Current phone frame with top navigation clearance." },
+      mobile: { valueVar: "--tc-padding-page-gutter-mobile", note: "Current phone frame around page panels." },
     },
   },
   {
@@ -84,8 +84,18 @@ const paddings: PaddingToken[] = [
     source: "main at topbar breakpoints",
     scales: {
       desktopBig: { valueVar: "--tc-padding-page-gutter-topbar-desktop-big", note: "Not used while fixed sidebar is active." },
-      desktopSmallTablet: { valueVar: "--tc-padding-page-gutter-topbar-desktop-small-tablet", note: "Tablet topbar clearance plus desktop-small side gutters." },
+      desktopSmallTablet: { valueVar: "--tc-padding-page-gutter-topbar-desktop-small-tablet", note: "Tablet topbar clearance plus side gutters; not used by fixed-sidebar Desktop Small." },
       mobile: { valueVar: "--tc-padding-page-gutter-topbar-mobile", note: "Current phone frame with top navigation clearance." },
+    },
+  },
+  {
+    name: "Mobile announcement slot inset",
+    usage: "Phone-only wrapper around the dismissible announcement before the topbar.",
+    source: ".mobile-announcement-slot",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-mobile-announcement-slot-desktop-big", note: "Not used on desktop." },
+      desktopSmallTablet: { valueVar: "--tc-padding-mobile-announcement-slot-desktop-small-tablet", note: "Not used on tablet." },
+      mobile: { valueVar: "--tc-padding-mobile-announcement-slot-mobile", note: "Current phone announcement slot inset." },
     },
   },
   {
@@ -101,11 +111,11 @@ const paddings: PaddingToken[] = [
   {
     name: "Editorial section inset",
     usage: "Large white content sections with section titles and lead copy.",
-    source: ".section, .capabilities-section",
+    source: ".section",
     scales: {
       desktopBig: { valueVar: "--tc-padding-editorial-section-desktop-big", note: "Current large-section rhythm." },
-      desktopSmallTablet: { valueVar: "--tc-padding-editorial-section-desktop-small-tablet", note: "Already used for compact capabilities/what sections." },
-      mobile: { valueVar: "--tc-padding-editorial-section-mobile", note: "Tighter phone rhythm while preserving clear section starts." },
+      desktopSmallTablet: { valueVar: "--tc-padding-editorial-section-desktop-small-tablet", note: "Compact large-section rhythm." },
+      mobile: { valueVar: "--tc-padding-editorial-section-mobile", note: "Current phone section inset." },
     },
   },
   {
@@ -115,17 +125,67 @@ const paddings: PaddingToken[] = [
     scales: {
       desktopBig: { valueVar: "--tc-padding-editorial-split-desktop-big", note: "Current What-is-Terra editorial block, including 64px visual handoff." },
       desktopSmallTablet: { valueVar: "--tc-padding-editorial-split-desktop-small-tablet", note: "Compact sides while preserving the 64px visual handoff." },
-      mobile: { valueVar: "--tc-padding-editorial-split-mobile", note: "Keeps the same copy-to-visual handoff on phone." },
+      mobile: { valueVar: "--tc-padding-editorial-split-mobile", note: "Current phone What-section editorial handoff." },
+    },
+  },
+  {
+    name: "Capabilities section inset",
+    usage: "Capabilities section shell; mobile keeps the cards full-width while the heading owns side gutters.",
+    source: ".capabilities-section",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-capabilities-section-desktop-big", note: "Matches large editorial sections." },
+      desktopSmallTablet: { valueVar: "--tc-padding-capabilities-section-desktop-small-tablet", note: "Matches compact editorial sections." },
+      mobile: { valueVar: "--tc-padding-capabilities-section-mobile", note: "Current phone full-width card rail." },
+    },
+  },
+  {
+    name: "Capabilities heading inset",
+    usage: "Heading and lead copy inside the mobile full-width capabilities section.",
+    source: ".capabilities-head",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-capabilities-head-desktop-big", note: "No extra inset on desktop." },
+      desktopSmallTablet: { valueVar: "--tc-padding-capabilities-head-desktop-small-tablet", note: "No extra inset before mobile." },
+      mobile: { valueVar: "--tc-padding-capabilities-head-mobile", note: "Current phone heading side inset." },
+    },
+  },
+  {
+    name: "Capability card inset",
+    usage: "Internal padding for capability cards.",
+    source: ".capability-card",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-capability-card-desktop-big", note: "Current wide-card inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-capability-card-desktop-small-tablet", note: "Current compact card inset." },
+      mobile: { valueVar: "--tc-padding-capability-card-mobile", note: "Current phone capability card inset." },
+    },
+  },
+  {
+    name: "Capability CTA inset",
+    usage: "Inset for compact CTA buttons inside capability cards.",
+    source: ".capability-cta",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-capability-cta-desktop-big", note: "Current wide desktop capability CTA inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-capability-cta-desktop-small-tablet", note: "Current Desktop Small + Tablet compact capability CTA inset." },
+      mobile: { valueVar: "--tc-padding-capability-cta-mobile", note: "Current phone capability CTA inset." },
     },
   },
   {
     name: "Section close inset",
     usage: "Large sections with shorter bottom closure.",
-    source: ".native-assets, .founders",
+    source: ".founders",
     scales: {
-      desktopBig: { valueVar: "--tc-padding-section-close-desktop-big", note: "Current native/founder section pattern." },
-      desktopSmallTablet: { valueVar: "--tc-padding-section-close-desktop-small-tablet", note: "Proposed smaller desktop/tablet version." },
-      mobile: { valueVar: "--tc-padding-section-close-mobile", note: "Existing mobile close rhythm." },
+      desktopBig: { valueVar: "--tc-padding-section-close-desktop-big", note: "Current founder section pattern." },
+      desktopSmallTablet: { valueVar: "--tc-padding-section-close-desktop-small-tablet", note: "Compact founder section pattern." },
+      mobile: { valueVar: "--tc-padding-section-close-mobile", note: "Current phone founder section closure." },
+    },
+  },
+  {
+    name: "Native assets section inset",
+    usage: "Native-assets block with tight handoff into strengths on mobile.",
+    source: ".native-assets",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-native-assets-section-desktop-big", note: "Matches the desktop section-close pattern." },
+      desktopSmallTablet: { valueVar: "--tc-padding-native-assets-section-desktop-small-tablet", note: "Matches the compact section-close pattern." },
+      mobile: { valueVar: "--tc-padding-native-assets-section-mobile", note: "Current phone native-assets section inset." },
     },
   },
   {
@@ -135,7 +195,7 @@ const paddings: PaddingToken[] = [
     scales: {
       desktopBig: { valueVar: "--tc-padding-proof-section-desktop-big", note: "Current strengths section rhythm." },
       desktopSmallTablet: { valueVar: "--tc-padding-proof-section-desktop-small-tablet", note: "Keeps the short entry while reducing side and bottom pressure." },
-      mobile: { valueVar: "--tc-padding-proof-section-mobile", note: "Aligns proof sections with mobile section rhythm." },
+      mobile: { valueVar: "--tc-padding-proof-section-mobile", note: "Current phone strengths section inset." },
     },
   },
   {
@@ -165,7 +225,7 @@ const paddings: PaddingToken[] = [
     scales: {
       desktopBig: { valueVar: "--tc-padding-support-strip-desktop-big", note: "Current support strip rhythm." },
       desktopSmallTablet: { valueVar: "--tc-padding-support-strip-desktop-small-tablet", note: "Keeps vertical rhythm while reducing side pressure." },
-      mobile: { valueVar: "--tc-padding-support-strip-mobile", note: "Proposed mobile support strip rhythm." },
+      mobile: { valueVar: "--tc-padding-support-strip-mobile", note: "Current phone support strip inset." },
     },
   },
   {
@@ -180,7 +240,7 @@ const paddings: PaddingToken[] = [
   },
   {
     name: "Standard card inset",
-    usage: "Large cards, dark review surfaces, modals, and visual cards.",
+    usage: "General large-card padding, currently used by strengths cards.",
     source: ".strength-card",
     scales: {
       desktopBig: { valueVar: "--tc-padding-standard-card-desktop-big", note: "Current primary card inset." },
@@ -190,7 +250,7 @@ const paddings: PaddingToken[] = [
   },
   {
     name: "Compact card inset",
-    usage: "Steps, metrics, hero group cards, and dense cards.",
+    usage: "Steps, metrics, and dense cards.",
     source: ".step, .stats-metric",
     scales: {
       desktopBig: { valueVar: "--tc-padding-compact-card-desktop-big", note: "Current compact card inset." },
@@ -205,7 +265,7 @@ const paddings: PaddingToken[] = [
     scales: {
       desktopBig: { valueVar: "--tc-padding-hero-group-card-desktop-big", note: "Current hero group card inset." },
       desktopSmallTablet: { valueVar: "--tc-padding-hero-group-card-desktop-small-tablet", note: "Keep current density for the desktop hero card stack." },
-      mobile: { valueVar: "--tc-padding-hero-group-card-mobile", note: "Simpler one-value phone card inset." },
+      mobile: { valueVar: "--tc-padding-hero-group-card-mobile", note: "Current phone hero group card inset." },
     },
   },
   {
@@ -215,7 +275,7 @@ const paddings: PaddingToken[] = [
     scales: {
       desktopBig: { valueVar: "--tc-padding-info-row-desktop-big", note: "Current desktop horizontal info-row inset." },
       desktopSmallTablet: { valueVar: "--tc-padding-info-row-desktop-small-tablet", note: "Stable because row height stays compact." },
-      mobile: { valueVar: "--tc-padding-info-row-mobile", note: "Current mobile announcement side inset." },
+      mobile: { valueVar: "--tc-padding-info-row-mobile", note: "Current phone announcement card inset." },
     },
   },
   {
@@ -235,7 +295,7 @@ const paddings: PaddingToken[] = [
     scales: {
       desktopBig: { valueVar: "--tc-padding-asset-card-desktop-big", note: "Current token-card horizontal inset." },
       desktopSmallTablet: { valueVar: "--tc-padding-asset-card-desktop-small-tablet", note: "Stable for desktop/tablet token cards." },
-      mobile: { valueVar: "--tc-padding-asset-card-mobile", note: "Current phone token-card side inset." },
+      mobile: { valueVar: "--tc-padding-asset-card-mobile", note: "Current phone token-card inset." },
     },
   },
   {
@@ -264,8 +324,18 @@ const paddings: PaddingToken[] = [
     source: ".what-video-button",
     scales: {
       desktopBig: { valueVar: "--tc-padding-play-cta-desktop-big", note: "Current large play button inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-play-cta-desktop-small-tablet", note: "Keep for desktop-grade video CTA." },
+      desktopSmallTablet: { valueVar: "--tc-padding-play-cta-desktop-small-tablet", note: "Desktop Small value; tablet has a dedicated override below." },
       mobile: { valueVar: "--tc-padding-play-cta-mobile", note: "Current mobile play button inset." },
+    },
+  },
+  {
+    name: "Tablet play CTA inset",
+    usage: "Tablet-only override for the large play/video CTA.",
+    source: ".what-video-button @ tablet",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-play-cta-desktop-big", note: "Desktop uses the standard Play CTA inset." },
+      desktopSmallTablet: { valueVar: "--tc-padding-play-cta-tablet", note: "Current tablet play CTA inset at 768-1299px." },
+      mobile: { valueVar: "--tc-padding-play-cta-mobile", note: "Phone play CTA collapses to the icon-only inset." },
     },
   },
   {
@@ -286,6 +356,16 @@ const paddings: PaddingToken[] = [
       desktopBig: { valueVar: "--tc-padding-top-navigation-desktop-big", note: "Not used while fixed sidebar is active." },
       desktopSmallTablet: { valueVar: "--tc-padding-top-navigation-desktop-small-tablet", note: "Tablet topbar once navigation switches at 1299px." },
       mobile: { valueVar: "--tc-padding-top-navigation-mobile", note: "Current mobile topbar padding." },
+    },
+  },
+  {
+    name: "Scrolled top navigation inset",
+    usage: "Fixed/sticky topbar padding after scroll.",
+    source: ".mobile-topbar--scrolled",
+    scales: {
+      desktopBig: { valueVar: "--tc-padding-top-navigation-scrolled-desktop-big", note: "Not used while fixed sidebar is active." },
+      desktopSmallTablet: { valueVar: "--tc-padding-top-navigation-scrolled-desktop-small-tablet", note: "Tablet keeps the same topbar inset after scroll." },
+      mobile: { valueVar: "--tc-padding-top-navigation-scrolled-mobile", note: "Current phone scrolled sticky topbar inset." },
     },
   },
   {
