@@ -111,11 +111,19 @@ function Sidebar({ activeId, mobileAnnouncement }: { activeId: string; mobileAnn
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
   const [langOpen, setLangOpen] = useState(false);
+  const [pageScrolled, setPageScrolled] = useState(false);
 
   useEffect(() => {
     document.body.classList.toggle("mobile-drawer-open", drawerOpen);
     return () => document.body.classList.remove("mobile-drawer-open");
   }, [drawerOpen]);
+
+  useEffect(() => {
+    const updateScrolledState = () => setPageScrolled(window.scrollY > 0);
+    updateScrolledState();
+    window.addEventListener("scroll", updateScrolledState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrolledState);
+  }, []);
 
   const nav = (
     <>
@@ -142,7 +150,7 @@ function Sidebar({ activeId, mobileAnnouncement }: { activeId: string; mobileAnn
   return (
     <>
       {mobileAnnouncement && <div className="mobile-announcement-slot">{mobileAnnouncement}</div>}
-      <header className={`mobile-topbar ${drawerOpen ? "mobile-topbar--drawer-open" : ""}`}>
+      <header className={`mobile-topbar ${drawerOpen ? "mobile-topbar--drawer-open" : ""} ${pageScrolled ? "mobile-topbar--scrolled" : ""}`}>
         <div className="mobile-topbar-left">
           <button className="mobile-menu-button" aria-label={`${drawerOpen ? "Close" : "Open"} navigation`} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
             <TabletHamburgerIcon open={drawerOpen} />
