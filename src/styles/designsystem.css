@@ -215,6 +215,7 @@ body:has(.ds-app) { background: var(--lunc-white); }
 .ds-language-x-button .language-x-icon--hover { opacity: 0; display: block; position: absolute; }
 .ds-language-x-button:hover .language-x-icon--default, .ds-language-x-button:focus-visible .language-x-icon--default { opacity: 0; }
 .ds-language-x-button:hover .language-x-icon--hover, .ds-language-x-button:focus-visible .language-x-icon--hover { opacity: 1; }
+.ds-ecosystem-resource { width: min(100%, 680px); }
 
 @keyframes ds-state-enter {
   from { opacity: .84; transform: translateY(8px); }

@@ -14,10 +14,12 @@ import {
   stats,
   strengths,
 } from "./data/content";
+import { ecosystemCategories, ecosystemEntryCount, type EcosystemCategory, type EcosystemEntry } from "./data/ecosystem";
 import { isPlaceholderLink, links } from "./data/links";
 import { AprBadge } from "./components/AprBadge";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
+const page = (path = "") => `${import.meta.env.BASE_URL}${path}`;
 const APR_INFO_ENDPOINT = "https://validator.info/api/terra-classic/blockchain/apr-info";
 
 type AprInfoState = {
@@ -106,6 +108,21 @@ function DotArrowIcon({ className = "" }: { className?: string }) {
   );
 }
 
+function EcosystemCategoryIcon({ icon }: { icon: string }) {
+  const shared = { "aria-hidden": true, focusable: false } as const;
+  if (icon === "spark") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M16 2l2.4 8.1 7.6-3.3-3.3 7.6L30 16l-7.3 1.6 3.3 7.6-7.6-3.3L16 30l-2.4-8.1-7.6 3.3 3.3-7.6L2 16l7.3-1.6L6 6.8l7.6 3.3L16 2z" /></svg>;
+  if (icon === "info") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M8 4h16v24H8V4zm7 10h3v9h-3v-9zm0-5h3v3h-3V9z" /></svg>;
+  if (icon === "wallet") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M5 8h20v4h3v14H5V8zm3 7v8h17v-8H8zm14 2h3v3h-3v-3z" /></svg>;
+  if (icon === "gear") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M14 3h4l1.1 4a10.7 10.7 0 0 1 2.4 1l3.6-2.1 2.8 2.8-2.1 3.6c.5.8.8 1.6 1 2.5l4.2 1.1v4l-4.2 1.1a10.7 10.7 0 0 1-1 2.4l2.1 3.6-2.8 2.8-3.6-2.1a10.7 10.7 0 0 1-2.4 1L18 29h-4l-1.1-4a10.7 10.7 0 0 1-2.4-1l-3.6 2.1-2.8-2.8 2.1-3.6a10.7 10.7 0 0 1-1-2.4L1 18.1v-4l4.2-1.1c.2-.9.5-1.7 1-2.5L4.1 6.9l2.8-2.8 3.6 2.1c.8-.5 1.6-.8 2.4-1L14 3zm2 9a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" /></svg>;
+  if (icon === "bridge") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M4 16l7-7v5h10V9l7 7-7 7v-5H11v5l-7-7zM15 3h2v26h-2V3z" /></svg>;
+  if (icon === "validator") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M16 3l10 5v4H6V8l10-5zM8 14h4v10h2V14h4v10h2V14h4v10h3v5H5v-5h3V14z" /></svg>;
+  if (icon === "cube") return <svg className="ecosystem-category-icon ecosystem-category-icon--stroke" viewBox="0 0 32 32" {...shared}><path d="M16 3l11 6v14l-11 6-11-6V9l11-6zM5 9l11 6 11-6M16 15v14" /></svg>;
+  if (icon === "server") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M5 5h22v9H5V5zm0 13h22v9H5v-9zm4-9h3v2H9V9zm0 13h3v2H9v-2zm10-13h5v2h-5V9zm0 13h5v2h-5v-2z" /></svg>;
+  if (icon === "swap") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M7 9h15V5l6 6-6 6v-4H7V9zm18 14H10v4l-6-6 6-6v4h15v4z" /></svg>;
+  if (icon === "market") return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M5 25h22v3H5v-3zm2-9h4v7H7v-7zm7-11h4v18h-4V5zm7 7h4v11h-4V12z" /></svg>;
+  return <svg className="ecosystem-category-icon" viewBox="0 0 32 32" {...shared}><path d="M5 5h9v9H5V5zm13 0h9v9h-9V5zM5 18h9v9H5v-9zm13 0h9v9h-9v-9z" /></svg>;
+}
+
 function Sidebar({ activeId, mobileAnnouncement }: { activeId: string; mobileAnnouncement?: ReactNode }) {
   const [collapsed, setCollapsed] = useStoredBoolean("tcm-sidebar-collapsed", false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -129,14 +146,14 @@ function Sidebar({ activeId, mobileAnnouncement }: { activeId: string; mobileAnn
     <>
       <nav className="sidebar-nav" aria-label="Primary navigation">
         {sections.map((section) => (
-          <a key={section.id} className={activeId === section.id ? "active" : ""} href={`#${section.id}`} onClick={() => setDrawerOpen(false)}>
+          <a key={section.id} className={activeId === section.id ? "active" : ""} href={section.id === "ecosystem" ? page("ecosystem.html#ecosystem") : page(`#${section.id}`)} onClick={() => setDrawerOpen(false)}>
             {section.label}
           </a>
         ))}
       </nav>
       <nav className="sidebar-nav sidebar-nav--external" aria-label="External navigation">
         {externalNav.map((item) => (
-          <a key={item.label} href={isPlaceholderLink(item.href) ? "#" : item.href} target="_blank" rel="noopener noreferrer" onClick={() => setDrawerOpen(false)}>
+          <a key={item.label} href={isPlaceholderLink(item.href) ? "#" : item.href} target={isPlaceholderLink(item.href) ? undefined : "_blank"} rel={isPlaceholderLink(item.href) ? undefined : "noopener noreferrer"} onClick={() => setDrawerOpen(false)}>
             <span className="sidebar-external-icon" aria-hidden="true">
               <img src={asset("sidebar-external-arrow.svg")} alt="" />
             </span>
@@ -156,7 +173,7 @@ function Sidebar({ activeId, mobileAnnouncement }: { activeId: string; mobileAnn
             <TabletHamburgerIcon open={drawerOpen} />
           </button>
           <span className="mobile-topbar-divider" aria-hidden="true" />
-          <a className="mobile-brand" href="#top" aria-label="Terra Classic home">
+          <a className="mobile-brand" href={page("#top")} aria-label="Terra Classic home">
             <img src={asset("sidebar-logo.svg")} alt="" />
           </a>
         </div>
@@ -424,9 +441,15 @@ function WhatIsTerraClassic() {
       </div>
       <div className="what-visual">
         <img className="what-surface" src={asset("what-surface.png")} alt="" loading="lazy" />
-        <img className="what-left-orb" src={asset("what-left-orb.png")} alt="" loading="lazy" />
-        <img className="what-right-orb" src={asset("what-right-orb.png")} alt="" loading="lazy" />
-        <img className="what-main-orb" src={asset("what-main-orb.png")} alt="" loading="lazy" />
+        <span className="what-orb-layer what-left-orb" aria-hidden="true">
+          <img src={asset("what-left-orb.png")} alt="" loading="lazy" />
+        </span>
+        <span className="what-orb-layer what-right-orb" aria-hidden="true">
+          <img src={asset("what-right-orb.png")} alt="" loading="lazy" />
+        </span>
+        <span className="what-orb-layer what-main-orb" aria-hidden="true">
+          <img src={asset("what-main-orb.png")} alt="" loading="lazy" />
+        </span>
         {avatars.map((avatar) => (
           <span className={`what-avatar ${avatar.className}`} key={avatar.image}>
             <img src={asset(avatar.image)} alt="" loading="lazy" />
@@ -849,6 +872,109 @@ function FAQ() {
   );
 }
 
+function EcosystemResourceCard({ entry }: { entry: EcosystemEntry }) {
+  const content = (
+    <>
+      <span className="ecosystem-resource__avatar" aria-hidden="true">
+        {entry.avatar ? <img src={entry.avatar} alt="" loading="lazy" /> : <span>{entry.name.slice(0, 2).toUpperCase()}</span>}
+      </span>
+      <span className="ecosystem-resource__copy">
+        <span className="ecosystem-resource__name tc-type-h5">{entry.name}</span>
+        {entry.summary && <span className="ecosystem-resource__summary tc-type-body-small">{entry.summary}</span>}
+      </span>
+      <span className="ecosystem-resource__meta">
+        {(entry.badge || entry.status) && <span className={`ecosystem-resource__badge ${entry.status ? "ecosystem-resource__badge--muted" : ""}`}>{entry.status || entry.badge}</span>}
+        {entry.href && <DotArrowIcon />}
+      </span>
+    </>
+  );
+
+  if (!entry.href) {
+    return <div className="ecosystem-resource ecosystem-resource--disabled">{content}</div>;
+  }
+
+  return (
+    <a className="ecosystem-resource" href={entry.href} target="_blank" rel="noopener noreferrer" aria-label={`${entry.name}${entry.summary ? `, ${entry.summary}` : ""}`}>
+      {content}
+    </a>
+  );
+}
+
+function EcosystemCategorySection({ category }: { category: EcosystemCategory }) {
+  return (
+    <section className="ecosystem-category" id={category.id} aria-labelledby={`${category.id}-title`}>
+      <header className="ecosystem-category__header">
+        <div className="ecosystem-category__title">
+          <EcosystemCategoryIcon icon={category.icon} />
+          <div>
+            <h2 className="tc-type-h3" id={`${category.id}-title`}>{category.title}</h2>
+            <p className="tc-type-body-small">{category.description}</p>
+          </div>
+        </div>
+        <span className="ecosystem-category__rule" aria-hidden="true" />
+        <span className="ecosystem-category__count tc-type-h4">{category.entries.length}</span>
+      </header>
+      <div className="ecosystem-grid">
+        {category.entries.map((entry) => (
+          <EcosystemResourceCard entry={entry} key={`${category.id}-${entry.name}-${entry.href || entry.status || "static"}`} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function EcosystemDirectory() {
+  return (
+    <section className="ecosystem-page" id="ecosystem" aria-labelledby="ecosystem-page-title">
+      <span className="visually-hidden" id="top">Top</span>
+      <div className="ecosystem-page__intro">
+        <h1 className="tc-type-h1" id="ecosystem-page-title">Terra Classic ecosystem</h1>
+        <p className="tc-type-h4">A neutral directory of Terra Classic apps, wallets, bridges, validators, developer resources, infrastructure providers, and community tools. Listings are informational only and do not imply endorsement, audit, or official status.</p>
+        <div className="ecosystem-page__summary">
+          <strong className="tc-type-h3">{ecosystemEntryCount}</strong>
+          <span className="tc-type-body-small">non-market resources copied from the provided ecosystem link base</span>
+        </div>
+      </div>
+      <nav className="ecosystem-index" aria-label="Ecosystem categories">
+        {ecosystemCategories.map((category) => (
+          <a className="tc-type-link-big" href={`#${category.id}`} key={category.id}>
+            {category.title} <span>({category.entries.length})</span>
+          </a>
+        ))}
+      </nav>
+      {ecosystemCategories.map((category) => (
+        <EcosystemCategorySection category={category} key={category.id} />
+      ))}
+    </section>
+  );
+}
+
+function EcosystemShare() {
+  const shareHref = "https://x.com/intent/tweet?text=Explore%20the%20Terra%20Classic%20ecosystem&url=https%3A%2F%2Fterra-classic.money%2Fecosystem.html";
+  return (
+    <section className="section ecosystem-share" aria-labelledby="ecosystem-share-title">
+      <div className="ecosystem-share__copy">
+        <h2 className="tc-type-h2" id="ecosystem-share-title">Help make Terra Classic easier to navigate.</h2>
+        <p className="tc-type-h4">The ecosystem is stronger when accurate tools, wallets, builders, and infrastructure are easy to find. Share the directory, then use GitHub to suggest corrections when listings change.</p>
+      </div>
+      <LinkButton href={shareHref} dark>Share on X</LinkButton>
+    </section>
+  );
+}
+
+function EcosystemPage() {
+  return (
+    <>
+      <EcosystemDirectory />
+      <FounderStories />
+      <JoinCommunity />
+      <FAQ />
+      <EcosystemShare />
+      <Footer />
+    </>
+  );
+}
+
 function Footer() {
   return (
     <footer className="footer">
@@ -868,6 +994,7 @@ function Footer() {
 
 export default function App() {
   const [activeId, setActiveId] = useState("ecosystem");
+  const isEcosystemPage = window.location.pathname.endsWith("/ecosystem.html") || window.location.pathname.endsWith("ecosystem.html");
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const visible = entries.find((entry) => entry.isIntersecting);
@@ -885,19 +1012,25 @@ export default function App() {
       <div className="semantic-app">
         <Sidebar activeId={activeId} mobileAnnouncement={<AnnouncementBar />} />
         <main>
-          <div className="main-announcement-slot"><AnnouncementBar /></div>
-          <Hero />
-          <SupportLogoStrip />
-          <WhatIsTerraClassic />
-          <Capabilities />
-          <ProtocolShowcase />
-          <NativeAssets />
-          <Strengths />
-          <DecentralizationStats />
-          <FounderStories />
-          <JoinCommunity />
-          <FAQ />
-          <Footer />
+          {isEcosystemPage ? (
+            <EcosystemPage />
+          ) : (
+            <>
+              <div className="main-announcement-slot"><AnnouncementBar /></div>
+              <Hero />
+              <SupportLogoStrip />
+              <WhatIsTerraClassic />
+              <Capabilities />
+              <ProtocolShowcase />
+              <NativeAssets />
+              <Strengths />
+              <DecentralizationStats />
+              <FounderStories />
+              <JoinCommunity />
+              <FAQ />
+              <Footer />
+            </>
+          )}
         </main>
       </div>
     </div>

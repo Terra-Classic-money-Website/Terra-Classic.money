@@ -1,5 +1,5 @@
 export const links = {
-  ecosystem: "#ecosystem",
+  ecosystem: "ecosystem.html#ecosystem",
   decentralization: "#decentralization",
   roadmap: "#roadmap",
   metrics: "#metrics",

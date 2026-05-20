@@ -419,6 +419,7 @@ const componentNames = [
   "CMC / CG Button",
   "Arrow button",
   "Founder story",
+  "Ecosystem resource",
   "Back to top button",
   "Collaps button",
   "APR badge",
@@ -718,6 +719,23 @@ function FounderStoryPreview() {
   );
 }
 
+function EcosystemResourcePreview() {
+  return (
+    <a className="ecosystem-resource ds-ecosystem-resource" href="#components" onClick={stopNavigation}>
+      <span className="ecosystem-resource__avatar" aria-hidden="true">
+        <img src="https://framerusercontent.com/images/KBgYlLn8EVUKPwqywWKPk2vlxZ8.jpg?width=400&height=400" alt="" />
+      </span>
+      <span className="ecosystem-resource__copy">
+        <span className="ecosystem-resource__name tc-type-h5">BigbangX</span>
+        <span className="ecosystem-resource__summary tc-type-body-small">NFT marketplace</span>
+      </span>
+      <span className="ecosystem-resource__meta">
+        <span className="ecosystem-resource__badge">ON-CHAIN NATIVE</span>
+      </span>
+    </a>
+  );
+}
+
 function LeftSectionPreview() {
   const [collapsed, setCollapsed] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
@@ -836,6 +854,8 @@ function ComponentPreview({ name }: { name: string }) {
       return <ArrowButtons />;
     case "Founder story":
       return <FounderStoryPreview />;
+    case "Ecosystem resource":
+      return <EcosystemResourcePreview />;
     case "Back to top button":
       return <BackTopPreview />;
     case "Collaps button":

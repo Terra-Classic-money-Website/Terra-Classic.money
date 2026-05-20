@@ -19,6 +19,12 @@ npm run dev
 
 Vite prints the local URL, normally `http://127.0.0.1:5173/`.
 
+Open the Ecosystem subpage locally at:
+
+```text
+http://127.0.0.1:5173/ecosystem.html
+```
+
 Open the internal local design-system tool at:
 
 ```text
