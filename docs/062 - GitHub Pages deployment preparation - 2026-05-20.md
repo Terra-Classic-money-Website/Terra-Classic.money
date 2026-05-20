@@ -29,3 +29,12 @@ Prepare the current `dev` branch for promotion to `main` so the Terra Classic We
 - `npm run check` passed before promotion.
 - A follow-up `npm run build` passed after removing local metadata from the public asset folder.
 
+## Deployment Attempt
+
+- Local `main` was fast-forwarded to the prepared `dev` commit.
+- Remote push to `origin/main` was attempted with `git push origin main`.
+- The push was blocked by local GitHub authentication, not by build, merge, or validation failure:
+  - `fatal: could not read Username for 'https://github.com': Device not configured`
+- The working context was returned to `dev`.
+- A GitHub CLI fallback was not available because `gh` is not installed in this environment.
+
