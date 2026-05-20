@@ -38,7 +38,7 @@ The URL-provided node `1612:804` is the parent canvas; metadata inspection ident
 ## Interactions
 
 - Sidebar collapse state persists in `localStorage`.
-- Sidebar active state uses `IntersectionObserver`.
+- Sidebar active state originally used `IntersectionObserver`; this was removed on 2026-05-20 when primary navigation became stable page navigation instead of homepage section navigation.
 - Announcement dismissal persists in `localStorage`.
 - Language selector is local UI state only.
 - Video modal traps focus, closes on Escape, and closes on backdrop click.

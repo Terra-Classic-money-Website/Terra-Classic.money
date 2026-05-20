@@ -730,7 +730,7 @@ function EcosystemResourcePreview() {
         <span className="ecosystem-resource__summary tc-type-body-small">NFT marketplace</span>
       </span>
       <span className="ecosystem-resource__meta">
-        <span className="ecosystem-resource__badge">ON-CHAIN NATIVE</span>
+        <span className="native-phase__badge ecosystem-resource__badge--native">ON-CHAIN NATIVE</span>
       </span>
     </a>
   );
@@ -751,8 +751,8 @@ function LeftSectionPreview() {
           </div>
           <div className="sidebar-nav-wrap">
             <nav className="sidebar-nav">
-              {sections.map((section, index) => (
-                <a className={index === 0 ? "active" : ""} href="#components" onClick={stopNavigation} key={section.id}>{section.label}</a>
+              {sections.map((section) => (
+                <a href="#components" onClick={stopNavigation} key={section.id}>{section.label}</a>
               ))}
             </nav>
             <nav className="sidebar-nav sidebar-nav--external">

@@ -12,7 +12,6 @@ export type EcosystemCategory = {
   id: string;
   title: string;
   description: string;
-  icon: string;
   entries: EcosystemEntry[];
 };
 
@@ -22,7 +21,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     title: "Applications",
     description:
       "Apps, DeFi products, launchpads, marketplaces, and aggregators",
-    icon: "grid",
     entries: [
       {
         name: "BigbangX",
@@ -169,7 +167,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     id: "entertainment",
     title: "Entertainment",
     description: "Games, metaverse, festivals, and culture projects",
-    icon: "spark",
     entries: [
       {
         name: "Air Force Lunc",
@@ -286,7 +283,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     id: "information",
     title: "Blockchain information",
     description: "Forums, news, safety references, and ecosystem information",
-    icon: "info",
     entries: [
       {
         name: "Agora",
@@ -355,7 +351,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     id: "wallets",
     title: "Wallets",
     description: "Wallets and account tools for Terra Classic users",
-    icon: "wallet",
     entries: [
       {
         name: "LUNCdash",
@@ -440,7 +435,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     title: "Blockchain tools",
     description:
       "Analytics, explorers, finders, DAO tools, and network utilities",
-    icon: "gear",
     entries: [
       {
         name: "ATOMScan",
@@ -578,7 +572,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     id: "bridges",
     title: "Bridges",
     description: "Cross-chain transfer and routing surfaces",
-    icon: "bridge",
     entries: [
       {
         name: "Juris Bridge",
@@ -637,7 +630,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     id: "validators",
     title: "Validators",
     description: "Validator directories and validator community channels",
-    icon: "validator",
     entries: [
       {
         name: "StakeBin",
@@ -678,7 +670,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     title: "For developers",
     description:
       "Documentation, source code, endpoints, channels, and node snapshots",
-    icon: "cube",
     entries: [
       {
         name: "Documentation",
@@ -817,7 +808,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
     title: "Infrastructure & service providers",
     description:
       "Node hosting, RPC APIs, validator infrastructure, and ecosystem services",
-    icon: "server",
     entries: [
       {
         name: "Allnodes",
@@ -867,8 +857,3 @@ export const ecosystemCategories: EcosystemCategory[] = [
     ],
   },
 ];
-
-export const ecosystemEntryCount = ecosystemCategories.reduce(
-  (total, category) => total + category.entries.length,
-  0,
-);

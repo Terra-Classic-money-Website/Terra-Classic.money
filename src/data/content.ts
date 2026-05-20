@@ -1,11 +1,11 @@
 import { links } from "./links";
 
 export const sections = [
-  { id: "ecosystem", label: "Ecosystem" },
-  { id: "decentralization", label: "Decentralization" },
-  { id: "roadmap", label: "Roadmap" },
-  { id: "metrics", label: "Markets" },
-  { id: "about", label: "About terra-classic.money" },
+  { id: "ecosystem", label: "Ecosystem", href: links.ecosystem },
+  { id: "decentralization", label: "Decentralization", href: links.decentralization },
+  { id: "roadmap", label: "Roadmap", href: links.roadmap },
+  { id: "metrics", label: "Markets", href: links.markets },
+  { id: "about", label: "About terra-classic.money", href: links.about },
 ] as const;
 
 export const externalNav = [
