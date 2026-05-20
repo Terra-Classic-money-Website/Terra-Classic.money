@@ -1,0 +1,25 @@
+export const links = {
+  ecosystem: "ecosystem.html",
+  decentralization: "decentralization.html",
+  roadmap: "roadmap.html",
+  markets: "markets.html",
+  about: "about.html",
+  layer2: "https://l2.terra-classic.money",
+  docs: "TODO_REPLACE_WITH_FINAL_DOCUMENTATION_URL",
+  wallet: "TODO_REPLACE_WITH_FINAL_WALLET_GUIDE_URL",
+  stakingDocs: "TODO_REPLACE_WITH_FINAL_STAKING_DOCS_URL",
+  swapDocs: "TODO_REPLACE_WITH_FINAL_SWAP_DOCS_URL",
+  forexDocs: "TODO_REPLACE_WITH_FINAL_FOREX_DOCS_URL",
+  coinMarketCap: "TODO_REPLACE_WITH_FINAL_LUNC_COINMARKETCAP_URL",
+  coinGecko: "TODO_REPLACE_WITH_FINAL_LUNC_COINGECKO_URL",
+  nativeAssetsContact: "TODO_REPLACE_WITH_FINAL_NATIVE_ASSETS_CONTACT_URL",
+  agoraForum: "TODO_REPLACE_WITH_FINAL_AGORA_FORUM_URL",
+  github: "TODO_REPLACE_WITH_FINAL_GITHUB_URL",
+  discord: "TODO_REPLACE_WITH_FINAL_DISCORD_URL",
+  videoExplainer: "",
+  brandAssets: "TODO_REPLACE_WITH_FINAL_BRAND_ASSETS_URL",
+  privacy: "TODO_REPLACE_WITH_FINAL_PRIVACY_POLICY_URL",
+  dawidSkinder: "https://www.dawidskinder.pl",
+};
+
+export const isPlaceholderLink = (href: string) => href.startsWith("TODO_REPLACE");

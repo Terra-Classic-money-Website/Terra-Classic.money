@@ -1,0 +1,14 @@
+# Private/operator-only project inputs
+AGENTS.md
+PROMPTS.md
+- PROMPTS.md
+- KNOWLEDGE/
+
+# macOS local metadata
+.DS_Store
+
+# Node/Vite local output
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
