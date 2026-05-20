@@ -130,14 +130,7 @@ function Sidebar({ activeId, mobileAnnouncement }: { activeId: string; mobileAnn
         {externalNav.map((item) => (
           <a key={item.label} href={isPlaceholderLink(item.href) ? "#" : item.href} target="_blank" rel="noopener noreferrer" onClick={() => setDrawerOpen(false)}>
             <span className="sidebar-external-icon" aria-hidden="true">
-              {item.label === "Layer 2" ? (
-                <picture>
-                  <source media="(max-width: 767px)" srcSet={asset("capability-layer2-icon.svg")} />
-                  <img src={asset("sidebar-external-arrow.svg")} alt="" />
-                </picture>
-              ) : (
-                <img src={asset("sidebar-external-arrow.svg")} alt="" />
-              )}
+              <img src={asset("sidebar-external-arrow.svg")} alt="" />
             </span>
             {item.label}
           </a>
@@ -737,7 +730,8 @@ function DecentralizationStats() {
           ))}
         </dl>
         <a className="stats-button" href="#decentralization">
-          <span className="tc-type-link-big">Find out more about Terra Classic decentralization</span>
+          <span className="stats-button__text stats-button__text--desktop tc-type-link-big">Find out more about Terra Classic decentralization</span>
+          <span className="stats-button__text stats-button__text--mobile tc-type-link-big">More about Terra classic decentralization</span>
           <img src={asset("strength-button-arrow.svg")} alt="" aria-hidden="true" />
         </a>
       </div>
