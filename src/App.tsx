@@ -1497,9 +1497,6 @@ function RoadmapTimeline() {
 }
 
 function RoadmapPage() {
-  const telegramHref = isPlaceholderLink(links.telegram) ? "#" : links.telegram;
-  const isExternalTelegram = telegramHref.startsWith("http");
-
   return (
     <>
       <section className="roadmap-page" id="top" aria-labelledby="roadmap-page-title">
@@ -1513,20 +1510,6 @@ function RoadmapPage() {
           </div>
         </div>
         <RoadmapTimeline />
-      </section>
-
-      <section className="section roadmap-submit" aria-labelledby="roadmap-submit-title">
-        <div className="roadmap-submit__copy">
-          <h2 className="tc-type-h2" id="roadmap-submit-title">Would you like to add your project to this decentralized roadmap?</h2>
-          <p className="tc-type-h4">Send project name, category, milestone title, target date, status, source link, and whether the entry is paid or community-submitted. Entries can be published only when their status and disclosure are clear.</p>
-        </div>
-        <a className="pill-button pill-button--dark" href={telegramHref} target={isExternalTelegram ? "_blank" : undefined} rel={isExternalTelegram ? "noopener noreferrer" : undefined}>
-          <span className="tc-type-link-big">Join Terra-Classic.money Telegram group and contact us</span>
-          <span className="button-arrow-icon" aria-hidden="true">
-            <img className="button-arrow-icon__default" src={asset("button-arrow-white.svg")} alt="" />
-            <img className="button-arrow-icon__hover" src={asset("button-arrow-black.svg")} alt="" />
-          </span>
-        </a>
       </section>
       <Footer />
     </>

@@ -95,3 +95,5 @@ The supplied lo-fi wireframe is treated as the content and interaction model: a 
 - Reduced the desktop/tablet sticky label-to-roadmap spacer again from `32px` to `16px`; rendered QA still reports `0` label/bar overlaps.
 - Changed the mobile roadmap project column into a `72px` icon rail. Mobile now shows only the project-letter circle, and tapping the circle opens an accessible tooltip with project name and category.
 - Mobile tooltip QA verified: project identity text is hidden in the column, tapped circle reports `aria-expanded="true"`, tooltip content appears, no document-level horizontal overflow, timeline still scrolls horizontally, and visible milestone overlap count remains `0`.
+- Removed the "Would you like to add your project..." Roadmap submission CTA section.
+- Added direct `.roadmap-page + .footer` spacing so the footer still starts with `32px` top padding after the roadmap separator now that the CTA section is gone.
