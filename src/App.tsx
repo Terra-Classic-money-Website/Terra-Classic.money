@@ -141,6 +141,16 @@ function LinkButton({ href, children, dark = false }: { href: string; children: 
   );
 }
 
+function ShareOnXButton({ href }: { href: string }) {
+  const safeHref = isPlaceholderLink(href) ? "#" : href;
+  return (
+    <a className="share-on-x-button pill-button tc-type-link-big" href={safeHref} target={safeHref.startsWith("http") ? "_blank" : undefined} rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}>
+      <span>Share on</span>
+      <span className="article-action-icon article-share-icon" aria-hidden="true" />
+    </a>
+  );
+}
+
 function CollapseControl({ collapsed = false }: { collapsed?: boolean }) {
   return (
     <span className={`collapse-control ${collapsed ? "collapse-control--collapsed" : "collapse-control--opened"}`} aria-hidden="true">
@@ -1021,7 +1031,7 @@ function EcosystemShare() {
         <h2 className="tc-type-h2" id="ecosystem-share-title">Help make Terra Classic easier to navigate.</h2>
         <p className="tc-type-h4">The ecosystem is stronger when accurate tools, wallets, builders, and infrastructure are easy to find. Share the directory, then use GitHub to suggest corrections when listings change.</p>
       </div>
-      <LinkButton href={shareHref} dark>Share on X</LinkButton>
+      <ShareOnXButton href={shareHref} />
     </section>
   );
 }
@@ -1070,12 +1080,9 @@ function ArticleListenControl({ label, text }: { label: string; text: string }) 
   };
 
   return (
-    <button className={`article-action article-action--listen pill-button tc-type-link-big ${speaking ? "article-action--active" : ""}`} type="button" onClick={handleClick}>
-      <span>{speaking ? "Stop audio" : label}</span>
-      <span className="play-button-icon article-listen-icon" aria-hidden="true">
-        <img className="play-button-icon__default" src={asset("what-video-dots.svg")} alt="" />
-        <img className="play-button-icon__hover" src={asset("what-video-dots.svg")} alt="" />
-      </span>
+    <button className={`article-action article-action--listen pill-button tc-type-link-big ${speaking ? "article-action--active" : ""}`} type="button" onClick={handleClick} aria-pressed={speaking}>
+      <span>{label}</span>
+      <span className="article-action-icon article-listen-icon" aria-hidden="true" />
     </button>
   );
 }
@@ -1152,6 +1159,7 @@ function DecentralizationArticle() {
         <div className="stats-copy decentralization-stats-hero__copy">
           <div className="article-meta">
             <span className="native-phase__badge article-meta__badge">LAST UPDATE: MAY 21, 2026</span>
+            <span className="native-phase__badge article-meta__badge">15 MIN READ</span>
           </div>
           <h1 className="tc-type-h1" id="decentralization-page-title">Terra Classic decentralization</h1>
           <p className="tc-type-h4">A long-form, article-ready page for explaining how Terra Classic decentralization works, why it matters, and how users can verify the network for themselves.</p>
@@ -1169,14 +1177,10 @@ function DecentralizationArticle() {
             ))}
           </dl>
           <div className="decentralization-hero-actions" aria-label="Article actions">
-            <ArticleListenControl label="Listen to draft" text={readText} />
-            <span className="article-read-time tc-type-link-big">15 min read</span>
+            <ArticleListenControl label="Listen to the article" text={readText} />
             <a className="article-action article-action--share pill-button tc-type-link-big" href="https://x.com/intent/tweet?text=Read%20about%20Terra%20Classic%20decentralization&url=https%3A%2F%2Fterra-classic.money%2Fdecentralization.html" target="_blank" rel="noopener noreferrer">
-              <span>Share on X</span>
-              <span className="button-arrow-icon" aria-hidden="true">
-                <img className="button-arrow-icon__default" src={asset("button-arrow-black.svg")} alt="" />
-                <img className="button-arrow-icon__hover" src={asset("button-arrow-white.svg")} alt="" />
-              </span>
+              <span>Share on</span>
+              <span className="article-action-icon article-share-icon" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -1269,7 +1273,7 @@ function DecentralizationShare() {
         <h2 className="tc-type-h2" id="decentralization-share-title">Share the decentralization story.</h2>
         <p className="tc-type-h4">Once the final article copy is ready, this section gives readers one clear action: help more people understand how Terra Classic is maintained, governed, and verified in public.</p>
       </div>
-      <LinkButton href={shareHref} dark>Share on X</LinkButton>
+      <ShareOnXButton href={shareHref} />
     </section>
   );
 }

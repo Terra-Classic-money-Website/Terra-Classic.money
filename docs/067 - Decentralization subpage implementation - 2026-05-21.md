@@ -83,3 +83,8 @@ The supplied lo-fi wireframe is treated as an information-architecture reference
 - Scoped the stats-planet image placement on the Decentralization hero so the decorative planets do not collide with the longer article headline/intro at intermediate breakpoints.
 - Tuned the Decentralization-only planet offset after visual QA so the asset sits closer to the copy without crossing into the text area.
 - Checked the corrected hero at `1455 x 1081`, `1096 x 1081`, and `759 x 1081`; the headline and paragraph remain clear of the planet layer.
+- Replaced the Decentralization hero Listen and Share buttons with the Figma-designed article button variants from node `1612:964`.
+- Added local Figma-derived mask assets for the article play and X icons so the implementation does not depend on expiring Figma asset URLs.
+- Corrected the dotted play icon orientation to face right and constrained both article icons to their Figma dimensions in default and hover states.
+- Moved `15 MIN READ` into the hero metadata row as a second `native-phase__badge` beside the last-update badge.
+- Replaced the two white-background bottom Share on X buttons on the Ecosystem and Decentralization pages with X-share pills using black default and gray hover states.
