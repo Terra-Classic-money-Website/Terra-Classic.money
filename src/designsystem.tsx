@@ -839,44 +839,49 @@ function RoadmapTimelinePreview() {
   const rows = roadmapRows.slice(0, 3);
 
   return (
-    <div className="roadmap-scroll ds-roadmap-preview" aria-label="Roadmap timeline component specimen" tabIndex={0}>
-      <div className="roadmap-grid">
-        <div className="roadmap-axis" aria-hidden="true">
-          <div className="roadmap-axis__corner" />
-          <div className="roadmap-axis__year tc-type-h2" style={{ gridColumn: "2 / 8" }}>2025</div>
-          <div className="roadmap-axis__year tc-type-h2" style={{ gridColumn: "8 / 17" }}>2026</div>
-          <div className="roadmap-axis__corner roadmap-axis__corner--months" />
+    <div className="roadmap-board ds-roadmap-preview">
+      <div className="roadmap-axis-shell" style={{ "--roadmap-scroll-left": "0px" } as CSSProperties} aria-hidden="true">
+        <div className="roadmap-axis__corner" />
+        <div className="roadmap-axis__track">
+          <div className="roadmap-axis__year roadmap-axis__year--first tc-type-h2" style={{ gridColumn: "1 / 7" }}>2025</div>
+          <div className="roadmap-axis__year tc-type-h2" style={{ gridColumn: "7 / 16" }}>2026</div>
           {roadmapMonths.map((month, index) => (
-            <div className="roadmap-axis__month tc-type-body-small" style={{ gridColumn: index + 2 }} key={`ds-${month.key}`}>{month.label}</div>
+            <div className={`roadmap-axis__month tc-type-body-small${index === 0 ? " roadmap-axis__month--first" : ""}`} style={{ gridColumn: index + 1 }} key={`ds-${month.key}`}>
+              {month.label}
+            </div>
           ))}
         </div>
-        {rows.map((row) => (
-          <article className={`roadmap-row roadmap-row--${row.group}`} style={{ "--roadmap-accent": row.accent } as CSSProperties} key={`ds-${row.id}`}>
-            <div className="roadmap-row__project">
-              <span className="roadmap-row__avatar tc-type-link-big">{row.shortName}</span>
-              <span className="roadmap-row__identity">
-                <strong className="tc-type-h5">{row.project}</strong>
-                <small className="tc-type-body-very-small">{row.category}</small>
-              </span>
-            </div>
-            <div className="roadmap-lane">
-              {roadmapMonths.map((month) => <span className="roadmap-lane__month" key={`ds-${row.id}-${month.key}`} aria-hidden="true" />)}
-              {row.milestones.slice(0, 3).map((milestone) => {
-                const start = dsRoadmapMonthIndex.get(milestone.start) ?? 0;
-                const end = dsRoadmapMonthIndex.get(milestone.end) ?? start;
-                return (
-                  <div className="roadmap-milestone" style={{ gridColumn: `${start + 1} / ${end + 2}` }} key={`ds-${row.id}-${milestone.title}`}>
-                    <div className="roadmap-milestone__meta">
-                      <strong>{milestone.title}</strong>
-                      <span>{milestone.status}</span>
+      </div>
+      <div className="roadmap-scroll" aria-label="Roadmap timeline component specimen" tabIndex={0}>
+        <div className="roadmap-grid">
+          {rows.map((row) => (
+            <article className={`roadmap-row roadmap-row--${row.group}`} style={{ "--roadmap-accent": row.accent } as CSSProperties} key={`ds-${row.id}`}>
+              <div className="roadmap-row__project">
+                <span className="roadmap-row__avatar tc-type-link-big">{row.shortName}</span>
+                <span className="roadmap-row__identity">
+                  <strong className="tc-type-h5">{row.project}</strong>
+                  <small className="tc-type-body-very-small">{row.category}</small>
+                </span>
+              </div>
+              <div className="roadmap-lane">
+                {roadmapMonths.map((month) => <span className="roadmap-lane__month" key={`ds-${row.id}-${month.key}`} aria-hidden="true" />)}
+                {row.milestones.slice(0, 3).map((milestone) => {
+                  const start = dsRoadmapMonthIndex.get(milestone.start) ?? 0;
+                  const end = dsRoadmapMonthIndex.get(milestone.end) ?? start;
+                  return (
+                    <div className="roadmap-milestone" style={{ gridColumn: `${start + 1} / ${end + 2}` }} key={`ds-${row.id}-${milestone.title}`}>
+                      <div className="roadmap-milestone__meta">
+                        <strong>{milestone.title}</strong>
+                        <span>{milestone.status}</span>
+                      </div>
+                      <span className={`roadmap-milestone__bar roadmap-milestone__bar--${milestone.status}`} />
                     </div>
-                    <span className={`roadmap-milestone__bar roadmap-milestone__bar--${milestone.status}`} />
-                  </div>
-                );
-              })}
-            </div>
-          </article>
-        ))}
+                  );
+                })}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );
