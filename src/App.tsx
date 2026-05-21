@@ -14,6 +14,12 @@ import {
   stats,
   strengths,
 } from "./data/content";
+import {
+  decentralizationArticleBlocks,
+  decentralizationReferences,
+  decentralizationResourceGroups,
+  decentralizationTabs,
+} from "./data/decentralization";
 import { ecosystemCategories, type EcosystemCategory, type EcosystemEntry } from "./data/ecosystem";
 import { isPlaceholderLink, links } from "./data/links";
 import { AprBadge } from "./components/AprBadge";
@@ -131,6 +137,16 @@ function LinkButton({ href, children, dark = false }: { href: string; children: 
         <img className="button-arrow-icon__default" src={asset(dark ? "button-arrow-white.svg" : "button-arrow-light.svg")} alt="" />
         <img className="button-arrow-icon__hover" src={asset(dark ? "button-arrow-black.svg" : "button-arrow-white.svg")} alt="" />
       </span>
+    </a>
+  );
+}
+
+function ShareOnXButton({ href }: { href: string }) {
+  const safeHref = isPlaceholderLink(href) ? "#" : href;
+  return (
+    <a className="share-on-x-button pill-button tc-type-link-big" href={safeHref} target={safeHref.startsWith("http") ? "_blank" : undefined} rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}>
+      <span>Share on</span>
+      <span className="article-action-icon article-share-icon" aria-hidden="true" />
     </a>
   );
 }
@@ -1015,7 +1031,7 @@ function EcosystemShare() {
         <h2 className="tc-type-h2" id="ecosystem-share-title">Help make Terra Classic easier to navigate.</h2>
         <p className="tc-type-h4">The ecosystem is stronger when accurate tools, wallets, builders, and infrastructure are easy to find. Share the directory, then use GitHub to suggest corrections when listings change.</p>
       </div>
-      <LinkButton href={shareHref} dark>Share on X</LinkButton>
+      <ShareOnXButton href={shareHref} />
     </section>
   );
 }
@@ -1028,6 +1044,249 @@ function EcosystemPage() {
       <JoinCommunity />
       <FAQ />
       <EcosystemShare />
+      <Footer />
+    </>
+  );
+}
+
+function ArticleListenControl({ label, text }: { label: string; text: string }) {
+  const [speaking, setSpeaking] = useState(false);
+
+  useEffect(() => {
+    const stop = () => setSpeaking(false);
+    window.speechSynthesis?.addEventListener("voiceschanged", stop);
+    return () => {
+      window.speechSynthesis?.cancel();
+      window.speechSynthesis?.removeEventListener("voiceschanged", stop);
+    };
+  }, []);
+
+  const handleClick = () => {
+    if (!("speechSynthesis" in window)) return;
+    if (speaking) {
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 0.92;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+    setSpeaking(true);
+  };
+
+  return (
+    <button className={`article-action article-action--listen pill-button tc-type-link-big ${speaking ? "article-action--active" : ""}`} type="button" onClick={handleClick} aria-pressed={speaking}>
+      <span>{label}</span>
+      <span className="article-action-icon article-listen-icon" aria-hidden="true" />
+    </button>
+  );
+}
+
+function DecentralizationHeroVisual() {
+  const nodes = ["Validators", "Delegators", "Builders", "Governance", "Full nodes", "Public tools"];
+
+  return (
+    <div className="decentralization-visual" aria-hidden="true">
+      <div className="decentralization-visual__grid">
+        {nodes.map((node, index) => (
+          <span className={`decentralization-node decentralization-node--${index + 1}`} key={node}>
+            <span className="decentralization-node__dot" />
+            <span className="decentralization-node__label tc-type-link-small">{node}</span>
+          </span>
+        ))}
+      </div>
+      <img className="decentralization-visual__orb" src={asset("hero-orb-figma.png")} alt="" loading="eager" />
+      <img className="decentralization-visual__mark" src={asset("lunc-logo.svg")} alt="" loading="eager" />
+    </div>
+  );
+}
+
+function DecentralizationTabVisual({ activePanel }: { activePanel: (typeof decentralizationTabs)[number] }) {
+  return (
+    <div className="article-tabs__visual" aria-live="polite">
+      <div className="article-tabs__prompt tc-type-body">{activePanel.visualPrompt}</div>
+      <div className={`article-tabs__image article-tabs__image--${activePanel.id}`}>
+        {activePanel.id === "network" ? (
+          <DecentralizationHeroVisual />
+        ) : (
+          <div className="decentralization-community-map" aria-hidden="true">
+            <div className="decentralization-community-map__center">
+              <img src={asset("lunc-logo.svg")} alt="" />
+              <span className="tc-type-link-small">Public coordination</span>
+            </div>
+            {["Validators", "Delegators", "Builders", "Maintainers", "Governance", "Tooling"].map((label, index) => (
+              <span className={`decentralization-community-map__node decentralization-community-map__node--${index + 1}`} key={label}>
+                <span />
+                <strong className="tc-type-link-small">{label}</strong>
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="article-tabs__caption">
+        <h3 className="tc-type-h4">{activePanel.title}</h3>
+        <p className="tc-type-body-small">{activePanel.body}</p>
+      </div>
+    </div>
+  );
+}
+
+function DecentralizationArticle() {
+  const [activeTab, setActiveTab] = useState<(typeof decentralizationTabs)[number]["id"]>("network");
+  const activePanel = decentralizationTabs.find((tab) => tab.id === activeTab) ?? decentralizationTabs[0];
+  const readText = [
+    "Terra Classic decentralization article draft.",
+    ...decentralizationArticleBlocks.map((block) => `${block.title}. ${block.placeholder}`),
+  ].join(" ");
+
+  return (
+    <article className="decentralization-page" id="top" aria-labelledby="decentralization-page-title">
+      <header className="stats-panel decentralization-hero decentralization-stats-hero">
+        <div className={`stats-glow stats-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <img className="stats-decagon-pattern" src={asset("decagon.svg")} alt="" aria-hidden="true" loading="eager" width="1288" height="1208" />
+        <img className="stats-small-planets" src={asset("stats-small-planets.png")} alt="" aria-hidden="true" loading="eager" width="1161" height="636" />
+        <img className="stats-big-planet" src={asset("stats-big-planet.png")} alt="" aria-hidden="true" loading="eager" width="270" height="268" />
+        <div className="stats-copy decentralization-stats-hero__copy">
+          <div className="article-meta">
+            <span className="native-phase__badge article-meta__badge">LAST UPDATE: MAY 21, 2026</span>
+            <span className="native-phase__badge article-meta__badge">15 MIN READ</span>
+          </div>
+          <h1 className="tc-type-h1" id="decentralization-page-title">Terra Classic decentralization</h1>
+          <p className="tc-type-h4">A long-form, article-ready page for explaining how Terra Classic decentralization works, why it matters, and how users can verify the network for themselves.</p>
+        </div>
+        <div className="stats-bottom decentralization-stats-hero__bottom">
+          <dl className="stats-row">
+            {stats.map(([number, label], index) => (
+              <div className={`stats-metric stats-metric--${index + 1}`} key={number}>
+                <dt>
+                  <span className="tc-type-h1">{number}</span>
+                  {index === 2 && <img src={asset("lunc-logo.svg")} alt="" aria-hidden="true" width="50" height="50" />}
+                </dt>
+                <dd className="tc-type-link-normal">{label}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="decentralization-hero-actions" aria-label="Article actions">
+            <ArticleListenControl label="Listen to the article" text={readText} />
+            <a className="article-action article-action--share pill-button tc-type-link-big" href="https://x.com/intent/tweet?text=Read%20about%20Terra%20Classic%20decentralization&url=https%3A%2F%2Fterra-classic.money%2Fdecentralization.html" target="_blank" rel="noopener noreferrer">
+              <span>Share on</span>
+              <span className="article-action-icon article-share-icon" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div className="article-body">
+        <div className="article-lede">
+          <p className="tc-type-h3">Use this first block for the final article thesis. The layout is intentionally editorial: compact enough to read, structured enough to scan, and serious enough for public infrastructure.</p>
+        </div>
+
+        {decentralizationArticleBlocks.map((block) => (
+          <section className="article-section" id={block.id} key={block.id}>
+            <div className="article-section__index tc-type-link-small">{block.eyebrow}</div>
+            <div className="article-section__copy">
+              <h2 className="tc-type-h3">{block.title}</h2>
+              <p className="tc-type-body">{block.placeholder}</p>
+              <p className="tc-type-body">Add the final article paragraphs here. The CSS already supports long text, links, pull quotes, and dense source-aware explanations without changing the page layout.</p>
+            </div>
+          </section>
+        ))}
+
+        <section className="article-tabs" aria-labelledby="article-tabs-title">
+          <h2 className="visually-hidden" id="article-tabs-title">Two useful ways to explain decentralization</h2>
+          <div className="article-tabs__controls" role="tablist" aria-label="Decentralization views">
+            {decentralizationTabs.map((tab) => (
+              <button className="tc-type-link-big" type="button" role="tab" aria-selected={activeTab === tab.id} key={tab.id} onClick={() => setActiveTab(tab.id)}>
+                {tab.label}
+              </button>
+            ))}
+          </div>
+          <div className="article-tabs__panel" role="tabpanel" key={activePanel.id}>
+            <DecentralizationTabVisual activePanel={activePanel} />
+          </div>
+        </section>
+
+        <section className="article-references" aria-labelledby="article-references-title">
+          <h2 className="tc-type-h4" id="article-references-title">References / bibliography</h2>
+          <div className="article-reference-list">
+            {decentralizationReferences.map((reference) => (
+              <a className="article-reference" href={reference.href} target="_blank" rel="noopener noreferrer" key={reference.href}>
+                <span>
+                  <strong className="tc-type-link-big">{reference.title}</strong>
+                  <small className="tc-type-body-small">{reference.source}</small>
+                </span>
+                <DotArrowIcon />
+              </a>
+            ))}
+          </div>
+        </section>
+      </div>
+    </article>
+  );
+}
+
+function DecentralizationResources() {
+  return (
+    <section className="section decentralization-resources" aria-labelledby="decentralization-resources-title">
+      <div className="decentralization-resources__intro">
+        <h2 className="tc-type-h2" id="decentralization-resources-title">Verify Terra Classic decentralization</h2>
+        <p className="tc-type-h4">The page reuses the existing Framer-derived link and avatar base, so readers can move from the article into validators, explorers, tooling, and developer infrastructure.</p>
+      </div>
+      {decentralizationResourceGroups.map((group) => (
+        <section className="decentralization-resource-group" aria-labelledby={`${group.title.replace(/\s+/g, "-").toLowerCase()}-title`} key={group.title}>
+          <header className="ecosystem-category__header">
+            <div className="ecosystem-category__title">
+              <div>
+                <h3 className="tc-type-h3" id={`${group.title.replace(/\s+/g, "-").toLowerCase()}-title`}>{group.title}</h3>
+                <p className="tc-type-body-small">{group.description}</p>
+              </div>
+            </div>
+            <span className="ecosystem-category__rule" aria-hidden="true" />
+            <span className="ecosystem-category__count tc-type-h4">{group.entries.length}</span>
+          </header>
+          <div className="ecosystem-grid">
+            {group.entries.map((entry) => (
+              <EcosystemResourceCard entry={entry} key={`${group.title}-${entry.name}-${entry.href || entry.status || "static"}`} />
+            ))}
+          </div>
+        </section>
+      ))}
+    </section>
+  );
+}
+
+function DecentralizationShare() {
+  const shareHref = "https://x.com/intent/tweet?text=Terra%20Classic%20is%20decentralized%20public%20infrastructure&url=https%3A%2F%2Fterra-classic.money%2Fdecentralization.html";
+  return (
+    <section className="section decentralization-share" aria-labelledby="decentralization-share-title">
+      <div className="decentralization-share__copy">
+        <h2 className="tc-type-h2" id="decentralization-share-title">Share the decentralization story.</h2>
+        <p className="tc-type-h4">Once the final article copy is ready, this section gives readers one clear action: help more people understand how Terra Classic is maintained, governed, and verified in public.</p>
+      </div>
+      <ShareOnXButton href={shareHref} />
+    </section>
+  );
+}
+
+function DecentralizationPage() {
+  return (
+    <>
+      <DecentralizationArticle />
+      <DecentralizationResources />
+      <FounderStories />
+      <JoinCommunity />
+      <FAQ />
+      <DecentralizationShare />
       <Footer />
     </>
   );
@@ -1052,13 +1311,16 @@ function Footer() {
 
 export default function App() {
   const isEcosystemPage = window.location.pathname.endsWith("/ecosystem.html") || window.location.pathname.endsWith("ecosystem.html");
+  const isDecentralizationPage = window.location.pathname.endsWith("/decentralization.html") || window.location.pathname.endsWith("decentralization.html");
 
   return (
     <div className="app">
       <div className="semantic-app">
         <Sidebar mobileAnnouncement={<AnnouncementBar />} />
         <main>
-          {isEcosystemPage ? (
+          {isDecentralizationPage ? (
+            <DecentralizationPage />
+          ) : isEcosystemPage ? (
             <EcosystemPage />
           ) : (
             <>

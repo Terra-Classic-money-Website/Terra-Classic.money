@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           main: resolve(__dirname, "index.html"),
+          decentralization: resolve(__dirname, "decentralization.html"),
           ecosystem: resolve(__dirname, "ecosystem.html"),
         },
       },
