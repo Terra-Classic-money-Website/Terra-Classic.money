@@ -150,3 +150,15 @@ The page follows the supplied lo-fi wireframe at `/Users/dawidskinder/Library/Cl
 - Browser QA checked mobile `463 x 1080`: the CTA button is below the copy, left-aligned with the section content, full-width to the content column, and no horizontal overflow occurs.
 - QA screenshot saved:
   - `docs/audit-screenshots/ecosystem-mobile-cta-2026-05-20.png`
+
+## Mobile Entry Spacing Correction
+
+- Reduced only the mobile Ecosystem page top padding from the inherited `48px` editorial section value to `40px`.
+- This compensates for the mobile page frame so the visible gap between the top bar and `Terra Classic ecosystem` heading matches the homepage mobile section rhythm at `48px`.
+
+## Mobile Entry Spacing Validation Results
+
+- `npm run check` passed after the mobile entry spacing correction.
+- Browser QA checked mobile `463 x 1080`: visible topbar-to-heading gap is `48px`, Ecosystem page internal top padding is `40px`, and no horizontal overflow or console warnings/errors occur.
+- QA screenshot saved:
+  - `docs/audit-screenshots/ecosystem-mobile-top-spacing-2026-05-21.png`
