@@ -22,7 +22,7 @@ import {
 } from "./data/decentralization";
 import { ecosystemCategories, type EcosystemCategory, type EcosystemEntry } from "./data/ecosystem";
 import { isPlaceholderLink, links } from "./data/links";
-import { marketCategories, marketsSourceNotes } from "./data/markets";
+import { marketCategories } from "./data/markets";
 import { roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow } from "./data/roadmap";
 import { AprBadge } from "./components/AprBadge";
 
@@ -1077,10 +1077,6 @@ function MarketsDirectory() {
       {marketCategories.map((category) => (
         <EcosystemCategorySection category={category} key={category.id} />
       ))}
-      <div className="markets-source-notes" aria-label="Markets source notes">
-        <p className="tc-type-body-very-small">{marketsSourceNotes.cex}</p>
-        <p className="tc-type-body-very-small">{marketsSourceNotes.dex}</p>
-      </div>
     </section>
   );
 }
