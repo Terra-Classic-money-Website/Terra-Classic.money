@@ -350,10 +350,14 @@ function AnnouncementBar() {
   );
 }
 
+const HERO_GLOW_VARIANT = "v2";
+const BOTTOM_GLOW_VARIANT = "v2";
+
 function Hero() {
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">
-      <div className="hero-glow" aria-hidden="true">
+      <div className={`hero-glow hero-glow--${HERO_GLOW_VARIANT}`} aria-hidden="true">
+        <span />
         <span />
         <span />
         <span />
@@ -584,7 +588,8 @@ function ProtocolShowcase() {
 
         return (
           <article key={protocol.id} className={`protocol-panel protocol-panel--${protocol.id}`}>
-            <div className={`protocol-glow protocol-glow--${protocol.id}`} aria-hidden="true">
+            <div className={`protocol-glow protocol-glow--${protocol.id} protocol-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
+              <span />
               <span />
               <span />
               <span />
@@ -784,7 +789,8 @@ function StrengthCard({ index, title, body }: { index: number; title: string; bo
 function DecentralizationStats() {
   return (
     <section id="metrics" className="stats-panel" aria-labelledby="stats-title">
-      <div className="stats-glow" aria-hidden="true">
+      <div className={`stats-glow stats-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
+        <span />
         <span />
         <span />
         <span />
