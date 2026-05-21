@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import {
   assets,
   capabilities,
@@ -22,6 +22,7 @@ import {
 } from "./data/decentralization";
 import { ecosystemCategories, type EcosystemCategory, type EcosystemEntry } from "./data/ecosystem";
 import { isPlaceholderLink, links } from "./data/links";
+import { roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow } from "./data/roadmap";
 import { AprBadge } from "./components/AprBadge";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
@@ -183,8 +184,8 @@ const navHref = (href: string) => {
   return page(href);
 };
 
-function Sidebar({ mobileAnnouncement }: { mobileAnnouncement?: ReactNode }) {
-  const [collapsed, setCollapsed] = useStoredBoolean("tcm-sidebar-collapsed", false);
+function Sidebar({ mobileAnnouncement, defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed" }: { mobileAnnouncement?: ReactNode; defaultCollapsed?: boolean; storageKey?: string }) {
+  const [collapsed, setCollapsed] = useStoredBoolean(storageKey, defaultCollapsed);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [language, setLanguage] = useState("EN");
   const [langOpen, setLangOpen] = useState(false);
@@ -1292,6 +1293,246 @@ function DecentralizationPage() {
   );
 }
 
+const roadmapMonthIndex = new Map<string, number>(roadmapMonths.map((month, index) => [month.key, index]));
+const roadmapYearRanges = roadmapMonths.reduce<Array<{ year: string; start: number; end: number }>>((ranges, month, index) => {
+  const current = ranges[ranges.length - 1];
+  if (current?.year === month.year) {
+    current.end = index;
+  } else {
+    ranges.push({ year: month.year, start: index, end: index });
+  }
+  return ranges;
+}, []);
+
+const roadmapStatusLabels: Record<RoadmapMilestone["status"], string> = {
+  planned: "Planned",
+  "in-progress": "In progress",
+  live: "Live",
+  delayed: "Delayed",
+  completed: "Completed",
+  "source-needed": "Source needed",
+};
+
+function readTimelineMetric(element: HTMLElement, property: string) {
+  return Number.parseFloat(getComputedStyle(element).getPropertyValue(property)) || 0;
+}
+
+function getMilestoneColumns(milestone: RoadmapMilestone) {
+  const start = roadmapMonthIndex.get(milestone.start) ?? 0;
+  const end = roadmapMonthIndex.get(milestone.end) ?? start;
+  return `${start + 1} / ${end + 2}`;
+}
+
+function getMilestoneStack(milestones: RoadmapMilestone[]) {
+  const levelEnds: number[] = [];
+  const levels = new Map<string, number>();
+
+  milestones.forEach((milestone) => {
+    const start = roadmapMonthIndex.get(milestone.start) ?? 0;
+    const end = roadmapMonthIndex.get(milestone.end) ?? start;
+    const level = levelEnds.findIndex((levelEnd) => start > levelEnd);
+    const stackLevel = level >= 0 ? level : levelEnds.length;
+
+    levelEnds[stackLevel] = end;
+    levels.set(milestone.title, stackLevel);
+  });
+
+  return { levels, span: Math.max(1, levelEnds.length) };
+}
+
+function RoadmapAxis() {
+  return (
+    <div className="roadmap-axis" aria-hidden="true">
+      <div className="roadmap-axis__corner" />
+      {roadmapYearRanges.map((range) => (
+        <div className="roadmap-axis__year tc-type-h2" style={{ gridColumn: `${range.start + 3} / ${range.end + 4}` }} key={range.year}>
+          {range.year}
+        </div>
+      ))}
+      <div className="roadmap-axis__corner roadmap-axis__corner--months" />
+      {roadmapMonths.map((month, index) => (
+        <div className="roadmap-axis__month tc-type-body-small" style={{ gridColumn: index + 3 }} key={month.key}>
+          {month.label}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function RoadmapGroupHeader({ group }: { group: RoadmapRow["group"] }) {
+  const label = roadmapGroupLabels[group];
+  return (
+    <div className={`roadmap-group roadmap-group--${group}`}>
+      <div className="roadmap-group__label">
+        <span className="native-phase__badge">{group === "public" ? "PUBLIC" : "PROJECT-SUBMITTED"}</span>
+      </div>
+      <div className="roadmap-group__copy">
+        <h2 className="tc-type-h4">{label.title}</h2>
+        <p className="tc-type-body-small">{label.description}</p>
+      </div>
+    </div>
+  );
+}
+
+function RoadmapProjectRow({
+  row,
+  visibleLaneStartPx,
+  monthWidth,
+  activeTooltip,
+  onToggleTooltip,
+}: {
+  row: RoadmapRow;
+  visibleLaneStartPx: number;
+  monthWidth: number;
+  activeTooltip: string | null;
+  onToggleTooltip: (id: string) => void;
+}) {
+  const milestoneStack = getMilestoneStack(row.milestones);
+  const tooltipOpen = activeTooltip === row.id;
+
+  return (
+    <article className={`roadmap-row roadmap-row--${row.group}`} style={{ "--roadmap-accent": row.accent } as CSSProperties}>
+      <div className="roadmap-row__project">
+        <button
+          className="roadmap-row__avatar tc-type-link-big"
+          type="button"
+          aria-label={`Show ${row.project} details`}
+          aria-expanded={tooltipOpen}
+          aria-describedby={tooltipOpen ? `${row.id}-tooltip` : undefined}
+          onClick={() => onToggleTooltip(row.id)}
+        >
+          {row.shortName}
+        </button>
+        <span className="roadmap-row__identity">
+          <strong className="tc-type-h5">{row.project}</strong>
+          <small className="tc-type-body-very-small">{row.category}</small>
+        </span>
+        <span className={`roadmap-row__tooltip${tooltipOpen ? " roadmap-row__tooltip--open" : ""}`} id={`${row.id}-tooltip`} role="tooltip">
+          <strong>{row.project}</strong>
+          <small>{row.category}</small>
+        </span>
+      </div>
+      <div className="roadmap-lane">
+        {roadmapMonths.map((month) => <span className="roadmap-lane__month" key={`${row.id}-${month.key}`} aria-hidden="true" />)}
+        {row.milestones.map((milestone) => {
+          const startIndex = roadmapMonthIndex.get(milestone.start) ?? 0;
+          const startsBeforeVisibleLane = visibleLaneStartPx > 0 && startIndex * monthWidth < visibleLaneStartPx + 32;
+          const stackLevel = milestoneStack.levels.get(milestone.title) ?? 0;
+
+          return (
+            <div
+              className={`roadmap-milestone${startsBeforeVisibleLane ? " roadmap-milestone--meta-hidden" : ""}`}
+              style={{
+                "--roadmap-stack": stackLevel,
+                "--roadmap-stack-span": milestoneStack.span,
+                gridColumn: getMilestoneColumns(milestone),
+              } as CSSProperties}
+              key={`${row.id}-${milestone.title}`}
+            >
+              <div className="roadmap-milestone__meta">
+                <strong>{milestone.title}</strong>
+                <span>{roadmapStatusLabels[milestone.status]}</span>
+                {milestone.paid && <em>Paid entry</em>}
+              </div>
+              <span className={`roadmap-milestone__bar roadmap-milestone__bar--${milestone.status}`} />
+            </div>
+          );
+        })}
+      </div>
+    </article>
+  );
+}
+
+function RoadmapTimeline() {
+  const publicRows = roadmapRows.filter((row) => row.group === "public");
+  const communityRows = roadmapRows.filter((row) => row.group === "community");
+  const [timelineMetrics, setTimelineMetrics] = useState({ monthWidth: 248, scrollLeft: 0 });
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+  const visibleLaneStartPx = timelineMetrics.scrollLeft;
+
+  const handleTimelineScroll = (event: { currentTarget: HTMLDivElement }) => {
+    const element = event.currentTarget;
+    setTimelineMetrics({
+      monthWidth: readTimelineMetric(element, "--roadmap-month-width"),
+      scrollLeft: element.scrollLeft,
+    });
+  };
+
+  const handleProjectTooltipToggle = (id: string) => {
+    setActiveTooltip((active) => (active === id ? null : id));
+  };
+
+  return (
+    <section className="roadmap-board" aria-labelledby="roadmap-board-title">
+      <h2 className="visually-hidden" id="roadmap-board-title">Decentralized roadmap</h2>
+      <div className="roadmap-scroll" role="region" aria-label="Horizontally scrollable Terra Classic roadmap" tabIndex={0} onScroll={handleTimelineScroll}>
+        <div className="roadmap-grid">
+          <RoadmapAxis />
+          <RoadmapGroupHeader group="public" />
+          {publicRows.map((row) => (
+            <RoadmapProjectRow
+              row={row}
+              visibleLaneStartPx={visibleLaneStartPx}
+              monthWidth={timelineMetrics.monthWidth}
+              activeTooltip={activeTooltip}
+              onToggleTooltip={handleProjectTooltipToggle}
+              key={row.id}
+            />
+          ))}
+          <RoadmapGroupHeader group="community" />
+          {communityRows.map((row) => (
+            <RoadmapProjectRow
+              row={row}
+              visibleLaneStartPx={visibleLaneStartPx}
+              monthWidth={timelineMetrics.monthWidth}
+              activeTooltip={activeTooltip}
+              onToggleTooltip={handleProjectTooltipToggle}
+              key={row.id}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RoadmapPage() {
+  const telegramHref = isPlaceholderLink(links.telegram) ? "#" : links.telegram;
+  const isExternalTelegram = telegramHref.startsWith("http");
+
+  return (
+    <>
+      <section className="roadmap-page" id="top" aria-labelledby="roadmap-page-title">
+        <div className="roadmap-page__intro">
+          <div className="roadmap-page__copy">
+            <h1 className="tc-type-h1" id="roadmap-page-title">Terra Classic roadmap</h1>
+            <p className="tc-type-h4">A source-aware timeline for Terra Classic L1 work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
+          </div>
+          <div className="roadmap-page__trust">
+            <span className="native-phase__badge">UPDATED MAY 21, 2026</span>
+          </div>
+        </div>
+        <RoadmapTimeline />
+      </section>
+
+      <section className="section roadmap-submit" aria-labelledby="roadmap-submit-title">
+        <div className="roadmap-submit__copy">
+          <h2 className="tc-type-h2" id="roadmap-submit-title">Would you like to add your project to this decentralized roadmap?</h2>
+          <p className="tc-type-h4">Send project name, category, milestone title, target date, status, source link, and whether the entry is paid or community-submitted. Entries can be published only when their status and disclosure are clear.</p>
+        </div>
+        <a className="pill-button pill-button--dark" href={telegramHref} target={isExternalTelegram ? "_blank" : undefined} rel={isExternalTelegram ? "noopener noreferrer" : undefined}>
+          <span className="tc-type-link-big">Join Terra-Classic.money Telegram group and contact us</span>
+          <span className="button-arrow-icon" aria-hidden="true">
+            <img className="button-arrow-icon__default" src={asset("button-arrow-white.svg")} alt="" />
+            <img className="button-arrow-icon__hover" src={asset("button-arrow-black.svg")} alt="" />
+          </span>
+        </a>
+      </section>
+      <Footer />
+    </>
+  );
+}
+
 function Footer() {
   return (
     <footer className="footer">
@@ -1312,14 +1553,21 @@ function Footer() {
 export default function App() {
   const isEcosystemPage = window.location.pathname.endsWith("/ecosystem.html") || window.location.pathname.endsWith("ecosystem.html");
   const isDecentralizationPage = window.location.pathname.endsWith("/decentralization.html") || window.location.pathname.endsWith("decentralization.html");
+  const isRoadmapPage = window.location.pathname.endsWith("/roadmap.html") || window.location.pathname.endsWith("roadmap.html");
 
   return (
     <div className="app">
       <div className="semantic-app">
-        <Sidebar mobileAnnouncement={<AnnouncementBar />} />
+        <Sidebar
+          defaultCollapsed={isRoadmapPage}
+          mobileAnnouncement={<AnnouncementBar />}
+          storageKey={isRoadmapPage ? "tcm-roadmap-sidebar-collapsed" : "tcm-sidebar-collapsed"}
+        />
         <main>
           {isDecentralizationPage ? (
             <DecentralizationPage />
+          ) : isRoadmapPage ? (
+            <RoadmapPage />
           ) : isEcosystemPage ? (
             <EcosystemPage />
           ) : (

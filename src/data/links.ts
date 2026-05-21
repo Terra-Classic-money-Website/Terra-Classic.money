@@ -4,6 +4,7 @@ export const links = {
   roadmap: "roadmap.html",
   markets: "markets.html",
   about: "about.html",
+  telegram: "TODO_REPLACE_WITH_FINAL_TELEGRAM_URL",
   layer2: "https://l2.terra-classic.money",
   docs: "TODO_REPLACE_WITH_FINAL_DOCUMENTATION_URL",
   wallet: "TODO_REPLACE_WITH_FINAL_WALLET_GUIDE_URL",
