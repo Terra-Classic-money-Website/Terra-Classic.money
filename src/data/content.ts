@@ -192,15 +192,221 @@ export const founders = [
   ["Pedro B.", "Selenium Finance - Synthetics protocol"],
 ];
 
-export const faqGroups: Array<[string, string[]]> = [
-  ["Getting started", ["What is Terra Classic?", "Who controls Terra Classic?", "How do I start using Terra Classic?", "What are transaction fees like?", "Where can I track network activity and stats?"]],
-  ["Tokens and native assets", ["What is LUNC used for?", "What is USTC? Is it a stablecoin?", "What makes Terra Classic’s asset layer unique?", "Are those stablecoins live today?"]],
-  ["Staking and rewards", ["How does staking work on Terra Classic?", "What is the unbonding period?", "What are the risks of staking?", "How do I choose a validator?", "Can I move my stake without unbonding?"]],
-  ["Governance and community", ["How does Terra Classic governance work?", "Why does governance matter for investors and institutions?", "What is the Community Pool / treasury used for?", "How can I participate if I’m not technical?"]],
-  ["Burns and deflation mechanics", ["What is the burn tax?", "Does burning guarantee price increases?", "How can I verify burns"]],
-  ["Ecosystem and use cases", ["What can I do on Terra Classic today?", "What are “Layer-2 projects” on Terra Classic?", "Is Terra Classic interoperable with other chains?"]],
-  ["Builders and developers", ["What technology stack does Terra Classic use?", "Can I deploy smart contracts on Terra Classic?", "What languages and tools should developers use?", "How do I get my app listed or featured?", "Are grants or funding available?"]],
-  ["Institutions and public-sector partners", ["Why would an institution consider Terra Classic?", "How can we integrate Terra Classic for payments or settlement?", "We want to introduce a new fiat-pegged stablecoin on Terra Classic—how does that work?", "Is Terra Classic “compliant”?"]],
-  ["Security, reliability, and risk", ["How secure is Terra Classic?", "What are the biggest risks users should understand?", "How are upgrades handled?", "Where do I report a bug or security issue?"]],
-  ["Practical reminders", ["Is this website financial advice?", "What’s the best way to stay up to date?"]],
+export type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+export type FaqGroup = {
+  title: string;
+  items: FaqItem[];
+};
+
+export const faqGroups: FaqGroup[] = [
+  {
+    title: "Getting started",
+    items: [
+      {
+        question: "What is Terra Classic?",
+        answer: "Terra Classic is a community-governed Layer-1 blockchain powered by LUNC. Validators produce blocks, delegators help secure the network through staking, and governance directs how the protocol evolves over time.",
+      },
+      {
+        question: "Who controls Terra Classic?",
+        answer: "No single company, foundation, or individual controls Terra Classic. It is governed through on-chain proposals, validator voting, delegator participation, and community-led development.",
+      },
+      {
+        question: "How do I start using Terra Classic?",
+        answer: "Start by choosing a compatible wallet, funding it with LUNC or another supported asset, and exploring staking, governance, transfers, and ecosystem applications. For larger balances, use strong wallet hygiene and consider hardware-wallet flows where available.",
+      },
+      {
+        question: "What are transaction fees like?",
+        answer: "Terra Classic transactions use gas fees, and many transfers may also interact with the chain’s tax/burn logic depending on current governance parameters. Always check the fee shown in your wallet before confirming a transaction.",
+      },
+      {
+        question: "Where can I track network activity and stats?",
+        answer: "You can track Terra Classic through block explorers, dashboards, governance tools, staking interfaces, and public network endpoints. For builders and operators, Terra Classic also exposes RPC, LCD, FCD, and gRPC endpoints for development and light workloads.",
+      },
+    ],
+  },
+  {
+    title: "Tokens and native assets",
+    items: [
+      {
+        question: "What is LUNC used for?",
+        answer: "LUNC is Terra Classic’s native staking and governance asset. It is used to pay fees, secure the chain through delegation, participate in governance, and coordinate economic activity across the network.",
+      },
+      {
+        question: "What is USTC? Is it a stablecoin?",
+        answer: "USTC is a native Terra Classic asset with historical stablecoin origins, but today it should be treated as a freely traded crypto asset, not as a guaranteed $1 redeemable stablecoin. Any future stable-asset design should be evaluated by its collateral model, liquidity, governance approval, and live market behavior.",
+      },
+      {
+        question: "What makes Terra Classic’s asset layer unique?",
+        answer: "Terra Classic combines LUNC as a native speculative, staking, and governance asset with a broader multi-currency asset vision. Its roadmap includes fiat-pegged stable assets designed to expand settlement, FX-like utility, and on-chain liquidity over time.",
+      },
+      {
+        question: "Are those stablecoins live today?",
+        answer: "Not all proposed Terra Classic stable assets are live as fully collateralized, production-ready assets today. The rollout is phased, with collateralization, liquidity, governance, and technical safeguards expected to mature step by step.",
+      },
+    ],
+  },
+  {
+    title: "Staking and rewards",
+    items: [
+      {
+        question: "How does staking work on Terra Classic?",
+        answer: "You delegate LUNC to a validator, which helps secure the network and participate in consensus. Validators take a commission on rewards, while delegators receive the remaining rewards proportional to their delegated stake.",
+      },
+      {
+        question: "What is the unbonding period?",
+        answer: "When you undelegate staked LUNC, it enters an unbonding period of 21 days and does not earn rewards during that time.",
+      },
+      {
+        question: "What are the risks of staking?",
+        answer: "Main staking risks include validator downtime, slashing, poor validator performance, governance inactivity, commission changes, and market volatility. Your LUNC remains yours when delegated, but validator behavior can still affect rewards and risk exposure.",
+      },
+      {
+        question: "How do I choose a validator?",
+        answer: "Look for validators with strong uptime, transparent communication, reasonable commission, active governance participation, and clear infrastructure practices. Diversifying across multiple reliable validators can reduce concentration risk.",
+      },
+      {
+        question: "Can I move my stake without unbonding?",
+        answer: "Yes, redelegation lets you move bonded LUNC from one validator to another without waiting through the full unbonding period, subject to chain rules and cooldown limits.",
+      },
+    ],
+  },
+  {
+    title: "Governance and community",
+    items: [
+      {
+        question: "How does Terra Classic governance work?",
+        answer: "Community members submit proposals, deposits bring proposals into voting, and validators and delegators vote on-chain. Passed proposals can update parameters, fund initiatives, trigger upgrades, or guide ecosystem direction.",
+      },
+      {
+        question: "Why does governance matter for investors and institutions?",
+        answer: "Governance determines the rules that shape fees, upgrades, treasury spending, validator incentives, and ecosystem priorities. For investors and institutions, governance quality is a signal of whether Terra Classic can coordinate, execute, and manage risk credibly.",
+      },
+      {
+        question: "What is the Community Pool / treasury used for?",
+        answer: "The Community Pool can fund protocol work, infrastructure, ecosystem tooling, public goods, audits, documentation, and growth initiatives—when proposals pass through governance. Strong proposals should define scope, budget, milestones, owners, and proof of delivery.",
+      },
+      {
+        question: "How can I participate if I’m not technical?",
+        answer: "You can stake, vote, choose responsible validators, review proposals, join community discussions, report broken information, support builders, and help educate new users. Delegators can also override their validator’s governance vote if they want to vote directly.",
+      },
+    ],
+  },
+  {
+    title: "Burns and deflation mechanics",
+    items: [
+      {
+        question: "What is the burn tax?",
+        answer: "The burn tax is an on-chain mechanism that can route part of eligible transaction activity toward reducing supply. Its rate, scope, exemptions, and implementation details are controlled by governance and should always be checked against current chain parameters.",
+      },
+      {
+        question: "Does burning guarantee price increases?",
+        answer: "No. Burns can reduce supply, but price depends on demand, liquidity, utility, market structure, and broader conditions. Burns are strongest when paired with real usage, sustainable volume, and product adoption.",
+      },
+      {
+        question: "How can I verify burns?",
+        answer: "Burns can be verified on-chain through explorers, burn addresses, tax module data, and community dashboards. For serious analysis, always use source data rather than screenshots or social claims.",
+      },
+    ],
+  },
+  {
+    title: "Ecosystem and use cases",
+    items: [
+      {
+        question: "What can I do on Terra Classic today?",
+        answer: "You can send assets, stake LUNC, vote in governance, interact with wallets, explore DEX liquidity, use ecosystem applications, and build smart-contract products. The network also supports public endpoints and developer tooling for teams building on top of it.",
+      },
+      {
+        question: "What are “Layer-2 projects” on Terra Classic?",
+        answer: "Layer-2 projects are independent ecosystem projects built around Terra Classic that may have their own tokens, tools, applications, and communities. They expand what users can do beyond the base chain while still drawing value from Terra Classic’s network and brand gravity.",
+      },
+      {
+        question: "Is Terra Classic interoperable with other chains?",
+        answer: "Yes. Terra Classic supports interchain connectivity through IBC-related modules and cross-chain infrastructure, allowing assets and applications to connect across the broader Cosmos ecosystem where channels and relayers are active.",
+      },
+    ],
+  },
+  {
+    title: "Builders and developers",
+    items: [
+      {
+        question: "What technology stack does Terra Classic use?",
+        answer: "Terra Classic uses Cosmos-SDK-style infrastructure, Tendermint/CometBFT-style consensus, CosmWasm smart contracts, IBC modules, and developer-facing RPC/LCD/gRPC endpoints. Builders can also use TypeScript tooling such as CosmES for app development.",
+      },
+      {
+        question: "Can I deploy smart contracts on Terra Classic?",
+        answer: "Yes. Terra Classic supports WebAssembly smart contracts powered by CosmWasm, including contract upload, instantiation, execution, querying, and migration patterns.",
+      },
+      {
+        question: "What languages and tools should developers use?",
+        answer: "Smart contracts are typically written in Rust because it has the most mature CosmWasm tooling. Front-end and app integrations can use TypeScript tooling, CosmES, wallet controllers, RPC/LCD endpoints, and localnet workflows for testing.",
+      },
+      {
+        question: "How do I get my app listed or featured?",
+        answer: "Prepare a clear project profile with links, contracts, documentation, category, security notes, and live status, then submit it through the relevant ecosystem or website-maintainer channel. Projects with working products, transparent ownership, and verifiable on-chain activity should be prioritized.",
+      },
+      {
+        question: "Are grants or funding available?",
+        answer: "Funding can be requested through Terra Classic governance or community-led initiatives, but it is not automatic. Strong funding requests should include milestones, budget, delivery owners, proof of work, maintenance plans, and measurable ecosystem impact.",
+      },
+    ],
+  },
+  {
+    title: "Institutions and public-sector partners",
+    items: [
+      {
+        question: "Why would an institution consider Terra Classic?",
+        answer: "Terra Classic offers public settlement, community governance, global accessibility, low-friction blockchain infrastructure, and a native asset ecosystem with potential for payments, staking, DeFi, and multi-currency settlement experiments.",
+      },
+      {
+        question: "How can we integrate Terra Classic for payments or settlement?",
+        answer: "A typical integration starts with wallet/custody setup, compliance review, RPC/LCD or node access, transaction monitoring, accounting flows, and a limited pilot. For production workloads, institutions should avoid relying only on public endpoints and should use dedicated infrastructure or run their own nodes.",
+      },
+      {
+        question: "We want to introduce a new fiat-pegged stablecoin on Terra Classic—how does that work?",
+        answer: "Start with a clear asset proposal: target currency, issuer/collateral model, mint/redeem logic, liquidity plan, oracle assumptions, risk controls, legal/compliance perimeter, and governance path. From there, the community can evaluate whether the asset is technically safe, economically useful, and aligned with Terra Classic’s long-term direction.",
+      },
+      {
+        question: "Is Terra Classic “compliant”?",
+        answer: "Terra Classic is a public, permissionless blockchain; compliance usually sits at the application, issuer, exchange, custody, and institutional-integration layer. Any regulated use case should be reviewed with qualified legal and compliance professionals before launch.",
+      },
+    ],
+  },
+  {
+    title: "Security, reliability, and risk",
+    items: [
+      {
+        question: "How secure is Terra Classic?",
+        answer: "Terra Classic is secured by delegated proof-of-stake validators, staking incentives, governance-controlled upgrades, and slashing rules for validator misbehavior. Like every public blockchain, it also depends on responsible validators, secure infrastructure, audited apps, careful key management, and honest risk disclosure.",
+      },
+      {
+        question: "What are the biggest risks users should understand?",
+        answer: "Key risks include market volatility, smart-contract bugs, validator slashing, bridge risk, governance changes, phishing, fake websites, poor wallet hygiene, and low-liquidity markets. Always verify links, contracts, proposals, and wallet prompts before signing.",
+      },
+      {
+        question: "How are upgrades handled?",
+        answer: "Terra Classic uses governance and coordinated validator execution to update protocol software and modules. Upgrade quality depends not only on code, but also on testing, validator readiness, communication, and post-upgrade monitoring.",
+      },
+      {
+        question: "Where do I report a bug or security issue?",
+        answer: "For documentation issues, open a GitHub issue or submit a pull request. For code, infrastructure, or security-sensitive issues, use the relevant project repository or maintainer channel and avoid posting exploitable details publicly before maintainers can respond.",
+      },
+    ],
+  },
+  {
+    title: "Practical reminders",
+    items: [
+      {
+        question: "Is this website financial advice?",
+        answer: "No. This website is for education, onboarding, and ecosystem navigation only. It does not provide financial, investment, legal, tax, or compliance advice.",
+      },
+      {
+        question: "What’s the best way to stay up to date?",
+        answer: "Follow Terra Classic governance, validator communications, developer repositories, ecosystem channels, documentation updates, and trusted analytics dashboards. The most reliable signal is not hype—it is shipped work, verifiable data, and transparent execution.",
+      },
+    ],
+  },
 ];

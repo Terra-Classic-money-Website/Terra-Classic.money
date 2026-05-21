@@ -350,10 +350,14 @@ function AnnouncementBar() {
   );
 }
 
+const HERO_GLOW_VARIANT = "v2";
+const BOTTOM_GLOW_VARIANT = "v2";
+
 function Hero() {
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">
-      <div className="hero-glow" aria-hidden="true">
+      <div className={`hero-glow hero-glow--${HERO_GLOW_VARIANT}`} aria-hidden="true">
+        <span />
         <span />
         <span />
         <span />
@@ -584,7 +588,8 @@ function ProtocolShowcase() {
 
         return (
           <article key={protocol.id} className={`protocol-panel protocol-panel--${protocol.id}`}>
-            <div className={`protocol-glow protocol-glow--${protocol.id}`} aria-hidden="true">
+            <div className={`protocol-glow protocol-glow--${protocol.id} protocol-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
+              <span />
               <span />
               <span />
               <span />
@@ -784,7 +789,8 @@ function StrengthCard({ index, title, body }: { index: number; title: string; bo
 function DecentralizationStats() {
   return (
     <section id="metrics" className="stats-panel" aria-labelledby="stats-title">
-      <div className="stats-glow" aria-hidden="true">
+      <div className={`stats-glow stats-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
+        <span />
         <span />
         <span />
         <span />
@@ -902,7 +908,8 @@ function FAQ() {
     <section className="section faq" aria-labelledby="faq-title">
       <h2 className="tc-type-h2" id="faq-title">Frequently asked questions:</h2>
       <div className="faq-grid">
-        {faqGroups.map(([group, questions]) => <div key={group} className="faq-group"><h3 className="tc-type-h4">{group}</h3>{questions.map((question) => {
+        {faqGroups.map((group) => <div key={group.title} className="faq-group"><h3 className="tc-type-h4">{group.title}</h3>{group.items.map((item) => {
+          const { question, answer } = item;
           const id = question.toLowerCase().replace(/[^a-z0-9]+/g, "-");
           const expanded = open === id;
           return (
@@ -911,7 +918,7 @@ function FAQ() {
                 <span className="tc-type-link-big">{question}</span>
                 <img src={asset("faq-link-arrow.svg")} alt="" aria-hidden="true" />
               </button>
-              <p className="tc-type-body-small" id={`${id}-answer`} hidden={!expanded}>Answer content is pending final editorial approval. This placeholder preserves the accessible accordion behavior without inventing Figma-missing answer copy.</p>
+              <p className="tc-type-body-small" id={`${id}-answer`} hidden={!expanded}>{answer}</p>
             </div>
           );
         })}</div>)}
