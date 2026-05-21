@@ -6,7 +6,7 @@ Created: 2026-05-21
 
 This task adds the `decentralization.html` static subpage for the Terra Classic Website.
 
-The supplied lo-fi wireframe is treated as an information-architecture reference, not a literal visual design. The page is implemented as an article-ready front-end shell because the final article copy will be written later by the project owner.
+The supplied lo-fi wireframe is treated as an information-architecture reference, not a literal visual design. The page now contains the final Decentralization article copy supplied by the project owner, rendered through the existing editorial section pattern.
 
 ## Implementation Notes
 
@@ -27,7 +27,7 @@ The supplied lo-fi wireframe is treated as an information-architecture reference
 
 - The page remains static-only and GitHub Pages-compatible.
 - The page does not claim official Terra Classic status.
-- The page avoids writing the final article content in this implementation pass.
+- The page now uses Dawid's supplied final article content for the Decentralization article body.
 - References are included as source slots and can be adjusted when the final article is written.
 - Interactive controls use deliberate hover/state motion consistent with the current design system.
 
@@ -73,7 +73,7 @@ The supplied lo-fi wireframe is treated as an information-architecture reference
 - Refreshed desktop, tablet, and mobile audit screenshots.
 - Replaced the Decentralization article hero with the homepage `Efficiency driven by decentralization` stats-panel structure and assets.
 - Preserved the Decentralization page headline, intro, and last-update badge inside the stats-panel copy area.
-- Replaced the homepage stats-panel CTA button with the Decentralization article actions: `Listen to draft`, `15 min read`, and `Share on X`.
+- Replaced the homepage stats-panel CTA button with the Decentralization article actions: `Listen to the article`, `15 MIN READ`, and `Share on`.
 - Rendered QA confirmed the hero now uses stats-panel assets (`decagon`, `stats-small-planets`, `stats-big-planet`), has three metric cards, and no longer includes the custom Decentralization visual inside the hero.
 - Fixed the bottom-edge glow/white-fringe defect on the shared stats-panel used by the homepage and Decentralization page by adding a real bottom-edge floor layer to the panel background instead of a visual overlay.
 - Fixed the same bottom-edge defect on the Staking Protocol product panel with a staking-specific floor layer and edge tint.
@@ -88,3 +88,9 @@ The supplied lo-fi wireframe is treated as an information-architecture reference
 - Corrected the dotted play icon orientation to face right and constrained both article icons to their Figma dimensions in default and hover states.
 - Moved `15 MIN READ` into the hero metadata row as a second `native-phase__badge` beside the last-update badge.
 - Replaced the two white-background bottom Share on X buttons on the Ecosystem and Decentralization pages with X-share pills using black default and gray hover states.
+- Replaced the Decentralization article placeholder blocks with the final 11-section article content supplied by Dawid.
+- Updated the hero subtitle to the final guide wording and removed the obsolete article lede placeholder.
+- Updated the bottom Decentralization share CTA so it no longer refers to unfinished final copy.
+- Re-ran `npm run check`; type-check and production build passed.
+- Rendered `http://127.0.0.1:5174/decentralization.html` through headless Chrome and confirmed 11 article sections, the final "out of this world" line, and no old placeholder article copy.
+- Saved the rendered content QA screenshot at `docs/audit-screenshots/decentralization-content-2026-05-21.png`.

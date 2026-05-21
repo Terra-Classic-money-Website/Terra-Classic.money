@@ -857,7 +857,9 @@ function RoadmapTimelinePreview() {
           {rows.map((row) => (
             <article className={`roadmap-row roadmap-row--${row.group}`} style={{ "--roadmap-accent": row.accent } as CSSProperties} key={`ds-${row.id}`}>
               <div className="roadmap-row__project">
-                <span className="roadmap-row__avatar tc-type-link-big">{row.shortName}</span>
+                <span className="roadmap-row__avatar tc-type-link-big">
+                  {row.avatar ? <img src={row.avatar} alt="" loading="lazy" /> : row.shortName}
+                </span>
                 <span className="roadmap-row__identity">
                   <strong className="tc-type-h5">{row.project}</strong>
                   <small className="tc-type-body-very-small">{row.category}</small>

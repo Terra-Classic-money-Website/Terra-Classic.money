@@ -977,6 +977,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .roadmap-row { min-height: 136px; border-top: 1px solid var(--color-grey-100); background: var(--color-white); }
 .roadmap-row__project { position: sticky; left: 0; z-index: 4; grid-column: 1; min-width: 0; padding: 20px 24px; background: var(--color-white); display: flex; align-items: center; gap: 14px; box-shadow: 1px 0 0 var(--color-grey-100), var(--roadmap-mask-width) 0 0 var(--color-white); }
 .roadmap-row__avatar { width: 48px; height: 48px; border: 0; padding: 0; border-radius: var(--radius-pill); background: color-mix(in srgb, var(--roadmap-accent) 16%, var(--color-grey-50)); color: var(--color-black); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; cursor: pointer; transition: transform var(--tc-motion-base) var(--tc-ease-standard), background-color var(--tc-motion-base) var(--tc-ease-standard); }
+.roadmap-row__avatar img { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; display: block; }
 .roadmap-row__avatar:hover,
 .roadmap-row__avatar:focus-visible,
 .roadmap-row__avatar[aria-expanded="true"] { transform: scale(1.04); background: color-mix(in srgb, var(--roadmap-accent) 24%, var(--color-grey-50)); }
@@ -1085,8 +1086,6 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .article-action:focus-visible .article-action-icon::before,
 .article-action--active .article-action-icon::before { background: var(--color-white); }
 .article-body { max-width: 1040px; margin: 0 auto; padding: 80px 0 96px; }
-.article-lede { padding: 0 0 56px 160px; border-bottom: 1px solid var(--color-grey-100); }
-.article-lede p { margin: 0; }
 .article-section { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 64px; padding: 56px 0; border-bottom: 1px solid var(--color-grey-100); }
 .article-section__index { width: 48px; height: 48px; border-radius: 999px; background: var(--color-grey-50); display: grid; place-items: center; color: var(--color-grey-500); }
 .article-section__copy { display: flex; flex-direction: column; gap: 24px; }
@@ -1925,7 +1924,6 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 @media (min-width: 768px) and (max-width: 1299px) {
   .decentralization-stats-hero { min-height: 620px; }
   .article-body { max-width: 100%; padding: 72px 48px 88px; }
-  .article-lede { padding-left: 112px; }
   .article-reference-list { grid-template-columns: 1fr; }
   .decentralization-resources { padding: var(--tc-padding-editorial-section); }
   .decentralization-share { grid-template-columns: 1fr; padding: 64px 48px; }
@@ -1958,7 +1956,6 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .decentralization-hero-actions { position: relative; left: auto; top: auto; width: 100%; display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 0; }
   .article-action.pill-button { width: 100%; min-height: 56px; padding: var(--tc-padding-pill-control); }
   .article-body { max-width: 100%; padding: 48px 24px 64px; }
-  .article-lede { padding: 0 0 40px; }
   .article-section { grid-template-columns: 1fr; gap: 16px; padding: 40px 0; }
   .article-section__index { width: 40px; height: 40px; }
   .article-section__copy { gap: 16px; }

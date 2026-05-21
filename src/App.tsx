@@ -1198,8 +1198,9 @@ function DecentralizationArticle() {
   const [activeTab, setActiveTab] = useState<(typeof decentralizationTabs)[number]["id"]>("network");
   const activePanel = decentralizationTabs.find((tab) => tab.id === activeTab) ?? decentralizationTabs[0];
   const readText = [
-    "Terra Classic decentralization article draft.",
-    ...decentralizationArticleBlocks.map((block) => `${block.title}. ${block.placeholder}`),
+    "Terra Classic decentralization.",
+    "A long-form guide to how Terra Classic decentralization works, why it matters, and how anyone can verify the network for themselves.",
+    ...decentralizationArticleBlocks.flatMap((block) => [`${block.eyebrow} ${block.title}`, ...block.paragraphs]),
   ].join(" ");
 
   return (
@@ -1220,7 +1221,7 @@ function DecentralizationArticle() {
             <span className="native-phase__badge article-meta__badge">15 MIN READ</span>
           </div>
           <h1 className="tc-type-h1" id="decentralization-page-title">Terra Classic decentralization</h1>
-          <p className="tc-type-h4">A long-form, article-ready page for explaining how Terra Classic decentralization works, why it matters, and how users can verify the network for themselves.</p>
+          <p className="tc-type-h4">A long-form guide to how Terra Classic decentralization works, why it matters, and how anyone can verify the network for themselves.</p>
         </div>
         <div className="stats-bottom decentralization-stats-hero__bottom">
           <dl className="stats-row">
@@ -1245,17 +1246,14 @@ function DecentralizationArticle() {
       </header>
 
       <div className="article-body">
-        <div className="article-lede">
-          <p className="tc-type-h3">Use this first block for the final article thesis. The layout is intentionally editorial: compact enough to read, structured enough to scan, and serious enough for public infrastructure.</p>
-        </div>
-
         {decentralizationArticleBlocks.map((block) => (
           <section className="article-section" id={block.id} key={block.id}>
             <div className="article-section__index tc-type-link-small">{block.eyebrow}</div>
             <div className="article-section__copy">
               <h2 className="tc-type-h3">{block.title}</h2>
-              <p className="tc-type-body">{block.placeholder}</p>
-              <p className="tc-type-body">Add the final article paragraphs here. The CSS already supports long text, links, pull quotes, and dense source-aware explanations without changing the page layout.</p>
+              {block.paragraphs.map((paragraph) => (
+                <p className="tc-type-body" key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </section>
         ))}
@@ -1324,12 +1322,12 @@ function DecentralizationResources() {
 }
 
 function DecentralizationShare() {
-  const shareHref = "https://x.com/intent/tweet?text=Terra%20Classic%20is%20decentralized%20public%20infrastructure&url=https%3A%2F%2Fterra-classic.money%2Fdecentralization.html";
+  const shareHref = "https://x.com/intent/tweet?text=Terra%20Classic%20decentralization%20is%20not%20a%20decorative%20claim.%20It%20is%20the%20core%20operating%20logic%20of%20the%20network.&url=https%3A%2F%2Fterra-classic.money%2Fdecentralization.html";
   return (
     <section className="section decentralization-share" aria-labelledby="decentralization-share-title">
       <div className="decentralization-share__copy">
         <h2 className="tc-type-h2" id="decentralization-share-title">Share the decentralization story.</h2>
-        <p className="tc-type-h4">Once the final article copy is ready, this section gives readers one clear action: help more people understand how Terra Classic is maintained, governed, and verified in public.</p>
+        <p className="tc-type-h4">Help more people understand how Terra Classic is maintained, governed, and verified in public.</p>
       </div>
       <ShareOnXButton href={shareHref} />
     </section>
@@ -1463,7 +1461,7 @@ function RoadmapProjectRow({
           aria-describedby={tooltipOpen ? `${row.id}-tooltip` : undefined}
           onClick={() => onToggleTooltip(row.id)}
         >
-          {row.shortName}
+          {row.avatar ? <img src={row.avatar} alt="" loading="lazy" /> : row.shortName}
         </button>
         <span className="roadmap-row__identity">
           <strong className="tc-type-h5">{row.project}</strong>

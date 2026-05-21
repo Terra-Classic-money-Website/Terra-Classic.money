@@ -152,3 +152,10 @@ The supplied lo-fi wireframe is treated as the content and interaction model: a 
 - Changed the mobile Roadmap sticky axis offset from the tablet-style `96px` to `65px`, matching the scrolled mobile nav height (`64px`) plus the nav bottom separator (`1px`).
 - Re-ran `npm run check`; it passed after the offset correction.
 - Rendered mobile QA at `390 x 844` verified the topbar is fixed at `64px`, the sticky axis starts at `65px`, the gap is exactly `1px`, month width remains `88px`, and there is no framework overlay or document-level horizontal overflow.
+
+## Juris Protocol Avatar Correction
+
+- Added optional avatar fields to Roadmap rows and set Juris Protocol to reuse the existing Ecosystem image asset.
+- Updated Roadmap avatar rendering so rows with an avatar display the image inside the existing circular project control, while rows without an avatar keep the letter fallback.
+- Re-ran `npm run check`; it passed after the Juris avatar correction.
+- Rendered mobile QA at `390 x 844` on the active dev server verified the Juris Protocol Roadmap avatar renders the Ecosystem image, has no fallback `JP` text, keeps the `40px` mobile circle size, and has no framework overlay or document-level horizontal overflow.
