@@ -94,3 +94,22 @@ The supplied lo-fi wireframe is treated as an information-architecture reference
 - Re-ran `npm run check`; type-check and production build passed.
 - Rendered `http://127.0.0.1:5174/decentralization.html` through headless Chrome and confirmed 11 article sections, the final "out of this world" line, and no old placeholder article copy.
 - Saved the rendered content QA screenshot at `docs/audit-screenshots/decentralization-content-2026-05-21.png`.
+- Restored the article lede block above section 01 using the first two supplied paragraphs.
+- Removed those same opening paragraphs from `01 Opening thesis` so the article does not repeat them.
+- Changed Decentralization article section paragraph text to the explicit `--lunc-dark-gray` token (`#737373`) instead of the lighter gray, while keeping the restored lede block in normal black.
+- Kept article section paragraphs on the Body type scale but reduced their scoped weight from the default Body `600` to `500`.
+- Temporarily changed Decentralization article section paragraph color to normal black for visual comparison.
+- Updated the References / bibliography list to the final eight-source set supplied by Dawid, omitting the mistaken `Use` note.
+- Added support for a non-linked bibliography row for source material that does not have a public URL in the supplied list.
+- Removed the article tab / visual explainer section for now and cleaned up its unused React data and CSS.
+- Replaced the Decentralization hero's shared three homepage stats with six Decentralization-specific black metric cards.
+- Made the six-card metric row responsive so it stays in one row when space allows and wraps into additional rows at narrower viewport widths, without changing the existing Decentralization hero height rule.
+- Fixed Decentralization metric card label placement so two-line labels keep the correct bottom padding.
+- Restored the original metric-card number-to-label rhythm by keeping the same fixed number block height used by the prior three-card design.
+- Set an explicit `16px` gap between Decentralization metric numbers and labels.
+- Increased Decentralization metric card height to `168px` so cards with two-line labels keep the same `24px` bottom padding as the top/side padding while preserving the `16px` number-to-label gap.
+- Increased only the mobile Decentralization hero visual row height so the six-card grid, planet imagery, intro copy, and article action buttons no longer overlap at mobile breakpoints.
+- Fixed narrow mobile overflow by using explicit 2-column metric cards below `640px` and 3-column metric cards from `640px` to `767px`.
+- Matched the Decentralization mobile metric-card internals to the homepage mobile stats cards: compact mobile padding, `120px` height, `12px` content gap, and `44px` number block.
+- Linked the homepage Decentralization strength-card CTA and the homepage stats-panel CTA to `decentralization.html`.
+- Replaced the Decentralization resources intro copy with public-facing verification language focused on validators, staking, governance, explorers, tooling, documentation, and developer infrastructure.

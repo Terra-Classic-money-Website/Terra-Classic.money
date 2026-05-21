@@ -10,12 +10,26 @@ export type ArticleBlock = {
 export type ArticleReference = {
   title: string;
   source: string;
-  href: string;
+  href?: string;
 };
 
 const entriesByCategory = Object.fromEntries(
   ecosystemCategories.map((category) => [category.id, category.entries]),
 ) as Record<string, EcosystemEntry[]>;
+
+export const decentralizationArticleLede = [
+  "Terra Classic is not operated by a single company, foundation, founder, or private decision-maker.",
+  "It is a public blockchain coordinated through validators, delegators, governance, open-source infrastructure, and community-led execution.",
+];
+
+export const decentralizationStats = [
+  ["100+", "Active validators securing Terra Classic"],
+  ["99%", "Latest block-signing participation"],
+  ["93%", "Oracle-vote participation"],
+  ["15%+", "LUNC supply staked into consensus"],
+  ["114", "IBC channels connecting Terra Classic"],
+  ["30", "Interchain peers"],
+] as const;
 
 export const decentralizationArticleBlocks: ArticleBlock[] = [
   {
@@ -23,8 +37,7 @@ export const decentralizationArticleBlocks: ArticleBlock[] = [
     eyebrow: "01",
     title: "Opening thesis",
     paragraphs: [
-      "Terra Classic is not operated by a single company, foundation, founder, or private decision-maker.",
-      "It is a public blockchain coordinated through validators, delegators, governance, open-source infrastructure, and community-led execution. Its decentralization is not a slogan. It is the operating environment of the chain itself: blocks are produced by independent validators, governance decisions are made on-chain, and network direction emerges through public participation rather than corporate command.",
+      "Its decentralization is not a slogan. It is the operating environment of the chain itself: blocks are produced by independent validators, governance decisions are made on-chain, and network direction emerges through public participation rather than corporate command.",
       "That is what makes Terra Classic different.",
       "It is a blockchain where responsibility is distributed. Infrastructure is distributed. Decision-making is distributed. Visibility is public. Participation is open. The network does not depend on one office, one boardroom, or one central authority to continue moving forward.",
       "This model is not always simple. Decentralization requires coordination, discipline, transparency, and active participation from the people who secure and use the chain. But when it works, it creates something powerful: a blockchain that can continue, adapt, and evolve because no single party controls its future.",
@@ -206,30 +219,15 @@ export const decentralizationArticleBlocks: ArticleBlock[] = [
   },
 ];
 
-export const decentralizationTabs = [
-  {
-    id: "network",
-    label: "Network view",
-    title: "Decentralization is an operating model, not a slogan.",
-    visualPrompt: "validator-set decentralization map",
-    body:
-      "Use this panel for the network-level explanation: validators produce and sign blocks, full nodes verify state, and public infrastructure lets users inspect activity without depending on one company.",
-  },
-  {
-    id: "community",
-    label: "Community view",
-    title: "The social layer decides what gets maintained.",
-    visualPrompt: "community governance coordination map",
-    body:
-      "Use this panel for the community-level explanation: proposals, public debate, pull requests, validators, builders, delegators, and independent contributors all shape execution.",
-  },
-] as const;
-
 export const decentralizationReferences: ArticleReference[] = [
   {
-    title: "About the Terra Protocol",
+    title: "Terra Classic decentralization research base",
+    source: "Terra Classic Four Years After: State of the Chain Report",
+  },
+  {
+    title: "About the Terra Classic Protocol",
     source: "Terra Classic Docs",
-    href: "https://classic-docs.terra.money/docs/learn/protocol.html",
+    href: "https://classic-docs.terra.money/",
   },
   {
     title: "Staking module specification",
@@ -237,14 +235,29 @@ export const decentralizationReferences: ArticleReference[] = [
     href: "https://classic-docs.terra.money/docs/develop/module-specifications/spec-staking.html",
   },
   {
-    title: "Cosmos SDK application architecture",
-    source: "Cosmos SDK Docs",
-    href: "https://docs.cosmos.network/sdk/latest/learn/intro/sdk-app-architecture",
-  },
-  {
     title: "Terra Classic core repository",
     source: "classic-terra GitHub",
     href: "https://github.com/classic-terra/core",
+  },
+  {
+    title: "Cosmos SDK application architecture",
+    source: "Cosmos SDK Docs",
+    href: "https://docs.cosmos.network/sdk/latest/learn",
+  },
+  {
+    title: "Terra Classic GitHub organization",
+    source: "classic-terra GitHub",
+    href: "https://github.com/classic-terra",
+  },
+  {
+    title: "Terra Classic module specifications",
+    source: "Terra Classic Documentation",
+    href: "https://terra-classic.io/docs",
+  },
+  {
+    title: "Terra Classic upgrade and release documentation",
+    source: "classic-terra GitHub releases",
+    href: "https://github.com/classic-terra/core/releases",
   },
 ];
 
