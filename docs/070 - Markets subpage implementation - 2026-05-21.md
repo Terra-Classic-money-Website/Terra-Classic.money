@@ -52,3 +52,4 @@ The page is intentionally built as a Markets-specific copy of the existing Ecosy
 ## Corrections During QA
 
 - Fixed duplicate React row keys for repeated exchange destinations after referral parameters were stripped from CMC URLs. The row key now includes the pair summary, so repeated exchange pages with different LUNC pairs remain stable.
+- Removed the visible source-note text block from the Markets page after review. Source provenance remains documented here instead of being shown in the page UI.

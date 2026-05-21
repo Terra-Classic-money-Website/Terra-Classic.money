@@ -1,12 +1,5 @@
 import type { EcosystemCategory } from "./ecosystem";
 
-export const marketsSourceNotes = {
-  cex:
-    "CEX Spot market snapshot from CoinMarketCap Terra Classic Markets on 2026-05-21. Obvious referral and affiliate tracking parameters were removed to preserve site neutrality.",
-  dex:
-    "DEX links copied from the weekly-fade-606479 Framer source on 2026-05-21.",
-} as const;
-
 export const marketCategories: EcosystemCategory[] = [
   {
     id: "cex",
