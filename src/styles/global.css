@@ -1036,6 +1036,8 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .ecosystem-resource .native-phase__badge { height: 28px; font-size: 8px; line-height: 10px; letter-spacing: 4px; padding: 0 12px; }
 .ecosystem-resource__badge--native { min-width: 188px; background: var(--color-white); }
 .ecosystem-resource__badge--muted { min-width: 170px; background: var(--color-white); color: var(--color-grey-500); }
+.markets-source-notes { margin-top: 48px; max-width: 860px; display: flex; flex-direction: column; gap: 8px; color: var(--color-grey-500); }
+.markets-source-notes p { margin: 0; }
 .ecosystem-share { position: relative; padding: 64px 64px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: end; border-top: 1px solid var(--color-grey-100); }
 .ecosystem-share::after { content: ""; position: absolute; left: 64px; right: 64px; bottom: 0; height: 1px; background: var(--color-grey-100); pointer-events: none; }
 .ecosystem-share + .footer { height: auto; padding-top: 32px; }
