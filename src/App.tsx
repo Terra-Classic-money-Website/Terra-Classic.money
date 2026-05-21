@@ -1139,34 +1139,46 @@ function DecentralizationArticle() {
 
   return (
     <article className="decentralization-page" id="top" aria-labelledby="decentralization-page-title">
-      <header className="decentralization-hero">
-        <div className={`hero-glow hero-glow--${HERO_GLOW_VARIANT} decentralization-hero__glow`} aria-hidden="true">
-          {Array.from({ length: 7 }).map((_, index) => <span key={index} />)}
-        </div>
-        <div className="hero-lines decentralization-hero__lines" aria-hidden="true">
+      <header className="stats-panel decentralization-hero decentralization-stats-hero">
+        <div className={`stats-glow stats-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
           <span />
           <span />
           <span />
           <span />
         </div>
-        <div className="decentralization-hero__copy">
+        <img className="stats-decagon-pattern" src={asset("decagon.svg")} alt="" aria-hidden="true" loading="eager" width="1288" height="1208" />
+        <img className="stats-small-planets" src={asset("stats-small-planets.png")} alt="" aria-hidden="true" loading="eager" width="1161" height="636" />
+        <img className="stats-big-planet" src={asset("stats-big-planet.png")} alt="" aria-hidden="true" loading="eager" width="270" height="268" />
+        <div className="stats-copy decentralization-stats-hero__copy">
           <div className="article-meta">
             <span className="native-phase__badge article-meta__badge">LAST UPDATE: MAY 21, 2026</span>
           </div>
           <h1 className="tc-type-h1" id="decentralization-page-title">Terra Classic decentralization</h1>
           <p className="tc-type-h4">A long-form, article-ready page for explaining how Terra Classic decentralization works, why it matters, and how users can verify the network for themselves.</p>
         </div>
-        <DecentralizationHeroVisual />
-        <div className="article-actions" aria-label="Article actions">
-          <ArticleListenControl label="Listen to draft" text={readText} />
-          <span className="article-read-time tc-type-link-big">15 min read</span>
-          <a className="article-action article-action--share pill-button tc-type-link-big" href="https://x.com/intent/tweet?text=Read%20about%20Terra%20Classic%20decentralization&url=https%3A%2F%2Fterra-classic.money%2Fdecentralization.html" target="_blank" rel="noopener noreferrer">
-            <span>Share on X</span>
-            <span className="button-arrow-icon" aria-hidden="true">
-              <img className="button-arrow-icon__default" src={asset("button-arrow-black.svg")} alt="" />
-              <img className="button-arrow-icon__hover" src={asset("button-arrow-white.svg")} alt="" />
-            </span>
-          </a>
+        <div className="stats-bottom decentralization-stats-hero__bottom">
+          <dl className="stats-row">
+            {stats.map(([number, label], index) => (
+              <div className={`stats-metric stats-metric--${index + 1}`} key={number}>
+                <dt>
+                  <span className="tc-type-h1">{number}</span>
+                  {index === 2 && <img src={asset("lunc-logo.svg")} alt="" aria-hidden="true" width="50" height="50" />}
+                </dt>
+                <dd className="tc-type-link-normal">{label}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="decentralization-hero-actions" aria-label="Article actions">
+            <ArticleListenControl label="Listen to draft" text={readText} />
+            <span className="article-read-time tc-type-link-big">15 min read</span>
+            <a className="article-action article-action--share pill-button tc-type-link-big" href="https://x.com/intent/tweet?text=Read%20about%20Terra%20Classic%20decentralization&url=https%3A%2F%2Fterra-classic.money%2Fdecentralization.html" target="_blank" rel="noopener noreferrer">
+              <span>Share on X</span>
+              <span className="button-arrow-icon" aria-hidden="true">
+                <img className="button-arrow-icon__default" src={asset("button-arrow-black.svg")} alt="" />
+                <img className="button-arrow-icon__hover" src={asset("button-arrow-white.svg")} alt="" />
+              </span>
+            </a>
+          </div>
         </div>
       </header>
 

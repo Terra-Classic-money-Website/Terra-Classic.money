@@ -71,3 +71,15 @@ The supplied lo-fi wireframe is treated as an information-architecture reference
 - Re-ran in-app browser QA on `http://127.0.0.1:5174/decentralization.html`; checks confirmed no console warnings/errors, the badge has `10px` text with `5px` letter spacing, action buttons render white by default, the hero has four divider lines and seven glow spans, and the homepage FAQ renders 39 items.
 - Interaction QA confirmed the article tabs switch to `Community view` and the homepage FAQ question `Who controls Terra Classic?` expands.
 - Refreshed desktop, tablet, and mobile audit screenshots.
+- Replaced the Decentralization article hero with the homepage `Efficiency driven by decentralization` stats-panel structure and assets.
+- Preserved the Decentralization page headline, intro, and last-update badge inside the stats-panel copy area.
+- Replaced the homepage stats-panel CTA button with the Decentralization article actions: `Listen to draft`, `15 min read`, and `Share on X`.
+- Rendered QA confirmed the hero now uses stats-panel assets (`decagon`, `stats-small-planets`, `stats-big-planet`), has three metric cards, and no longer includes the custom Decentralization visual inside the hero.
+- Fixed the bottom-edge glow/white-fringe defect on the shared stats-panel used by the homepage and Decentralization page by adding a real bottom-edge floor layer to the panel background instead of a visual overlay.
+- Fixed the same bottom-edge defect on the Staking Protocol product panel with a staking-specific floor layer and edge tint.
+- Left the Swap and Forex Protocol product panels unchanged because their bottom glow treatment was already rendering correctly.
+- Re-ran `npm run check`; type-check and production build passed.
+- Confirmed `designsystem.html`, `src/designsystem.tsx`, and `src/styles/designsystem.css` have no diff.
+- Scoped the stats-planet image placement on the Decentralization hero so the decorative planets do not collide with the longer article headline/intro at intermediate breakpoints.
+- Tuned the Decentralization-only planet offset after visual QA so the asset sits closer to the copy without crossing into the text area.
+- Checked the corrected hero at `1455 x 1081`, `1096 x 1081`, and `759 x 1081`; the headline and paragraph remain clear of the planet layer.

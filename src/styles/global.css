@@ -541,7 +541,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 
 .protocols { display: grid; gap: 8px; margin-top: 8px; }
 .protocol-panel { width: 100%; height: 95vh; position: relative; overflow: hidden; border-radius: var(--radius-card); color: var(--color-white); padding: var(--tc-padding-immersive-panel); background-color: var(--color-black); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
-.protocol-panel--staking { --protocol-visual-width: 892px; --protocol-visual-height: 512px; --protocol-visual-ratio: 892 / 512; --protocol-visual-center-offset: -5.83%; background: var(--color-black); }
+.protocol-panel--staking { --protocol-visual-width: 892px; --protocol-visual-height: 512px; --protocol-visual-ratio: 892 / 512; --protocol-visual-center-offset: -5.83%; background: linear-gradient(to bottom, rgba(16,16,16,0) calc(100% - 3px), rgba(255,224,93,.34) 100%), radial-gradient(ellipse at 50% 100%, rgba(255,224,93,.72) 0%, rgba(247,190,58,.4) 30%, rgba(143,116,72,.18) 58%, rgba(16,16,16,0) 84%), var(--color-black); box-shadow: 0 1px 0 rgba(255,224,93,.28); }
 .protocol-panel--swap { --protocol-visual-width: 987px; --protocol-visual-height: 512px; --protocol-visual-ratio: 987 / 512; --protocol-visual-center-offset: -5.315%; background: var(--color-black); }
 .protocol-panel--forex { --protocol-visual-width: 908px; --protocol-visual-height: 512px; --protocol-visual-ratio: 908 / 512; --protocol-visual-center-offset: -4.735%; background: var(--color-black); }
 .protocol-glow { position: absolute; pointer-events: none; z-index: 0; mix-blend-mode: screen; transform: translateZ(0); }
@@ -561,7 +561,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .protocol-glow--v2 span:nth-child(1) { left: -110px; right: -110px; top: 102px; bottom: -34px; background: radial-gradient(ellipse at 50% 63%, rgba(16,70,184,.82) 0%, rgba(12,54,158,.7) 28%, rgba(9,35,120,.52) 55%, rgba(8,24,82,.24) 76%, rgba(5,9,32,0) 92%); filter: blur(86px); opacity: .88; animation: bottom-glow-v2-field 26s ease-in-out infinite alternate; }
 .protocol-glow--staking.protocol-glow--v2 span:nth-child(2) { left: 360px; right: 280px; bottom: 30px; height: 650px; background: radial-gradient(ellipse at 50% 72%, rgba(255,224,93,1) 0%, rgba(249,216,94,.9) 18%, rgba(247,190,58,.58) 42%, rgba(118,94,56,.24) 68%, rgba(118,94,56,0) 88%); filter: blur(52px); opacity: .94; animation: bottom-glow-v2-core 17s var(--tc-ease-emphasized) infinite alternate; }
 .protocol-glow--staking.protocol-glow--v2 span:nth-child(3) { left: 492px; right: 370px; bottom: -42px; height: 480px; background: radial-gradient(ellipse at 50% 42%, rgba(255,247,174,.9) 0%, rgba(255,224,93,.62) 32%, rgba(255,224,93,0) 78%); filter: blur(60px); opacity: .76; animation: bottom-glow-v2-source 23s ease-in-out infinite alternate; }
-.protocol-glow--staking.protocol-glow--v2 span:nth-child(4) { display: block; left: 120px; right: 80px; bottom: 34px; height: 270px; border-radius: 45% 55% 54% 46% / 44% 54% 46% 56%; background: linear-gradient(98deg, rgba(255,224,93,0) 0%, rgba(255,224,93,.2) 24%, rgba(255,224,93,.46) 48%, rgba(76,134,255,.2) 70%, rgba(10,24,84,0) 100%); filter: blur(66px); opacity: .34; transform: rotate(-5deg); animation: bottom-glow-v2-floor-wash 29s ease-in-out infinite alternate; }
+.protocol-glow--staking.protocol-glow--v2 span:nth-child(4) { display: block; left: 120px; right: 80px; bottom: -36px; height: 350px; border-radius: 45% 55% 54% 46% / 44% 54% 46% 56%; background: linear-gradient(98deg, rgba(255,224,93,0) 0%, rgba(255,224,93,.2) 24%, rgba(255,224,93,.46) 48%, rgba(76,134,255,.2) 70%, rgba(10,24,84,0) 100%); filter: blur(66px); opacity: .38; transform: rotate(-5deg); animation: bottom-glow-v2-floor-wash 29s ease-in-out infinite alternate; }
 .protocol-glow--swap.protocol-glow--v2 span:nth-child(2),
 .protocol-glow--forex.protocol-glow--v2 span:nth-child(2) { left: 326px; right: 244px; bottom: 20px; height: 700px; background: radial-gradient(ellipse at 50% 72%, rgba(94,252,255,1) 0%, rgba(80,230,255,.82) 20%, rgba(42,156,255,.54) 45%, rgba(13,84,205,.22) 69%, rgba(13,84,205,0) 89%); filter: blur(52px); opacity: .9; animation: bottom-glow-v2-core 17s var(--tc-ease-emphasized) infinite alternate; }
 .protocol-glow--forex.protocol-glow--v2 span:nth-child(2) { left: 316px; right: 254px; background: radial-gradient(ellipse at 50% 72%, rgba(80,236,255,.96) 0%, rgba(72,226,255,.78) 21%, rgba(58,168,255,.5) 45%, rgba(8,95,210,.22) 69%, rgba(8,95,210,0) 89%); }
@@ -792,7 +792,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   linear-gradient(180deg, #050a20 0%, #07133c 48%, #0d4fb9 100%); }
 .strength-visual__orb { position: relative; z-index: 1; display: block; width: 292px; height: auto; max-width: none; }
 
-.stats-panel { --stats-copy-block-height: 168px; --stats-planets-top: calc(var(--tc-padding-immersive-panel) + var(--stats-copy-block-height) + 40px); --stats-small-planets-height: 636px; --stats-big-planet-width: 270px; --stats-big-planet-height: 268px; --stats-web-center-y-offset: 11px; width: 100%; height: 95vh; margin-top: 8px; position: relative; overflow: hidden; border-radius: var(--radius-card); background: var(--color-black); color: var(--color-white); padding: var(--tc-padding-immersive-panel); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
+.stats-panel { --stats-copy-block-height: 168px; --stats-planets-top: calc(var(--tc-padding-immersive-panel) + var(--stats-copy-block-height) + 40px); --stats-small-planets-height: 636px; --stats-big-planet-width: 270px; --stats-big-planet-height: 268px; --stats-web-center-y-offset: 11px; width: 100%; height: 95vh; margin-top: 8px; position: relative; overflow: hidden; border-radius: var(--radius-card); background: linear-gradient(to bottom, rgba(16,16,16,0) calc(100% - 3px), rgba(84,245,255,.3) 100%), radial-gradient(ellipse at 54% 100%, rgba(84,245,255,.68) 0%, rgba(42,156,255,.42) 30%, rgba(13,84,205,.2) 58%, rgba(16,16,16,0) 84%), var(--color-black); box-shadow: 0 1px 0 rgba(84,245,255,.24); color: var(--color-white); padding: var(--tc-padding-immersive-panel); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
 .stats-glow { position: absolute; inset: -120px -220px -220px; z-index: 1; pointer-events: none; mix-blend-mode: screen; filter: saturate(1.16); transform: translateZ(0); mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,.26) 28%, #000 42%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,.26) 28%, #000 42%); }
 .stats-glow span { position: absolute; display: block; border-radius: 999px; will-change: transform, opacity, border-radius, filter; }
 .stats-glow span:nth-child(1) { left: -70px; right: -70px; top: 100px; bottom: 20px; background: radial-gradient(ellipse at 54% 58%, rgba(14,60,165,.72) 0%, rgba(14,50,146,.62) 25%, rgba(11,36,118,.5) 52%, rgba(8,24,82,.24) 73%, rgba(5,9,32,0) 91%); filter: blur(82px); opacity: .86; animation: stats-blue-field 23s ease-in-out infinite alternate; }
@@ -803,7 +803,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .stats-glow--v2 span:nth-child(1) { left: -110px; right: -110px; top: 96px; bottom: -38px; background: radial-gradient(ellipse at 52% 62%, rgba(15,72,190,.8) 0%, rgba(12,58,166,.68) 28%, rgba(10,39,128,.5) 56%, rgba(8,24,82,.22) 76%, rgba(5,9,32,0) 92%); filter: blur(90px); opacity: .82; animation: bottom-glow-v2-field 28s ease-in-out -7.4s infinite alternate; }
 .stats-glow--v2 span:nth-child(2) { left: 380px; right: 180px; bottom: -16px; height: 740px; background: radial-gradient(ellipse at 52% 72%, rgba(92,252,255,.98) 0%, rgba(84,245,255,.76) 22%, rgba(42,156,255,.5) 46%, rgba(13,84,205,.22) 70%, rgba(13,84,205,0) 90%); filter: blur(56px); opacity: .86; animation: bottom-glow-v2-core 19s var(--tc-ease-emphasized) -10.2s infinite alternate; }
 .stats-glow--v2 span:nth-child(3) { left: 500px; right: 300px; bottom: -72px; height: 520px; background: radial-gradient(ellipse at 52% 42%, rgba(178,253,255,.82) 0%, rgba(84,245,255,.54) 34%, rgba(84,245,255,0) 78%); filter: blur(64px); opacity: .62; animation: bottom-glow-v2-source 25s ease-in-out -4.8s infinite alternate; }
-.stats-glow--v2 span:nth-child(4) { display: block; left: 92px; right: 52px; bottom: 74px; height: 330px; border-radius: 45% 55% 54% 46% / 44% 54% 46% 56%; background: linear-gradient(98deg, rgba(84,245,255,0) 0%, rgba(84,245,255,.16) 24%, rgba(84,245,255,.42) 48%, rgba(66,132,255,.2) 70%, rgba(10,24,84,0) 100%); filter: blur(70px); opacity: .3; transform: rotate(-5deg); animation: bottom-glow-v2-floor-wash 31s ease-in-out -13.2s infinite alternate; }
+.stats-glow--v2 span:nth-child(4) { display: block; left: 92px; right: 52px; bottom: -42px; height: 410px; border-radius: 45% 55% 54% 46% / 44% 54% 46% 56%; background: linear-gradient(98deg, rgba(84,245,255,0) 0%, rgba(84,245,255,.16) 24%, rgba(84,245,255,.42) 48%, rgba(66,132,255,.2) 70%, rgba(10,24,84,0) 100%); filter: blur(70px); opacity: .34; transform: rotate(-5deg); animation: bottom-glow-v2-floor-wash 31s ease-in-out -13.2s infinite alternate; }
 .stats-decagon-pattern { position: absolute; inset: 0; z-index: 2; display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; pointer-events: none; }
 .stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); z-index: 3; display: block; width: auto; height: var(--stats-small-planets-height); aspect-ratio: 1161 / 636; max-width: none; object-fit: contain; pointer-events: none; transform: translateX(-50.302%); }
 .stats-big-planet { position: absolute; left: 50%; top: calc(50% + var(--stats-web-center-y-offset)); z-index: 3; display: block; width: var(--stats-big-planet-width); height: var(--stats-big-planet-height); max-width: none; object-fit: contain; pointer-events: none; transform: translate(-50%, -50%); }
@@ -952,15 +952,12 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .ecosystem-share .pill-button { min-width: 220px; }
 
 .decentralization-page { width: 100%; border-bottom: 1px solid var(--color-grey-100); }
-.decentralization-hero { position: relative; min-height: 720px; overflow: hidden; border-radius: var(--radius-card); background: var(--color-black); color: var(--color-white); padding: var(--tc-padding-immersive-panel); display: grid; grid-template-rows: auto minmax(280px, 1fr) auto; gap: 48px; }
-.decentralization-hero__glow { z-index: 0; }
-.decentralization-hero__lines { z-index: 1; display: block; }
-.decentralization-hero__lines span:nth-child(1) { left: 20%; display: block; }
-.decentralization-hero__lines span:nth-child(2) { left: 40%; display: block; }
-.decentralization-hero__lines span:nth-child(3) { left: 60%; display: block; }
-.decentralization-hero__lines span:nth-child(4) { left: 80%; display: block; }
-.decentralization-hero__copy { position: relative; z-index: 2; max-width: 980px; display: flex; flex-direction: column; gap: 40px; }
-.decentralization-hero__copy h1, .decentralization-hero__copy p { margin: 0; }
+.decentralization-hero { margin-top: 0; }
+.stats-panel.decentralization-stats-hero { --stats-copy-block-height: 288px; }
+.decentralization-stats-hero { min-height: 720px; }
+.decentralization-stats-hero__copy { display: flex; flex-direction: column; align-items: flex-start; }
+.decentralization-stats-hero__copy h1 { width: 100%; max-width: 100%; margin: 48px 0 0; text-wrap: balance; }
+.decentralization-stats-hero__copy p { max-width: 900px; margin-top: 32px; }
 .article-meta { display: flex; flex-wrap: wrap; gap: 8px; color: rgba(255,255,255,.68); }
 .article-meta__badge { width: auto; min-width: 0; height: 32px; background: transparent; border-color: rgba(255,255,255,.22); color: var(--color-white); padding: 0 16px; text-transform: uppercase; }
 .decentralization-visual { position: relative; z-index: 2; min-height: 320px; border-radius: var(--radius-card); background: radial-gradient(circle at 70% 45%, rgba(84,147,247,.3), rgba(84,147,247,0) 46%), rgba(255,255,255,.04); overflow: hidden; }
@@ -976,7 +973,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .decentralization-node--4 { right: 22%; top: 58%; }
 .decentralization-node--5 { left: 14%; bottom: 18%; }
 .decentralization-node--6 { right: 12%; bottom: 16%; }
-.article-actions { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding-top: 0; }
+.decentralization-hero-actions { position: absolute; left: 0; top: 176px; display: flex; align-items: center; gap: 16px; }
 .article-action.pill-button { min-height: 56px; border: 0; background: var(--color-white); color: var(--color-black); cursor: pointer; justify-self: start; }
 .article-action--share.pill-button { justify-self: end; }
 .article-action.pill-button:hover,
@@ -992,7 +989,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 .article-action:hover .play-button-icon__hover,
 .article-action:focus-visible .play-button-icon__hover,
 .article-action--active .play-button-icon__hover { opacity: 1; }
-.article-read-time { justify-self: start; color: rgba(255,255,255,.64); }
+.article-read-time { color: rgba(255,255,255,.64); }
 .article-body { max-width: 1040px; margin: 0 auto; padding: 80px 0 96px; }
 .article-lede { padding: 0 0 56px 160px; border-bottom: 1px solid var(--color-grey-100); }
 .article-lede p { margin: 0; }
@@ -1169,7 +1166,8 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .stats-metric--2 { left: 233px; width: 270px; }
   .stats-metric--3 { left: 511px; width: 311px; }
   .stats-metric dt img { left: 212px; right: auto; }
-  .stats-button { position: relative; left: auto; top: auto; margin-top: 24px; }
+  .stats-button,
+  .decentralization-hero-actions { position: relative; left: auto; top: auto; margin-top: 24px; flex-wrap: wrap; }
   .founders { height: auto; }
   .founders-intro,
   .founders-intro h2,
@@ -1653,7 +1651,8 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .stats-metric dt { width: 100%; height: 44px; display: flex; align-items: center; gap: 16px; }
   .stats-metric dt span { font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); }
   .stats-metric dd { position: static; margin: 0; font-size: var(--tc-type-link-normal-size); line-height: var(--tc-type-link-normal-line-height); }
-  .stats-button { position: relative; left: auto; top: auto; width: 100%; margin-top: 0; }
+  .stats-button,
+  .decentralization-hero-actions { position: relative; left: auto; top: auto; width: 100%; margin-top: 0; }
   .stats-button__text--desktop { display: none; }
   .stats-button__text--mobile { display: inline; }
   .stats-metric dt img { position: static; width: 32px; height: 32px; }
@@ -1771,7 +1770,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 }
 
 @media (max-width: 1499px) {
-  .decentralization-hero { min-height: 640px; gap: 40px; }
+  .decentralization-stats-hero { min-height: 640px; }
   .article-body { max-width: 920px; }
   .article-section { grid-template-columns: 72px minmax(0, 1fr); gap: 40px; }
   .article-tabs { gap: 32px; }
@@ -1780,9 +1779,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 }
 
 @media (min-width: 768px) and (max-width: 1299px) {
-  .decentralization-hero { min-height: 620px; }
-  .article-actions { grid-template-columns: 1fr auto; }
-  .article-read-time { grid-column: 1 / -1; grid-row: 2; }
+  .decentralization-stats-hero { min-height: 620px; }
   .article-body { max-width: 100%; padding: 72px 48px 88px; }
   .article-lede { padding-left: 112px; }
   .article-reference-list { grid-template-columns: 1fr; }
@@ -1792,12 +1789,9 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
 }
 
 @media (max-width: 767px) {
-  .decentralization-hero { min-height: 0; padding: 32px 24px; gap: 32px; border-radius: 12px; }
-  .decentralization-hero__lines span:nth-child(1) { left: 20%; display: block; }
-  .decentralization-hero__lines span:nth-child(2) { left: 40%; display: block; }
-  .decentralization-hero__lines span:nth-child(3) { left: 60%; display: block; }
-  .decentralization-hero__lines span:nth-child(4) { left: 80%; display: block; }
-  .decentralization-hero__copy { gap: 24px; }
+  .stats-panel.decentralization-stats-hero { --stats-visual-gap: 72px; }
+  .decentralization-stats-hero { min-height: 0; }
+  .decentralization-stats-hero__copy h1 { margin-top: 24px; }
   .article-meta { gap: 6px; }
   .article-meta__badge { min-height: 28px; height: 28px; padding: 0 12px; }
   .decentralization-visual { min-height: 260px; border-radius: 12px; }
@@ -1813,7 +1807,7 @@ h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1
   .decentralization-node--4 { right: 10%; top: 58%; }
   .decentralization-node--5 { left: 8%; bottom: 16%; }
   .decentralization-node--6 { right: 8%; bottom: 14%; }
-  .article-actions { grid-template-columns: 1fr; gap: 8px; padding-top: 0; }
+  .decentralization-hero-actions { position: relative; left: auto; top: auto; width: 100%; display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 0; }
   .article-action.pill-button { width: 100%; min-height: 48px; padding: 0 20px; }
   .article-read-time { justify-self: center; }
   .article-body { max-width: 100%; padding: 48px 24px 64px; }
