@@ -721,6 +721,16 @@ function FounderStoryPreview() {
   );
 }
 
+function DotArrowIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg className={`dot-arrow-icon ${className}`} viewBox="0 0 10 9" aria-hidden="true" focusable="false">
+      <circle cx="2" cy="2" r="2" />
+      <circle cx="5" cy="7" r="2" />
+      <circle cx="8" cy="2" r="2" />
+    </svg>
+  );
+}
+
 function EcosystemResourcePreview() {
   return (
     <a className="ecosystem-resource ds-ecosystem-resource" href="#components" onClick={stopNavigation}>
@@ -734,6 +744,7 @@ function EcosystemResourcePreview() {
       <span className="ecosystem-resource__meta">
         <span className="native-phase__badge ecosystem-resource__badge--native">ON-CHAIN NATIVE</span>
       </span>
+      <span className="ecosystem-resource__arrow"><DotArrowIcon /></span>
     </a>
   );
 }

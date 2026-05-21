@@ -22,6 +22,7 @@ import {
 } from "./data/decentralization";
 import { ecosystemCategories, type EcosystemCategory, type EcosystemEntry } from "./data/ecosystem";
 import { isPlaceholderLink, links } from "./data/links";
+import { marketCategories, marketsSourceNotes } from "./data/markets";
 import { roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow } from "./data/roadmap";
 import { AprBadge } from "./components/AprBadge";
 
@@ -987,7 +988,7 @@ function EcosystemCategorySection({ category }: { category: EcosystemCategory })
       </header>
       <div className="ecosystem-grid">
         {category.entries.map((entry) => (
-          <EcosystemResourceCard entry={entry} key={`${category.id}-${entry.name}-${entry.href || entry.status || "static"}`} />
+          <EcosystemResourceCard entry={entry} key={`${category.id}-${entry.name}-${entry.summary}-${entry.href || entry.status || "static"}`} />
         ))}
       </div>
     </section>
@@ -1045,6 +1046,66 @@ function EcosystemPage() {
       <JoinCommunity />
       <FAQ />
       <EcosystemShare />
+      <Footer />
+    </>
+  );
+}
+
+function MarketsDirectory() {
+  const handleCategoryLinkClick = (categoryId: string) => {
+    const target = document.getElementById(categoryId);
+    if (!target) return;
+
+    const targetTop = target.getBoundingClientRect().top + getPageScrollY() - getScrollMarginTop(target);
+    animatePageScrollTo(targetTop, () => window.history.pushState(null, "", `#${categoryId}`));
+  };
+
+  return (
+    <section className="ecosystem-page markets-page" id="markets" aria-labelledby="markets-page-title">
+      <span className="visually-hidden" id="top">Top</span>
+      <div className="ecosystem-page__intro">
+        <h1 className="tc-type-h1" id="markets-page-title">Terra Classic markets</h1>
+        <p className="tc-type-h4">A neutral directory of centralized and decentralized places where LUNC can be bought or swapped. Listings are informational only and do not imply endorsement, liquidity quality, custody safety, or investment advice.</p>
+      </div>
+      <nav className="ecosystem-index" aria-label="Market categories">
+        {marketCategories.map((category) => (
+          <button className="tc-type-link-big" type="button" key={category.id} onClick={() => handleCategoryLinkClick(category.id)} aria-controls={category.id}>
+            {category.title} <span>({category.entries.length})</span>
+          </button>
+        ))}
+      </nav>
+      {marketCategories.map((category) => (
+        <EcosystemCategorySection category={category} key={category.id} />
+      ))}
+      <div className="markets-source-notes" aria-label="Markets source notes">
+        <p className="tc-type-body-very-small">{marketsSourceNotes.cex}</p>
+        <p className="tc-type-body-very-small">{marketsSourceNotes.dex}</p>
+      </div>
+    </section>
+  );
+}
+
+function MarketsShare() {
+  const shareHref = "https://x.com/intent/tweet?text=Find%20Terra%20Classic%20LUNC%20markets&url=https%3A%2F%2Fterra-classic.money%2Fmarkets.html";
+  return (
+    <section className="section ecosystem-share" aria-labelledby="markets-share-title">
+      <div className="ecosystem-share__copy">
+        <h2 className="tc-type-h2" id="markets-share-title">Help users find safer routes to LUNC.</h2>
+        <p className="tc-type-h4">Market availability changes often. Share the directory, then use GitHub to suggest corrections when exchanges add, remove, or change LUNC pairs.</p>
+      </div>
+      <ShareOnXButton href={shareHref} />
+    </section>
+  );
+}
+
+function MarketsPage() {
+  return (
+    <>
+      <MarketsDirectory />
+      <FounderStories />
+      <JoinCommunity />
+      <FAQ />
+      <MarketsShare />
       <Footer />
     </>
   );
@@ -1537,6 +1598,7 @@ export default function App() {
   const isEcosystemPage = window.location.pathname.endsWith("/ecosystem.html") || window.location.pathname.endsWith("ecosystem.html");
   const isDecentralizationPage = window.location.pathname.endsWith("/decentralization.html") || window.location.pathname.endsWith("decentralization.html");
   const isRoadmapPage = window.location.pathname.endsWith("/roadmap.html") || window.location.pathname.endsWith("roadmap.html");
+  const isMarketsPage = window.location.pathname.endsWith("/markets.html") || window.location.pathname.endsWith("markets.html");
 
   return (
     <div className="app">
@@ -1551,6 +1613,8 @@ export default function App() {
             <DecentralizationPage />
           ) : isRoadmapPage ? (
             <RoadmapPage />
+          ) : isMarketsPage ? (
+            <MarketsPage />
           ) : isEcosystemPage ? (
             <EcosystemPage />
           ) : (

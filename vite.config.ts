@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
           main: resolve(__dirname, "index.html"),
           decentralization: resolve(__dirname, "decentralization.html"),
           ecosystem: resolve(__dirname, "ecosystem.html"),
+          markets: resolve(__dirname, "markets.html"),
           roadmap: resolve(__dirname, "roadmap.html"),
         },
       },
