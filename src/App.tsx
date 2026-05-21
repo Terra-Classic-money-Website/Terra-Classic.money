@@ -1397,21 +1397,26 @@ function getMilestoneStack(milestones: RoadmapMilestone[]) {
   return { levels, span: Math.max(1, levelEnds.length) };
 }
 
-function RoadmapAxis() {
+function RoadmapAxis({ scrollLeft }: { scrollLeft: number }) {
   return (
-    <div className="roadmap-axis" aria-hidden="true">
+    <div className="roadmap-axis-shell" style={{ "--roadmap-scroll-left": `${scrollLeft}px` } as CSSProperties} aria-hidden="true">
       <div className="roadmap-axis__corner" />
-      {roadmapYearRanges.map((range) => (
-        <div className="roadmap-axis__year tc-type-h2" style={{ gridColumn: `${range.start + 3} / ${range.end + 4}` }} key={range.year}>
-          {range.year}
-        </div>
-      ))}
-      <div className="roadmap-axis__corner roadmap-axis__corner--months" />
-      {roadmapMonths.map((month, index) => (
-        <div className="roadmap-axis__month tc-type-body-small" style={{ gridColumn: index + 3 }} key={month.key}>
-          {month.label}
-        </div>
-      ))}
+      <div className="roadmap-axis__track">
+        {roadmapYearRanges.map((range) => (
+          <div
+            className={`roadmap-axis__year tc-type-h2${range.start === 0 ? " roadmap-axis__year--first" : ""}`}
+            style={{ gridColumn: `${range.start + 1} / ${range.end + 2}` }}
+            key={range.year}
+          >
+            {range.year}
+          </div>
+        ))}
+        {roadmapMonths.map((month, index) => (
+          <div className={`roadmap-axis__month tc-type-body-small${index === 0 ? " roadmap-axis__month--first" : ""}`} style={{ gridColumn: index + 1 }} key={month.key}>
+            {month.label}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -1522,9 +1527,9 @@ function RoadmapTimeline() {
   return (
     <section className="roadmap-board" aria-labelledby="roadmap-board-title">
       <h2 className="visually-hidden" id="roadmap-board-title">Decentralized roadmap</h2>
+      <RoadmapAxis scrollLeft={timelineMetrics.scrollLeft} />
       <div className="roadmap-scroll" role="region" aria-label="Horizontally scrollable Terra Classic roadmap" tabIndex={0} onScroll={handleTimelineScroll}>
         <div className="roadmap-grid">
-          <RoadmapAxis />
           <RoadmapGroupHeader group="public" />
           {publicRows.map((row) => (
             <RoadmapProjectRow
