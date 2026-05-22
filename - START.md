@@ -49,6 +49,12 @@ Open the Open Work subpage locally at:
 http://127.0.0.1:5173/open-work.html
 ```
 
+Open the About terra-classic.money subpage locally at:
+
+```text
+http://127.0.0.1:5173/about.html
+```
+
 Open an Open Work detail page locally at:
 
 ```text

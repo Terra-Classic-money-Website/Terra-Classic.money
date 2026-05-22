@@ -6,6 +6,7 @@ export const links = {
   openWork: "open-work.html",
   openWorkDetail: "open-work-detail.html",
   about: "about.html",
+  websiteRepository: "https://github.com/Terra-Classic-money-Website/Terra-Classic.money",
   telegram: "TODO_REPLACE_WITH_FINAL_TELEGRAM_URL",
   layer2: "https://l2.terra-classic.money",
   docs: "TODO_REPLACE_WITH_FINAL_DOCUMENTATION_URL",

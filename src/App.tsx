@@ -27,6 +27,17 @@ import { marketCategories } from "./data/markets";
 import { closedWorkPackages, openWorkById, openWorkPackages, type ClosedWorkPackage, type OpenWorkPackage } from "./data/openWork";
 import { roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow } from "./data/roadmap";
 import { AprBadge } from "./components/AprBadge";
+import {
+  aboutFaqItems,
+  aboutIntroParagraphs,
+  contributionPaths,
+  contributorGroups,
+  futureInitiatives,
+  openSourcePrinciples,
+  ownershipTimeline,
+  supportBoundaries,
+  supportCards,
+} from "./data/about";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
 const page = (path = "") => `${import.meta.env.BASE_URL}${path}`;
@@ -1110,6 +1121,310 @@ function MarketsPage() {
   );
 }
 
+function AboutAnchorNav() {
+  const items = [
+    ["Who owns Terra Classic?", "#ownership"],
+    ["Open-source project", "#open-source"],
+    ["Contribute", "#contribute"],
+    ["Support model", "#support"],
+    ["Contributors", "#contributors"],
+  ];
+
+  return (
+    <nav className="about-anchor-nav" aria-label="About page sections">
+      {items.map(([label, href]) => (
+        <a className="tc-type-link-big" href={href} key={href}>{label}</a>
+      ))}
+    </nav>
+  );
+}
+
+function AboutHero() {
+  return (
+    <section className="about-page" id="top" aria-labelledby="about-page-title">
+      <div className="about-page__intro">
+        <h1 className="tc-type-h1" id="about-page-title">About terra-classic.money</h1>
+        <div className="about-page__lede">
+          {aboutIntroParagraphs.map((paragraph, index) => (
+            <p className={index === 0 ? "tc-type-h4" : "tc-type-body"} key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+        <div className="about-hero-actions">
+          <LinkButton href={page("#top")} dark>Explore the website</LinkButton>
+          <LinkButton href={links.websiteRepository}>Contribute on GitHub</LinkButton>
+        </div>
+      </div>
+      <AboutAnchorNav />
+    </section>
+  );
+}
+
+function AboutOwnership() {
+  return (
+    <section className="about-section about-ownership" id="ownership" aria-labelledby="about-ownership-title">
+      <div className="about-section__copy">
+        <h2 className="tc-type-h2" id="about-ownership-title">Who owns Terra Classic?</h2>
+        <div className="about-section__text">
+          <p className="tc-type-h4">No company owns Terra Classic.</p>
+          <p className="tc-type-body">No single validator owns Terra Classic. No single contributor owns Terra Classic. No single website owns Terra Classic. No single community account speaks for the entire network.</p>
+          <p className="tc-type-body">Terra Classic is a public blockchain coordinated through validators, delegators, governance, builders, open-source software, infrastructure providers, users, and independent contributors. Its direction emerges through public participation, not private command.</p>
+        </div>
+      </div>
+      <div className="about-timeline" aria-label="Terra Classic ownership model">
+        {ownershipTimeline.map((item) => (
+          <article className="about-timeline__item" key={item.label}>
+            <span className="about-timeline__index tc-type-link-big">{item.label}</span>
+            <div>
+              <h3 className="tc-type-h5">{item.title}</h3>
+              <p className="tc-type-body-small">{item.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="about-callout">
+        <p className="tc-type-h4">Terra Classic is not a product managed by a central company. It is a living network maintained through distributed responsibility.</p>
+        <LinkButton href={links.decentralization} dark>Read more about decentralization</LinkButton>
+      </div>
+    </section>
+  );
+}
+
+function AboutOpenSource() {
+  return (
+    <section className="about-section about-open-source" id="open-source" aria-labelledby="about-open-source-title">
+      <div className="about-split">
+        <div className="about-section__copy">
+          <h2 className="tc-type-h2" id="about-open-source-title">Terra-classic.money is an independent open-source project</h2>
+          <div className="about-section__text">
+            <p className="tc-type-h4">Terra-classic.money is not currently the official Terra Classic website.</p>
+            <p className="tc-type-body">It is an independent, open-source, community-maintained website created to provide a clearer public information layer for Terra Classic.</p>
+            <p className="tc-type-body">The goal is simple: build the best independent Terra Classic website first. If the community later considers it useful, neutral, and trustworthy enough to become official, that decision can be proposed through Terra Classic governance.</p>
+          </div>
+        </div>
+        <div className="about-open-source__visual" aria-hidden="true">
+          <img src={asset("decagon.svg")} alt="" loading="lazy" />
+          <span />
+        </div>
+      </div>
+      <div className="about-principle-grid" aria-label="Core principles">
+        {openSourcePrinciples.map(([title, body], index) => (
+          <article className="about-principle" key={title}>
+            <span className="article-section__index tc-type-link-small">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h3 className="tc-type-h5">{title}</h3>
+              <p className="tc-type-body-small">{body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AboutContribute() {
+  return (
+    <section className="about-section about-contribute" id="contribute" aria-labelledby="about-contribute-title">
+      <div className="about-section__copy">
+        <h2 className="tc-type-h2" id="about-contribute-title">Contribute to terra-classic.money</h2>
+        <div className="about-section__text">
+          <p className="tc-type-h4">Terra-classic.money improves when more people help keep it accurate, useful, and current.</p>
+          <p className="tc-type-body">You do not need to be a validator or developer to contribute. Useful contributions can come from researchers, writers, translators, designers, builders, delegators, governance participants, documentation reviewers, ecosystem users, and anyone who notices something that should be corrected or improved.</p>
+        </div>
+      </div>
+      <div className="about-contribution-grid">
+        {contributionPaths.map(([title, body]) => (
+          <article className="about-contribution" key={title}>
+            <h3 className="tc-type-h5">{title}</h3>
+            <p className="tc-type-body-small">{body}</p>
+          </article>
+        ))}
+      </div>
+      <div className="about-rule">
+        <p className="tc-type-h4">Every contribution should improve clarity, accuracy, neutrality, safety, or usefulness.</p>
+        <div className="about-hero-actions">
+          <LinkButton href={`${links.websiteRepository}/issues`} dark>Report an issue or suggest a change</LinkButton>
+          <LinkButton href={links.websiteRepository}>View contribution guidelines</LinkButton>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSupport() {
+  return (
+    <section className="about-section about-support" id="support" aria-labelledby="about-support-title">
+      <div className="about-support__head">
+        <div className="about-section__copy">
+          <h2 className="tc-type-h2" id="about-support-title">Support the public information layer</h2>
+          <div className="about-section__text">
+            <p className="tc-type-h4">Terra-classic.money is independent. That independence matters, but it also means the website needs a sustainable support model.</p>
+            <p className="tc-type-body">Donations and transparent commercial surfaces help cover maintenance, research, content updates, design improvements, translations, infrastructure, and future public-good tools for the Terra Classic ecosystem.</p>
+          </div>
+        </div>
+        <div className="about-boundary-card">
+          <h3 className="tc-type-h4">Support does not buy influence.</h3>
+          <ul>
+            {supportBoundaries.map((item) => <li className="tc-type-body-small" key={item}>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+      <div className="about-support-grid" aria-label="What support can help fund">
+        {supportCards.map((card, index) => (
+          <article className="about-support-card" key={card.title}>
+            <span className="article-section__index tc-type-link-small">{String(index + 1).padStart(2, "0")}</span>
+            <h3 className="tc-type-h4">{card.title}</h3>
+            <p className="tc-type-body-small">{card.body}</p>
+          </article>
+        ))}
+      </div>
+      <div className="about-commercial">
+        <article>
+          <span className="native-phase__badge">DONATIONS</span>
+          <h3 className="tc-type-h4">Voluntary donations</h3>
+          <p className="tc-type-body-small">Donations help maintain and improve the website. They do not create ownership rights, governance rights, promotional rights, editorial rights, listing rights, or any expectation of financial return.</p>
+        </article>
+        <article>
+          <span className="native-phase__badge">PAID L2</span>
+          <h3 className="tc-type-h4">Paid L2 discovery listings</h3>
+          <p className="tc-type-body-small">Paid listings may exist only in a clearly separated L2 discovery area. They are promotional entries, not endorsements, audits, recommendations, guarantees, or official Terra Classic status.</p>
+        </article>
+      </div>
+      <div className="about-hero-actions">
+        <LinkButton href="#support" dark>Make a donation</LinkButton>
+        <LinkButton href={links.layer2}>View L2 discovery policy</LinkButton>
+      </div>
+    </section>
+  );
+}
+
+function AboutFutureInitiatives() {
+  return (
+    <section className="about-section about-initiatives" aria-labelledby="about-initiatives-title">
+      <div className="about-section__copy">
+        <h2 className="tc-type-h2" id="about-initiatives-title">Future initiatives supported by a stronger public layer</h2>
+        <p className="tc-type-h4">A clearer Terra Classic information layer can support more than one website. It can become the foundation for better onboarding, better ecosystem visibility, and stronger public tools.</p>
+      </div>
+      <div className="about-initiative-grid">
+        {futureInitiatives.map((initiative) => (
+          <article className="about-initiative-card" key={initiative.title}>
+            <div>
+              <h3 className="tc-type-h4">{initiative.title}</h3>
+              <p className="tc-type-body-small">{initiative.body}</p>
+            </div>
+            <span className="about-initiative-card__visual" aria-hidden="true">
+              <img src={asset("lunc-logo.svg")} alt="" loading="lazy" />
+            </span>
+          </article>
+        ))}
+      </div>
+      <p className="about-muted-note tc-type-body">These initiatives are not official Terra Classic products. They are examples of independent tools and public-good concepts that can be explored as the ecosystem's information infrastructure becomes stronger, more transparent, and easier to maintain.</p>
+      <div className="about-hero-actions">
+        <LinkButton href={links.websiteRepository} dark>Make a contribution</LinkButton>
+        <LinkButton href={links.layer2}>Check L2 packages</LinkButton>
+      </div>
+    </section>
+  );
+}
+
+function AboutContributors() {
+  return (
+    <section className="about-section about-contributors" id="contributors" aria-labelledby="about-contributors-title">
+      <div className="about-section__copy">
+        <h2 className="tc-type-h2" id="about-contributors-title">List of contributors</h2>
+        <div className="about-section__text">
+          <p className="tc-type-h4">Terra-classic.money should make contribution visible.</p>
+          <p className="tc-type-body">This contributor list recognizes people, teams, and organizations that helped improve or maintain the website. Inclusion does not imply endorsement, official status, governance authority, validator preference, or project recommendation.</p>
+        </div>
+      </div>
+      <div className="about-contributor-ledger">
+        {contributorGroups.map((group) => (
+          <section className="about-contributor-group" aria-labelledby={`${group.title.replace(/\s+/g, "-").toLowerCase()}-title`} key={group.title}>
+            <header>
+              <div>
+                <h3 className="tc-type-h4" id={`${group.title.replace(/\s+/g, "-").toLowerCase()}-title`}>{group.title}</h3>
+                <p className="tc-type-body-small">{group.description}</p>
+              </div>
+              <span className="ecosystem-category__rule" aria-hidden="true" />
+              <span className="about-contributor-count tc-type-h4">{group.rows.length}</span>
+            </header>
+            <div className="about-contributor-rows">
+              {group.rows.map(([name, role, period]) => (
+                <article className="about-contributor-row" key={`${group.title}-${name}-${period}`}>
+                  <span className="about-contributor-avatar" aria-hidden="true">{name.slice(0, 1)}</span>
+                  <strong className="tc-type-link-big">{name}</strong>
+                  <span className="tc-type-body-small">{role}</span>
+                  <small className="tc-type-body-very-small">{period}</small>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+      <div className="about-hero-actions">
+        <LinkButton href={links.websiteRepository} dark>View contributor log</LinkButton>
+        <LinkButton href={`${links.websiteRepository}/issues`}>Suggest a correction</LinkButton>
+      </div>
+    </section>
+  );
+}
+
+function AboutFAQ() {
+  const [open, setOpen] = useState<string | null>(aboutFaqItems[0]?.question ?? null);
+  return (
+    <section className="section about-faq" aria-labelledby="about-faq-title">
+      <h2 className="tc-type-h2" id="about-faq-title">FAQ</h2>
+      <div className="about-faq-list">
+        {aboutFaqItems.map((item) => {
+          const id = item.question.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+          const expanded = open === item.question;
+          return (
+            <div className="faq-item about-faq-item" key={item.question}>
+              <button aria-expanded={expanded} aria-controls={`${id}-answer`} onClick={() => setOpen(expanded ? null : item.question)}>
+                <span className="tc-type-link-big">{item.question}</span>
+                <img src={asset("faq-link-arrow.svg")} alt="" aria-hidden="true" />
+              </button>
+              {expanded && <p id={`${id}-answer`} className="tc-type-body-small">{item.answer}</p>}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function AboutShare() {
+  const shareHref = "https://x.com/intent/tweet?text=Terra-classic.money%20is%20an%20independent%2C%20community-maintained%20website%20for%20Terra%20Classic.&url=https%3A%2F%2Fterra-classic.money%2Fabout.html";
+  return (
+    <section className="section about-share" aria-labelledby="about-share-title">
+      <div className="about-share__copy">
+        <span className="native-phase__badge">PUBLIC-GOOD WEBSITE</span>
+        <h2 className="tc-type-h2" id="about-share-title">Terra Classic gets stronger when public information gets clearer.</h2>
+        <p className="tc-type-h4">Share the independent website, challenge weak information, and help keep the ecosystem surface accurate, neutral, and useful.</p>
+      </div>
+      <ShareOnXButton href={shareHref} />
+    </section>
+  );
+}
+
+function AboutPage() {
+  return (
+    <>
+      <AboutHero />
+      <AboutOwnership />
+      <AboutOpenSource />
+      <AboutContribute />
+      <AboutSupport />
+      <AboutFutureInitiatives />
+      <AboutContributors />
+      <FounderStories />
+      <JoinCommunity />
+      <AboutFAQ />
+      <AboutShare />
+      <Footer />
+    </>
+  );
+}
+
 function openWorkDetailHref(id: string) {
   return page(`${links.openWorkDetail}?work=${encodeURIComponent(id)}`);
 }
@@ -1836,6 +2151,7 @@ export default function App() {
   const isMarketsPage = window.location.pathname.endsWith("/markets.html") || window.location.pathname.endsWith("markets.html");
   const isOpenWorkPage = window.location.pathname.endsWith("/open-work.html") || window.location.pathname.endsWith("open-work.html");
   const isOpenWorkDetailPage = window.location.pathname.endsWith("/open-work-detail.html") || window.location.pathname.endsWith("open-work-detail.html");
+  const isAboutPage = window.location.pathname.endsWith("/about.html") || window.location.pathname.endsWith("about.html");
 
   return (
     <div className="app">
@@ -1858,6 +2174,8 @@ export default function App() {
             <OpenWorkPage />
           ) : isEcosystemPage ? (
             <EcosystemPage />
+          ) : isAboutPage ? (
+            <AboutPage />
           ) : (
             <>
               <div className="main-announcement-slot"><AnnouncementBar /></div>

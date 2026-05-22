@@ -1,6 +1,7 @@
 import { StrictMode, useEffect, useState, type CSSProperties, type MouseEvent } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { AprBadge } from "./components/AprBadge";
+import { contributorGroups, ownershipTimeline } from "./data/about";
 import { externalNav, languageOptions, sections, sidebarDisclaimer } from "./data/content";
 import { openWorkPackages } from "./data/openWork";
 import { roadmapMonths, roadmapRows } from "./data/roadmap";
@@ -427,6 +428,8 @@ const componentNames = [
   "APR badge",
   "Open work card",
   "Roadmap timeline",
+  "Trust timeline",
+  "Contributor ledger",
 ];
 
 const collapsedSidebarDisclaimer =
@@ -918,6 +921,48 @@ function RoadmapTimelinePreview() {
   );
 }
 
+function TrustTimelinePreview() {
+  return (
+    <div className="about-timeline ds-trust-timeline-preview" aria-label="Trust timeline component specimen">
+      {ownershipTimeline.map((item) => (
+        <article className="about-timeline__item" key={`ds-${item.label}`}>
+          <span className="about-timeline__index tc-type-link-big">{item.label}</span>
+          <div>
+            <h3 className="tc-type-h5">{item.title}</h3>
+            <p className="tc-type-body-small">{item.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function ContributorLedgerPreview() {
+  const group = contributorGroups[2];
+  return (
+    <section className="about-contributor-group ds-contributor-ledger-preview" aria-labelledby="ds-contributor-ledger-title">
+      <header>
+        <div>
+          <h3 className="tc-type-h4" id="ds-contributor-ledger-title">{group.title}</h3>
+          <p className="tc-type-body-small">{group.description}</p>
+        </div>
+        <span className="ecosystem-category__rule" aria-hidden="true" />
+        <span className="about-contributor-count tc-type-h4">{group.rows.length}</span>
+      </header>
+      <div className="about-contributor-rows">
+        {group.rows.map(([name, role, period]) => (
+          <article className="about-contributor-row" key={`ds-${name}-${period}`}>
+            <span className="about-contributor-avatar" aria-hidden="true">{name.slice(0, 1)}</span>
+            <strong className="tc-type-link-big">{name}</strong>
+            <span className="tc-type-body-small">{role}</span>
+            <small className="tc-type-body-very-small">{period}</small>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ComponentPreview({ name }: { name: string }) {
   switch (name) {
     case "Nav element":
@@ -962,6 +1007,10 @@ function ComponentPreview({ name }: { name: string }) {
       return <CollapseButtonPreview />;
     case "Roadmap timeline":
       return <RoadmapTimelinePreview />;
+    case "Trust timeline":
+      return <TrustTimelinePreview />;
+    case "Contributor ledger":
+      return <ContributorLedgerPreview />;
     default:
       return null;
   }
