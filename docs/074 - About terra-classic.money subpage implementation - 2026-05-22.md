@@ -58,3 +58,19 @@ QA screenshots:
 - `docs/audit-screenshots/about-tablet-2026-05-22.png`
 - `docs/audit-screenshots/about-mobile-2026-05-22.png`
 - `docs/audit-screenshots/about-mobile-faq-2026-05-22.png`
+
+## Follow-up: Future Initiatives Removal
+
+The Future initiatives section was removed from the About page after review. The page now flows from the support model directly into the contributor list.
+
+Cleanup performed:
+
+- Removed the `AboutFutureInitiatives` component from `src/App.tsx`.
+- Removed the unused `futureInitiatives` data from `src/data/about.ts`.
+- Removed page-local initiative card styles from `src/styles/global.css`.
+
+Validation:
+
+- `npm run check` passed after removal.
+- Browser QA confirmed the removed heading is no longer present, the contributor section remains after the support section, no horizontal overflow exists at `1500 x 1000`, and the browser warning/error log was empty.
+- Follow-up QA screenshot saved to `docs/audit-screenshots/about-without-future-initiatives-2026-05-22.png`.

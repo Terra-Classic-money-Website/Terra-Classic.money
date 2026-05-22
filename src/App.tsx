@@ -32,7 +32,6 @@ import {
   aboutIntroParagraphs,
   contributionPaths,
   contributorGroups,
-  futureInitiatives,
   openSourcePrinciples,
   ownershipTimeline,
   supportBoundaries,
@@ -1297,35 +1296,6 @@ function AboutSupport() {
   );
 }
 
-function AboutFutureInitiatives() {
-  return (
-    <section className="about-section about-initiatives" aria-labelledby="about-initiatives-title">
-      <div className="about-section__copy">
-        <h2 className="tc-type-h2" id="about-initiatives-title">Future initiatives supported by a stronger public layer</h2>
-        <p className="tc-type-h4">A clearer Terra Classic information layer can support more than one website. It can become the foundation for better onboarding, better ecosystem visibility, and stronger public tools.</p>
-      </div>
-      <div className="about-initiative-grid">
-        {futureInitiatives.map((initiative) => (
-          <article className="about-initiative-card" key={initiative.title}>
-            <div>
-              <h3 className="tc-type-h4">{initiative.title}</h3>
-              <p className="tc-type-body-small">{initiative.body}</p>
-            </div>
-            <span className="about-initiative-card__visual" aria-hidden="true">
-              <img src={asset("lunc-logo.svg")} alt="" loading="lazy" />
-            </span>
-          </article>
-        ))}
-      </div>
-      <p className="about-muted-note tc-type-body">These initiatives are not official Terra Classic products. They are examples of independent tools and public-good concepts that can be explored as the ecosystem's information infrastructure becomes stronger, more transparent, and easier to maintain.</p>
-      <div className="about-hero-actions">
-        <LinkButton href={links.websiteRepository} dark>Make a contribution</LinkButton>
-        <LinkButton href={links.layer2}>Check L2 packages</LinkButton>
-      </div>
-    </section>
-  );
-}
-
 function AboutContributors() {
   return (
     <section className="about-section about-contributors" id="contributors" aria-labelledby="about-contributors-title">
@@ -1414,7 +1384,6 @@ function AboutPage() {
       <AboutOpenSource />
       <AboutContribute />
       <AboutSupport />
-      <AboutFutureInitiatives />
       <AboutContributors />
       <FounderStories />
       <JoinCommunity />
@@ -1504,7 +1473,7 @@ function ClosedWorkBoard() {
       <header className="open-work-section-head">
         <div>
           <h2 className="tc-type-h3" id="closed-work-board-title">Closed work packages</h2>
-          <p className="tc-type-h4">Completed website and ecosystem work that shows Terra Classic maintenance continuing in public.</p>
+          <p className="tc-type-h4">Completed ecosystem work that shows Terra Classic maintenance continuing in public.</p>
         </div>
         <span className="open-work-count tc-type-h4">{closedWorkPackages.length}</span>
       </header>

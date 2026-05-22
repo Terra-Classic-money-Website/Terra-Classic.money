@@ -69,21 +69,6 @@ export const supportCards = [
   },
 ] as const;
 
-export const futureInitiatives = [
-  {
-    title: "PROV",
-    body: "A validator and staking provider transparency concept designed to help delegators compare operators, understand staking choices, and make more informed decisions.",
-  },
-  {
-    title: "URI Protocol",
-    body: "A trading automation and burn-engine concept exploring how market strategies, transparent risk controls, and automated mechanisms could support Terra Classic-related economic activity.",
-  },
-  {
-    title: "Terra Classic Wiki",
-    body: "A future knowledge base for plain-language explanations, ecosystem history, governance concepts, wallets, staking, developer resources, and user-safe onboarding.",
-  },
-] as const;
-
 export const contributorGroups = [
   {
     title: "Donors and sponsors",
