@@ -165,10 +165,10 @@ export const roadmapRows: RoadmapRow[] = [
 export const roadmapGroupLabels = {
   public: {
     title: "Terra Classic public roadmap",
-    description: "Governance, protocol, infrastructure, and official-compatible items. These are not paid placements.",
+    description: "Governance, protocol, infrastructure, and official-compatible items.",
   },
   community: {
     title: "L2 & community project roadmap",
-    description: "Project-submitted roadmap entries. Paid entries must stay clearly labeled and never imply official Terra Classic status.",
+    description: "Project-submitted roadmap entries.",
   },
 } as const;
