@@ -2,6 +2,7 @@ import { StrictMode, useEffect, useState, type CSSProperties, type MouseEvent } 
 import { createRoot, type Root } from "react-dom/client";
 import { AprBadge } from "./components/AprBadge";
 import { externalNav, languageOptions, sections, sidebarDisclaimer } from "./data/content";
+import { openWorkPackages } from "./data/openWork";
 import { roadmapMonths, roadmapRows } from "./data/roadmap";
 import "./styles/tokens.css";
 import "./styles/global.css";
@@ -424,6 +425,7 @@ const componentNames = [
   "Back to top button",
   "Collaps button",
   "APR badge",
+  "Open work card",
   "Roadmap timeline",
 ];
 
@@ -749,6 +751,33 @@ function EcosystemResourcePreview() {
   );
 }
 
+function OpenWorkCardPreview() {
+  const workPackage = openWorkPackages[0];
+  return (
+    <a className="open-work-card ds-open-work-card" href="#components" onClick={stopNavigation}>
+      <span className="open-work-card__active-indicator" aria-hidden="true" />
+      <span className="open-work-card__meta">
+        <span className="native-phase__badge">{workPackage.category}</span>
+      </span>
+      <span className="open-work-card__copy">
+        <span className="open-work-card__title tc-type-h4">{workPackage.title}</span>
+        <span className="open-work-card__summary tc-type-body-small">{workPackage.summary}</span>
+      </span>
+      <span className="open-work-card__footer">
+        <span>
+          <small className="tc-type-body-very-small">Effort</small>
+          <strong className="tc-type-link-big">{workPackage.effort}</strong>
+        </span>
+        <span>
+          <small className="tc-type-body-very-small">Quote</small>
+          <strong className="tc-type-link-big">{workPackage.quoteType}</strong>
+        </span>
+        <DotArrowIcon />
+      </span>
+    </a>
+  );
+}
+
 function LeftSectionPreview() {
   const [collapsed, setCollapsed] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
@@ -917,6 +946,8 @@ function ComponentPreview({ name }: { name: string }) {
       return <BadgeGallery />;
     case "APR badge":
       return <div className="ds-apr-badge-stage"><AprBadge value="3.42%" /></div>;
+    case "Open work card":
+      return <OpenWorkCardPreview />;
     case "CMC / CG Button":
       return <MarketButtons />;
     case "Arrow button":

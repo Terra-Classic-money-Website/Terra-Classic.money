@@ -3,6 +3,8 @@ export const links = {
   decentralization: "decentralization.html",
   roadmap: "roadmap.html",
   markets: "markets.html",
+  openWork: "open-work.html",
+  openWorkDetail: "open-work-detail.html",
   about: "about.html",
   telegram: "TODO_REPLACE_WITH_FINAL_TELEGRAM_URL",
   layer2: "https://l2.terra-classic.money",

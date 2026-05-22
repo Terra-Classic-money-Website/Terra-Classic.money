@@ -14,6 +14,8 @@ export default defineConfig(({ mode }) => {
           decentralization: resolve(__dirname, "decentralization.html"),
           ecosystem: resolve(__dirname, "ecosystem.html"),
           markets: resolve(__dirname, "markets.html"),
+          openWork: resolve(__dirname, "open-work.html"),
+          openWorkDetail: resolve(__dirname, "open-work-detail.html"),
           roadmap: resolve(__dirname, "roadmap.html"),
         },
       },

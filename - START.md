@@ -43,6 +43,18 @@ Open the Markets subpage locally at:
 http://127.0.0.1:5173/markets.html
 ```
 
+Open the Open Work subpage locally at:
+
+```text
+http://127.0.0.1:5173/open-work.html
+```
+
+Open an Open Work detail page locally at:
+
+```text
+http://127.0.0.1:5173/open-work-detail.html?work=wallet-staking-governance-guide
+```
+
 Open the internal local design-system tool at:
 
 ```text
