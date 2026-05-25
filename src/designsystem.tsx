@@ -1,10 +1,9 @@
 import { StrictMode, useEffect, useState, type CSSProperties, type MouseEvent } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { AprBadge } from "./components/AprBadge";
-import { contributorGroups, ownershipTimeline } from "./data/about";
 import { externalNav, languageOptions, sections, sidebarDisclaimer } from "./data/content";
 import { openWorkPackages } from "./data/openWork";
-import { roadmapMonths, roadmapRows } from "./data/roadmap";
+import { roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow } from "./data/roadmap";
 import "./styles/tokens.css";
 import "./styles/global.css";
 import "./styles/designsystem.css";
@@ -428,8 +427,6 @@ const componentNames = [
   "APR badge",
   "Open work card",
   "Roadmap timeline",
-  "Trust timeline",
-  "Contributor ledger",
 ];
 
 const collapsedSidebarDisclaimer =
@@ -866,100 +863,206 @@ function CollapseButtonPreview() {
 }
 
 const dsRoadmapMonthIndex = new Map<string, number>(roadmapMonths.map((month, index) => [month.key, index]));
+const dsRoadmapYearRanges = roadmapMonths.reduce<Array<{ year: string; start: number; end: number }>>((ranges, month, index) => {
+  const current = ranges[ranges.length - 1];
+  if (current?.year === month.year) {
+    current.end = index;
+  } else {
+    ranges.push({ year: month.year, start: index, end: index });
+  }
+  return ranges;
+}, []);
 
-function RoadmapTimelinePreview() {
-  const rows = roadmapRows.slice(0, 3);
+const dsRoadmapStatusLabels: Record<RoadmapMilestone["status"], string> = {
+  planned: "Planned",
+  "in-progress": "In progress",
+  live: "Live",
+  delayed: "Delayed",
+  completed: "Completed",
+  "source-needed": "Source needed",
+};
 
-  return (
-    <div className="roadmap-board ds-roadmap-preview">
-      <div className="roadmap-axis-shell" style={{ "--roadmap-scroll-left": "0px" } as CSSProperties} aria-hidden="true">
-        <div className="roadmap-axis__corner" />
-        <div className="roadmap-axis__track">
-          <div className="roadmap-axis__year roadmap-axis__year--first tc-type-h2" style={{ gridColumn: "1 / 7" }}>2025</div>
-          <div className="roadmap-axis__year tc-type-h2" style={{ gridColumn: "7 / 16" }}>2026</div>
-          {roadmapMonths.map((month, index) => (
-            <div className={`roadmap-axis__month tc-type-body-small${index === 0 ? " roadmap-axis__month--first" : ""}`} style={{ gridColumn: index + 1 }} key={`ds-${month.key}`}>
-              {month.label}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="roadmap-scroll" aria-label="Roadmap timeline component specimen" tabIndex={0}>
-        <div className="roadmap-grid">
-          {rows.map((row) => (
-            <article className={`roadmap-row roadmap-row--${row.group}`} style={{ "--roadmap-accent": row.accent } as CSSProperties} key={`ds-${row.id}`}>
-              <div className="roadmap-row__project">
-                <span className="roadmap-row__avatar tc-type-link-big">
-                  {row.avatar ? <img src={row.avatar} alt="" loading="lazy" /> : row.shortName}
-                </span>
-                <span className="roadmap-row__identity">
-                  <strong className="tc-type-h5">{row.project}</strong>
-                  <small className="tc-type-body-very-small">{row.category}</small>
-                </span>
-              </div>
-              <div className="roadmap-lane">
-                {roadmapMonths.map((month) => <span className="roadmap-lane__month" key={`ds-${row.id}-${month.key}`} aria-hidden="true" />)}
-                {row.milestones.slice(0, 3).map((milestone) => {
-                  const start = dsRoadmapMonthIndex.get(milestone.start) ?? 0;
-                  const end = dsRoadmapMonthIndex.get(milestone.end) ?? start;
-                  return (
-                    <div className="roadmap-milestone" style={{ gridColumn: `${start + 1} / ${end + 2}` }} key={`ds-${row.id}-${milestone.title}`}>
-                      <div className="roadmap-milestone__meta">
-                        <strong>{milestone.title}</strong>
-                        <span>{milestone.status}</span>
-                      </div>
-                      <span className={`roadmap-milestone__bar roadmap-milestone__bar--${milestone.status}`} />
-                    </div>
-                  );
-                })}
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+function readDsTimelineMetric(element: HTMLElement, property: string) {
+  return Number.parseFloat(getComputedStyle(element).getPropertyValue(property)) || 0;
 }
 
-function TrustTimelinePreview() {
+function getDsMilestoneColumns(milestone: RoadmapMilestone) {
+  const start = dsRoadmapMonthIndex.get(milestone.start) ?? 0;
+  const end = dsRoadmapMonthIndex.get(milestone.end) ?? start;
+  return `${start + 1} / ${end + 2}`;
+}
+
+function getDsMilestoneStack(milestones: RoadmapMilestone[]) {
+  const levelEnds: number[] = [];
+  const levels = new Map<string, number>();
+
+  milestones.forEach((milestone) => {
+    const start = dsRoadmapMonthIndex.get(milestone.start) ?? 0;
+    const end = dsRoadmapMonthIndex.get(milestone.end) ?? start;
+    const level = levelEnds.findIndex((levelEnd) => start > levelEnd);
+    const stackLevel = level >= 0 ? level : levelEnds.length;
+
+    levelEnds[stackLevel] = end;
+    levels.set(milestone.title, stackLevel);
+  });
+
+  return { levels, span: Math.max(1, levelEnds.length) };
+}
+
+function RoadmapTimelinePreviewAxis({ scrollLeft }: { scrollLeft: number }) {
   return (
-    <div className="about-timeline ds-trust-timeline-preview" aria-label="Trust timeline component specimen">
-      {ownershipTimeline.map((item) => (
-        <article className="about-timeline__item" key={`ds-${item.label}`}>
-          <span className="about-timeline__index tc-type-link-big">{item.label}</span>
-          <div>
-            <h3 className="tc-type-h5">{item.title}</h3>
-            <p className="tc-type-body-small">{item.body}</p>
+    <div className="roadmap-axis-shell" style={{ "--roadmap-scroll-left": `${scrollLeft}px` } as CSSProperties} aria-hidden="true">
+      <div className="roadmap-axis__corner" />
+      <div className="roadmap-axis__track">
+        {dsRoadmapYearRanges.map((range) => (
+          <div
+            className={`roadmap-axis__year tc-type-h2${range.start === 0 ? " roadmap-axis__year--first" : ""}`}
+            style={{ gridColumn: `${range.start + 1} / ${range.end + 2}` }}
+            key={`ds-${range.year}`}
+          >
+            {range.year}
           </div>
-        </article>
-      ))}
-    </div>
-  );
-}
-
-function ContributorLedgerPreview() {
-  const group = contributorGroups[2];
-  return (
-    <section className="about-contributor-group ds-contributor-ledger-preview" aria-labelledby="ds-contributor-ledger-title">
-      <header>
-        <div>
-          <h3 className="tc-type-h4" id="ds-contributor-ledger-title">{group.title}</h3>
-          <p className="tc-type-body-small">{group.description}</p>
-        </div>
-        <span className="ecosystem-category__rule" aria-hidden="true" />
-        <span className="about-contributor-count tc-type-h4">{group.rows.length}</span>
-      </header>
-      <div className="about-contributor-rows">
-        {group.rows.map(([name, role, period]) => (
-          <article className="about-contributor-row" key={`ds-${name}-${period}`}>
-            <span className="about-contributor-avatar" aria-hidden="true">{name.slice(0, 1)}</span>
-            <strong className="tc-type-link-big">{name}</strong>
-            <span className="tc-type-body-small">{role}</span>
-            <small className="tc-type-body-very-small">{period}</small>
-          </article>
+        ))}
+        {roadmapMonths.map((month, index) => (
+          <div className={`roadmap-axis__month tc-type-body-small${index === 0 ? " roadmap-axis__month--first" : ""}`} style={{ gridColumn: index + 1 }} key={`ds-${month.key}`}>
+            {month.label}
+          </div>
         ))}
       </div>
-    </section>
+    </div>
+  );
+}
+
+function RoadmapTimelinePreviewGroupHeader({ group }: { group: RoadmapRow["group"] }) {
+  const label = roadmapGroupLabels[group];
+
+  return (
+    <div className={`roadmap-group roadmap-group--${group}`}>
+      <div className="roadmap-group__label">
+        <span className="native-phase__badge">{group === "public" ? "PUBLIC" : "PROJECT-SUBMITTED"}</span>
+      </div>
+      <div className="roadmap-group__copy">
+        <h2 className="tc-type-h4">{label.title}</h2>
+        <p className="tc-type-body-small">{label.description}</p>
+      </div>
+    </div>
+  );
+}
+
+function RoadmapTimelinePreviewRow({
+  row,
+  visibleLaneStartPx,
+  monthWidth,
+  activeTooltip,
+  onToggleTooltip,
+}: {
+  row: RoadmapRow;
+  visibleLaneStartPx: number;
+  monthWidth: number;
+  activeTooltip: string | null;
+  onToggleTooltip: (id: string) => void;
+}) {
+  const milestoneStack = getDsMilestoneStack(row.milestones);
+  const tooltipOpen = activeTooltip === row.id;
+
+  return (
+    <article className={`roadmap-row roadmap-row--${row.group}`} style={{ "--roadmap-accent": row.accent } as CSSProperties}>
+      <div className="roadmap-row__project">
+        <button
+          className="roadmap-row__avatar tc-type-link-big"
+          type="button"
+          aria-label={`Show ${row.project} details`}
+          aria-expanded={tooltipOpen}
+          aria-describedby={tooltipOpen ? `ds-${row.id}-tooltip` : undefined}
+          onClick={() => onToggleTooltip(row.id)}
+        >
+          {row.avatar ? <img src={row.avatar} alt="" loading="lazy" /> : row.shortName}
+        </button>
+        <span className="roadmap-row__identity">
+          <strong className="tc-type-h5">{row.project}</strong>
+          <small className="tc-type-body-very-small">{row.category}</small>
+        </span>
+        <span className={`roadmap-row__tooltip${tooltipOpen ? " roadmap-row__tooltip--open" : ""}`} id={`ds-${row.id}-tooltip`} role="tooltip">
+          <strong>{row.project}</strong>
+          <small>{row.category}</small>
+        </span>
+      </div>
+      <div className="roadmap-lane">
+        {roadmapMonths.map((month) => <span className="roadmap-lane__month" key={`ds-${row.id}-${month.key}`} aria-hidden="true" />)}
+        {row.milestones.map((milestone) => {
+          const startIndex = dsRoadmapMonthIndex.get(milestone.start) ?? 0;
+          const startsBeforeVisibleLane = visibleLaneStartPx > 0 && startIndex * monthWidth < visibleLaneStartPx + 32;
+          const stackLevel = milestoneStack.levels.get(milestone.title) ?? 0;
+
+          return (
+            <div
+              className={`roadmap-milestone${startsBeforeVisibleLane ? " roadmap-milestone--meta-hidden" : ""}`}
+              style={{
+                "--roadmap-stack": stackLevel,
+                "--roadmap-stack-span": milestoneStack.span,
+                gridColumn: getDsMilestoneColumns(milestone),
+              } as CSSProperties}
+              key={`ds-${row.id}-${milestone.title}`}
+            >
+              <div className="roadmap-milestone__meta">
+                <strong>{milestone.title}</strong>
+                <span>{dsRoadmapStatusLabels[milestone.status]}</span>
+                {milestone.paid && <em>Paid entry</em>}
+              </div>
+              <span className={`roadmap-milestone__bar roadmap-milestone__bar--${milestone.status}`} />
+            </div>
+          );
+        })}
+      </div>
+    </article>
+  );
+}
+
+function RoadmapTimelinePreview() {
+  const publicRows = roadmapRows.filter((row) => row.group === "public");
+  const communityRows = roadmapRows.filter((row) => row.group === "community");
+  const [timelineMetrics, setTimelineMetrics] = useState({ monthWidth: 248, scrollLeft: 0 });
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+
+  const handleTimelineScroll = (event: { currentTarget: HTMLDivElement }) => {
+    const element = event.currentTarget;
+    setTimelineMetrics({
+      monthWidth: readDsTimelineMetric(element, "--roadmap-month-width"),
+      scrollLeft: element.scrollLeft,
+    });
+  };
+
+  return (
+    <div className="roadmap-board ds-roadmap-preview" aria-labelledby="ds-roadmap-preview-title">
+      <h3 className="visually-hidden" id="ds-roadmap-preview-title">Roadmap timeline component specimen</h3>
+      <RoadmapTimelinePreviewAxis scrollLeft={timelineMetrics.scrollLeft} />
+      <div className="roadmap-scroll" role="region" aria-label="Horizontally scrollable roadmap timeline component specimen" tabIndex={0} onScroll={handleTimelineScroll}>
+        <div className="roadmap-grid">
+          <RoadmapTimelinePreviewGroupHeader group="public" />
+          {publicRows.map((row) => (
+            <RoadmapTimelinePreviewRow
+              row={row}
+              visibleLaneStartPx={timelineMetrics.scrollLeft}
+              monthWidth={timelineMetrics.monthWidth}
+              activeTooltip={activeTooltip}
+              onToggleTooltip={(id) => setActiveTooltip((active) => (active === id ? null : id))}
+              key={`ds-${row.id}`}
+            />
+          ))}
+          <RoadmapTimelinePreviewGroupHeader group="community" />
+          {communityRows.map((row) => (
+            <RoadmapTimelinePreviewRow
+              row={row}
+              visibleLaneStartPx={timelineMetrics.scrollLeft}
+              monthWidth={timelineMetrics.monthWidth}
+              activeTooltip={activeTooltip}
+              onToggleTooltip={(id) => setActiveTooltip((active) => (active === id ? null : id))}
+              key={`ds-${row.id}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -1007,10 +1110,6 @@ function ComponentPreview({ name }: { name: string }) {
       return <CollapseButtonPreview />;
     case "Roadmap timeline":
       return <RoadmapTimelinePreview />;
-    case "Trust timeline":
-      return <TrustTimelinePreview />;
-    case "Contributor ledger":
-      return <ContributorLedgerPreview />;
     default:
       return null;
   }

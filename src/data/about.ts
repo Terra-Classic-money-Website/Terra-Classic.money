@@ -6,24 +6,24 @@ export const aboutIntroParagraphs = [
 
 export const ownershipTimeline = [
   {
-    label: "01",
-    title: "Public network",
-    body: "Terra Classic exists as open blockchain infrastructure.",
+    period: "2018 - 2022",
+    title: "Beginning",
+    owner: "Terraform Labs",
   },
   {
-    label: "02",
-    title: "Distributed consensus",
-    body: "Independent validators operate nodes, sign blocks, and secure the network.",
+    period: "May 2022",
+    title: "Crash",
+    owner: "Terraform Labs",
   },
   {
-    label: "03",
-    title: "Delegated participation",
-    body: "LUNC holders can stake, redelegate, and help shape validator voting power.",
+    period: "2022 - Today",
+    title: "Post Crash",
+    owner: "Community owned",
   },
   {
-    label: "04",
-    title: "Open contribution",
-    body: "Builders, contributors, and community members create tools, apps, docs, interfaces, and public resources.",
+    period: "December 2025",
+    title: "",
+    owner: "TerraForm Labs wined down",
   },
 ];
 
@@ -52,21 +52,6 @@ export const supportBoundaries = [
   "It does not buy editorial control.",
   "It does not buy governance status.",
   "It does not buy official recognition.",
-] as const;
-
-export const supportCards = [
-  {
-    title: "Website maintenance",
-    body: "Domain costs, hosting, bug fixes, content updates, performance improvements, accessibility improvements, and ongoing site maintenance.",
-  },
-  {
-    title: "Research and public resources",
-    body: "Source-aware ecosystem research, onboarding guides, educational content, documentation improvements, governance explainers, and neutral public resources.",
-  },
-  {
-    title: "Future Terra Classic tools",
-    body: "Independent products and public-good tools that can improve ecosystem wayfinding, validator transparency, builder onboarding, user education, or network discoverability.",
-  },
 ] as const;
 
 export const contributorGroups = [

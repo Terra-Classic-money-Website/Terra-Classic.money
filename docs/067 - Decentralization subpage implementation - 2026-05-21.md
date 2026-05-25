@@ -113,3 +113,9 @@ The supplied lo-fi wireframe is treated as an information-architecture reference
 - Matched the Decentralization mobile metric-card internals to the homepage mobile stats cards: compact mobile padding, `120px` height, `12px` content gap, and `44px` number block.
 - Linked the homepage Decentralization strength-card CTA and the homepage stats-panel CTA to `decentralization.html`.
 - Replaced the Decentralization resources intro copy with public-facing verification language focused on validators, staking, governance, explorers, tooling, documentation, and developer infrastructure.
+- Removed the `LAST UPDATE: MAY 21, 2026` badge from the Decentralization subpage hero while keeping the `15 MIN READ` badge.
+- Repositioned the Decentralization hero `15 MIN READ` badge with the same desktop/tablet absolute top-right behavior and mobile static behavior used by product-section status badges.
+- Removed the old desktop headline top offset from the Decentralization hero so the `15 MIN READ` badge is vertically centered with the headline, matching the product-section status badge rhythm.
+- Lifted only the Decentralization hero many-planets artwork on non-mobile breakpoints by reducing the Decentralization-only copy-block offset, while keeping the single center planet aligned to the web pattern center.
+- Changed the Decentralization hero desktop/tablet metric row from equal-width grid columns to wrapped content-sized flex cards so each stat gets width based on its number and label, while preserving the homepage-style equal-column mobile layout.
+- Widened the `114` IBC channels stat card so its label does not wrap into three lines on desktop/tablet layouts.

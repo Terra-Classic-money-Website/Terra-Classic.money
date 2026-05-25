@@ -35,7 +35,6 @@ import {
   openSourcePrinciples,
   ownershipTimeline,
   supportBoundaries,
-  supportCards,
 } from "./data/about";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
@@ -1120,102 +1119,161 @@ function MarketsPage() {
   );
 }
 
-function AboutAnchorNav() {
-  const items = [
-    ["Who owns Terra Classic?", "#ownership"],
-    ["Open-source project", "#open-source"],
-    ["Contribute", "#contribute"],
-    ["Support model", "#support"],
-    ["Contributors", "#contributors"],
-  ];
-
-  return (
-    <nav className="about-anchor-nav" aria-label="About page sections">
-      {items.map(([label, href]) => (
-        <a className="tc-type-link-big" href={href} key={href}>{label}</a>
-      ))}
-    </nav>
-  );
-}
-
 function AboutHero() {
   return (
-    <section className="about-page" id="top" aria-labelledby="about-page-title">
-      <div className="about-page__intro">
+    <section className="stats-panel decentralization-hero decentralization-stats-hero about-hero" id="top" aria-labelledby="about-page-title">
+      <div className={`stats-glow stats-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="protocol-lines about-hero__lines" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <img className="about-hero__planet" src={asset("about-hero-planet2.png")} alt="" aria-hidden="true" loading="eager" width="1067" height="584" />
+      <div className="stats-copy decentralization-stats-hero__copy about-hero__copy">
         <h1 className="tc-type-h1" id="about-page-title">About terra-classic.money</h1>
-        <div className="about-page__lede">
-          {aboutIntroParagraphs.map((paragraph, index) => (
-            <p className={index === 0 ? "tc-type-h4" : "tc-type-body"} key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-        <div className="about-hero-actions">
-          <LinkButton href={page("#top")} dark>Explore the website</LinkButton>
-          <LinkButton href={links.websiteRepository}>Contribute on GitHub</LinkButton>
+        <p className="tc-type-h4">{aboutIntroParagraphs[0]}</p>
+        <div className="about-hero__body">
+          <p className="tc-type-body">{aboutIntroParagraphs[1]}</p>
+          <p className="tc-type-body">{aboutIntroParagraphs[2]}</p>
         </div>
       </div>
-      <AboutAnchorNav />
+      <div className="stats-bottom decentralization-stats-hero__bottom about-hero__bottom">
+        <div className="decentralization-hero-actions about-hero-actions">
+          <LinkButton href={page("#top")}>Explore the website</LinkButton>
+          <a className="pill-button about-github-button tc-type-link-big" href={links.websiteRepository} target="_blank" rel="noopener noreferrer">
+            <span>Contribute on Github</span>
+            <img src={asset("community-github-figma.svg")} alt="" aria-hidden="true" width="32" height="32" />
+          </a>
+        </div>
+      </div>
     </section>
   );
 }
 
 function AboutOwnership() {
+  function renderOwner(owner: string) {
+    if (owner === "Terraform Labs") {
+      return (
+        <span className="about-timeline__owner-logo" aria-label="Terraform Labs">
+          <img src={asset("about-terraform-labs-logo.png")} alt="" aria-hidden="true" width="119" height="32" />
+        </span>
+      );
+    }
+
+    if (owner === "Community owned") {
+      return (
+        <span className="about-timeline__owner-badge">
+          <span>COMMUNITY OWNED</span>
+          <img src={asset("about-community-owned-arrow.svg")} alt="" aria-hidden="true" width="22" height="16" />
+        </span>
+      );
+    }
+
+    return <span className="about-timeline__owner-text">{owner}</span>;
+  }
+
   return (
     <section className="about-section about-ownership" id="ownership" aria-labelledby="about-ownership-title">
-      <div className="about-section__copy">
-        <h2 className="tc-type-h2" id="about-ownership-title">Who owns Terra Classic?</h2>
+      <div className="about-section__copy about-ownership__copy">
         <div className="about-section__text">
+          <h2 className="tc-type-h2" id="about-ownership-title">Who owns Terra Classic?</h2>
           <p className="tc-type-h4">No company owns Terra Classic.</p>
           <p className="tc-type-body">No single validator owns Terra Classic. No single contributor owns Terra Classic. No single website owns Terra Classic. No single community account speaks for the entire network.</p>
           <p className="tc-type-body">Terra Classic is a public blockchain coordinated through validators, delegators, governance, builders, open-source software, infrastructure providers, users, and independent contributors. Its direction emerges through public participation, not private command.</p>
         </div>
+        <LinkButton href={links.decentralization} dark>More about decentralization</LinkButton>
       </div>
       <div className="about-timeline" aria-label="Terra Classic ownership model">
-        {ownershipTimeline.map((item) => (
-          <article className="about-timeline__item" key={item.label}>
-            <span className="about-timeline__index tc-type-link-big">{item.label}</span>
-            <div>
-              <h3 className="tc-type-h5">{item.title}</h3>
-              <p className="tc-type-body-small">{item.body}</p>
-            </div>
-          </article>
+        {ownershipTimeline.map((item, index) => (
+          <div className="about-timeline__group" key={`${item.period}-${item.owner}`}>
+            <article className="about-timeline__item">
+              <div className="about-timeline__event">
+                <span className="tc-type-body">{item.period}</span>
+                {item.title && <h3 className="tc-type-h5">{item.title}</h3>}
+              </div>
+              <div className="about-timeline__owner">{renderOwner(item.owner)}</div>
+            </article>
+            {index < ownershipTimeline.length - 1 && (
+              <div className="about-timeline__separator" aria-hidden="true">
+                <span />
+                <img src={asset("about-timeline-separator.svg")} alt="" width="20" height="16" />
+                <span />
+              </div>
+            )}
+          </div>
         ))}
       </div>
-      <div className="about-callout">
-        <p className="tc-type-h4">Terra Classic is not a product managed by a central company. It is a living network maintained through distributed responsibility.</p>
-        <LinkButton href={links.decentralization} dark>Read more about decentralization</LinkButton>
-      </div>
     </section>
+  );
+}
+
+function AboutVisualBand({ variant }: { variant: "open-source" | "contribute" }) {
+  const foreground = variant === "open-source"
+    ? { file: "about-open-source-planet.png", width: 801, height: 384 }
+    : { file: "about-contribute-foreground.png", width: 947, height: 303 };
+
+  return (
+    <div className={`about-visual-band about-visual-band--${variant}`} aria-hidden="true">
+      <div className="about-visual-band__background">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="about-visual-band__lines">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <img className={`about-visual-band__image about-visual-band__image--${variant}`} src={asset(foreground.file)} alt="" loading="lazy" width={foreground.width} height={foreground.height} />
+    </div>
+  );
+}
+
+function AboutIndexedGrid({ items, visualVariant }: { items: readonly (readonly [string, string])[]; visualVariant: "open-source" | "contribute" }) {
+  return (
+    <div className={`about-indexed-grid about-indexed-grid--${visualVariant}`}>
+      {items.slice(0, 3).map(([title, body], index) => (
+        <article className="about-indexed-card" key={title}>
+          <span className="about-indexed-card__number tc-type-h1">{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3 className="tc-type-h3">{title}</h3>
+            <p className="tc-type-body">{body}</p>
+          </div>
+        </article>
+      ))}
+      <AboutVisualBand variant={visualVariant} />
+      {items.slice(3).map(([title, body], index) => (
+        <article className="about-indexed-card" key={title}>
+          <span className="about-indexed-card__number tc-type-h1">{String(index + 4).padStart(2, "0")}</span>
+          <div>
+            <h3 className="tc-type-h3">{title}</h3>
+            <p className="tc-type-body">{body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
   );
 }
 
 function AboutOpenSource() {
   return (
     <section className="about-section about-open-source" id="open-source" aria-labelledby="about-open-source-title">
-      <div className="about-split">
-        <div className="about-section__copy">
-          <h2 className="tc-type-h2" id="about-open-source-title">Terra-classic.money is an independent open-source project</h2>
-          <div className="about-section__text">
-            <p className="tc-type-h4">Terra-classic.money is not currently the official Terra Classic website.</p>
-            <p className="tc-type-body">It is an independent, open-source, community-maintained website created to provide a clearer public information layer for Terra Classic.</p>
-            <p className="tc-type-body">The goal is simple: build the best independent Terra Classic website first. If the community later considers it useful, neutral, and trustworthy enough to become official, that decision can be proposed through Terra Classic governance.</p>
-          </div>
-        </div>
-        <div className="about-open-source__visual" aria-hidden="true">
-          <img src={asset("decagon.svg")} alt="" loading="lazy" />
-          <span />
+      <div className="about-section__copy">
+        <h2 className="tc-type-h2" id="about-open-source-title">Terra-classic.money is an independent open-source project</h2>
+        <div className="about-section__text">
+          <p className="tc-type-h4">Terra-classic.money is not currently the official Terra Classic website. It is an independent, open-source, community-maintained website created to provide a clearer public information layer for Terra Classic.</p>
+          <p className="tc-type-body">The goal is simple: build the best independent Terra Classic website first. If the community later considers it useful, neutral, and trustworthy enough to become official, that decision can be proposed through Terra Classic governance.</p>
         </div>
       </div>
-      <div className="about-principle-grid" aria-label="Core principles">
-        {openSourcePrinciples.map(([title, body], index) => (
-          <article className="about-principle" key={title}>
-            <span className="article-section__index tc-type-link-small">{String(index + 1).padStart(2, "0")}</span>
-            <div>
-              <h3 className="tc-type-h5">{title}</h3>
-              <p className="tc-type-body-small">{body}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+      <AboutIndexedGrid items={openSourcePrinciples} visualVariant="open-source" />
     </section>
   );
 }
@@ -1230,20 +1288,10 @@ function AboutContribute() {
           <p className="tc-type-body">You do not need to be a validator or developer to contribute. Useful contributions can come from researchers, writers, translators, designers, builders, delegators, governance participants, documentation reviewers, ecosystem users, and anyone who notices something that should be corrected or improved.</p>
         </div>
       </div>
-      <div className="about-contribution-grid">
-        {contributionPaths.map(([title, body]) => (
-          <article className="about-contribution" key={title}>
-            <h3 className="tc-type-h5">{title}</h3>
-            <p className="tc-type-body-small">{body}</p>
-          </article>
-        ))}
-      </div>
-      <div className="about-rule">
-        <p className="tc-type-h4">Every contribution should improve clarity, accuracy, neutrality, safety, or usefulness.</p>
-        <div className="about-hero-actions">
-          <LinkButton href={`${links.websiteRepository}/issues`} dark>Report an issue or suggest a change</LinkButton>
-          <LinkButton href={links.websiteRepository}>View contribution guidelines</LinkButton>
-        </div>
+      <AboutIndexedGrid items={contributionPaths} visualVariant="contribute" />
+      <div className="about-hero-actions">
+        <LinkButton href={`${links.websiteRepository}/issues`} dark>Report an issue or suggest a change</LinkButton>
+        <LinkButton href={links.websiteRepository} dark>View contribution guidelines</LinkButton>
       </div>
     </section>
   );
@@ -1261,36 +1309,27 @@ function AboutSupport() {
           </div>
         </div>
         <div className="about-boundary-card">
-          <h3 className="tc-type-h4">Support does not buy influence.</h3>
+          <h3 className="tc-type-link-big">Support does not buy influence</h3>
           <ul>
-            {supportBoundaries.map((item) => <li className="tc-type-body-small" key={item}>{item}</li>)}
+            {supportBoundaries.map((item) => <li className="tc-type-body-small" key={item}><span aria-hidden="true">x</span>{item}</li>)}
           </ul>
         </div>
       </div>
-      <div className="about-support-grid" aria-label="What support can help fund">
-        {supportCards.map((card, index) => (
-          <article className="about-support-card" key={card.title}>
-            <span className="article-section__index tc-type-link-small">{String(index + 1).padStart(2, "0")}</span>
-            <h3 className="tc-type-h4">{card.title}</h3>
-            <p className="tc-type-body-small">{card.body}</p>
-          </article>
-        ))}
-      </div>
       <div className="about-commercial">
         <article>
-          <span className="native-phase__badge">DONATIONS</span>
+          <span className="about-commercial__number tc-type-h1">01</span>
           <h3 className="tc-type-h4">Voluntary donations</h3>
           <p className="tc-type-body-small">Donations help maintain and improve the website. They do not create ownership rights, governance rights, promotional rights, editorial rights, listing rights, or any expectation of financial return.</p>
         </article>
         <article>
-          <span className="native-phase__badge">PAID L2</span>
-          <h3 className="tc-type-h4">Paid L2 discovery listings</h3>
-          <p className="tc-type-body-small">Paid listings may exist only in a clearly separated L2 discovery area. They are promotional entries, not endorsements, audits, recommendations, guarantees, or official Terra Classic status.</p>
+          <span className="about-commercial__number tc-type-h1">02</span>
+          <h3 className="tc-type-h4">Terra Classic L2 Directory</h3>
+          <p className="tc-type-body-small">A paid discovery directory for Terra Classic-related L2 projects, tokens, meme coins, experimental apps, and community initiatives. Listings are paid promotional entries and do not represent endorsement by Terra-classic.money, Terra Classic governance, validators, or maintainers.</p>
         </article>
       </div>
       <div className="about-hero-actions">
         <LinkButton href="#support" dark>Make a donation</LinkButton>
-        <LinkButton href={links.layer2}>View L2 discovery policy</LinkButton>
+        <LinkButton href={links.layer2} dark>Paid listing packages</LinkButton>
       </div>
     </section>
   );
@@ -1734,7 +1773,6 @@ function DecentralizationArticle() {
         <img className="stats-big-planet" src={asset("stats-big-planet.png")} alt="" aria-hidden="true" loading="eager" width="270" height="268" />
         <div className="stats-copy decentralization-stats-hero__copy">
           <div className="article-meta">
-            <span className="native-phase__badge article-meta__badge">LAST UPDATE: MAY 21, 2026</span>
             <span className="native-phase__badge article-meta__badge">15 MIN READ</span>
           </div>
           <h1 className="tc-type-h1" id="decentralization-page-title">Terra Classic decentralization</h1>
