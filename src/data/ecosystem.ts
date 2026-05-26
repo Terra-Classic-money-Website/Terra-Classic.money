@@ -27,7 +27,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "NFT marketplace",
         href: "https://bigbangx.io",
         avatar:
-          "https://framerusercontent.com/images/KBgYlLn8EVUKPwqywWKPk2vlxZ8.jpg?width=400&height=400",
+          "avatars/avatar-kbgylln8evukpwqywwkpk2vlxz8-2051758dcc.webp",
         avatarAlt: "BigbangX NFT marketplace for Terra Classic digital art.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -36,7 +36,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Payments",
         href: "https://lunc.tools/cookie-pay",
         avatar:
-          "https://framerusercontent.com/images/59BhtTUdDUeu8dwvdVtxCgPOp4.png?width=58&height=59",
+          "avatars/avatar-59bhttuddueu8dwvdvtxcgpop4-df9579e717.webp",
         avatarAlt: "Cookie.pay crypto-payments gateway for LUNC and USTC.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -45,7 +45,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Lending & borrowing",
         href: "https://jurisprotocol.com",
         avatar:
-          "https://framerusercontent.com/images/obdBBFwqR1y1ObX0POf8cyZ6Q.jpg?width=400&height=400",
+          "avatars/avatar-obdbbfwqr1y1obx0pof8cyz6q-e19587c5b9.webp",
         avatarAlt:
           "Juris Protocol lending & borrowing dApp (WIP) on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
@@ -55,7 +55,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Orderbook",
         href: "https://orderbook.lbunproject.tech",
         avatar:
-          "https://framerusercontent.com/images/X4rNqoWaEj9NleuXFki8pXh1kOc.png?width=286&height=286",
+          "avatars/avatar-x4rnqowaej9nleuxfki8pxh1koc-01112e5725.webp",
         avatarAlt: "LbunProject on-chain order-book for Terra Classic tokens.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -64,7 +64,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "NFT marketplace",
         href: "https://miata.io",
         avatar:
-          "https://framerusercontent.com/images/pA9YyUtQJyRAnWEP7u3Up5I24.png?width=128&height=133",
+          "avatars/avatar-pa9yyutqjyranwep7u3up5i24-370fb24a64.webp",
         avatarAlt: "Miata NFT marketplace for Terra Classic NFT collections.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -73,7 +73,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "NFT marketplace",
         href: "https://nft.lunc.tools",
         avatar:
-          "https://framerusercontent.com/images/6Y6RbeQzw6NOgHmPfQc7KyoTZNY.png?width=291&height=287",
+          "avatars/avatar-6y6rbeqzw6noghmpfqc7kyotzny-27efc54854.webp",
         avatarAlt: "Truely decentralised NFTs on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -82,7 +82,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Aggregator",
         href: "https://orbitwire.io",
         avatar:
-          "https://framerusercontent.com/images/nD3LSSHBcw0Z9MSPFIlqd8r72RA.png?width=1024&height=1024",
+          "avatars/avatar-nd3lsshbcw0z9mspfilqd8r72ra-b0fed9c623.webp",
         avatarAlt:
           "Selenium synthetics platform (WIP) for Terra Classic assets.",
         badge: "ON-CHAIN NATIVE",
@@ -92,7 +92,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Synthetics platform",
         href: "https://selenium.finance",
         avatar:
-          "https://framerusercontent.com/images/nDxyTeKhjMAyhCZrkP8UvlPkmc.png?width=250&height=250",
+          "avatars/avatar-ndxytekhjmayhczrkp8uvlpkmc-38343e0dc5.webp",
         avatarAlt:
           "Selenium synthetics platform (WIP) for Terra Classic assets.",
         badge: "ON-CHAIN NATIVE",
@@ -102,7 +102,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Leveraged trading",
         href: "https://terracasino.io/trading/BTC",
         avatar:
-          "https://framerusercontent.com/images/YKbWdVjVBvoAfNZGToDsTSjPc4.jpg?width=495&height=495",
+          "avatars/avatar-ykbwdvjvbvoafnzgtodstsjpc4-f140c36707.webp",
         avatarAlt:
           "Leveraged trading (BTC, ETH, BNB, XRP, TURBOWAVE) on Terra Casino",
         badge: "ON-CHAIN NATIVE",
@@ -112,7 +112,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Launchpad",
         href: "https://terraport.finance/development/token",
         avatar:
-          "https://framerusercontent.com/images/C1VRQ896uLUDqqphvN48jH6o0dM.png?width=64&height=64",
+          "avatars/avatar-c1vrq896uludqqphvn48jh6o0dm-340ab8a75f.webp",
         avatarAlt:
           "Terraport Token Factory for launching Terra Classic tokens.",
         badge: "ON-CHAIN NATIVE",
@@ -122,7 +122,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Launchpad",
         href: "https://terrapump.fun",
         avatar:
-          "https://framerusercontent.com/images/mwa5TPKEg8mtKojpogZ5if6Zc0.png?width=512&height=512",
+          "avatars/avatar-mwa5tpkeg8mtkojpogz5if6zc0-b97990bf6d.webp",
         avatarAlt: "TERRA.pump launchpad accelerating Terra Classic startups.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -131,7 +131,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Aggregator",
         href: "https://theia.trading",
         avatar:
-          "https://framerusercontent.com/images/HiAfXnH8frCjOk79NOGruZLMu6g.png?width=400&height=400",
+          "avatars/avatar-hiafxnh8frcjok79nogruzlmu6g-f3bc93172d.webp",
         avatarAlt: "Theia price aggregator covering Terra Classic markets.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -140,7 +140,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Aggregator",
         href: "https://vyntrex.io",
         avatar:
-          "https://framerusercontent.com/images/mVz8VTpJuFAMMZNcupwh8cFds.png?width=120&height=120",
+          "avatars/avatar-mvz8vtpjufammzncupwh8cfds-2e958f26ca.webp",
         avatarAlt: "Vyntrex price aggregator covering Terra Classic markets.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -149,7 +149,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Aggregator",
         href: "https://coinhall.org/terraclassic/terra1l7vy20x940je7lskm6x9s839vjsmekz9k9mv7g",
         avatar:
-          "https://framerusercontent.com/images/Bs4kzygCm2K4hAR3dEWmoqgAqHQ.png?scale-down-to=512&width=773&height=773",
+          "avatars/avatar-bs4kzygcm2k4har3dewmoqgaqhq-ff10291e4b.webp",
         avatarAlt: "Coinhall aggregator showing Terra Classic prices & charts.",
       },
       {
@@ -157,7 +157,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Social / Messenger",
         href: "https://www.sonikchain.com",
         avatar:
-          "https://framerusercontent.com/images/8CVMLoJPoj1enblm5OkGUHs7k.png?width=64&height=64",
+          "avatars/avatar-8cvmlojpoj1enblm5okguhs7k-06a40a446f.webp",
         avatarAlt:
           "Sonic decentralized social/messenger dApp on Terra Classic.",
       },
@@ -173,7 +173,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://www.bigbangx.io/air-force-lunc",
         avatar:
-          "https://framerusercontent.com/images/VMyfzMIRTgVgomM88dZkP6relh8.png?width=100&height=100",
+          "avatars/avatar-vmyfzmirtgvgomm88dzkp6relh8-b55eea5e88.webp",
         avatarAlt: "Air Force Lunc play-to-earn game on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -182,7 +182,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://brutemove.net",
         avatar:
-          "https://framerusercontent.com/images/cPIkmJ5mB9pQxhjb1VdfwEFrkc.png?width=626&height=626",
+          "avatars/avatar-cpikmj5mb9pqxhjb1vdfwefrkc-0afbf28d88.webp",
         avatarAlt: "Galactic Shift WIP blockchain game for Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -191,7 +191,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://galacticshift.io",
         avatar:
-          "https://framerusercontent.com/images/k8YGB1dJHqKbhpocl0zW19GfJwo.jpg?width=400&height=400",
+          "avatars/avatar-k8ygb1djhqkbhpocl0zw19gfjwo-946b964430.webp",
         avatarAlt: "Galactic Shift WIP blockchain game for Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -200,7 +200,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://play.google.com/store/apps/details?id=com.GarudaNodes.GarudaTheProtector3&pcampaignid=web_share",
         avatar:
-          "https://framerusercontent.com/images/y4Ml5QrfwBZVv4fUA1kyrV8vK9I.jpg?width=400&height=400",
+          "avatars/avatar-y4ml5qrfwbzvv4fua1kyrv8vk9i-edd37cef82.webp",
         avatarAlt:
           "Garuda The Protector action game in the Terra Classic universe.",
         badge: "ON-CHAIN NATIVE",
@@ -210,7 +210,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://aetherverge.io/games/lot",
         avatar:
-          "https://framerusercontent.com/images/FtnZyiDzr6l8H6wqWjevuQsHhI.png?width=480&height=488",
+          "avatars/avatar-ftnzyidzr6l8h6wqwjevuqshhi-6299b4f4d1.webp",
         avatarAlt:
           "Legends of Terratria role-playing game (WIP) on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
@@ -220,7 +220,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://play.google.com/store/apps/details?id=com.Unimasoft.Commando&pcampaignid=web_share",
         avatar:
-          "https://framerusercontent.com/images/B3GeaHiL0ZYgq5t0SrFksxcui0.png?width=240&height=240",
+          "avatars/avatar-b3geahil0zygq5t0srfksxcui0-469050835a.webp",
         avatarAlt: "Lunc Zombie shooter game earning LUNC rewards.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -229,7 +229,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Metaverse",
         href: "https://luncverse.io",
         avatar:
-          "https://framerusercontent.com/images/NolgxHr8YmF5YNOYpan5EYsf8zk.jpg?width=205&height=206",
+          "avatars/avatar-nolgxhr8ymf5ynoypan5eysf8zk-4724576fc5.webp",
         avatarAlt: "Luncvers3 metaverse (WIP) built on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -238,7 +238,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://world.lunc.tools",
         avatar:
-          "https://framerusercontent.com/images/WyRSKEWmqYFmlYTlrhZeeHc4yA.png?width=1116&height=372",
+          "avatars/avatar-wyrskewmqyfmlytlrhzeehc4ya-ac1c29cd07.webp",
         avatarAlt: "LUNC tools World game on Terra Classic",
         badge: "ON-CHAIN NATIVE",
       },
@@ -247,7 +247,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Festival",
         href: "https://mioff-token.com/",
         avatar:
-          "https://framerusercontent.com/images/WDjU2me4i6tqFhFzjiOQ5oexY7Y.jpg?scale-down-to=512&width=1024&height=1024",
+          "avatars/avatar-wdju2me4i6tqfhfzjioq5oexy7y-b329ff4541.webp",
         avatarAlt: "MIOFF music & arts festival powered by Terra Classic NFTs.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -256,7 +256,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://x.com/pixel_pengs",
         avatar:
-          "https://framerusercontent.com/images/VNICIUAT2A8CloXQJD4hYf43do.jpg?width=300&height=300",
+          "avatars/avatar-vniciuat2a8cloxqjd4hyf43do-23fe8c25dc.webp",
         avatarAlt: "PENGS casual game (WIP) using LUNC tokens.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -265,7 +265,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Game",
         href: "https://play.terratritium.com",
         avatar:
-          "https://framerusercontent.com/images/yDCJLJ8OxA1IJpiqAclJuEfikhA.jpg?width=155&height=155",
+          "avatars/avatar-ydcjlj8oxa1ijpiqacljuefikha-7f1bd6a462.webp",
         avatarAlt: "TRITIUM arcade game rewarding Luna Classic players.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -274,7 +274,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Casino and live poker",
         href: "https://terracasino.io",
         avatar:
-          "https://framerusercontent.com/images/YKbWdVjVBvoAfNZGToDsTSjPc4.jpg?width=495&height=495",
+          "avatars/avatar-ykbwdvjvbvoafnzgtodstsjpc4-f140c36707.webp",
         avatarAlt: "Terra Casino online casino accepting LUNC & USTC.",
       },
     ],
@@ -289,7 +289,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Official forum",
         href: "https://agora.terra-classic.money",
         avatar:
-          "https://framerusercontent.com/images/p9coKr28Aq4RO8CXf2W9BtIpYU.png?scale-down-to=512&width=679&height=694",
+          "avatars/avatar-p9cokr28aq4ro8cxf2w9btipyu-e333865bdb.webp",
         avatarAlt: "Discourse - Unofficial discussion forum for Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -298,7 +298,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "News website",
         href: "https://luncdaily.com",
         avatar:
-          "https://framerusercontent.com/images/ZYOTb6sG4Sp7dUm8HmnJQYoP5QE.png?scale-down-to=512&width=1280&height=1280",
+          "avatars/avatar-zyotb6sg4sp7dum8hmnjqyop5qe-c1a8f6b6dd.webp",
         avatarAlt: "LuncDaily news site covering Terra Classic updates.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -307,7 +307,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "News website",
         href: "https://lunc.tech",
         avatar:
-          "https://framerusercontent.com/images/DuEi811MTJ1q69HdIiuPLx0IAIk.png?width=250&height=250",
+          "avatars/avatar-duei811mtj1q69hdiiuplx0iaik-c1abab7363.webp",
         avatarAlt: "LUNC Burner portal tracking Terra Classic token burns.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -316,7 +316,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "News website",
         href: "https://www.lunctoken.org",
         avatar:
-          "https://framerusercontent.com/images/kKxwPkhMSP3nJMrNyPyyjTfu20.webp?width=100&height=100",
+          "avatars/avatar-kkxwpkhmsp3njmrnypyyjtfu20-21010b42e0.webp",
         avatarAlt: "LuncToken.org news and analytics for LUNC.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -325,7 +325,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "News website",
         href: "https://terraclassic.network",
         avatar:
-          "https://framerusercontent.com/images/6reEiMx9DgSGelJen6PSpmFkS20.png?width=64&height=64",
+          "avatars/avatar-6reeimx9dgsgeljen6pspmfks20-e58e07fa9c.webp",
         avatarAlt: "Terraclassic.network community news for Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -334,7 +334,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://skynet.certik.com/projects/terra",
         avatar:
-          "https://framerusercontent.com/images/Qe6nQOcYQmditYqDrONOjE6XQS8.png?width=225&height=225",
+          "avatars/avatar-qe6nqocyqmdityqdronoje6xqs8-d2a683bc49.webp",
         avatarAlt: "CertiK security audit report for Terra Classic projects.",
       },
       {
@@ -342,7 +342,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Unofficial forum",
         href: "https://forum.terra-classic.money",
         avatar:
-          "https://framerusercontent.com/images/0xgvFdWSbvzyoNipEnKfLNyckYE.png?width=373&height=354",
+          "avatars/avatar-0xgvfdwsbvzyonipenkflnyckye-eacab42e47.webp",
         avatarAlt: "Common.xyz official discussion forum for Terra Classic.",
       },
     ],
@@ -357,7 +357,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://luncdash.com",
         avatar:
-          "https://framerusercontent.com/images/yARX8rWbcc6YTokStcaeE5hYolQ.jpeg?scale-down-to=512&width=1280&height=1243",
+          "avatars/avatar-yarx8rwbcc6ytokstcaee5hyolq-b7c09a28d8.webp",
         avatarAlt: "LUNCdash dashboard & wallet for Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -366,7 +366,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://orbitar.app",
         avatar:
-          "https://framerusercontent.com/images/rXhx36Kfk9SmiDD5vu4AX6ia1gM.png?width=512&height=512",
+          "avatars/avatar-rxhx36kfk9smidd5vu4ax6ia1gm-e2d6f9d292.webp",
         avatarAlt: "Orbitar Mobile: Your Crypto Universe, Securely in Orbit!",
         badge: "ON-CHAIN NATIVE",
       },
@@ -375,7 +375,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://www.cosmostation.io/products/cosmostation_mobile",
         avatar:
-          "https://framerusercontent.com/images/sJ0BdGV3pPFfvioxReZLXhi1LkY.png?scale-down-to=512&width=1024&height=1024",
+          "avatars/avatar-sj0bdgv3ppffvioxrezlxhi1lky-d5970777c7.webp",
         avatarAlt:
           "Industry leading non-custodial mobile wallet supporting 140+ interchain networks.",
       },
@@ -384,7 +384,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://station.hexxagon.io",
         avatar:
-          "https://framerusercontent.com/images/NGuX2uS9QBeAb3jaiL0gLy1k.webp?width=240&height=240",
+          "avatars/avatar-ngux2us9qbeab3jail0gly1k-87fdca0f53.webp",
         avatarAlt: "Galaxy Station wallet for managing LUNC & USTC.",
       },
       {
@@ -392,7 +392,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://www.keplr.app",
         avatar:
-          "https://framerusercontent.com/images/JtdxINIwGLGTV1qRWPSNwmeJuPY.png?width=512&height=512",
+          "avatars/avatar-jtdxiniwglgtv1qrwpsnwmejupy-aa3bf9cf0f.webp",
         avatarAlt: "Keplr multi-chain wallet with Terra Classic support.",
       },
       {
@@ -400,7 +400,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://ping.pub/terra-luna",
         avatar:
-          "https://framerusercontent.com/images/C0qNl8sYo77sSqcOzXOp8QFAces.jpg?width=131&height=131",
+          "avatars/avatar-c0qnl8syo77ssqcozxop8qfaces-3e281e8e96.webp",
         avatarAlt: "Ping.pub explorer & wallet for Cosmos and Terra Classic.",
       },
       {
@@ -408,7 +408,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://trustwallet.com",
         avatar:
-          "https://framerusercontent.com/images/A1p3T4ketxM0YRSFAW7Zx5Avg.webp?scale-down-to=512&width=866&height=650",
+          "avatars/avatar-a1p3t4ketxm0yrsfaw7zx5avg-f50afe67ee.webp",
         avatarAlt: "Trust Wallet mobile app supporting LUNC and USTC.",
       },
       {
@@ -416,14 +416,14 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://vultisig.com",
         avatar:
-          "https://framerusercontent.com/images/dMGf7gSPRXMOhM4erWKpLvKdWk.jpeg?width=200&height=200",
+          "avatars/avatar-dmgf7gsprxmohm4erwkplvkdwk-50ef9930ca.webp",
         avatarAlt: "Vultisig multi-sig wallet tool for Terra Classic assets.",
       },
       {
         name: "Terra Station (Discontinued)",
         summary: "Discontinued wallet",
         avatar:
-          "https://framerusercontent.com/images/s1Cl4ZcaP15Z4aozCkQIRe4oPo.png?scale-down-to=512&width=600&height=600",
+          "avatars/avatar-s1cl4zcap15z4aozckqire4opo-fb2ab21eb9.webp",
         avatarAlt:
           "Terra Station official wallet for Terra Classic blockchain.",
         status: "DISCONTINUED",
@@ -441,7 +441,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://atomscan.com/terra",
         avatar:
-          "https://framerusercontent.com/images/96v29QVOvMihIF1zezP1Jer8o4.jpg?width=57&height=57",
+          "avatars/avatar-96v29qvovmihif1zezp1jer8o4-8c0be2c62d.webp",
         avatarAlt: "ATOMScan analytics explorer covering Terra Classic IBC.",
       },
       {
@@ -449,7 +449,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Burn tool",
         href: "https://Luncvers3.io/burn",
         avatar:
-          "https://framerusercontent.com/images/VVTdcOTWxD8JJTgaUPV8POaqk.png?width=112&height=113",
+          "avatars/avatar-vvtdcotwxd8jjtgaupv8poaqk-eaabe92c39.webp",
         avatarAlt:
           "CW-20 Bakery app for burning Terra Classic layer-2 CW-20 tokens.",
       },
@@ -458,7 +458,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Finder",
         href: "https://finder.terraclassic.community",
         avatar:
-          "https://framerusercontent.com/images/NGuX2uS9QBeAb3jaiL0gLy1k.webp?width=240&height=240",
+          "avatars/avatar-ngux2us9qbeab3jail0gly1k-87fdca0f53.webp",
         avatarAlt: "Galaxy Finder block explorer for Terra Classic network.",
       },
       {
@@ -466,7 +466,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "DAO tooling",
         href: "https://daodao.zone",
         avatar:
-          "https://framerusercontent.com/images/xTt6HwdIQPzxuDqwRCsybgrZU.jpg?width=400&height=400",
+          "avatars/avatar-xtt6hwdiqpzxudqwrcsybgrzu-7af041aaf4.webp",
         avatarAlt: "DAO DAO platform for Terra Classic DAO governance.",
       },
       {
@@ -474,7 +474,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://lunc.tech",
         avatar:
-          "https://framerusercontent.com/images/DuEi811MTJ1q69HdIiuPLx0IAIk.png?width=250&height=250",
+          "avatars/avatar-duei811mtj1q69hdiiuplx0iaik-c1abab7363.webp",
         avatarAlt: "LUNC Burner analytics tracking daily LUNC burns.",
       },
       {
@@ -482,7 +482,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://luncdash.com",
         avatar:
-          "https://framerusercontent.com/images/yARX8rWbcc6YTokStcaeE5hYolQ.jpeg?scale-down-to=512&width=1280&height=1243",
+          "avatars/avatar-yarx8rwbcc6ytokstcaee5hyolq-b7c09a28d8.webp",
         avatarAlt: "LUNCdash analytics dashboard for Terra Classic metrics.",
       },
       {
@@ -490,7 +490,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Finder",
         href: "https://finder.luncdash.com",
         avatar:
-          "https://framerusercontent.com/images/yARX8rWbcc6YTokStcaeE5hYolQ.jpeg?scale-down-to=512&width=1280&height=1243",
+          "avatars/avatar-yarx8rwbcc6ytokstcaee5hyolq-b7c09a28d8.webp",
         avatarAlt: "LUNCdash Finder explorer for Terra Classic.",
       },
       {
@@ -498,7 +498,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://www.luncmetrics.com",
         avatar:
-          "https://framerusercontent.com/images/zd5zcQOP0AfADulqmLCOkcUR8k.png?scale-down-to=512&width=1080&height=1080",
+          "avatars/avatar-zd5zcqop0afadulqmlcokcur8k-e1ee5ac9ce.webp",
         avatarAlt: "LUNC Metrics site charting Terra Classic on-chain data.",
       },
       {
@@ -506,7 +506,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://luncscan.com",
         avatar:
-          "https://framerusercontent.com/images/ymCVRdodD20tcY4NWoosR1IqPyk.webp?width=54&height=53",
+          "avatars/avatar-ymcvrdodd20tcy4nwoosr1iqpyk-fbb2313815.webp",
         avatarAlt: "LuncScan blockchain explorer for LUNC transactions.",
       },
       {
@@ -514,7 +514,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://lunc.tools",
         avatar:
-          "https://framerusercontent.com/images/DFJXrumPsJao7EFOJBOGhw3j8TY.jpg?width=56&height=56",
+          "avatars/avatar-dfjxrumpsjao7efojboghw3j8ty-a5f97cda77.webp",
         avatarAlt: "Lunc.Tools suite for Terra Classic stats & notifications.",
       },
       {
@@ -522,7 +522,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://ping.pub/terra-luna",
         avatar:
-          "https://framerusercontent.com/images/C0qNl8sYo77sSqcOzXOp8QFAces.jpg?width=131&height=131",
+          "avatars/avatar-c0qnl8syo77ssqcozxop8qfaces-3e281e8e96.webp",
         avatarAlt: "Ping.pub analytics tools for Cosmos & Terra Classic.",
       },
       {
@@ -530,7 +530,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://terraclassic.stakebin.io/terra/supply",
         avatar:
-          "https://framerusercontent.com/images/Oy3DKgvEd6pQBJiWfSHFKBYxZQ.png?width=48&height=48",
+          "avatars/avatar-oy3dkgved6pqbjiwfshfkbyxzq-f68c8b5517.webp",
         avatarAlt: "StakeBin staking analytics for Luna Classic.",
       },
       {
@@ -538,7 +538,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Finder",
         href: "https://finder.terra.money/classic",
         avatar:
-          "https://framerusercontent.com/images/Nl3gGwjg357qGjkTSnr5dfWPZPM.png?scale-down-to=512&width=2500&height=2500",
+          "avatars/avatar-nl3ggwjg357qgjktsnr5dfwpzpm-5c0279b502.webp",
         avatarAlt: "Terra Finder official explorer for Terra Classic.",
       },
       {
@@ -546,7 +546,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Finder",
         href: "https://finder.terraport.finance/",
         avatar:
-          "https://framerusercontent.com/images/C1VRQ896uLUDqqphvN48jH6o0dM.png?width=64&height=64",
+          "avatars/avatar-c1vrq896uludqqphvn48jh6o0dm-340ab8a75f.webp",
         avatarAlt:
           "Terraport Finder explorer for Terraport DEX on Terra Classic.",
       },
@@ -555,7 +555,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Explorer",
         href: "https://trackterra.org",
         avatar:
-          "https://framerusercontent.com/images/V0cLYhbcLe7PgHo72pGsCz67jH8.png?width=225&height=225",
+          "avatars/avatar-v0clyhbcle7pgho72pgscz67jh8-f929c753a5.webp",
         avatarAlt: "TrackTerra portfolio & tax explorer for Terra Classic.",
       },
       {
@@ -563,7 +563,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Analytics",
         href: "https://validator.info/terra-classic",
         avatar:
-          "https://framerusercontent.com/images/JD3k4cl1k43o9diiCCEjt6GifA.jpg?width=400&height=400",
+          "avatars/avatar-jd3k4cl1k43o9diiccejt6gifa-b70790a293.webp",
         avatarAlt: "Validator.info analytics on Terra Classic validators.",
       },
     ],
@@ -578,7 +578,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://dashboard.jurisprotocol.com/bridge",
         avatar:
-          "https://framerusercontent.com/images/obdBBFwqR1y1ObX0POf8cyZ6Q.jpg?width=400&height=400",
+          "avatars/avatar-obdbbfwqr1y1obx0pof8cyz6q-e19587c5b9.webp",
         avatarAlt: "Juris Bridge connecting Terra Classic with BSC & Ethereum.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -587,7 +587,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://terraport.finance/bridge",
         avatar:
-          "https://framerusercontent.com/images/C1VRQ896uLUDqqphvN48jH6o0dM.png?width=64&height=64",
+          "avatars/avatar-c1vrq896uludqqphvn48jh6o0dm-340ab8a75f.webp",
         avatarAlt: "Terraport Bridge moving assets into Terra Classic DEX.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -596,7 +596,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://bridge.terratritium.com",
         avatar:
-          "https://framerusercontent.com/images/yDCJLJ8OxA1IJpiqAclJuEfikhA.jpg?width=155&height=155",
+          "avatars/avatar-ydcjlj8oxa1ijpiqacljuefikha-7f1bd6a462.webp",
         avatarAlt: "Tritium Bridge enabling Terra Classic asset transfers.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -605,7 +605,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://go.cosmos.network",
         avatar:
-          "https://framerusercontent.com/images/ZPFDw8k4aQR3nXN8yTvEqB2USo.png?width=400&height=400",
+          "avatars/avatar-zpfdw8k4aqr3nxn8ytveqb2uso-48b651c4ee.webp",
         avatarAlt: "skip:go bridge for cross-chain LUNC transfers.",
       },
       {
@@ -613,7 +613,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://satellite.money/?destination_address=&asset_denom=uusdc&source=osmosis&destination=terra+classic",
         avatar:
-          "https://framerusercontent.com/images/amSODyMQfj0cgmeO5YyHwfWaVIc.jpg?width=400&height=400",
+          "avatars/avatar-amsodymqfj0cgmeo5yyhwfwavic-1a263ea669.webp",
         avatarAlt: "Satellite cross-chain bridge for Terra Classic tokens.",
       },
       {
@@ -621,7 +621,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://app.tfm.com/ibc?chainFrom=&chainTo=",
         avatar:
-          "https://framerusercontent.com/images/kjC10F5G0a3DUo5WcVNtjU6Ss.png?width=40&height=36",
+          "avatars/avatar-kjc10f5g0a3duo5wcvntju6ss-d3f3671cee.webp",
         avatarAlt: "TFM cross-chain aggregator bridging LUNC liquidity.",
       },
     ],
@@ -636,7 +636,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://terraclassic.stakebin.io/terra/validators",
         avatar:
-          "https://framerusercontent.com/images/Oy3DKgvEd6pQBJiWfSHFKBYxZQ.png?width=48&height=48",
+          "avatars/avatar-oy3dkgved6pqbjiwfshfkbyxzq-f68c8b5517.webp",
         avatarAlt: "StakeBin staking analytics for Luna Classic.",
       },
       {
@@ -644,7 +644,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://validator.info/terra-classic",
         avatar:
-          "https://framerusercontent.com/images/JD3k4cl1k43o9diiCCEjt6GifA.jpg?width=400&height=400",
+          "avatars/avatar-jd3k4cl1k43o9diiccejt6gifa-b70790a293.webp",
         avatarAlt: "Validator.info directory of Terra Classic validators.",
       },
       {
@@ -652,7 +652,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://t.co/f8ZglfXyfr",
         avatar:
-          "https://framerusercontent.com/images/6XmWldfnX1h3PbcD5GIPFvSI3iQ.png?width=225&height=225",
+          "avatars/avatar-6xmwldfnx1h3pbcd5gipfvsi3iq-0e511750b3.webp",
         avatarAlt: "Terra Classic Validators community Discord group.",
       },
       {
@@ -660,7 +660,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://t.me/transparentvalidatorchat",
         avatar:
-          "https://framerusercontent.com/images/dFWzr8GDYXyyMfbMemer5eJIas.png?scale-down-to=512&width=2048&height=2048",
+          "avatars/avatar-dfwzr8gdyxyymfbmemer5ejias-f213f62394.webp",
         avatarAlt: "Terra Classic Validators community Telegram group.",
       },
     ],
@@ -676,7 +676,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://docs.terra-classic.io/",
         avatar:
-          "https://framerusercontent.com/images/L5biu5JgSIXfXXLktcIooKTQH8.jpg?width=100&height=100",
+          "avatars/avatar-l5biu5jgsixfxxlktciooktqh8-45742b3e6e.webp",
         avatarAlt: "Terra Classic developer documentation (WIP).",
       },
       {
@@ -684,7 +684,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://github.com/classic-terra",
         avatar:
-          "https://framerusercontent.com/images/D1r4qTT2vgWuEMRxgDH2jphYnkY.png?scale-down-to=512&width=2048&height=2048",
+          "avatars/avatar-d1r4qtt2vgwuemrxgdh2jphynky-e9fe07b8cf.webp",
         avatarAlt: "Terra Classic source code repository on GitHub.",
       },
       {
@@ -692,7 +692,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://mapofzones.com/zones/columbus-5/peers?columnKey=ibcVolumeIn&period=24h",
         avatar:
-          "https://framerusercontent.com/images/OzOWYuO8GleJCOivigHSqezoSK4.png?width=280&height=280",
+          "avatars/avatar-ozowyuo8glejcoivighsqezosk4-629ba8af91.webp",
         avatarAlt: "Map of Zones chart of Terra Classic IBC channels.",
       },
       {
@@ -700,7 +700,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://api-lunc-lcd.binodes.com/",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Public LCD endpoint by BiNodes for Terra Classic.",
       },
       {
@@ -708,7 +708,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://lcd.terra-classic.hexxagon.io",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Hexxagon LCD endpoint for Terra Classic developers.",
       },
       {
@@ -716,7 +716,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://terra-classic-lcd.publicnode.com/",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Community LCD endpoint for Terra Classic.",
       },
       {
@@ -724,7 +724,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://api-lunc-rpc.binodes.com/",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "BiNodes RPC endpoint for Terra Classic full nodes.",
       },
       {
@@ -732,7 +732,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://rpc.terra-classic.hexxagon.io",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Hexxagon RPC endpoint for Terra Classic.",
       },
       {
@@ -740,7 +740,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://terra-classic-rpc.publicnode.com/",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Public RPC endpoint for Terra Classic blockchain.",
       },
       {
@@ -748,7 +748,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://fcd.terra-classic.hexxagon.io",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Hexxagon FDC endpoint streaming Terra Classic data.",
       },
       {
@@ -756,7 +756,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://terra-classic-fcd.publicnode.com/",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Public FDC endpoint for Terra Classic.",
       },
       {
@@ -764,7 +764,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://grpc.terra-classic.hexxagon.io",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Hexxagon gRPC service for Terra Classic.",
       },
       {
@@ -772,7 +772,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://hive.terra-classic.hexxagon.io",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Hexxagon HIVE endpoint for Terra Classic archives.",
       },
       {
@@ -780,7 +780,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://api.terra-classic.hexxagon.io",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt: "Hexxagon API endpoint for Terra Classic data.",
       },
       {
@@ -788,7 +788,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://snapshots.hexxagon.io/cosmos/terra-classic/columbus-5/",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt:
           "Latest node snapshots for running Terra Classic validators.",
       },
@@ -797,7 +797,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "",
         href: "https://www.publicnode.com/snapshots",
         avatar:
-          "https://framerusercontent.com/images/6VEtRD7smOB4InXgSfHto1ZjSAM.png?width=64&height=64",
+          "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
         avatarAlt:
           "Latest node snapshots for running Terra Classic validators.",
       },
@@ -814,7 +814,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Non-custodial node hosting",
         href: "https://www.allnodes.com",
         avatar:
-          "https://framerusercontent.com/images/sfx9Q2raGQJp8EiNt0AHx4rkk.png?scale-down-to=512&width=1024&height=1024",
+          "avatars/avatar-sfx9q2ragqjp8eint0ahx4rkk-413826f64d.webp",
         avatarAlt:
           "Allnodes non-custodial node-hosting service for Terra Classic validators.",
       },
@@ -823,7 +823,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Web3 design & dev.",
         href: "https://challengestudio.pl/crypto",
         avatar:
-          "https://framerusercontent.com/images/JVbyqn62c0HTysqJ1ftjkoW3hbc.png?width=44&height=44",
+          "avatars/avatar-jvbyqn62c0htysqj1ftjkow3hbc-4168cdd28f.webp",
         avatarAlt:
           "CHALLENGE Studio is Branding and Product / UX / UI design studio working in Web3 market. Design & development partner for the Terra Classic ecosystem.",
       },
@@ -832,7 +832,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Validator hosting",
         href: "https://www.hexxagon.io",
         avatar:
-          "https://framerusercontent.com/images/qm5Ff1NjC6IuTNLcNZhTpEZM.jpg?width=248&height=248",
+          "avatars/avatar-qm5ff1njc6iutnlcnzhtpezm-0e558954ea.webp",
         avatarAlt:
           "Hexxagon validator-hosting platform providing Terra Classic nodes.",
       },
@@ -841,7 +841,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Blockchain RPC API",
         href: "https://nownodes.io",
         avatar:
-          "https://framerusercontent.com/images/0YSwbLq4nIzOXuwgvyPNQoCYRfA.jpg?width=284&height=284",
+          "avatars/avatar-0yswblq4nizoxuwgvypnqocyrfa-c719c1eb0d.webp",
         avatarAlt:
           "Nownodes blockchain RPC API delivering Terra Classic endpoints.",
       },
@@ -850,7 +850,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         summary: "Dedicated nodes",
         href: "https://stakin.com",
         avatar:
-          "https://framerusercontent.com/images/Qwrj7WLL8TgSWAn1os9KLHic6s.png?width=264&height=264",
+          "avatars/avatar-qwrj7wll8tgswan1os9klhic6s-f4d76f7613.webp",
         avatarAlt:
           "Stakin.com dedicated node service supporting Terra Classic validators.",
       },

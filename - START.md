@@ -64,7 +64,7 @@ http://127.0.0.1:5173/privacy.html
 Open an Open Work detail page locally at:
 
 ```text
-http://127.0.0.1:5173/open-work-detail.html?work=wallet-staking-governance-guide
+http://127.0.0.1:5173/open-work-detail.html?work=forex-protocol-implementation
 ```
 
 Open the internal local design-system tool at:
@@ -78,14 +78,37 @@ http://127.0.0.1:5173/designsystem.html
 ## Build and checks
 
 ```bash
+npm run clean:metadata
+npm run assets:build
 npm run typecheck
 npm run build
+npm run perf:budget
+```
+
+If new remote avatar URLs are added to the Ecosystem, Markets, or Roadmap data, localize them before handoff so GitHub Pages does not depend on third-party avatar hosts:
+
+```bash
+npm run assets:avatars
 ```
 
 Use the full local gate before handoff:
 
 ```bash
 npm run check
+```
+
+Run a local Lighthouse performance audit for all production pages:
+
+```bash
+npm run perf:audit
+```
+
+Reports are written to `.performance-reports`, which is intentionally ignored by Git. The audit command also checks the saved reports against page-level Lighthouse budgets for performance score, FCP, LCP, TBT, CLS, transfer weight, and request count.
+
+To re-check the latest saved Lighthouse reports without running a fresh audit:
+
+```bash
+npm run perf:lh-budget
 ```
 
 ## Preview production build
@@ -104,5 +127,6 @@ For the production domain `terra-classic.money`, use base path `/`. For temporar
 ## Troubleshooting
 
 - If install fails, rerun `npm install` and send Codex the full terminal output.
-- If a page loads without images, run `npm run build` and send Codex the error output plus a screenshot.
+- If a page loads without images, run `npm run assets:build`, then `npm run build`, and send Codex the error output plus a screenshot.
+- If performance looks worse after an image-source change, run `FORCE_ASSET_BUILD=1 npm run assets:build`, then `npm run check`, and send Codex the full output.
 - If GitHub Pages deploy fails, open the failed Actions run and send Codex the failed step log.

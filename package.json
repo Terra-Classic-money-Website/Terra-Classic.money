@@ -5,10 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc -b && vite build",
+    "clean:metadata": "node scripts/clean-local-metadata.mjs",
+    "assets:build": "node scripts/build-images.mjs",
+    "assets:avatars": "node scripts/localize-avatars.mjs",
+    "build": "npm run clean:metadata && npm run assets:build && tsc -b && vite build",
     "typecheck": "tsc -b --pretty",
     "preview": "vite preview --host 127.0.0.1",
-    "check": "npm run typecheck && npm run build"
+    "perf:budget": "node scripts/check-performance-budget.mjs",
+    "perf:lh-budget": "node scripts/check-lighthouse-budget.mjs",
+    "perf:audit": "node scripts/perf-audit.mjs && npm run perf:lh-budget",
+    "check": "npm run build && npm run perf:budget"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -19,6 +25,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.8.0",
     "vite": "^7.0.0"
   }

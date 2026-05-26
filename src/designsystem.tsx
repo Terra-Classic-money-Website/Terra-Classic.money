@@ -635,7 +635,7 @@ function ButtonGallery() {
       </a>
       <a className="community-buttons__sample" href="#components" onClick={stopNavigation}>
         <span>Agora button</span>
-        <span className="community-button-icon community-button-icon--agora"><img src={asset("community-agora-figma.png")} alt="" /></span>
+        <span className="community-button-icon community-button-icon--agora"><img src={asset("community-agora-figma.webp")} alt="" /></span>
       </a>
       <a className="community-buttons__sample" href="#components" onClick={stopNavigation}>
         <span>Github button</span>
@@ -643,7 +643,7 @@ function ButtonGallery() {
       </a>
       <a className="community-buttons__sample" href="#components" onClick={stopNavigation}>
         <span>Discord button</span>
-        <span className="community-button-icon community-button-icon--discord"><img src={asset("community-discord-figma.png")} alt="" /></span>
+        <span className="community-button-icon community-button-icon--discord"><img src={asset("community-discord-figma.webp")} alt="" /></span>
       </a>
     </div>
   );
@@ -683,7 +683,7 @@ function FounderStoryPreview() {
   return (
     <article className="founder-card ds-founder-card">
       <div className="founder-card__media">
-        <img className="founder-card__portrait" src={asset("founder-story-portrait.png")} alt="Nicolas Boulay portrait" />
+        <img className="founder-card__portrait" src={asset("founder-story-portrait.webp")} alt="Nicolas Boulay portrait" />
         <div className="founder-card__play" aria-hidden="true">
           <img className="founder-card__dot founder-card__dot--1" src={asset("founder-play-dot.svg")} alt="" />
           <img className="founder-card__dot founder-card__dot--2" src={asset("founder-play-dot.svg")} alt="" />
