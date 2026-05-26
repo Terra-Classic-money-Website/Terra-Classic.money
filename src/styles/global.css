@@ -1202,6 +1202,30 @@ a.open-work-card:focus-visible .open-work-card__footer .dot-arrow-icon { color: 
 .article-reference span { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
 .article-reference small { color: var(--color-grey-500); }
 .article-reference .dot-arrow-icon { color: var(--color-grey-500); }
+
+.legal-page { width: 100%; border-bottom: 1px solid var(--color-grey-100); }
+.legal-page__header { padding: var(--tc-spacing-section-standard); padding-top: 64px; border-bottom: 1px solid var(--color-grey-100); display: flex; flex-direction: column; gap: 32px; }
+.legal-page__header h1,
+.legal-page__header p,
+.legal-page__section h2,
+.legal-page__section h3,
+.legal-page__section p,
+.legal-page__section ul { margin: 0; }
+.legal-page__updated { color: var(--color-grey-500); }
+.legal-page__intro { max-width: 920px; display: flex; flex-direction: column; gap: 24px; }
+.legal-page__intro p { color: var(--color-black); font-weight: 500; }
+.legal-page__body { max-width: 1040px; margin: 0 auto; padding: 80px 0 96px; }
+.legal-page__section { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 64px; padding: 56px 0; border-bottom: 1px solid var(--color-grey-100); scroll-margin-top: 32px; }
+.legal-page__section:first-child { padding-top: 0; }
+.legal-page__section:last-child { padding-bottom: 0; border-bottom: 0; }
+.legal-page__section h2 { text-wrap: balance; }
+.legal-page__section-content { min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+.legal-page__section-content p,
+.legal-page__section-content li { color: var(--color-black); font-weight: 500; overflow-wrap: anywhere; }
+.legal-page__subhead { padding-top: 12px; color: var(--color-black); }
+.legal-page__section-content > .legal-page__subhead:first-child { padding-top: 0; }
+.legal-page__list { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.legal-page + .footer { height: auto; padding-top: 32px; }
 .decentralization-resources { padding: var(--tc-spacing-section-standard); border-bottom: 1px solid var(--color-grey-100); }
 .decentralization-resources__intro { max-width: 1040px; display: flex; flex-direction: column; gap: 64px; margin-bottom: 72px; }
 .decentralization-resources__intro h2, .decentralization-resources__intro p { margin: 0; }
@@ -2264,6 +2288,8 @@ a.open-work-card:focus-visible .open-work-card__footer .dot-arrow-icon { color: 
   .decentralization-stats-hero { min-height: 640px; }
   .article-body { max-width: 920px; }
   .article-section { grid-template-columns: 72px minmax(0, 1fr); gap: 40px; }
+  .legal-page__body { max-width: 920px; }
+  .legal-page__section { grid-template-columns: 280px minmax(0, 1fr); gap: 40px; }
 }
 
 @media (min-width: 768px) and (max-width: 1299px) {
@@ -2271,6 +2297,8 @@ a.open-work-card:focus-visible .open-work-card__footer .dot-arrow-icon { color: 
   .article-body { max-width: 100%; padding: 72px 48px 88px; }
   .article-lede { padding-left: 112px; }
   .article-reference-list { grid-template-columns: 1fr; }
+  .legal-page__body { max-width: 100%; padding: 72px 48px 88px; }
+  .legal-page__section { grid-template-columns: 1fr; gap: 24px; padding: 48px 0; }
   .decentralization-resources { padding: var(--tc-spacing-section-standard); }
   .decentralization-share { grid-template-columns: 1fr; padding: 64px 48px; }
   .decentralization-share .pill-button { width: 100%; }
@@ -2305,6 +2333,13 @@ a.open-work-card:focus-visible .open-work-card__footer .dot-arrow-icon { color: 
   .article-section__copy { gap: 16px; }
   .article-reference-list { grid-template-columns: 1fr; }
   .article-reference { min-height: 80px; }
+  .legal-page__header { padding: 40px 24px 56px; gap: 24px; }
+  .legal-page__intro { gap: 16px; }
+  .legal-page__body { max-width: 100%; padding: 48px 24px 64px; }
+  .legal-page__section { grid-template-columns: 1fr; gap: 16px; padding: 40px 0; }
+  .legal-page__section-content { gap: 16px; }
+  .legal-page__subhead { padding-top: 8px; }
+  .legal-page + .footer { padding-top: 24px; }
   .decentralization-resources { padding: var(--tc-spacing-section-standard); }
   .decentralization-resources__intro { gap: 16px; margin-bottom: 48px; }
   .decentralization-resource-group { margin-top: 48px; }

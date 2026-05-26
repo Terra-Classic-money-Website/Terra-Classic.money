@@ -6,6 +6,7 @@ export const links = {
   openWork: "open-work.html",
   openWorkDetail: "open-work-detail.html",
   about: "about.html",
+  privacy: "privacy.html",
   websiteRepository: "https://github.com/Terra-Classic-money-Website/Terra-Classic.money",
   telegram: "TODO_REPLACE_WITH_FINAL_TELEGRAM_URL",
   layer2: "https://l2.terra-classic.money",
@@ -22,7 +23,6 @@ export const links = {
   discord: "https://discord.gg/eCxdwyapM",
   videoExplainer: "",
   brandAssets: "TODO_REPLACE_WITH_FINAL_BRAND_ASSETS_URL",
-  privacy: "TODO_REPLACE_WITH_FINAL_PRIVACY_POLICY_URL",
   dawidSkinder: "https://www.dawidskinder.pl",
 };
 
