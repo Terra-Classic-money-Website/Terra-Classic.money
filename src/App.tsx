@@ -41,6 +41,7 @@ const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
 const page = (path = "") => `${import.meta.env.BASE_URL}${path}`;
 const APR_INFO_ENDPOINT = "https://validator.info/api/terra-classic/blockchain/apr-info";
 const CATEGORY_SCROLL_DURATION_MS = 1100;
+const ARTICLE_WORDS_PER_MINUTE = 225;
 let categoryScrollAnimationFrame: number | null = null;
 
 type AprInfoState = {
@@ -1907,6 +1908,7 @@ function DecentralizationArticle() {
     ...decentralizationArticleLede,
     ...decentralizationArticleBlocks.flatMap((block) => [`${block.eyebrow} ${block.title}`, ...block.paragraphs]),
   ].join(" ");
+  const readMinutes = Math.max(1, Math.ceil(readText.trim().split(/\s+/).length / ARTICLE_WORDS_PER_MINUTE));
 
   return (
     <article className="decentralization-page" id="top" aria-labelledby="decentralization-page-title">
@@ -1922,7 +1924,7 @@ function DecentralizationArticle() {
         <img className="stats-big-planet" src={asset("stats-big-planet.png")} alt="" aria-hidden="true" loading="eager" width="270" height="268" />
         <div className="stats-copy decentralization-stats-hero__copy">
           <div className="article-meta">
-            <span className="native-phase__badge article-meta__badge">15 MIN READ</span>
+            <span className="native-phase__badge article-meta__badge">{readMinutes} MIN READ</span>
           </div>
           <h1 className="tc-type-h1" id="decentralization-page-title">Terra Classic decentralization</h1>
           <p className="tc-type-h4">A long-form guide to how Terra Classic decentralization works, why it matters, and how anyone can verify the network for themselves.</p>
@@ -1949,11 +1951,13 @@ function DecentralizationArticle() {
       </header>
 
       <div className="article-body">
-        <div className="article-lede">
-          {decentralizationArticleLede.map((paragraph) => (
-            <p className="tc-type-h3" key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
+        {decentralizationArticleLede.length > 0 && (
+          <div className="article-lede">
+            {decentralizationArticleLede.map((paragraph) => (
+              <p className="tc-type-h3" key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        )}
 
         {decentralizationArticleBlocks.map((block) => (
           <section className="article-section" id={block.id} key={block.id}>
