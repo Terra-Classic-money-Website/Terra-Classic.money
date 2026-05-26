@@ -1,7 +1,9 @@
 import { StrictMode, useEffect, useState, type CSSProperties, type MouseEvent } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { AprBadge } from "./components/AprBadge";
-import { externalNav, languageOptions, sections, sidebarDisclaimer } from "./data/content";
+import { capabilities, externalNav, languageOptions, sections, sidebarDisclaimer, strengths } from "./data/content";
+import { ecosystemCategories, type EcosystemEntry } from "./data/ecosystem";
+import { contributionPaths } from "./data/about";
 import { openWorkPackages } from "./data/openWork";
 import { roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow } from "./data/roadmap";
 import "./styles/tokens.css";
@@ -374,7 +376,11 @@ const componentNames = [
   "CMC / CG Button",
   "Arrow button",
   "Founder story",
-  "Ecosystem resource",
+  "Avatar",
+  "Card",
+  "Directory navigation button",
+  "Directory list item",
+  "Directory list",
   "Back to top button",
   "Collaps button",
   "APR badge",
@@ -705,21 +711,135 @@ function DotArrowIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function EcosystemResourcePreview() {
+function DirectoryNavigationButtonPreview() {
   return (
-    <a className="ecosystem-resource ds-ecosystem-resource" href="#components" onClick={stopNavigation}>
-      <span className="ecosystem-resource__avatar" aria-hidden="true">
+    <nav className="directory-nav ds-directory-nav" aria-label="Directory navigation button specimen">
+      {ecosystemCategories.map((category) => (
+        <button className="directory-nav__button tc-type-link-big" type="button" key={category.id}>
+          {category.title} <span>({category.entries.length})</span>
+        </button>
+      ))}
+    </nav>
+  );
+}
+
+function AvatarPreview() {
+  return (
+    <div className="ds-avatar-gallery" aria-label="Avatar variants">
+      <span className="directory-list-item__avatar" aria-label="Image avatar">
         <img src="https://framerusercontent.com/images/KBgYlLn8EVUKPwqywWKPk2vlxZ8.jpg?width=400&height=400" alt="" />
       </span>
-      <span className="ecosystem-resource__copy">
-        <span className="ecosystem-resource__name tc-type-h5">BigbangX</span>
-        <span className="ecosystem-resource__summary tc-type-body-small">NFT marketplace</span>
+      <button className="roadmap-row__avatar tc-type-link-big" type="button" style={{ "--roadmap-accent": "#6FA7E8" } as CSSProperties} aria-label="Roadmap initials avatar L1">
+        L1
+      </button>
+      <button className="roadmap-row__avatar tc-type-link-big" type="button" style={{ "--roadmap-accent": "#A0A0A0" } as CSSProperties} aria-label="Roadmap initials avatar MM2">
+        MM2
+      </button>
+      <span className="directory-list-item__avatar about-contributor-avatar" aria-label="Contributor initials avatar DS">
+        DS
       </span>
-      <span className="ecosystem-resource__meta">
-        <span className="native-phase__badge ecosystem-resource__badge--native">ON-CHAIN NATIVE</span>
+    </div>
+  );
+}
+
+function CardPreview() {
+  const [capability] = capabilities;
+  const [strengthTitle, strengthBody] = strengths[0];
+  const [indexedTitle, indexedBody] = contributionPaths[0];
+
+  return (
+    <div className="ds-card-gallery" aria-label="Card variants">
+      <article className={`capability-card capability-card--${capability.slug} ds-card-media`}>
+        <div className="capability-copy">
+          <h3 className="tc-type-h3">{capability.title}</h3>
+          <p className="tc-type-body">{capability.body}</p>
+        </div>
+        <a className="capability-cta" href="#components" onClick={stopNavigation}>
+          <span className="tc-type-link-big">{capability.cta}</span>
+          <img className={`capability-cta-icon capability-cta-icon--${capability.slug}`} src={asset("capability-staking-icon.svg")} alt="" aria-hidden="true" />
+        </a>
+        <div className="capability-image" aria-hidden="true">
+          <img src={asset(capability.image)} alt="" loading="lazy" />
+        </div>
+      </article>
+
+      <article className="strength-card ds-card-text">
+        <div className="strength-card__copy">
+          <h3 className="tc-type-h3">{strengthTitle}</h3>
+          <p className="tc-type-body">{strengthBody}</p>
+        </div>
+        <a className="strength-card__button" href="#components" onClick={stopNavigation}>
+          <span className="tc-type-link-big">Find out more</span>
+          <img src={asset("strength-button-arrow.svg")} alt="" aria-hidden="true" />
+        </a>
+      </article>
+
+      <article className="about-indexed-card ds-card-numbered">
+        <span className="about-indexed-card__number tc-type-h1">01</span>
+        <div>
+          <h3 className="tc-type-h3">{indexedTitle}</h3>
+          <p className="tc-type-body">{indexedBody}</p>
+        </div>
+      </article>
+    </div>
+  );
+}
+
+function DirectoryListItemPreview() {
+  return (
+    <a className="directory-list-item ds-directory-list-item" href="#components" onClick={stopNavigation}>
+      <span className="directory-list-item__avatar" aria-hidden="true">
+        <img src="https://framerusercontent.com/images/KBgYlLn8EVUKPwqywWKPk2vlxZ8.jpg?width=400&height=400" alt="" />
       </span>
-      <span className="ecosystem-resource__arrow"><DotArrowIcon /></span>
+      <span className="directory-list-item__copy">
+        <span className="directory-list-item__name tc-type-h5">BigbangX</span>
+        <span className="directory-list-item__summary tc-type-body-small">NFT marketplace</span>
+      </span>
+      <span className="directory-list-item__meta">
+        <span className="native-phase__badge directory-list-item__badge--native">ON-CHAIN NATIVE</span>
+      </span>
+      <span className="directory-list-item__arrow"><DotArrowIcon /></span>
     </a>
+  );
+}
+
+function DirectoryListItemSpecimen({ entry }: { entry: EcosystemEntry }) {
+  return (
+    <a className="directory-list-item" href="#components" onClick={stopNavigation} aria-label={`${entry.name}, ${entry.summary}`}>
+      <span className="directory-list-item__avatar" aria-hidden="true">
+        {entry.avatar ? <img src={entry.avatar} alt="" loading="lazy" /> : <span>{entry.name.slice(0, 2).toUpperCase()}</span>}
+      </span>
+      <span className="directory-list-item__copy">
+        <span className="directory-list-item__name tc-type-h5">{entry.name}</span>
+        <span className="directory-list-item__summary tc-type-body-small">{entry.summary}</span>
+      </span>
+      <span className="directory-list-item__meta">
+        {entry.badge && <span className="native-phase__badge directory-list-item__badge--native">{entry.badge}</span>}
+      </span>
+      <span className="directory-list-item__arrow"><DotArrowIcon /></span>
+    </a>
+  );
+}
+
+function DirectoryListPreview() {
+  const applications = ecosystemCategories[0];
+
+  return (
+    <section className="ecosystem-category ds-directory-list" aria-labelledby="ds-directory-list-title">
+      <header className="ecosystem-category__header">
+        <div>
+          <h2 className="tc-type-h2" id="ds-directory-list-title">{applications.title}</h2>
+          <p className="tc-type-body-small">{applications.description}</p>
+        </div>
+        <span className="ecosystem-category__rule" aria-hidden="true" />
+        <span className="ecosystem-category__count tc-type-h4">{applications.entries.length}</span>
+      </header>
+      <div className="ecosystem-grid">
+        {applications.entries.map((entry) => (
+          <DirectoryListItemSpecimen entry={entry} key={`${applications.id}-${entry.name}`} />
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -1074,8 +1194,16 @@ function ComponentPreview({ name }: { name: string }) {
       return <ArrowButtons />;
     case "Founder story":
       return <FounderStoryPreview />;
-    case "Ecosystem resource":
-      return <EcosystemResourcePreview />;
+    case "Avatar":
+      return <AvatarPreview />;
+    case "Card":
+      return <CardPreview />;
+    case "Directory navigation button":
+      return <DirectoryNavigationButtonPreview />;
+    case "Directory list item":
+      return <DirectoryListItemPreview />;
+    case "Directory list":
+      return <DirectoryListPreview />;
     case "Back to top button":
       return <BackTopPreview />;
     case "Collaps button":

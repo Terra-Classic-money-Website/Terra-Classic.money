@@ -242,11 +242,30 @@ body:has(.ds-app) { background: var(--lunc-white); }
 .ds-language-x-button .language-x-icon--hover { opacity: 0; display: block; position: absolute; }
 .ds-language-x-button:hover .language-x-icon--default, .ds-language-x-button:focus-visible .language-x-icon--default { opacity: 0; }
 .ds-language-x-button:hover .language-x-icon--hover, .ds-language-x-button:focus-visible .language-x-icon--hover { opacity: 1; }
-.ds-ecosystem-resource { width: min(100%, 680px); }
+.ds-avatar-gallery { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.ds-avatar-gallery .directory-list-item__avatar,
+.ds-avatar-gallery .roadmap-row__avatar { flex: 0 0 auto; }
+.ds-card-gallery { width: 100%; display: flex; align-items: flex-start; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+.ds-card-gallery > article { flex: 0 0 392px; }
+.ds-card-media.capability-card { width: 392px; min-height: 680px; padding: var(--tc-spacing-card-capability); padding-bottom: 32px; display: grid; grid-template-rows: auto auto minmax(0, 1fr); }
+.ds-card-media .capability-copy,
+.ds-card-text .strength-card__copy,
+.ds-card-numbered.about-indexed-card > div { width: auto; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+.ds-card-gallery .capability-copy p,
+.ds-card-gallery .strength-card p,
+.ds-card-gallery .about-indexed-card p { margin: 0; }
+.ds-card-media .capability-cta { width: min(320px, 100%); min-width: 0; margin: 32px 0 0; }
+.ds-card-media .capability-image { position: relative; left: auto; top: auto; right: auto; bottom: auto; width: min(100%, 319px); height: auto; aspect-ratio: 1071 / 540; margin-top: 72px; align-self: center; justify-self: center; transform: none; }
+.ds-card-text.strength-card,
+.ds-card-numbered.about-indexed-card { width: 392px; min-height: 384px; padding-bottom: 32px; }
+.ds-directory-nav.directory-nav { width: 100%; margin-top: 0; flex: 1 1 auto; }
+.ds-directory-list-item { width: min(100%, 680px); }
+.ds-directory-list { width: 100%; flex: 1 1 auto; }
 .ds-open-work-card { width: min(100%, 392px); flex: 0 0 auto; }
 .ds-roadmap-preview { width: 100%; max-width: none; flex: 1 1 auto; border-radius: var(--radius-card); box-shadow: inset 0 0 0 1px var(--lunc-light-gray); }
-.ds-component-card--20 .ds-component-stage { min-height: 520px; align-items: flex-start; }
-.ds-component-card--21 .ds-component-stage { width: 100%; min-height: 0; align-items: flex-start; overflow: visible; }
+.ds-component-card--19 .ds-component-stage { align-items: flex-start; }
+.ds-component-card--24 .ds-component-stage { min-height: 520px; align-items: flex-start; }
+.ds-component-card--25 .ds-component-stage { width: 100%; min-height: 0; align-items: flex-start; overflow: visible; }
 
 @keyframes ds-state-enter {
   from { opacity: .84; transform: translateY(8px); }
