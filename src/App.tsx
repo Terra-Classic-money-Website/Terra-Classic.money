@@ -1076,29 +1076,29 @@ function FAQ() {
   );
 }
 
-function EcosystemResourceCard({ entry }: { entry: EcosystemEntry }) {
+function DirectoryListItem({ entry }: { entry: EcosystemEntry }) {
   const content = (
     <>
-      <span className="ecosystem-resource__avatar" aria-hidden="true">
+      <span className="directory-list-item__avatar" aria-hidden="true">
         {entry.avatar ? <img src={entry.avatar} alt="" loading="lazy" /> : <span>{entry.name.slice(0, 2).toUpperCase()}</span>}
       </span>
-      <span className="ecosystem-resource__copy">
-        <span className="ecosystem-resource__name tc-type-h5">{entry.name}</span>
-        {entry.summary && <span className="ecosystem-resource__summary tc-type-body-small">{entry.summary}</span>}
+      <span className="directory-list-item__copy">
+        <span className="directory-list-item__name tc-type-h5">{entry.name}</span>
+        {entry.summary && <span className="directory-list-item__summary tc-type-body-small">{entry.summary}</span>}
       </span>
-      <span className="ecosystem-resource__meta">
-        {(entry.badge || entry.status) && <span className={`native-phase__badge ${entry.status ? "ecosystem-resource__badge--muted" : "ecosystem-resource__badge--native"}`}>{entry.status || entry.badge}</span>}
+      <span className="directory-list-item__meta">
+        {(entry.badge || entry.status) && <span className={`native-phase__badge ${entry.status ? "directory-list-item__badge--muted" : "directory-list-item__badge--native"}`}>{entry.status || entry.badge}</span>}
       </span>
-      {entry.href && <span className="ecosystem-resource__arrow"><DotArrowIcon /></span>}
+      {entry.href && <span className="directory-list-item__arrow"><DotArrowIcon /></span>}
     </>
   );
 
   if (!entry.href) {
-    return <div className="ecosystem-resource ecosystem-resource--disabled">{content}</div>;
+    return <div className="directory-list-item directory-list-item--disabled">{content}</div>;
   }
 
   return (
-    <a className="ecosystem-resource" href={entry.href} target="_blank" rel="noopener noreferrer" aria-label={`${entry.name}${entry.summary ? `, ${entry.summary}` : ""}`}>
+    <a className="directory-list-item" href={entry.href} target="_blank" rel="noopener noreferrer" aria-label={`${entry.name}${entry.summary ? `, ${entry.summary}` : ""}`}>
       {content}
     </a>
   );
@@ -1119,7 +1119,7 @@ function EcosystemCategorySection({ category }: { category: EcosystemCategory })
       </header>
       <div className="ecosystem-grid">
         {category.entries.map((entry) => (
-          <EcosystemResourceCard entry={entry} key={`${category.id}-${entry.name}-${entry.summary}-${entry.href || entry.status || "static"}`} />
+          <DirectoryListItem entry={entry} key={`${category.id}-${entry.name}-${entry.summary}-${entry.href || entry.status || "static"}`} />
         ))}
       </div>
     </section>
@@ -1142,9 +1142,9 @@ function EcosystemDirectory() {
         <h1 className="tc-type-h1" id="ecosystem-page-title">Terra Classic ecosystem</h1>
         <p className="tc-type-h4">A neutral directory of Terra Classic apps, wallets, bridges, validators, developer resources, infrastructure providers, and community tools. Listings are informational only and do not imply endorsement, audit, or official status.</p>
       </div>
-      <nav className="ecosystem-index" aria-label="Ecosystem categories">
+      <nav className="directory-nav" aria-label="Ecosystem categories">
         {ecosystemCategories.map((category) => (
-          <button className="tc-type-link-big" type="button" key={category.id} onClick={() => handleCategoryLinkClick(category.id)} aria-controls={category.id}>
+          <button className="directory-nav__button tc-type-link-big" type="button" key={category.id} onClick={() => handleCategoryLinkClick(category.id)} aria-controls={category.id}>
             {category.title} <span>({category.entries.length})</span>
           </button>
         ))}
@@ -1198,9 +1198,9 @@ function MarketsDirectory() {
         <h1 className="tc-type-h1" id="markets-page-title">Terra Classic markets</h1>
         <p className="tc-type-h4">A neutral directory of centralized and decentralized places where LUNC can be bought or swapped. Listings are informational only and do not imply endorsement, liquidity quality, custody safety, or investment advice.</p>
       </div>
-      <nav className="ecosystem-index" aria-label="Market categories">
+      <nav className="directory-nav" aria-label="Market categories">
         {marketCategories.map((category) => (
-          <button className="tc-type-link-big" type="button" key={category.id} onClick={() => handleCategoryLinkClick(category.id)} aria-controls={category.id}>
+          <button className="directory-nav__button tc-type-link-big" type="button" key={category.id} onClick={() => handleCategoryLinkClick(category.id)} aria-controls={category.id}>
             {category.title} <span>({category.entries.length})</span>
           </button>
         ))}
@@ -1502,14 +1502,14 @@ function AboutContributors() {
             </header>
             <div className="about-contributor-rows">
               {group.rows.map(([name, role, period]) => (
-                <article className="ecosystem-resource about-contributor-row" key={`${group.title}-${name}-${role}`}>
-                  <span className="ecosystem-resource__avatar about-contributor-avatar" aria-hidden="true">{getContributorInitials(name)}</span>
-                  <span className="ecosystem-resource__copy">
-                    <strong className="ecosystem-resource__name tc-type-h5">{name}</strong>
-                    <span className="ecosystem-resource__summary tc-type-body-small">{role}</span>
+                <article className="directory-list-item about-contributor-row" key={`${group.title}-${name}-${role}`}>
+                  <span className="directory-list-item__avatar about-contributor-avatar" aria-hidden="true">{getContributorInitials(name)}</span>
+                  <span className="directory-list-item__copy">
+                    <strong className="directory-list-item__name tc-type-h5">{name}</strong>
+                    <span className="directory-list-item__summary tc-type-body-small">{role}</span>
                   </span>
                   {period ? (
-                    <span className="ecosystem-resource__meta about-contributor-row__meta">
+                    <span className="directory-list-item__meta about-contributor-row__meta">
                       <small className="tc-type-body-very-small">{period}</small>
                     </span>
                   ) : null}
@@ -2019,7 +2019,7 @@ function DecentralizationResources() {
           </header>
           <div className="ecosystem-grid">
             {group.entries.map((entry) => (
-              <EcosystemResourceCard entry={entry} key={`${group.title}-${entry.name}-${entry.href || entry.status || "static"}`} />
+              <DirectoryListItem entry={entry} key={`${group.title}-${entry.name}-${entry.href || entry.status || "static"}`} />
             ))}
           </div>
         </section>
@@ -2074,6 +2074,14 @@ const roadmapStatusLabels: Record<RoadmapMilestone["status"], string> = {
   completed: "Completed",
   "source-needed": "Source needed",
 };
+
+const roadmapPageHiddenRowIds = new Set<RoadmapRow["id"]>([
+  "public-l1-governance",
+  "community-terraport",
+  "community-sdk",
+  "community-selenium",
+  "community-garuda",
+]);
 
 function readTimelineMetric(element: HTMLElement, property: string) {
   return Number.parseFloat(getComputedStyle(element).getPropertyValue(property)) || 0;
@@ -2211,8 +2219,9 @@ function RoadmapProjectRow({
 }
 
 function RoadmapTimeline() {
-  const publicRows = roadmapRows.filter((row) => row.group === "public");
-  const communityRows = roadmapRows.filter((row) => row.group === "community");
+  const pageRows = roadmapRows.filter((row) => !roadmapPageHiddenRowIds.has(row.id));
+  const publicRows = pageRows.filter((row) => row.group === "public");
+  const communityRows = pageRows.filter((row) => row.group === "community");
   const [timelineMetrics, setTimelineMetrics] = useState({ monthWidth: 248, scrollLeft: 0 });
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
   const visibleLaneStartPx = timelineMetrics.scrollLeft;
@@ -2270,7 +2279,7 @@ function RoadmapPage() {
         <div className="roadmap-page__intro">
           <div className="roadmap-page__copy">
             <h1 className="tc-type-h1" id="roadmap-page-title">Terra Classic roadmap</h1>
-            <p className="tc-type-h4">A source-aware timeline for Terra Classic L1 work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
+            <p className="tc-type-h4">A source-aware timeline for core protocol work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
           </div>
           <div className="roadmap-page__trust">
             <span className="native-phase__badge">UPDATED MAY 21, 2026</span>
