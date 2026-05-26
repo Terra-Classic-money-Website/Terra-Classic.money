@@ -2075,6 +2075,14 @@ const roadmapStatusLabels: Record<RoadmapMilestone["status"], string> = {
   "source-needed": "Source needed",
 };
 
+const roadmapPageHiddenRowIds = new Set<RoadmapRow["id"]>([
+  "public-l1-governance",
+  "community-terraport",
+  "community-sdk",
+  "community-selenium",
+  "community-garuda",
+]);
+
 function readTimelineMetric(element: HTMLElement, property: string) {
   return Number.parseFloat(getComputedStyle(element).getPropertyValue(property)) || 0;
 }
@@ -2211,8 +2219,9 @@ function RoadmapProjectRow({
 }
 
 function RoadmapTimeline() {
-  const publicRows = roadmapRows.filter((row) => row.group === "public");
-  const communityRows = roadmapRows.filter((row) => row.group === "community");
+  const pageRows = roadmapRows.filter((row) => !roadmapPageHiddenRowIds.has(row.id));
+  const publicRows = pageRows.filter((row) => row.group === "public");
+  const communityRows = pageRows.filter((row) => row.group === "community");
   const [timelineMetrics, setTimelineMetrics] = useState({ monthWidth: 248, scrollLeft: 0 });
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
   const visibleLaneStartPx = timelineMetrics.scrollLeft;
@@ -2270,7 +2279,7 @@ function RoadmapPage() {
         <div className="roadmap-page__intro">
           <div className="roadmap-page__copy">
             <h1 className="tc-type-h1" id="roadmap-page-title">Terra Classic roadmap</h1>
-            <p className="tc-type-h4">A source-aware timeline for Terra Classic L1 work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
+            <p className="tc-type-h4">A source-aware timeline for core protocol work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
           </div>
           <div className="roadmap-page__trust">
             <span className="native-phase__badge">UPDATED MAY 21, 2026</span>
