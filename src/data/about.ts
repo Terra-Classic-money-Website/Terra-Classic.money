@@ -57,30 +57,27 @@ export const supportBoundaries = [
 export const contributorGroups = [
   {
     title: "Donors and sponsors",
-    description: "Financial support for website maintenance or development.",
+    description: "",
     rows: [
       ["Public supporter records", "Open for verified public entries", "Pending"],
     ],
   },
   {
     title: "Translations",
-    description: "Localization support and language improvements.",
+    description: "",
     rows: [
       ["Public translation records", "Open for verified public entries", "Pending"],
     ],
   },
   {
-    title: "Service contributors",
-    description: "Design, development, research, content, corrections, reviews, testing, infrastructure, or maintenance work.",
+    title: "Service contributors, domain owners and maintainers",
+    description: "",
     rows: [
-      ["Dawid Skinder", "Project direction, design system, content structure, and website production", "2026"],
-    ],
-  },
-  {
-    title: "Domain owners and maintainers",
-    description: "Domain custody, repository maintenance, technical publishing, or long-term continuity.",
-    rows: [
-      ["Dawid Skinder", "Domain stewardship and initial project maintenance", "2026"],
+      ["Dawid Skinder", "Domain stewardship, project direction, design system, content structure, and website production", ""],
+      ["Don Lunc", "Maintainer", ""],
+      ["El Paco Lunc", "Maintainer", ""],
+      ["Whalliam", "Maintainer", ""],
+      ["Vladimir POSTHUMAN", "Maintainer", ""],
     ],
   },
 ] as const;

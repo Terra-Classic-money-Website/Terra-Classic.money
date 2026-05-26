@@ -1309,22 +1309,31 @@ function AboutSupport() {
           </div>
         </div>
         <div className="about-boundary-card">
-          <h3 className="tc-type-link-big">Support does not buy influence</h3>
+          <h3 className="tc-type-h5">Support does not buy influence</h3>
           <ul>
-            {supportBoundaries.map((item) => <li className="tc-type-body-small" key={item}><span aria-hidden="true">x</span>{item}</li>)}
+            {supportBoundaries.map((item) => (
+              <li key={item}>
+                <span className="about-boundary-card__icon" aria-hidden="true"><span /><span /><span /><span /><span /></span>
+                <span className="about-boundary-card__text">{item}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
       <div className="about-commercial">
         <article>
           <span className="about-commercial__number tc-type-h1">01</span>
-          <h3 className="tc-type-h4">Voluntary donations</h3>
-          <p className="tc-type-body-small">Donations help maintain and improve the website. They do not create ownership rights, governance rights, promotional rights, editorial rights, listing rights, or any expectation of financial return.</p>
+          <div className="about-commercial__copy">
+            <h3 className="tc-type-h3">Voluntary donations</h3>
+            <p className="tc-type-body">Donations help maintain and improve the website. They do not create ownership rights, governance rights, promotional rights, editorial rights, listing rights, or any expectation of financial return.</p>
+          </div>
         </article>
         <article>
           <span className="about-commercial__number tc-type-h1">02</span>
-          <h3 className="tc-type-h4">Terra Classic L2 Directory</h3>
-          <p className="tc-type-body-small">A paid discovery directory for Terra Classic-related L2 projects, tokens, meme coins, experimental apps, and community initiatives. Listings are paid promotional entries and do not represent endorsement by Terra-classic.money, Terra Classic governance, validators, or maintainers.</p>
+          <div className="about-commercial__copy">
+            <h3 className="tc-type-h3">Terra Classic L2 Directory</h3>
+            <p className="tc-type-body">A paid discovery directory for Terra Classic-related L2 projects, tokens, meme coins, experimental apps, and community initiatives. Listings are paid promotional entries and do not represent endorsement by Terra-classic.money, Terra Classic governance, validators, or maintainers.</p>
+          </div>
         </article>
       </div>
       <div className="about-hero-actions">
@@ -1336,6 +1345,12 @@ function AboutSupport() {
 }
 
 function AboutContributors() {
+  const getContributorInitials = (name: string) => {
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    if (parts.length > 1) return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+    return name.slice(0, 2).toUpperCase();
+  };
+
   return (
     <section className="about-section about-contributors" id="contributors" aria-labelledby="about-contributors-title">
       <div className="about-section__copy">
@@ -1351,18 +1366,24 @@ function AboutContributors() {
             <header>
               <div>
                 <h3 className="tc-type-h4" id={`${group.title.replace(/\s+/g, "-").toLowerCase()}-title`}>{group.title}</h3>
-                <p className="tc-type-body-small">{group.description}</p>
+                {group.description ? <p className="tc-type-body-small">{group.description}</p> : null}
               </div>
               <span className="ecosystem-category__rule" aria-hidden="true" />
               <span className="about-contributor-count tc-type-h4">{group.rows.length}</span>
             </header>
             <div className="about-contributor-rows">
               {group.rows.map(([name, role, period]) => (
-                <article className="about-contributor-row" key={`${group.title}-${name}-${period}`}>
-                  <span className="about-contributor-avatar" aria-hidden="true">{name.slice(0, 1)}</span>
-                  <strong className="tc-type-link-big">{name}</strong>
-                  <span className="tc-type-body-small">{role}</span>
-                  <small className="tc-type-body-very-small">{period}</small>
+                <article className="ecosystem-resource about-contributor-row" key={`${group.title}-${name}-${role}`}>
+                  <span className="ecosystem-resource__avatar about-contributor-avatar" aria-hidden="true">{getContributorInitials(name)}</span>
+                  <span className="ecosystem-resource__copy">
+                    <strong className="ecosystem-resource__name tc-type-h5">{name}</strong>
+                    <span className="ecosystem-resource__summary tc-type-body-small">{role}</span>
+                  </span>
+                  {period ? (
+                    <span className="ecosystem-resource__meta about-contributor-row__meta">
+                      <small className="tc-type-body-very-small">{period}</small>
+                    </span>
+                  ) : null}
                 </article>
               ))}
             </div>
@@ -1371,7 +1392,7 @@ function AboutContributors() {
       </div>
       <div className="about-hero-actions">
         <LinkButton href={links.websiteRepository} dark>View contributor log</LinkButton>
-        <LinkButton href={`${links.websiteRepository}/issues`}>Suggest a correction</LinkButton>
+        <LinkButton href={`${links.websiteRepository}/issues`} dark>Suggest a correction</LinkButton>
       </div>
     </section>
   );
