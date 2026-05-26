@@ -154,6 +154,18 @@ function LinkButton({ href, children, dark = false }: { href: string; children: 
   );
 }
 
+function ActionButton({ children, dark = false, onClick }: { children: string; dark?: boolean; onClick: () => void }) {
+  return (
+    <button className={`pill-button tc-type-link-big ${dark ? "pill-button--dark" : ""}`} type="button" onClick={onClick}>
+      <span>{children}</span>
+      <span className="button-arrow-icon" aria-hidden="true">
+        <img className="button-arrow-icon__default" src={asset(dark ? "button-arrow-white.svg" : "button-arrow-light.svg")} alt="" />
+        <img className="button-arrow-icon__hover" src={asset(dark ? "button-arrow-black.svg" : "button-arrow-white.svg")} alt="" />
+      </span>
+    </button>
+  );
+}
+
 function ShareOnXButton({ href }: { href: string }) {
   const safeHref = isPlaceholderLink(href) ? "#" : href;
   return (
@@ -485,6 +497,113 @@ function VideoModal({ open, onClose }: { open: boolean; onClose: () => void }) {
             <p className="tc-type-body">The explainer URL is centralized in <code>src/data/links.ts</code> and can be enabled without changing component code.</p>
           </>
         )}
+      </div>
+    </div>
+  );
+}
+
+const donationAddresses = [
+  {
+    label: "LUNC",
+    value: "terra1yerplv7hshr5w2mpa2em0knlx3dm6aln9fwj2m",
+  },
+  {
+    label: "BTC (Native SegWit)",
+    value: "bc1q4vevf342hszd367c5n5qf24f7heek04w5zmsv4",
+  },
+  {
+    label: "BNB",
+    value: "0x44Db62D8c5507952c2cFBD2F232A975950789E26",
+  },
+] as const;
+
+function DonationModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const dialog = ref.current;
+    dialog?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key === "Tab" && dialog) {
+        const focusable = dialog.querySelectorAll<HTMLElement>("button,a");
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { last.focus(); event.preventDefault(); }
+        if (!event.shiftKey && document.activeElement === last) { first.focus(); event.preventDefault(); }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("keydown", onKey); previous?.focus(); };
+  }, [open, onClose]);
+
+  useEffect(() => {
+    if (!open) setCopied(null);
+  }, [open]);
+
+  async function copyAddress(label: string, value: string) {
+    const markCopied = () => {
+      setCopied(label);
+      window.setTimeout(() => setCopied((current) => current === label ? null : current), 1800);
+    };
+
+    try {
+      await navigator.clipboard.writeText(value);
+      markCopied();
+    } catch (error) {
+      const fallback = document.createElement("textarea");
+      fallback.value = value;
+      fallback.setAttribute("readonly", "");
+      fallback.style.position = "fixed";
+      fallback.style.left = "-9999px";
+      document.body.appendChild(fallback);
+      fallback.select();
+      const copiedWithFallback = document.execCommand("copy");
+      fallback.remove();
+      if (copiedWithFallback) {
+        markCopied();
+      } else {
+        console.warn("DONATION_ADDRESS_COPY_FAILED", error);
+      }
+    }
+  }
+
+  if (!open) return null;
+
+  return (
+    <div className="modal-backdrop donation-modal-backdrop" onMouseDown={onClose}>
+      <div className="modal donation-modal" role="dialog" aria-modal="true" aria-labelledby="donation-modal-title" ref={ref} tabIndex={-1} onMouseDown={(event) => event.stopPropagation()}>
+        <button className="modal-close donation-modal__close x-control" aria-label="Close donation addresses" onClick={onClose}>
+          <span /><span /><span /><span /><span />
+        </button>
+        <div className="donation-modal__copy">
+          <h2 className="tc-type-h3" id="donation-modal-title">Donation addresses</h2>
+          <div className="donation-addresses" aria-label="Donation addresses">
+            {donationAddresses.map(({ label, value }) => (
+              <article className="donation-address" key={label}>
+                <div className="donation-address__copy">
+                  <h3 className="tc-type-link-big">{label}</h3>
+                  <code>{value}</code>
+                </div>
+                <button className="donation-copy-button tc-type-link-small" type="button" onClick={() => void copyAddress(label, value)}>
+                  {copied === label ? "Copied" : "Copy"}
+                </button>
+              </article>
+            ))}
+          </div>
+          <div className="donation-attribution">
+            <h3 className="tc-type-h5">Attribution (optional)</h3>
+            <p className="tc-type-body-small">If you want to be credited on the "About Terra-Classic.money" page:</p>
+            <ul className="tc-type-body-small">
+              <li>include your handle/name in the memo/message where your wallet supports it, or</li>
+              <li>reply in this thread with: "Donated + your handle" (you can DM me instead if you prefer privacy).</li>
+            </ul>
+            <p className="tc-type-body-small">If you prefer to stay anonymous, donate with no memo and do not comment.</p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -1145,7 +1264,7 @@ function AboutHero() {
       </div>
       <div className="stats-bottom decentralization-stats-hero__bottom about-hero__bottom">
         <div className="decentralization-hero-actions about-hero-actions">
-          <LinkButton href={page("#top")}>Explore the website</LinkButton>
+          <LinkButton href={page("index.html")}>Explore the website</LinkButton>
           <a className="pill-button about-github-button tc-type-link-big" href={links.websiteRepository} target="_blank" rel="noopener noreferrer">
             <span>Contribute on Github</span>
             <img src={asset("community-github-figma.svg")} alt="" aria-hidden="true" width="32" height="32" />
@@ -1187,7 +1306,7 @@ function AboutOwnership() {
           <p className="tc-type-body">No single validator owns Terra Classic. No single contributor owns Terra Classic. No single website owns Terra Classic. No single community account speaks for the entire network.</p>
           <p className="tc-type-body">Terra Classic is a public blockchain coordinated through validators, delegators, governance, builders, open-source software, infrastructure providers, users, and independent contributors. Its direction emerges through public participation, not private command.</p>
         </div>
-        <LinkButton href={links.decentralization} dark>More about decentralization</LinkButton>
+        <LinkButton href={page(links.decentralization)} dark>More about decentralization</LinkButton>
       </div>
       <div className="about-timeline" aria-label="Terra Classic ownership model">
         {ownershipTimeline.map((item, index) => (
@@ -1232,7 +1351,14 @@ function AboutVisualBand({ variant }: { variant: "open-source" | "contribute" })
         <span />
         <span />
       </div>
-      <img className={`about-visual-band__image about-visual-band__image--${variant}`} src={asset(foreground.file)} alt="" loading="lazy" width={foreground.width} height={foreground.height} />
+      {variant === "open-source" ? (
+        <picture>
+          <source media="(max-width: 1299px)" srcSet={asset("about-open-source-planet-full.png")} />
+          <img className="about-visual-band__image about-visual-band__image--open-source" src={asset(foreground.file)} alt="" loading="lazy" width={foreground.width} height={foreground.height} />
+        </picture>
+      ) : (
+        <img className={`about-visual-band__image about-visual-band__image--${variant}`} src={asset(foreground.file)} alt="" loading="lazy" width={foreground.width} height={foreground.height} />
+      )}
     </div>
   );
 }
@@ -1291,13 +1417,15 @@ function AboutContribute() {
       <AboutIndexedGrid items={contributionPaths} visualVariant="contribute" />
       <div className="about-hero-actions">
         <LinkButton href={`${links.websiteRepository}/issues`} dark>Report an issue or suggest a change</LinkButton>
-        <LinkButton href={links.websiteRepository} dark>View contribution guidelines</LinkButton>
+        <LinkButton href={`${links.websiteRepository}/blob/main/README.md`} dark>View contribution guidelines</LinkButton>
       </div>
     </section>
   );
 }
 
 function AboutSupport() {
+  const [donationOpen, setDonationOpen] = useState(false);
+
   return (
     <section className="about-section about-support" id="support" aria-labelledby="about-support-title">
       <div className="about-support__head">
@@ -1337,9 +1465,10 @@ function AboutSupport() {
         </article>
       </div>
       <div className="about-hero-actions">
-        <LinkButton href="#support" dark>Make a donation</LinkButton>
+        <ActionButton dark onClick={() => setDonationOpen(true)}>Make a donation</ActionButton>
         <LinkButton href={links.layer2} dark>Paid listing packages</LinkButton>
       </div>
+      <DonationModal open={donationOpen} onClose={() => setDonationOpen(false)} />
     </section>
   );
 }

@@ -9,7 +9,7 @@ export const links = {
   websiteRepository: "https://github.com/Terra-Classic-money-Website/Terra-Classic.money",
   telegram: "TODO_REPLACE_WITH_FINAL_TELEGRAM_URL",
   layer2: "https://l2.terra-classic.money",
-  docs: "TODO_REPLACE_WITH_FINAL_DOCUMENTATION_URL",
+  docs: "https://docs.terra-classic.money",
   wallet: "TODO_REPLACE_WITH_FINAL_WALLET_GUIDE_URL",
   stakingDocs: "TODO_REPLACE_WITH_FINAL_STAKING_DOCS_URL",
   swapDocs: "TODO_REPLACE_WITH_FINAL_SWAP_DOCS_URL",
