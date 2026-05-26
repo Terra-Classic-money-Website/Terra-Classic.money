@@ -10,7 +10,7 @@ It does not replace `designsystem.html`. The design system remains the live visu
 
 ## Source Of Truth Split
 
-- `designsystem.html`: live visual source of truth for typography, color, padding tokens, components, states, motion, hover behavior, breakpoint behavior, and reusable UI examples.
+- `designsystem.html`: live visual source of truth for typography, color, semantic spacing rules and tokens, components, states, motion, hover behavior, breakpoint behavior, and reusable UI examples.
 - `DESIGN.md`: written execution contract for page composition, hierarchy, density, rhythm, responsive expectations, pattern governance, and rendered QA.
 - Homepage implementation: canonical example of how the design system currently behaves in production code.
 - Supplied wireframes: page-specific structure and intent. They must be translated through the existing homepage language and design system.
@@ -36,6 +36,7 @@ Design decisions should support credibility, clarity, and usefulness. Avoid hype
 ## Component And Token Rules
 
 - Reuse existing typography, spacing, color, component, state, and motion tokens from `designsystem.html` and the shared CSS/token files.
+- Use the semantic spacing system from `designsystem.html` and the shared CSS tokens before introducing page-local padding, gap, or margin values.
 - New reusable subpage components must be reflected in `designsystem.html`.
 - Avoid one-off padding, typography, breakpoint, color, or motion values unless there is a clear product reason and the decision is documented.
 - Interactive states must include deliberate motion matching the design system's quality level.
@@ -51,7 +52,7 @@ Use the existing breakpoint model unless the task explicitly asks to change it a
 - Tablet: 768-1299px
 - Mobile: 767px and below
 
-Subpage work must check representative desktop, tablet, and mobile widths. Mobile and tablet layouts should feel intentionally composed, not merely squeezed versions of desktop sections.
+Subpage work must check representative Desktop Big, Desktop Small, Tablet, and Mobile widths. Mobile and tablet layouts should feel intentionally composed, not merely squeezed versions of desktop sections.
 
 ## Subpage Workflow
 

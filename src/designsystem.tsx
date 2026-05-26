@@ -27,19 +27,37 @@ type TypeMetric = {
   weightVar: string;
 };
 
-type PaddingToken = {
-  name: string;
-  usage: string;
-  source: string;
-  scales: {
-    desktopBig: PaddingMetric;
-    desktopSmallTablet: PaddingMetric;
-    mobile: PaddingMetric;
-  };
+type PaddingBreakpointKey = "desktopBig" | "desktopSmall" | "tablet" | "mobile";
+
+type SpacingValue = {
+  value?: string;
+  valueVar?: string;
+  note?: string;
 };
 
-type PaddingMetric = {
-  valueVar: string;
+type SemanticSpacingRole = {
+  role: string;
+  useWhen: string;
+  values: Record<PaddingBreakpointKey, SpacingValue>;
+};
+
+type MajorSpacingPlace = {
+  title: string;
+  role: string;
+  description: string;
+  appliesTo: string;
+};
+
+type SpacingException = {
+  value: string;
+  currentRole: string;
+  guidance: string;
+};
+
+type SpacingImplementationMap = {
+  role: string;
+  tokens: string[];
+  selectors: string;
   note: string;
 };
 
@@ -69,326 +87,261 @@ const typographyScales = [
   { key: "mobile", suffix: "mobile", name: "Mobile", note: "767px and below" },
 ] as const;
 
-const paddings: PaddingToken[] = [
+const paddingBreakpoints = [
+  { key: "desktopBig", name: "Desktop Big", note: "1500px+" },
+  { key: "desktopSmall", name: "Desktop Small", note: "1300-1499px" },
+  { key: "tablet", name: "Tablet", note: "768-1299px" },
+  { key: "mobile", name: "Mobile", note: "767px and below" },
+] as const satisfies readonly { key: PaddingBreakpointKey; name: string; note: string }[];
+
+const semanticSpacingRoles: SemanticSpacingRole[] = [
   {
-    name: "Page gutter",
-    usage: "Outer frame around the page surface.",
-    source: "main",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-page-gutter-desktop-big", note: "Current desktop app frame." },
-      desktopSmallTablet: { valueVar: "--tc-padding-page-gutter-desktop-small-tablet", note: "Keep desktop density; tablet top bar adds vertical offset separately." },
-      mobile: { valueVar: "--tc-padding-page-gutter-mobile", note: "Current phone frame around page panels." },
+    role: "Major section entry",
+    useWhen: "Starting major white content sections.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-section-entry-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-section-entry-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-section-entry-tablet" },
+      mobile: { valueVar: "--tc-spacing-section-entry-mobile" },
     },
   },
   {
-    name: "Topbar page gutter",
-    usage: "Outer page frame when tablet/mobile top navigation is active.",
-    source: "main at topbar breakpoints",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-page-gutter-topbar-desktop-big", note: "Not used while fixed sidebar is active." },
-      desktopSmallTablet: { valueVar: "--tc-padding-page-gutter-topbar-desktop-small-tablet", note: "Tablet topbar clearance plus side gutters; not used by fixed-sidebar Desktop Small." },
-      mobile: { valueVar: "--tc-padding-page-gutter-topbar-mobile", note: "Current phone frame with top navigation clearance." },
+    role: "Major section side inset",
+    useWhen: "Horizontal content inset inside normal sections.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-section-side-inset-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-section-side-inset-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-section-side-inset-tablet" },
+      mobile: { valueVar: "--tc-spacing-section-side-inset-mobile" },
     },
   },
   {
-    name: "Mobile announcement slot inset",
-    usage: "Phone-only wrapper around the dismissible announcement before the topbar.",
-    source: ".mobile-announcement-slot",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-mobile-announcement-slot-desktop-big", note: "Not used on desktop." },
-      desktopSmallTablet: { valueVar: "--tc-padding-mobile-announcement-slot-desktop-small-tablet", note: "Not used on tablet." },
-      mobile: { valueVar: "--tc-padding-mobile-announcement-slot-mobile", note: "Current phone announcement slot inset." },
+    role: "Dark / immersive panel inset",
+    useWhen: "Hero, protocol panels, stats panels, and dark visual surfaces.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-panel-immersive-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-panel-immersive-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-panel-immersive-tablet" },
+      mobile: { valueVar: "--tc-spacing-panel-immersive-mobile" },
     },
   },
   {
-    name: "Immersive panel inset",
-    usage: "Hero and protocol-style full-bleed dark panels.",
-    source: ".hero, .protocol-panel",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-immersive-panel-desktop-big", note: "Current all-side hero/protocol padding." },
-      desktopSmallTablet: { valueVar: "--tc-padding-immersive-panel-desktop-small-tablet", note: "Existing compact panel inset; should carry into Desktop Small + Tablet." },
-      mobile: { valueVar: "--tc-padding-immersive-panel-mobile", note: "Phone panel side inset; keeps content away from curved panel edges." },
+    role: "Editorial split bottom",
+    useWhen: "What-style sections where copy hands off to a visual block.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-section-split-bottom-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-section-split-bottom-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-section-split-bottom-tablet" },
+      mobile: { valueVar: "--tc-spacing-section-split-bottom-mobile" },
     },
   },
   {
-    name: "Editorial section inset",
-    usage: "Large white content sections with section titles and lead copy.",
-    source: ".section",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-editorial-section-desktop-big", note: "Current large-section rhythm." },
-      desktopSmallTablet: { valueVar: "--tc-padding-editorial-section-desktop-small-tablet", note: "Compact large-section rhythm." },
-      mobile: { valueVar: "--tc-padding-editorial-section-mobile", note: "Current phone section inset." },
+    role: "Compact section entry / closure",
+    useWhen: "FAQ, community, strengths, support, and lower-section handoffs.",
+    values: {
+      desktopBig: { value: "56-60px", note: "Current lower sections still include 60px." },
+      desktopSmall: { value: "56-60px" },
+      tablet: { value: "56-60px" },
+      mobile: { value: "16-48px", note: "Depends on whether the next surface is a rail, visual, or footer." },
     },
   },
   {
-    name: "Editorial split inset",
-    usage: "Asymmetric editorial blocks with a heavier top edge and fixed visual handoff.",
-    source: ".what-editorial",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-editorial-split-desktop-big", note: "Current What-is-Terra editorial block, including 64px visual handoff." },
-      desktopSmallTablet: { valueVar: "--tc-padding-editorial-split-desktop-small-tablet", note: "Compact sides while preserving the 64px visual handoff." },
-      mobile: { valueVar: "--tc-padding-editorial-split-mobile", note: "Current phone What-section editorial handoff." },
+    role: "Large card inset",
+    useWhen: "Large content cards where text needs breathing room.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-card-large-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-card-large-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-card-large-tablet" },
+      mobile: { valueVar: "--tc-spacing-card-large-mobile", note: "20px exists today; review before copying." },
     },
   },
   {
-    name: "Capabilities section inset",
-    usage: "Capabilities section shell; mobile keeps the cards full-width while the heading owns side gutters.",
-    source: ".capabilities-section",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-capabilities-section-desktop-big", note: "Matches large editorial sections." },
-      desktopSmallTablet: { valueVar: "--tc-padding-capabilities-section-desktop-small-tablet", note: "Matches compact editorial sections." },
-      mobile: { valueVar: "--tc-padding-capabilities-section-mobile", note: "Current phone full-width card rail." },
+    role: "Dense card inset",
+    useWhen: "Steps, stats metrics, compact operational cards.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-card-dense-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-card-dense-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-card-dense-tablet" },
+      mobile: { valueVar: "--tc-spacing-card-dense-mobile" },
     },
   },
   {
-    name: "Capabilities heading inset",
-    usage: "Heading and lead copy inside the mobile full-width capabilities section.",
-    source: ".capabilities-head",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-capabilities-head-desktop-big", note: "No extra inset on desktop." },
-      desktopSmallTablet: { valueVar: "--tc-padding-capabilities-head-desktop-small-tablet", note: "No extra inset before mobile." },
-      mobile: { valueVar: "--tc-padding-capabilities-head-mobile", note: "Current phone heading side inset." },
+    role: "Media card inset",
+    useWhen: "Founder/media cards where imagery dominates.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-card-media-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-card-media-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-card-media-tablet" },
+      mobile: { valueVar: "--tc-spacing-card-media-mobile" },
     },
   },
   {
-    name: "Capability card inset",
-    usage: "Internal padding for capability cards.",
-    source: ".capability-card",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-capability-card-desktop-big", note: "Current wide-card inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-capability-card-desktop-small-tablet", note: "Current compact card inset." },
-      mobile: { valueVar: "--tc-padding-capability-card-mobile", note: "Current phone capability card inset." },
+    role: "Pill/control horizontal inset",
+    useWhen: "Primary buttons, back-to-top, action pills.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-control-pill-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-control-pill-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-control-pill-tablet" },
+      mobile: { valueVar: "--tc-spacing-control-pill-mobile" },
     },
   },
   {
-    name: "Capability CTA inset",
-    usage: "Inset for compact CTA buttons inside capability cards.",
-    source: ".capability-cta",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-capability-cta-desktop-big", note: "Current wide desktop capability CTA inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-capability-cta-desktop-small-tablet", note: "Current Desktop Small + Tablet compact capability CTA inset." },
-      mobile: { valueVar: "--tc-padding-capability-cta-mobile", note: "Current phone capability CTA inset." },
+    role: "Page frame",
+    useWhen: "Outer frame around page panels; Tablet includes topbar clearance.",
+    values: {
+      desktopBig: { valueVar: "--tc-spacing-page-frame-desktop-big" },
+      desktopSmall: { valueVar: "--tc-spacing-page-frame-desktop-small" },
+      tablet: { valueVar: "--tc-spacing-page-frame-topbar-tablet", note: "Top navigation clearance." },
+      mobile: { valueVar: "--tc-spacing-page-frame-mobile" },
     },
   },
   {
-    name: "Section close inset",
-    usage: "Large sections with shorter bottom closure.",
-    source: ".founders",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-section-close-desktop-big", note: "Current founder section pattern." },
-      desktopSmallTablet: { valueVar: "--tc-padding-section-close-desktop-small-tablet", note: "Compact founder section pattern." },
-      mobile: { valueVar: "--tc-padding-section-close-mobile", note: "Current phone founder section closure." },
+    role: "Mobile full-width rail",
+    useWhen: "Mobile sections where cards run full width while headings keep inner gutters.",
+    values: {
+      desktopBig: { value: "n/a" },
+      desktopSmall: { value: "n/a" },
+      tablet: { value: "n/a" },
+      mobile: { valueVar: "--tc-spacing-section-mobile-rail-mobile" },
     },
   },
   {
-    name: "Native assets section inset",
-    usage: "Native-assets block with tight handoff into strengths on mobile.",
-    source: ".native-assets",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-native-assets-section-desktop-big", note: "Matches the desktop section-close pattern." },
-      desktopSmallTablet: { valueVar: "--tc-padding-native-assets-section-desktop-small-tablet", note: "Matches the compact section-close pattern." },
-      mobile: { valueVar: "--tc-padding-native-assets-section-mobile", note: "Current phone native-assets section inset." },
+    role: "Micro rhythm",
+    useWhen: "Repeated card gaps, section separators, small stacked groups.",
+    values: {
+      desktopBig: { valueVar: "--tc-space-8" },
+      desktopSmall: { valueVar: "--tc-space-8" },
+      tablet: { valueVar: "--tc-space-8" },
+      mobile: { valueVar: "--tc-space-8" },
     },
   },
   {
-    name: "Proof grid section inset",
-    usage: "Strength/proof sections with shorter entry and heavier bottom closure.",
-    source: ".strengths",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-proof-section-desktop-big", note: "Current strengths section rhythm." },
-      desktopSmallTablet: { valueVar: "--tc-padding-proof-section-desktop-small-tablet", note: "Keeps the short entry while reducing side and bottom pressure." },
-      mobile: { valueVar: "--tc-padding-proof-section-mobile", note: "Current phone strengths section inset." },
+    role: "Flush edge",
+    useWhen: "Separators, full-width rails, icon controls, and surfaces with no inset.",
+    values: {
+      desktopBig: { valueVar: "--tc-space-0" },
+      desktopSmall: { valueVar: "--tc-space-0" },
+      tablet: { valueVar: "--tc-space-0" },
+      mobile: { valueVar: "--tc-space-0" },
     },
   },
+];
+
+const majorSpacingPlaces: MajorSpacingPlace[] = [
   {
-    name: "Community section inset",
-    usage: "Short community CTA section.",
-    source: ".community",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-community-section-desktop-big", note: "Current compact community section rhythm." },
-      desktopSmallTablet: { valueVar: "--tc-padding-community-section-desktop-small-tablet", note: "Reduces side pressure while preserving compact height." },
-      mobile: { valueVar: "--tc-padding-community-section-mobile", note: "Current mobile community rhythm." },
-    },
+    title: "Major section boundaries",
+    role: "Major section entry",
+    description: "Major white sections use 120px vertical entry on Desktop Big. If a 1px divider is a formal boundary, keep 120px to the divider and 120px from the divider to the next section unless the handoff is intentionally compact.",
+    appliesTo: "Standard page sections, divider-to-section handoffs, top-level narrative breaks.",
   },
   {
-    name: "FAQ section inset",
-    usage: "FAQ block with a shorter top edge.",
-    source: ".faq",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-faq-section-desktop-big", note: "Current FAQ section rhythm." },
-      desktopSmallTablet: { valueVar: "--tc-padding-faq-section-desktop-small-tablet", note: "Preserves FAQ vertical rhythm with smaller side inset." },
-      mobile: { valueVar: "--tc-padding-faq-section-mobile", note: "Current mobile FAQ rhythm." },
-    },
+    title: "Page shell",
+    role: "Page frame",
+    description: "The outer frame keeps panels away from the viewport edge. Tablet uses the topbar-clearance version because navigation is fixed at the top.",
+    appliesTo: "main, tablet topbar layout, mobile page frame.",
   },
   {
-    name: "Support strip inset",
-    usage: "Logo/support proof strip.",
-    source: ".logo-strip",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-support-strip-desktop-big", note: "Current support strip rhythm." },
-      desktopSmallTablet: { valueVar: "--tc-padding-support-strip-desktop-small-tablet", note: "Keeps vertical rhythm while reducing side pressure." },
-      mobile: { valueVar: "--tc-padding-support-strip-mobile", note: "Current phone support strip inset." },
-    },
+    title: "Hero and dark panels",
+    role: "Dark / immersive panel inset",
+    description: "Dark surfaces need enough internal breathing room for headline, art, and CTA elements without becoming section-like white editorial blocks.",
+    appliesTo: ".hero, .protocol-panel, .stats-panel, dark subpage heroes.",
   },
   {
-    name: "Footer shell inset",
-    usage: "Footer shell and back-to-top container.",
-    source: ".footer",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-footer-shell-desktop-big", note: "Current desktop footer shell." },
-      desktopSmallTablet: { valueVar: "--tc-padding-footer-shell-desktop-small-tablet", note: "Proposed compact footer shell." },
-      mobile: { valueVar: "--tc-padding-footer-shell-mobile", note: "Current mobile footer shell with bottom closure." },
-    },
+    title: "Standard white editorial sections",
+    role: "Major section entry + Major section side inset",
+    description: "Use the major vertical rhythm and side inset together for text-led sections that start a new content idea.",
+    appliesTo: ".section, ecosystem page shells, decentralization resources, about sections.",
   },
   {
-    name: "Standard card inset",
-    usage: "General large-card padding, currently used by strengths cards.",
-    source: ".strength-card",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-standard-card-desktop-big", note: "Current primary card inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-standard-card-desktop-small-tablet", note: "Better density for narrower columns." },
-      mobile: { valueVar: "--tc-padding-standard-card-mobile", note: "Enough breathing room without wasting phone width." },
-    },
+    title: "What-style editorial splits",
+    role: "Major section entry + Editorial split bottom",
+    description: "Use a full section entry, normal side inset, and shorter bottom when copy hands off directly to a visual block.",
+    appliesTo: ".what-editorial and future split editorial sections.",
   },
   {
-    name: "Compact card inset",
-    usage: "Steps, metrics, and dense cards.",
-    source: ".step, .stats-metric",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-compact-card-desktop-big", note: "Current compact card inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-compact-card-desktop-small-tablet", note: "Can stay stable while typography steps down." },
-      mobile: { valueVar: "--tc-padding-compact-card-mobile", note: "Current smaller dense-card value appears repeatedly on phone rows/cards." },
-    },
+    title: "Lower proof, FAQ, support, and footer handoffs",
+    role: "Compact section entry / closure",
+    description: "These areas often close a page or continue a nearby proof section. They should not automatically inherit 120px if a tighter handoff preserves continuity.",
+    appliesTo: ".strengths, .community, .faq, .logo-strip, .footer.",
   },
   {
-    name: "Hero group card inset",
-    usage: "Dense cards inside the hero section.",
-    source: ".hero-group",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-hero-group-card-desktop-big", note: "Current hero group card inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-hero-group-card-desktop-small-tablet", note: "Keep current density for the desktop hero card stack." },
-      mobile: { valueVar: "--tc-padding-hero-group-card-mobile", note: "Current phone hero group card inset." },
-    },
+    title: "Cards and controls",
+    role: "Large card, Dense card, Media card, Pill/control",
+    description: "Choose the card family by density and content type instead of copying a selector. Large cards breathe; dense cards scan; media cards let imagery dominate; controls keep stable horizontal insets.",
+    appliesTo: ".strength-card, .step, .stats-metric, .founder-card, .pill-button.",
+  },
+];
+
+const spacingExceptions: SpacingException[] = [
+  { value: "10px, 12px", currentRole: "Mobile asset-card and hero-group component fit.", guidance: "Component-specific exception only. Do not promote into general section spacing." },
+  { value: "18px", currentRole: "Capability CTA compact fit.", guidance: "Do not reuse unless a button label physically needs tighter horizontal padding." },
+  { value: "20px", currentRole: "Mobile large-card inset.", guidance: "Visible current exception; review later against 24px before standardizing." },
+  { value: "28px", currentRole: "CTA / tablet play-button fit.", guidance: "Treat as control-specific, not a general spacing step." },
+  { value: "40px", currentRole: "Modal compact inset or measured visual gap.", guidance: "Not a global section padding value." },
+  { value: "60px", currentRole: "Lower-section desktop edge.", guidance: "Current implementation value; review whether it should normalize to 56px or 64px." },
+  { value: "72px, 80px, 88px, 112px, 160px", currentRole: "Heights, offsets, article rhythm, or historical local values.", guidance: "Do not copy into new layout padding without a documented reason." },
+];
+
+const spacingImplementationMap: SpacingImplementationMap[] = [
+  {
+    role: "Page frame",
+    tokens: ["--tc-spacing-page-frame", "--tc-spacing-page-frame-topbar"],
+    selectors: "main, tablet/mobile topbar page shell",
+    note: "Outer page shell spacing. The old padding compatibility aliases have been removed.",
   },
   {
-    name: "Info row inset",
-    usage: "Full-width announcement/info rows with compact vertical height.",
-    source: ".announcement",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-info-row-desktop-big", note: "Current desktop horizontal info-row inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-info-row-desktop-small-tablet", note: "Stable because row height stays compact." },
-      mobile: { valueVar: "--tc-padding-info-row-mobile", note: "Current phone announcement card inset." },
-    },
+    role: "Navigation chrome",
+    tokens: ["--tc-spacing-sidebar-chrome", "--tc-spacing-top-navigation", "--tc-spacing-top-navigation-scrolled", "--tc-spacing-mobile-announcement-slot"],
+    selectors: ".sidebar, .mobile-topbar, .mobile-announcement-slot",
+    note: "Chrome-specific spacing. Do not reuse as content-section rhythm.",
   },
   {
-    name: "Asset feature row inset",
-    usage: "Prominent single asset rows with text and trailing controls.",
-    source: ".native-lunc-row",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-asset-feature-row-desktop-big", note: "Current native LUNC feature row inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-asset-feature-row-desktop-small-tablet", note: "Stable while the row remains horizontal." },
-      mobile: { valueVar: "--tc-padding-asset-feature-row-mobile", note: "Current phone row inset when content stacks tighter." },
-    },
+    role: "Dark / immersive panel",
+    tokens: ["--tc-spacing-panel-immersive"],
+    selectors: ".hero, .protocol-panel, .stats-panel",
+    note: "Reusable source for dark panel insets.",
   },
   {
-    name: "Asset card inset",
-    usage: "Compact native asset/token cards.",
-    source: ".native-token-card",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-asset-card-desktop-big", note: "Current token-card horizontal inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-asset-card-desktop-small-tablet", note: "Stable for desktop/tablet token cards." },
-      mobile: { valueVar: "--tc-padding-asset-card-mobile", note: "Current phone token-card inset." },
-    },
+    role: "Standard editorial section",
+    tokens: ["--tc-spacing-section-standard"],
+    selectors: ".section, .ecosystem-page, .decentralization-resources",
+    note: "Main reusable white-section scheme for new sections.",
   },
   {
-    name: "Media card inset",
-    usage: "Founder/media cards and their internal copy blocks.",
-    source: ".founder-card",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-media-card-desktop-big", note: "Current founder card inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-media-card-desktop-small-tablet", note: "Stable because the media card content is image-led." },
-      mobile: { valueVar: "--tc-padding-media-card-mobile", note: "Stable media-card inset on phone." },
-    },
+    role: "Editorial split",
+    tokens: ["--tc-spacing-section-split"],
+    selectors: ".what-editorial",
+    note: "Asymmetric section with a shorter visual handoff.",
   },
   {
-    name: "Pill control inset",
-    usage: "Primary buttons, back-to-top, footer/action pills.",
-    source: ".pill-button, .back-top",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-pill-control-desktop-big", note: "Current desktop pill/control horizontal inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-pill-control-desktop-small-tablet", note: "Keep unless label length forces a local override." },
-      mobile: { valueVar: "--tc-padding-pill-control-mobile", note: "Current phone full-width button inset." },
-    },
+    role: "Compact / closing sections",
+    tokens: ["--tc-spacing-section-close", "--tc-spacing-section-native-assets", "--tc-spacing-section-proof", "--tc-spacing-section-community", "--tc-spacing-section-faq", "--tc-spacing-strip-support", "--tc-spacing-footer-shell"],
+    selectors: ".founders, .native-assets, .strengths, .community, .faq, .logo-strip, .footer",
+    note: "Current grouped lower-section families. Review 60px values before expanding them.",
   },
   {
-    name: "Play CTA inset",
-    usage: "Large play/video CTA controls.",
-    source: ".what-video-button",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-play-cta-desktop-big", note: "Current large play button inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-play-cta-desktop-small-tablet", note: "Desktop Small value; tablet has a dedicated override below." },
-      mobile: { valueVar: "--tc-padding-play-cta-mobile", note: "Current mobile play button inset." },
-    },
+    role: "Cards",
+    tokens: ["--tc-spacing-card-large", "--tc-spacing-card-dense", "--tc-spacing-card-media", "--tc-spacing-card-capability", "--tc-spacing-card-hero-group", "--tc-spacing-card-asset"],
+    selectors: ".strength-card, .step, .stats-metric, .capability-card, .hero-group, .founder-card, .native-token-card",
+    note: "Pick by content density, not by visual resemblance alone.",
   },
   {
-    name: "Tablet play CTA inset",
-    usage: "Tablet-only override for the large play/video CTA.",
-    source: ".what-video-button @ tablet",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-play-cta-desktop-big", note: "Desktop uses the standard Play CTA inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-play-cta-tablet", note: "Current tablet play CTA inset at 768-1299px." },
-      mobile: { valueVar: "--tc-padding-play-cta-mobile", note: "Phone play CTA collapses to the icon-only inset." },
-    },
+    role: "Rows",
+    tokens: ["--tc-spacing-row-info", "--tc-spacing-row-asset-feature"],
+    selectors: ".announcement, .native-lunc-row",
+    note: "Single-row surfaces with fixed-height content and icon alignment.",
   },
   {
-    name: "Sidebar chrome inset",
-    usage: "Fixed left navigation shell and drawer surface.",
-    source: ".sidebar",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-sidebar-chrome-desktop-big", note: "Current expanded desktop sidebar shell." },
-      desktopSmallTablet: { valueVar: "--tc-padding-sidebar-chrome-desktop-small-tablet", note: "Desktop Small keeps the fixed-sidebar model." },
-      mobile: { valueVar: "--tc-padding-sidebar-chrome-mobile", note: "Drawer can reuse sidebar shell once topbar owns page chrome." },
-    },
+    role: "Controls",
+    tokens: ["--tc-spacing-control-pill", "--tc-spacing-control-capability-cta", "--tc-spacing-control-capability-cta-compact", "--tc-spacing-control-play-cta"],
+    selectors: ".pill-button, .back-top, .capability-cta, .what-video-button",
+    note: "Control-fit exceptions are allowed only when label length or icon geometry requires them.",
   },
   {
-    name: "Top navigation inset",
-    usage: "Tablet/mobile top navigation bar.",
-    source: ".mobile-topbar",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-top-navigation-desktop-big", note: "Not used while fixed sidebar is active." },
-      desktopSmallTablet: { valueVar: "--tc-padding-top-navigation-desktop-small-tablet", note: "Tablet topbar once navigation switches at 1299px." },
-      mobile: { valueVar: "--tc-padding-top-navigation-mobile", note: "Current mobile topbar padding." },
-    },
-  },
-  {
-    name: "Scrolled top navigation inset",
-    usage: "Fixed/sticky topbar padding after scroll.",
-    source: ".mobile-topbar--scrolled",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-top-navigation-scrolled-desktop-big", note: "Not used while fixed sidebar is active." },
-      desktopSmallTablet: { valueVar: "--tc-padding-top-navigation-scrolled-desktop-small-tablet", note: "Tablet keeps the same topbar inset after scroll." },
-      mobile: { valueVar: "--tc-padding-top-navigation-scrolled-mobile", note: "Current phone scrolled sticky topbar inset." },
-    },
-  },
-  {
-    name: "Overlay shell inset",
-    usage: "Viewport-safe padding around modal overlays.",
-    source: ".modal-backdrop",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-overlay-shell-desktop-big", note: "Keeps modal away from viewport edges." },
-      desktopSmallTablet: { valueVar: "--tc-padding-overlay-shell-desktop-small-tablet", note: "Stable because the overlay already constrains content width." },
-      mobile: { valueVar: "--tc-padding-overlay-shell-mobile", note: "Minimum safe phone edge clearance." },
-    },
-  },
-  {
-    name: "Modal surface inset",
-    usage: "Internal padding for modal content surfaces.",
-    source: ".modal",
-    scales: {
-      desktopBig: { valueVar: "--tc-padding-modal-surface-desktop-big", note: "Current desktop modal content inset." },
-      desktopSmallTablet: { valueVar: "--tc-padding-modal-surface-desktop-small-tablet", note: "Slightly tighter for tablet-sized overlays." },
-      mobile: { valueVar: "--tc-padding-modal-surface-mobile", note: "Keeps modal content usable on narrow screens." },
-    },
+    role: "Overlays",
+    tokens: ["--tc-spacing-overlay-shell", "--tc-spacing-modal-surface"],
+    selectors: ".modal-backdrop, .modal",
+    note: "Overlay spacing is operator safety/usability spacing, not section rhythm.",
   },
 ];
 
@@ -450,21 +403,40 @@ function rgbToHex(value: string) {
   return `#${[r, g, b].map((channel) => Math.round(channel).toString(16).padStart(2, "0")).join("").toUpperCase()}`;
 }
 
+function resolveCssVariableValue(value: string, seen = new Set<string>()): string {
+  return value.replace(/var\((--[\w-]+)(?:,[^)]+)?\)/g, (match, variable: string) => {
+    if (seen.has(variable)) {
+      return match;
+    }
+
+    const nextSeen = new Set(seen);
+    nextSeen.add(variable);
+    const nestedValue = getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+
+    return nestedValue ? resolveCssVariableValue(nestedValue, nextSeen) : match;
+  }).trim();
+}
+
 function readCssColor(variable: string) {
-  return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+  return resolveCssVariableValue(getComputedStyle(document.documentElement).getPropertyValue(variable).trim());
 }
 
 function useCssVariable(variable: string) {
   const [value, setValue] = useState("");
 
   useEffect(() => {
+    if (!variable) {
+      setValue("");
+      return undefined;
+    }
+
     const readValue = () => setValue(readCssColor(variable));
     readValue();
     window.addEventListener("resize", readValue);
     return () => window.removeEventListener("resize", readValue);
   }, [variable]);
 
-  return value || `var(${variable})`;
+  return value || (variable ? `var(${variable})` : "");
 }
 
 function fontFaceFromWeight(weight: string) {
@@ -1173,17 +1145,128 @@ function TypographyRow({ item, metric }: { item: TypographyToken; metric: TypeMe
 
 function PaddingsSection() {
   return (
-    <section className="ds-section" id="paddings" aria-labelledby="paddings-title">
+    <section className="ds-section ds-spacing-section" id="paddings" aria-labelledby="paddings-title">
       <div className="ds-section__head">
         <h1 id="paddings-title">Paddings</h1>
+        <p className="ds-section__intro">
+          Use spacing by role first, then apply the matching value for the active breakpoint. The approved repeatable scale is 120, 96, 64, 56, 48, 32, 24, 16, 8, and 0px.
+        </p>
       </div>
-      <ScaleHeadings />
-      <div className="ds-scale-row-list">
-        {paddings.map((item) => (
-          <div className="ds-scale-row" key={item.name}>
-            {typographyScales.map((scale) => <PaddingRow item={item} metric={item.scales[scale.key]} key={`${scale.key}-${item.name}`} />)}
+
+      <div className="ds-spacing-stack">
+        <article className="ds-spacing-rule-card ds-spacing-rule-card--primary">
+          <h2>Core rule</h2>
+          <p>
+            Major white sections use <strong>120px</strong> vertical entry on Desktop Big. If a <strong>1px</strong> divider or separator is used as a formal section boundary,
+            keep <strong>120px</strong> from the previous content edge to the divider and another <strong>120px</strong> from the divider to the next content edge, unless the section
+            is intentionally a compact handoff.
+          </p>
+        </article>
+
+        <div className="ds-spacing-table-wrap" role="region" aria-label="Semantic spacing values by breakpoint" tabIndex={0}>
+          <table className="ds-spacing-table">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Use when</th>
+                {paddingBreakpoints.map((breakpoint) => (
+                  <th scope="col" key={breakpoint.key}>
+                    <span>{breakpoint.name}</span>
+                    <small>{breakpoint.note}</small>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {semanticSpacingRoles.map((item) => (
+                <tr key={item.role}>
+                  <th scope="row" data-label="Role">{item.role}</th>
+                  <td data-label="Use when">{item.useWhen}</td>
+                  {paddingBreakpoints.map((breakpoint) => (
+                    <SpacingValueCell value={item.values[breakpoint.key]} label={breakpoint.name} key={`${item.role}-${breakpoint.key}`} />
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <section className="ds-spacing-subsection" aria-labelledby="spacing-places-title">
+          <div className="ds-spacing-subsection__head">
+            <h2 id="spacing-places-title">Major places</h2>
+            <p>Start with these decisions before copying a specific selector. This keeps new pages aligned with the homepage rhythm instead of reproducing one-off measurements.</p>
           </div>
-        ))}
+          <div className="ds-spacing-place-grid">
+            {majorSpacingPlaces.map((place) => (
+              <article className="ds-spacing-place-card" key={place.title}>
+                <span>{place.role}</span>
+                <h3>{place.title}</h3>
+                <p>{place.description}</p>
+                <small>{place.appliesTo}</small>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="ds-spacing-subsection" aria-labelledby="spacing-exceptions-title">
+          <div className="ds-spacing-subsection__head">
+            <h2 id="spacing-exceptions-title">Current exceptions</h2>
+            <p>These values exist in the codebase, but they are not general-purpose spacing rules. Reuse them only when the reason still applies.</p>
+          </div>
+          <div className="ds-spacing-table-wrap" role="region" aria-label="Current spacing exceptions" tabIndex={0}>
+            <table className="ds-spacing-table ds-spacing-table--compact">
+              <thead>
+                <tr>
+                  <th scope="col">Value</th>
+                  <th scope="col">Current role</th>
+                  <th scope="col">Guidance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {spacingExceptions.map((item) => (
+                  <tr key={item.value}>
+                    <th scope="row" data-label="Value">{item.value}</th>
+                    <td data-label="Current role">{item.currentRole}</td>
+                    <td data-label="Guidance">{item.guidance}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="ds-spacing-subsection" aria-labelledby="spacing-map-title">
+          <div className="ds-spacing-subsection__head">
+            <h2 id="spacing-map-title">Implementation map</h2>
+            <p>Use the semantic role first. Use the token and selector notes only to find the current implementation family.</p>
+          </div>
+          <div className="ds-spacing-table-wrap" role="region" aria-label="Spacing implementation map" tabIndex={0}>
+            <table className="ds-spacing-table ds-spacing-table--map">
+              <thead>
+                <tr>
+                  <th scope="col">Role</th>
+                  <th scope="col">Tokens</th>
+                  <th scope="col">Selectors</th>
+                  <th scope="col">Note</th>
+                </tr>
+              </thead>
+              <tbody>
+                {spacingImplementationMap.map((item) => (
+                  <tr key={item.role}>
+                    <th scope="row" data-label="Role">{item.role}</th>
+                    <td data-label="Tokens">
+                      <div className="ds-spacing-code-list">
+                        {item.tokens.map((token) => <code key={token}>{token}</code>)}
+                      </div>
+                    </td>
+                    <td data-label="Selectors">{item.selectors}</td>
+                    <td data-label="Note">{item.note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
     </section>
   );
@@ -1202,24 +1285,16 @@ function ScaleHeadings() {
   );
 }
 
-function PaddingRow({ item, metric }: { item: PaddingToken; metric: PaddingMetric }) {
-  const value = useCssVariable(metric.valueVar);
+function SpacingValueCell({ value, label }: { value: SpacingValue; label: string }) {
+  const resolvedValue = useCssVariable(value.valueVar ?? "");
+  const displayValue = value.value ?? resolvedValue;
 
   return (
-    <article className="ds-type-row ds-padding-row">
-      <div className="ds-type-meta ds-padding-meta">
-        <strong>{item.name}</strong>
-        <span>{value}</span>
-        <span>{item.usage}</span>
-        <code>{item.source}</code>
-      </div>
-      <div className="ds-padding-sample" aria-label={`${item.name}: ${value}`}>
-        <div className="ds-padding-sample__frame" style={{ padding: `var(${metric.valueVar})` }}>
-          <div className="ds-padding-sample__content">{value}</div>
-        </div>
-        <p>{metric.note}</p>
-      </div>
-    </article>
+    <td data-label={label}>
+      <span className="ds-spacing-value">{displayValue}</span>
+      {value.valueVar && <code>{value.valueVar}</code>}
+      {value.note && <small>{value.note}</small>}
+    </td>
   );
 }
 
