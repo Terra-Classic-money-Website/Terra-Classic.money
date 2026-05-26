@@ -1406,7 +1406,6 @@ function AboutShare() {
   return (
     <section className="section about-share" aria-labelledby="about-share-title">
       <div className="about-share__copy">
-        <span className="native-phase__badge">PUBLIC-GOOD WEBSITE</span>
         <h2 className="tc-type-h2" id="about-share-title">Terra Classic gets stronger when public information gets clearer.</h2>
         <p className="tc-type-h4">Share the independent website, challenge weak information, and help keep the ecosystem surface accurate, neutral, and useful.</p>
       </div>
