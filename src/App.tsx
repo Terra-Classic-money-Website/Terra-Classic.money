@@ -182,22 +182,16 @@ function Hero() {
 }
 
 const supportLogos = [
-  { name: "Binance", asset: "support-binance.svg", className: "support-logo-binance" },
-  { name: "Circle", asset: "support-circle.png", className: "support-logo-circle" },
-  { name: "Franklin Templeton", asset: "support-franklin.png", className: "support-logo-franklin" },
-  { name: "PayPal USD", asset: "support-paypal-usd.png", className: "support-logo-paypal" },
-  { name: "Etherfuse", asset: "support-etherfuse.png", className: "support-logo-etherfuse" },
-  { name: "Binance", asset: "support-binance.svg", className: "support-logo-binance" },
-  { name: "Circle", asset: "support-circle.png", className: "support-logo-circle support-logo-circle-repeat" },
-  { name: "Franklin Templeton", asset: "support-franklin.png", className: "support-logo-franklin" },
+  { name: "Binance", asset: "support-binance.png", className: "support-logo-binance", width: 104, height: 22 },
+  { name: "Kraken", asset: "support-kraken.png", className: "support-logo-kraken", width: 94, height: 16 },
+  { name: "MEXC", asset: "support-mexc.png", className: "support-logo-mexc", width: 97, height: 15 },
+  { name: "HTX", asset: "support-htx.png", className: "support-logo-htx", width: 49, height: 24 },
+  { name: "Cosmos", asset: "support-cosmos.png", className: "support-logo-cosmos", width: 107, height: 20 },
+  { name: "SolidProof", asset: "support-solidproof.png", className: "support-logo-solidproof", width: 116, height: 28 },
+  { name: "Certik", asset: "support-certik.png", className: "support-logo-certik", width: 89, height: 22 },
+  { name: "Keplr", asset: "support-keplr.png", className: "support-logo-keplr", width: 72, height: 22 },
+  { name: "Trust Wallet", asset: "support-trust.png", className: "support-logo-trust", width: 81, height: 22 },
 ];
-
-const supportLogoDimensions: Record<string, { width: number; height: number }> = {
-  "support-circle.png": { width: 165, height: 93 },
-  "support-etherfuse.png": { width: 165, height: 30 },
-  "support-franklin.png": { width: 165, height: 93 },
-  "support-paypal-usd.png": { width: 165, height: 30 },
-};
 
 function SupportLogoStrip() {
   return (
@@ -205,12 +199,11 @@ function SupportLogoStrip() {
       <p className="tc-type-body-small">Decentralization supported by:</p>
       <div className="support-logo-row">
         {supportLogos.map((logo, index) => {
-          const dimensions = supportLogoDimensions[logo.asset];
           const logoAsset = logo.asset.endsWith(".png") ? `${responsiveImageBase(logo.asset)}.webp` : logo.asset;
 
           return (
             <div className={`support-logo ${logo.className}`} key={`${logo.name}-${index}`}>
-              <img src={asset(logoAsset)} alt={logo.name} loading="eager" width={dimensions?.width} height={dimensions?.height} />
+              <img src={asset(logoAsset)} alt={logo.name} loading="eager" width={logo.width} height={logo.height} />
             </div>
           );
         })}
