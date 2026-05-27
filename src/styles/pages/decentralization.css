@@ -1,0 +1,226 @@
+/* decentralization styles */
+.share-on-x-button .article-action-icon::before { background: var(--color-white); }
+
+.share-on-x-button:hover .article-action-icon::before,
+.share-on-x-button:focus-visible .article-action-icon::before { background: var(--color-black); }
+
+@supports (content-visibility: auto) {
+  .stats-panel:not(.decentralization-hero),
+    .article-lede,
+    .article-section,
+    .article-references,
+    .decentralization-resources,
+    .decentralization-resource-group,
+    .decentralization-share {
+      content-visibility: auto;
+      contain-intrinsic-size: auto var(--tc-contain-intrinsic-size, 720px);
+    }
+  .stats-panel:not(.decentralization-hero) { --tc-contain-intrinsic-size: 776px; }
+  .decentralization-share { --tc-contain-intrinsic-size: 280px; }
+  .article-lede { --tc-contain-intrinsic-size: 420px; }
+  .article-section { --tc-contain-intrinsic-size: 520px; }
+  .article-references { --tc-contain-intrinsic-size: 520px; }
+  .decentralization-resources { --tc-contain-intrinsic-size: 1280px; }
+  .decentralization-resource-group { --tc-contain-intrinsic-size: 520px; }
+}
+
+.decentralization-page { width: 100%; border-bottom: 1px solid var(--color-grey-100); }
+
+.decentralization-hero { margin-top: 0; }
+
+.stats-panel.decentralization-stats-hero { --stats-copy-block-height: 216px; }
+
+.decentralization-stats-hero { min-height: 720px; }
+
+.decentralization-stats-hero .stats-glow--v2 span:nth-child(1) { top: 118px; bottom: -88px; }
+
+.decentralization-stats-hero .stats-glow--v2 span:nth-child(2) { bottom: -126px; height: 880px; }
+
+.decentralization-stats-hero .stats-glow--v2 span:nth-child(3) { bottom: -170px; height: 650px; }
+
+.decentralization-stats-hero .stats-glow--v2 span:nth-child(4) { bottom: -152px; height: 540px; }
+
+.decentralization-stats-hero__copy { display: flex; flex-direction: column; align-items: flex-start; }
+
+.decentralization-stats-hero__copy h1 { width: 100%; max-width: calc(100% - 200px); margin: 0; text-wrap: balance; }
+
+.decentralization-stats-hero__copy p { max-width: 900px; margin-top: 32px; }
+
+.article-meta { position: absolute; right: 0; top: 28px; display: flex; flex-wrap: wrap; gap: 8px; color: rgba(255,255,255,.68); }
+
+.article-meta__badge { width: auto; min-width: 0; height: 32px; background: transparent; border-color: rgba(255,255,255,.22); color: var(--color-white); padding: 0 16px; text-transform: uppercase; }
+
+.decentralization-hero-actions { position: absolute; left: 0; top: 176px; display: flex; align-items: center; gap: 16px; }
+
+.article-action.pill-button { min-height: 56px; border: 0; background: var(--color-white); color: var(--color-black); cursor: pointer; justify-self: start; white-space: nowrap; }
+
+.article-action--share.pill-button { justify-self: end; }
+
+.article-action.pill-button:hover,
+.article-action.pill-button:focus-visible,
+.article-action--active.pill-button { background: var(--color-black); color: var(--color-white); }
+
+.article-action-icon { position: relative; display: block; flex: 0 0 auto; }
+
+.article-action-icon::before { content: ""; position: absolute; left: 50%; top: 50%; display: block; background: var(--color-grey-100); transform: translate(-50%, -50%); transition: background-color var(--tc-motion-fast) var(--tc-ease-standard); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+
+.article-listen-icon { width: 14px; height: 16px; }
+
+.article-listen-icon::before { width: 16px; height: 14px; transform: translate(-50%, -50%) rotate(-90deg); -webkit-mask-image: url("/assets/article-play-default.svg"); mask-image: url("/assets/article-play-default.svg"); }
+
+.article-share-icon { width: 22px; height: 20px; }
+
+.article-share-icon::before { width: 22px; height: 20px; -webkit-mask-image: url("/assets/article-x-default.svg"); mask-image: url("/assets/article-x-default.svg"); }
+
+.article-action:hover .article-action-icon::before,
+.article-action:focus-visible .article-action-icon::before,
+.article-action--active .article-action-icon::before { background: var(--color-white); }
+
+.stats-bottom.decentralization-stats-hero__bottom { height: auto; display: flex; flex-direction: column; gap: 24px; }
+
+.stats-row.decentralization-stats-row { width: 100%; max-width: 100%; height: auto; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; }
+
+.decentralization-stats-row .stats-metric,
+.decentralization-stats-row .stats-metric--1,
+.decentralization-stats-row .stats-metric--2,
+.decentralization-stats-row .stats-metric--3,
+.decentralization-stats-row .stats-metric--4,
+.decentralization-stats-row .stats-metric--5,
+.decentralization-stats-row .stats-metric--6 { position: relative; left: auto; top: auto; width: var(--decentralization-stat-width); flex: 0 0 var(--decentralization-stat-width); height: 168px; min-width: 0; display: flex; flex-direction: column; justify-content: flex-start; gap: 16px; }
+
+.decentralization-stats-row .stats-metric--1 { --decentralization-stat-width: 200px; }
+
+.decentralization-stats-row .stats-metric--2 { --decentralization-stat-width: 200px; }
+
+.decentralization-stats-row .stats-metric--3 { --decentralization-stat-width: 184px; }
+
+.decentralization-stats-row .stats-metric--4 { --decentralization-stat-width: 224px; }
+
+.decentralization-stats-row .stats-metric--5 { --decentralization-stat-width: 244px; }
+
+.decentralization-stats-row .stats-metric--6 { --decentralization-stat-width: 160px; }
+
+.decentralization-stats-row .stats-metric dt { height: 72px; flex: 0 0 72px; }
+
+.decentralization-stats-row .stats-metric dd { position: static; margin: 0; }
+
+.decentralization-stats-hero__bottom .decentralization-hero-actions { position: relative; left: auto; top: auto; margin-top: 0; }
+
+.article-body { max-width: 1040px; margin: 0 auto; padding: 80px 0 96px; }
+
+.article-lede { padding: 0 0 56px 160px; border-bottom: 1px solid var(--color-grey-100); display: flex; flex-direction: column; gap: 24px; }
+
+.article-lede p { margin: 0; color: var(--color-black); max-width: 820px; }
+
+.article-section { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 64px; padding: 56px 0; border-bottom: 1px solid var(--color-grey-100); }
+
+.article-section__index { width: 48px; height: 48px; border-radius: 999px; background: var(--color-grey-50); display: grid; place-items: center; color: var(--color-grey-500); }
+
+.article-section__copy { display: flex; flex-direction: column; gap: 24px; }
+
+.article-section__copy h2, .article-section__copy p { margin: 0; }
+
+.article-section__copy p { color: var(--color-black); max-width: 820px; font-weight: 500; }
+
+.article-references { padding: 56px 0 0; border-top: 1px solid var(--color-grey-100); }
+
+.article-references h2 { margin: 0 0 24px; }
+
+.article-reference-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+
+.article-reference { min-height: 88px; border-bottom: 1px solid var(--color-grey-100); display: flex; align-items: center; justify-content: space-between; gap: 24px; transition: border-color var(--tc-motion-base) var(--tc-ease-standard), color var(--tc-motion-fast) var(--tc-ease-standard); }
+
+.article-reference:hover, .article-reference:focus-visible { border-color: var(--color-black); color: var(--color-blue); }
+
+.article-reference--static:hover { border-color: var(--color-grey-100); color: inherit; }
+
+.article-reference span { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+
+.article-reference small { color: var(--color-grey-500); }
+
+.article-reference .dot-arrow-icon { color: var(--color-grey-500); }
+
+.decentralization-resources { padding: var(--tc-spacing-section-standard); border-bottom: 1px solid var(--color-grey-100); }
+
+.decentralization-resources__intro { max-width: 1040px; display: flex; flex-direction: column; gap: 64px; margin-bottom: 72px; }
+
+.decentralization-resources__intro h2, .decentralization-resources__intro p { margin: 0; }
+
+.decentralization-resource-group { margin-top: 64px; }
+
+.decentralization-resource-group:first-of-type { margin-top: 0; }
+
+.decentralization-share { position: relative; padding: 64px 64px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 48px; align-items: end; border-bottom: 1px solid var(--color-grey-100); }
+
+.decentralization-share__copy { max-width: 900px; display: flex; flex-direction: column; gap: 32px; }
+
+.decentralization-share__copy h2, .decentralization-share__copy p { margin: 0; }
+
+.decentralization-share + .footer { height: auto; padding-top: 32px; }
+
+@media (max-width: 1499px) {
+  .decentralization-hero-actions { position: relative; left: auto; top: auto; margin-top: 24px; flex-wrap: wrap; }
+}
+
+@media (max-width: 767px) {
+  .decentralization-hero-actions { position: relative; left: auto; top: auto; width: 100%; margin-top: 0; }
+}
+
+@media (max-width: 1499px) {
+  .decentralization-stats-hero { min-height: 640px; }
+  .article-body { max-width: 920px; }
+  .article-section { grid-template-columns: 72px minmax(0, 1fr); gap: 40px; }
+}
+
+@media (min-width: 768px) and (max-width: 1299px) {
+  .decentralization-stats-hero { min-height: 620px; }
+  .article-body { max-width: 100%; padding: 72px 48px 88px; }
+  .article-lede { padding-left: 112px; }
+  .article-reference-list { grid-template-columns: 1fr; }
+  .decentralization-resources { padding: var(--tc-spacing-section-standard); }
+  .decentralization-share { grid-template-columns: 1fr; padding: 64px 48px; }
+  .decentralization-share .pill-button { width: 100%; }
+}
+
+@media (max-width: 767px) {
+  .stats-panel.decentralization-stats-hero { --stats-visual-row-height: clamp(760px, 190vw, 920px); --stats-visual-gap: 64px; --stats-small-planets-height: clamp(520px, 132vw, 680px); --stats-big-planet-width: clamp(220px, 58vw, 292px); --stats-big-planet-offset: clamp(96px, 24vw, 140px); }
+  .decentralization-stats-hero { min-height: 0; }
+  .decentralization-stats-hero .stats-glow--v2 span:nth-child(1) { top: 332px; bottom: auto; height: clamp(620px, 154vw, 900px); }
+  .decentralization-stats-hero .stats-glow--v2 span:nth-child(2) { top: 410px; bottom: auto; height: clamp(520px, 132vw, 780px); }
+  .decentralization-stats-hero .stats-glow--v2 span:nth-child(3) { top: 560px; bottom: auto; height: clamp(340px, 92vw, 560px); }
+  .decentralization-stats-hero .stats-glow--v2 span:nth-child(4) { top: 500px; bottom: auto; height: clamp(220px, 62vw, 320px); }
+  .decentralization-stats-hero__copy h1 { max-width: 100%; margin-top: 24px; }
+  .article-meta { position: static; width: max-content; max-width: 100%; gap: 6px; }
+  .article-meta__badge { min-height: 28px; height: 28px; padding: 0 12px; }
+  .stats-row.decentralization-stats-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .decentralization-stats-row .stats-metric,
+    .decentralization-stats-row .stats-metric--1,
+    .decentralization-stats-row .stats-metric--2,
+    .decentralization-stats-row .stats-metric--3,
+    .decentralization-stats-row .stats-metric--4,
+    .decentralization-stats-row .stats-metric--5,
+    .decentralization-stats-row .stats-metric--6 { width: auto; flex-basis: auto; height: 120px; padding: var(--tc-spacing-card-dense); gap: 12px; }
+  .decentralization-stats-row .stats-metric dt { height: 44px; flex: 0 0 44px; display: flex; align-items: center; gap: 16px; }
+  .decentralization-stats-row .stats-metric dd { font-size: var(--tc-type-link-normal-size); line-height: var(--tc-type-link-normal-line-height); }
+  .decentralization-hero-actions { position: relative; left: auto; top: auto; width: 100%; display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 0; }
+  .article-action.pill-button { width: 100%; min-height: 56px; padding: var(--tc-spacing-control-pill); }
+  .article-body { max-width: 100%; padding: 48px 24px 64px; }
+  .article-lede { padding: 0 0 40px; }
+  .article-section { grid-template-columns: 1fr; gap: 16px; padding: 40px 0; }
+  .article-section__index { width: 40px; height: 40px; }
+  .article-section__copy { gap: 16px; }
+  .article-reference-list { grid-template-columns: 1fr; }
+  .article-reference { min-height: 80px; }
+  .decentralization-resources { padding: var(--tc-spacing-section-standard); }
+  .decentralization-resources__intro { gap: 16px; margin-bottom: 48px; }
+  .decentralization-resource-group { margin-top: 48px; }
+  .decentralization-share { padding: var(--tc-spacing-section-standard); grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  .decentralization-share__copy { gap: 16px; }
+  .decentralization-share .pill-button { width: 100%; min-width: 0; }
+  .decentralization-share + .footer { padding-top: 24px; }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .stats-panel.decentralization-stats-hero { --stats-visual-row-height: 640px; --stats-visual-gap: 56px; --stats-small-planets-height: clamp(420px, 72vw, 560px); --stats-big-planet-width: clamp(200px, 34vw, 260px); --stats-big-planet-offset: clamp(80px, 12vw, 104px); }
+  .stats-row.decentralization-stats-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

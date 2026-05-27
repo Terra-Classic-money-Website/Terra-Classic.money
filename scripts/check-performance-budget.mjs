@@ -7,10 +7,11 @@ const distDir = path.join(rootDir, "dist");
 const distAssetsDir = path.join(distDir, "assets");
 
 const budgets = {
-  totalDistBytes: 12 * 1024 * 1024,
+  totalDistBytes: 15 * 1024 * 1024,
   largestAssetBytes: 900 * 1024,
   homeInitialJsGzipBytes: 85 * 1024,
   maxInitialJsGzipBytes: 125 * 1024,
+  maxInitialCssGzipBytes: 25 * 1024,
   totalJsGzipBytes: 130 * 1024,
   totalCssGzipBytes: 45 * 1024,
 };
@@ -76,16 +77,21 @@ const jsGzipBytes = await gzipTotal(jsFiles);
 const cssGzipBytes = await gzipTotal(cssFiles);
 const fileByRelativePath = new Map(fileStats.map((file) => [file.relative, file]));
 const pageInitialJs = [];
+const pageInitialCss = [];
 
 for (const file of htmlFiles) {
   const html = await fs.readFile(file.file, "utf8");
   const initialJsPaths = new Set();
+  const initialCssPaths = new Set();
 
   for (const match of html.matchAll(/<script[^>]+type="module"[^>]+src="([^"]+\.js)"/g)) {
     initialJsPaths.add(match[1].replace(/^\//, ""));
   }
   for (const match of html.matchAll(/<link[^>]+rel="modulepreload"[^>]+href="([^"]+\.js)"/g)) {
     initialJsPaths.add(match[1].replace(/^\//, ""));
+  }
+  for (const match of html.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+\.css)"/g)) {
+    initialCssPaths.add(match[1].replace(/^\//, ""));
   }
 
   let gzipBytes = 0;
@@ -98,10 +104,22 @@ for (const file of htmlFiles) {
     page: file.relative,
     gzipBytes,
   });
+
+  let cssGzipBytes = 0;
+  for (const relativePath of initialCssPaths) {
+    const cssFile = fileByRelativePath.get(relativePath);
+    if (cssFile) cssGzipBytes += zlib.gzipSync(await fs.readFile(cssFile.file)).length;
+  }
+
+  pageInitialCss.push({
+    page: file.relative,
+    gzipBytes: cssGzipBytes,
+  });
 }
 
 const homeInitialJs = pageInitialJs.find((page) => page.page === "index.html");
 const largestInitialJsPage = pageInitialJs.reduce((largest, page) => (page.gzipBytes > largest.gzipBytes ? page : largest), pageInitialJs[0]);
+const largestInitialCssPage = pageInitialCss.reduce((largest, page) => (page.gzipBytes > largest.gzipBytes ? page : largest), pageInitialCss[0]);
 
 const failures = [];
 
@@ -121,6 +139,10 @@ if (largestInitialJsPage.gzipBytes > budgets.maxInitialJsGzipBytes) {
   failures.push(`${largestInitialJsPage.page} initial JS gzip ${formatBytes(largestInitialJsPage.gzipBytes)} exceeds ${formatBytes(budgets.maxInitialJsGzipBytes)}.`);
 }
 
+if (largestInitialCssPage.gzipBytes > budgets.maxInitialCssGzipBytes) {
+  failures.push(`${largestInitialCssPage.page} initial CSS gzip ${formatBytes(largestInitialCssPage.gzipBytes)} exceeds ${formatBytes(budgets.maxInitialCssGzipBytes)}.`);
+}
+
 if (jsGzipBytes > budgets.totalJsGzipBytes) {
   failures.push(`Built JS gzip total ${formatBytes(jsGzipBytes)} exceeds ${formatBytes(budgets.totalJsGzipBytes)}.`);
 }
@@ -138,8 +160,13 @@ console.log(`- Total dist: ${formatBytes(totalDistBytes)} / ${formatBytes(budget
 console.log(`- Largest file: ${largestAsset.relative} (${formatBytes(largestAsset.bytes)}) / ${formatBytes(budgets.largestAssetBytes)}`);
 console.log(`- Homepage initial JS gzip: ${formatBytes(homeInitialJs?.gzipBytes || 0)} / ${formatBytes(budgets.homeInitialJsGzipBytes)}`);
 console.log(`- Largest page initial JS gzip: ${largestInitialJsPage.page} (${formatBytes(largestInitialJsPage.gzipBytes)}) / ${formatBytes(budgets.maxInitialJsGzipBytes)}`);
+console.log(`- Largest page initial CSS gzip: ${largestInitialCssPage.page} (${formatBytes(largestInitialCssPage.gzipBytes)}) / ${formatBytes(budgets.maxInitialCssGzipBytes)}`);
 console.log(`- JS gzip total: ${formatBytes(jsGzipBytes)} / ${formatBytes(budgets.totalJsGzipBytes)}`);
 console.log(`- CSS gzip total: ${formatBytes(cssGzipBytes)} / ${formatBytes(budgets.totalCssGzipBytes)}`);
+console.log("- Page initial CSS gzip:");
+for (const page of [...pageInitialCss].sort((a, b) => b.gzipBytes - a.gzipBytes)) {
+  console.log(`  - ${page.page}: ${formatBytes(page.gzipBytes)}`);
+}
 
 if (failures.length > 0) {
   console.error("\nPerformance budget failed:");

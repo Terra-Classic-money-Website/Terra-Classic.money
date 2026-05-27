@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { DeferredResponsiveImage, ResponsiveImage, responsiveImageBase } from "../components/ResponsiveImage";
 import { faqGroups, founders } from "../data/content";
 import { isPlaceholderLink, links } from "../data/links";
-import { asset, DeferredAssetImage } from "./shared";
+import { asset } from "./shared";
 
 export function FounderStories() {
   const docsHref = isPlaceholderLink(links.docs) ? "#" : links.docs;
@@ -34,7 +35,7 @@ function FounderStoryCard({ name, role }: { name: string; role: string }) {
   return (
     <article className="founder-card">
       <div className="founder-card__media">
-        <DeferredAssetImage className="founder-card__portrait" assetName="founder-story-portrait.webp" alt={`${name} portrait`} loading="lazy" width="768" height="1024" />
+        <DeferredResponsiveImage className="founder-card__portrait" baseName="founder-story-portrait" widths={[360, 512, 768]} fallbackWidth={768} sizes="(max-width: 767px) calc(100vw - 48px), 366px" alt={`${name} portrait`} loading="lazy" width="768" height="1024" />
         <div className="founder-card__play" aria-hidden="true">
           <img className="founder-card__dot founder-card__dot--1" src={asset("founder-play-dot.svg")} alt="" />
           <img className="founder-card__dot founder-card__dot--2" src={asset("founder-play-dot.svg")} alt="" />
@@ -71,7 +72,20 @@ export function JoinCommunity() {
             <a key={label} href={safeHref} target={safeHref.startsWith("http") ? "_blank" : undefined} rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}>
               <span className="tc-type-link-big">{label}</span>
               <span className={`community-button-icon community-button-icon--${variant}`} aria-hidden="true">
-                <img src={asset(icon)} alt="" />
+                {variant === "github" ? (
+                  <img src={asset(icon)} alt="" />
+                ) : (
+                  <ResponsiveImage
+                    baseName={responsiveImageBase(icon)}
+                    widths={variant === "agora" ? [128, 256, 512, 2080] : [64, 128, 256, 740]}
+                    fallbackWidth={variant === "agora" ? 2080 : 740}
+                    sizes="128px"
+                    alt=""
+                    loading="lazy"
+                    width={variant === "agora" ? "2080" : "740"}
+                    height={variant === "agora" ? "694" : "740"}
+                  />
+                )}
               </span>
             </a>
           );

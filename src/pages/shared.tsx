@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ImgHTMLAttributes } from "react";
+import { useEffect, useRef, useState } from "react";
 import { asset, page } from "../components/SiteShell";
 import { isPlaceholderLink, links } from "../data/links";
 
@@ -94,40 +94,6 @@ export function DotArrowIcon({ className = "" }: { className?: string }) {
       <circle cx="5" cy="7" r="2" />
       <circle cx="8" cy="2" r="2" />
     </svg>
-  );
-}
-
-export function DeferredAssetImage({
-  assetName,
-  rootMargin = "320px 0px",
-  ...props
-}: ImgHTMLAttributes<HTMLImageElement> & { assetName: string; rootMargin?: string }) {
-  const imageRef = useRef<HTMLImageElement | null>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  useEffect(() => {
-    if (shouldLoad) return;
-    const image = imageRef.current;
-    if (!image) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      setShouldLoad(true);
-      observer.disconnect();
-    }, { rootMargin });
-
-    observer.observe(image);
-    return () => observer.disconnect();
-  }, [rootMargin, shouldLoad]);
-
-  return (
-    <img
-      {...props}
-      ref={imageRef}
-      src={shouldLoad ? asset(assetName) : undefined}
-      data-src={shouldLoad ? undefined : assetName}
-      decoding={props.decoding || "async"}
-    />
   );
 }
 

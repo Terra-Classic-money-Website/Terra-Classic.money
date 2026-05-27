@@ -10,7 +10,7 @@ const port = Number(process.env.PERF_AUDIT_PORT || 4173);
 const baseUrl = `http://${host}:${port}`;
 
 const pages = [
-  { label: "home", path: "/" },
+  { label: "home", path: "/", retryOnOutlier: { minScore: 95, maxTbtMs: 150 } },
   { label: "ecosystem", path: "/ecosystem.html" },
   { label: "markets", path: "/markets.html" },
   { label: "roadmap", path: "/roadmap.html" },

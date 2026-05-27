@@ -1,0 +1,52 @@
+/* base styles */
+* { box-sizing: border-box; }
+
+html { overflow-x: clip; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body { margin: 0; overflow-x: clip; background: var(--color-white); color: var(--color-black); font-family: var(--font-family); }
+
+a { color: inherit; text-decoration: none; }
+
+button { font: inherit; color: inherit; }
+
+:focus-visible { outline: 3px solid var(--color-blue); outline-offset: 3px; }
+
+h1, h2, h3, p { letter-spacing: 0; }
+
+h1 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); font-weight: var(--tc-type-h1-weight); }
+
+.lead { font-size: var(--tc-type-h4-size); line-height: var(--tc-type-h4-line-height); font-weight: var(--tc-type-h4-weight); }
+
+.play-button-icon { width: 64px; height: 73.143px; display: grid; place-items: center; flex: 0 0 auto; }
+
+.play-button-icon img { width: 73.143px; height: 64px; grid-area: 1 / 1; transform: rotate(-90deg); transition: opacity var(--tc-motion-fast) var(--tc-ease-standard); }
+
+.play-button-icon__hover { opacity: 0; }
+
+.button-arrow-icon__hover { opacity: 0; }
+
+.apr-badge__value { min-width: 58px; font-size: var(--tc-type-h5-size); line-height: var(--tc-type-h5-line-height); font-weight: 500; letter-spacing: 0; text-align: right; }
+
+.apr-badge__label { font-size: 10px; line-height: 12px; font-weight: 800; letter-spacing: 5px; }
+
+.native-phase { display: flex; flex-direction: column; gap: 24px; }
+
+.native-phase__header { height: 32px; display: flex; align-items: center; gap: 32px; }
+
+.native-phase__label { height: 32px; display: flex; align-items: center; gap: 16px; flex: 0 0 auto; }
+
+.native-phase__label img { width: 32px; height: 32px; }
+
+.native-phase__label strong { font-size: var(--tc-type-h5-size); line-height: var(--tc-type-h5-line-height); font-weight: var(--tc-type-h5-weight); }
+
+.native-phase__rule { height: 1px; background: var(--color-grey-100); flex: 1 1 auto; }
+
+@media (max-width: 767px) {
+  .lead { font-size: var(--tc-type-h4-size); line-height: var(--tc-type-h4-line-height); }
+  .native-phase__header { height: auto; flex-wrap: wrap; gap: 16px; }
+  .native-phase__rule { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

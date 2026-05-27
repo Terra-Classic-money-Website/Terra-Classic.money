@@ -727,7 +727,7 @@ function AvatarPreview() {
   return (
     <div className="ds-avatar-gallery" aria-label="Avatar variants">
       <span className="directory-list-item__avatar" aria-label="Image avatar">
-        <img src="https://framerusercontent.com/images/KBgYlLn8EVUKPwqywWKPk2vlxZ8.jpg?width=400&height=400" alt="" />
+        <img src={asset("avatars/avatar-kbgylln8evukpwqywwkpk2vlxz8-2051758dcc.webp")} alt="" />
       </span>
       <button className="roadmap-row__avatar tc-type-link-big" type="button" style={{ "--roadmap-accent": "#6FA7E8" } as CSSProperties} aria-label="Roadmap initials avatar L1">
         L1
@@ -789,7 +789,7 @@ function DirectoryListItemPreview() {
   return (
     <a className="directory-list-item ds-directory-list-item" href="#components" onClick={stopNavigation}>
       <span className="directory-list-item__avatar" aria-hidden="true">
-        <img src="https://framerusercontent.com/images/KBgYlLn8EVUKPwqywWKPk2vlxZ8.jpg?width=400&height=400" alt="" />
+        <img src={asset("avatars/avatar-kbgylln8evukpwqywwkpk2vlxz8-2051758dcc.webp")} alt="" />
       </span>
       <span className="directory-list-item__copy">
         <span className="directory-list-item__name tc-type-h5">BigbangX</span>

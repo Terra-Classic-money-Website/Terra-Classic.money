@@ -1,4 +1,4 @@
-import type { EcosystemCategory } from "./ecosystem";
+import type { EcosystemCategory } from "./ecosystemTypes";
 
 export const marketCategories: EcosystemCategory[] = [
   {

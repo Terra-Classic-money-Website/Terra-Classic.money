@@ -1,8 +1,6 @@
 import { StrictMode, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { SiteShell } from "../components/SiteShell";
-import "../styles/tokens.css";
-import "../styles/global.css";
 
 export function mountPage(
   children: ReactNode,

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ResponsiveImage } from "../components/ResponsiveImage";
 import { aboutFaqItems, aboutIntroParagraphs, contributionPaths, contributorGroups, openSourcePrinciples, ownershipTimeline, supportBoundaries } from "../data/about";
 import { links } from "../data/links";
 import { FAQ, FounderStories, JoinCommunity } from "./community";
@@ -19,7 +20,19 @@ function AboutHero() {
         <span />
         <span />
       </div>
-      <img className="about-hero__planet" src={asset("about-hero-planet2.webp")} alt="" aria-hidden="true" loading="eager" width="1067" height="584" />
+      <ResponsiveImage
+        className="about-hero__planet"
+        baseName="about-hero-planet2"
+        widths={[640, 768, 1067]}
+        fallbackWidth={1067}
+        sizes="(max-width: 767px) min(100vw - 48px, 760px), min(92vw, 1067px)"
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        fetchPriority="high"
+        width="1067"
+        height="584"
+      />
       <div className="stats-copy decentralization-stats-hero__copy about-hero__copy">
         <h1 className="tc-type-h1" id="about-page-title">About terra-classic.money</h1>
         <p className="tc-type-h4">{aboutIntroParagraphs[0]}</p>
@@ -46,7 +59,16 @@ function AboutOwnership() {
     if (owner === "Terraform Labs") {
       return (
         <span className="about-timeline__owner-logo" aria-label="Terraform Labs">
-          <img src={asset("about-terraform-labs-logo.webp")} alt="" aria-hidden="true" width="119" height="32" />
+          <ResponsiveImage
+            baseName="about-terraform-labs-logo"
+            widths={[240, 699]}
+            fallbackWidth={699}
+            sizes="134px"
+            alt=""
+            aria-hidden="true"
+            width="119"
+            height="32"
+          />
         </span>
       );
     }
@@ -118,12 +140,26 @@ function AboutVisualBand({ variant }: { variant: "open-source" | "contribute" })
         <span />
       </div>
       {variant === "open-source" ? (
-        <picture>
-          <source media="(max-width: 1299px)" srcSet={asset("about-open-source-planet-full.webp")} />
-          <img className="about-visual-band__image about-visual-band__image--open-source" src={asset(foreground.file)} alt="" loading="lazy" width={foreground.width} height={foreground.height} />
-        </picture>
+        <ResponsiveImage
+          className="about-visual-band__image about-visual-band__image--open-source"
+          baseName="about-open-source-planet"
+          widths={[360, 720, 801]}
+          fallbackWidth={801}
+          sizes="(max-width: 767px) 70vw, 801px"
+          sources={[{
+            media: "(max-width: 1299px)",
+            baseName: "about-open-source-planet-full",
+            widths: [360, 720, 801],
+            fallbackWidth: 801,
+            sizes: "(max-width: 767px) 70vw, 801px",
+          }]}
+          alt=""
+          loading="lazy"
+          width={foreground.width}
+          height={foreground.height}
+        />
       ) : (
-        <img className={`about-visual-band__image about-visual-band__image--${variant}`} src={asset(foreground.file)} alt="" loading="lazy" width={foreground.width} height={foreground.height} />
+        <ResponsiveImage className={`about-visual-band__image about-visual-band__image--${variant}`} baseName="about-contribute-foreground" widths={[360, 720, 947]} fallbackWidth={947} sizes="(max-width: 767px) 70vw, 947px" alt="" loading="lazy" width={foreground.width} height={foreground.height} />
       )}
     </div>
   );

@@ -11,6 +11,12 @@
 npm install
 ```
 
+For screenshot-based visual regression checks, install the bundled Chromium browser once:
+
+```bash
+npx playwright install chromium
+```
+
 ## Normal start
 
 ```bash
@@ -111,6 +117,27 @@ To re-check the latest saved Lighthouse reports without running a fresh audit:
 npm run perf:lh-budget
 ```
 
+Run screenshot capture across the production pages and responsive breakpoints:
+
+```bash
+npm run visual:snapshots
+```
+
+Reports are written to `.visual-reports`, which is intentionally ignored by Git.
+
+To compare a change against a previously captured run:
+
+```bash
+VISUAL_OUTPUT_DIR=.visual-reports/before-change npm run visual:snapshots
+VISUAL_BASELINE_DIR=.visual-reports/before-change/screenshots VISUAL_OUTPUT_DIR=.visual-reports/after-change npm run visual:snapshots
+```
+
+Only update persistent baselines deliberately:
+
+```bash
+npm run visual:baseline
+```
+
 ## Preview production build
 
 ```bash
@@ -121,6 +148,8 @@ npm run preview
 ## GitHub Pages deployment
 
 Deployment is static-only through GitHub Pages. The workflow is `.github/workflows/deploy.yml` and runs from `main`.
+
+The deployment build runs `npm run check`, so type checking, production build, image generation, metadata cleanup, and deterministic performance budgets must pass before GitHub Pages receives a new artifact.
 
 For the production domain `terra-classic.money`, use base path `/`. For temporary repository-path hosting, set the GitHub repository variable `VITE_BASE_PATH`, for example `/Terra-Classic.money/`.
 

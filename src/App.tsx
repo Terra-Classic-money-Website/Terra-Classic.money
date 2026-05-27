@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ImgHTMLAttributes } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   assets,
   capabilities,
@@ -12,6 +12,7 @@ import {
 } from "./data/content";
 import { isPlaceholderLink, links } from "./data/links";
 import { AprBadge } from "./components/AprBadge";
+import { DeferredResponsiveImage, ResponsiveImage, responsiveImageBase } from "./components/ResponsiveImage";
 import { SiteShell, asset, page } from "./components/SiteShell";
 
 const APR_INFO_ENDPOINT = "https://validator.info/api/terra-classic/blockchain/apr-info";
@@ -26,10 +27,36 @@ const capabilityImageDimensions: Record<string, { width: number; height: number 
   nft: { width: 1000, height: 819 },
 };
 
+const capabilityImageWidths: Record<string, readonly number[]> = {
+  staking: [360, 720, 1071],
+  forex: [360, 720, 1003],
+  defi: [360, 622],
+  build: [360, 720, 941],
+  ecosystem: [360, 720, 859],
+  layer2: [360, 720, 985],
+  nft: [360, 720, 1000],
+};
+
 const protocolImageDimensions: Record<string, { width: number; height: number }> = {
   staking: { width: 1391, height: 1400 },
   swap: { width: 1400, height: 1400 },
   forex: { width: 1373, height: 1400 },
+};
+
+const protocolImageWidths: Record<string, readonly number[]> = {
+  staking: [480, 768, 1391],
+  swap: [480, 768, 1400],
+  forex: [480, 768, 1373],
+};
+
+const protocolUiImageDimensions: Record<string, { width: number; height: number }> = {
+  "protocol-blue-confirmed.png": { width: 384, height: 272 },
+  "protocol-deposit-ui-figma.png": { width: 384, height: 312 },
+  "protocol-mint-ui-figma.png": { width: 384, height: 440 },
+  "protocol-staking-confirmed.png": { width: 384, height: 272 },
+  "protocol-staking-ui-figma.png": { width: 384, height: 336 },
+  "protocol-swap-ui-figma.png": { width: 384, height: 440 },
+  "protocol-validator-ui-figma.png": { width: 384, height: 336 },
 };
 
 type AprInfoState = {
@@ -75,40 +102,6 @@ function useAprInfo(enabled = true): AprInfoState {
   return aprInfo;
 }
 
-function DeferredAssetImage({
-  assetName,
-  rootMargin = "320px 0px",
-  ...props
-}: ImgHTMLAttributes<HTMLImageElement> & { assetName: string; rootMargin?: string }) {
-  const imageRef = useRef<HTMLImageElement | null>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  useEffect(() => {
-    if (shouldLoad) return;
-    const image = imageRef.current;
-    if (!image) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      setShouldLoad(true);
-      observer.disconnect();
-    }, { rootMargin });
-
-    observer.observe(image);
-    return () => observer.disconnect();
-  }, [rootMargin, shouldLoad]);
-
-  return (
-    <img
-      {...props}
-      ref={imageRef}
-      src={shouldLoad ? asset(assetName) : undefined}
-      data-src={shouldLoad ? undefined : assetName}
-      decoding={props.decoding || "async"}
-    />
-  );
-}
-
 function DotArrowIcon({ className = "" }: { className?: string }) {
   return (
     <svg className={`dot-arrow-icon ${className}`} viewBox="0 0 10 9" aria-hidden="true" focusable="false">
@@ -121,6 +114,15 @@ function DotArrowIcon({ className = "" }: { className?: string }) {
 
 const HERO_GLOW_VARIANT = "v2";
 const BOTTOM_GLOW_VARIANT = "v2";
+const decagonPatternCells = Array.from({ length: 16 }, (_, index) => index);
+
+function DecagonPattern() {
+  return (
+    <span className="stats-decagon-pattern" style={{ "--stats-decagon-image": `url(${asset("decagon.svg")})` } as CSSProperties} aria-hidden="true">
+      {decagonPatternCells.map((cell) => <span key={cell} />)}
+    </span>
+  );
+}
 
 function Hero() {
   return (
@@ -140,7 +142,18 @@ function Hero() {
         <span />
         <span />
       </div>
-      <img className="hero-orb" src={asset("hero-orb-figma.webp")} alt="" width="1848" height="1836" />
+      <ResponsiveImage
+        className="hero-orb"
+        baseName="hero-orb-figma"
+        widths={[480, 768, 1024, 1848]}
+        fallbackWidth={1848}
+        sizes="(max-width: 767px) 82vw, 925px"
+        alt=""
+        width="1848"
+        height="1836"
+        loading="eager"
+        fetchPriority="high"
+      />
       <div className="hero-copy">
         <h1 className="tc-type-h1" id="hero-title">Blockchain so decentralized, it’s out of this world.</h1>
         <p className="tc-type-h4">Use Terra Classic, build on it, or integrate it. Everything you need to get started—clear paths, credible tooling, and a network built for decentralized finance.</p>
@@ -179,16 +192,31 @@ const supportLogos = [
   { name: "Franklin Templeton", asset: "support-franklin.png", className: "support-logo-franklin" },
 ];
 
+const supportLogoDimensions: Record<string, { width: number; height: number }> = {
+  "support-circle.png": { width: 165, height: 93 },
+  "support-etherfuse.png": { width: 165, height: 30 },
+  "support-franklin.png": { width: 165, height: 93 },
+  "support-paypal-usd.png": { width: 165, height: 30 },
+};
+
 function SupportLogoStrip() {
   return (
     <section className="logo-strip" aria-label="Decentralization supported by">
       <p className="tc-type-body-small">Decentralization supported by:</p>
       <div className="support-logo-row">
-        {supportLogos.map((logo, index) => (
-          <div className={`support-logo ${logo.className}`} key={`${logo.name}-${index}`}>
-            <img src={asset(logo.asset)} alt={logo.name} loading="lazy" />
-          </div>
-        ))}
+        {supportLogos.map((logo, index) => {
+          const dimensions = supportLogoDimensions[logo.asset];
+
+          return (
+            <div className={`support-logo ${logo.className}`} key={`${logo.name}-${index}`}>
+              {dimensions ? (
+                <DeferredResponsiveImage baseName={responsiveImageBase(logo.asset)} widths={[dimensions.width]} fallbackWidth={dimensions.width} sizes="165px" alt={logo.name} loading="lazy" width={dimensions.width} height={dimensions.height} />
+              ) : (
+                <img src={asset(logo.asset)} alt={logo.name} loading="lazy" />
+              )}
+            </div>
+          );
+        })}
       </div>
     </section>
   );
@@ -368,19 +396,19 @@ function WhatIsTerraClassic() {
         </aside>
       </div>
       <div className="what-visual">
-        <DeferredAssetImage className="what-surface" assetName="what-surface.webp" alt="" loading="lazy" width="1205" height="1600" />
+        <DeferredResponsiveImage className="what-surface" baseName="what-surface" widths={[480, 768, 1205]} fallbackWidth={1205} sizes="100vw" alt="" loading="lazy" width="1205" height="1600" />
         <span className="what-orb-layer what-left-orb" aria-hidden="true">
-          <DeferredAssetImage assetName="what-left-orb.webp" alt="" loading="lazy" width="1200" height="1203" />
+          <DeferredResponsiveImage baseName="what-left-orb" widths={[320, 720, 1200]} fallbackWidth={1200} sizes="(max-width: 767px) 177px, 580px" alt="" loading="lazy" width="1200" height="1203" />
         </span>
         <span className="what-orb-layer what-right-orb" aria-hidden="true">
-          <DeferredAssetImage assetName="what-right-orb.webp" alt="" loading="lazy" width="1200" height="1224" />
+          <DeferredResponsiveImage baseName="what-right-orb" widths={[320, 720, 1200]} fallbackWidth={1200} sizes="(max-width: 767px) 174px, 570px" alt="" loading="lazy" width="1200" height="1224" />
         </span>
         <span className="what-orb-layer what-main-orb" aria-hidden="true">
-          <DeferredAssetImage assetName="what-main-orb.webp" alt="" loading="lazy" width="1700" height="1688" />
+          <DeferredResponsiveImage baseName="what-main-orb" widths={[320, 720, 1024, 1700]} fallbackWidth={1700} sizes="(max-width: 767px) 260px, 860px" alt="" loading="lazy" width="1700" height="1688" />
         </span>
         {avatars.map((avatar) => (
           <span className={`what-avatar ${avatar.className}`} key={avatar.image}>
-            <img src={asset(avatar.image)} alt="" loading="lazy" />
+            <DeferredResponsiveImage baseName={responsiveImageBase(avatar.image)} widths={[112]} fallbackWidth={112} sizes="(max-width: 767px) 45px, 112px" alt="" loading="lazy" width="112" height="112" />
           </span>
         ))}
         <button className="what-video-button" onClick={() => setVideoOpen(true)}>
@@ -440,13 +468,31 @@ function Capabilities() {
                 <img className={`capability-cta-icon capability-cta-icon--${card.slug}`} src={asset(ctaIcons[card.slug])} alt="" aria-hidden="true" />
               </a>
               <div className="capability-image" aria-hidden="true">
-                <DeferredAssetImage assetName={card.image} alt="" loading="lazy" width={imageDimensions.width} height={imageDimensions.height} />
+                <DeferredResponsiveImage baseName={responsiveImageBase(card.image)} widths={capabilityImageWidths[card.slug]} fallbackWidth={imageDimensions.width} sizes="(max-width: 767px) 300px, 320px" alt="" loading="lazy" width={imageDimensions.width} height={imageDimensions.height} />
               </div>
             </article>
           );
         })}
       </div>
     </section>
+  );
+}
+
+function ProtocolUiImage({ assetName, className }: { assetName: string; className: string }) {
+  const dimensions = protocolUiImageDimensions[assetName];
+
+  return (
+    <DeferredResponsiveImage
+      className={className}
+      baseName={responsiveImageBase(assetName)}
+      widths={[384]}
+      fallbackWidth={384}
+      sizes="(max-width: 767px) 128px, 384px"
+      alt=""
+      loading="lazy"
+      width={dimensions.width}
+      height={dimensions.height}
+    />
   );
 }
 
@@ -508,25 +554,25 @@ function ProtocolShowcase() {
               <p className="tc-type-h4">{protocol.body}</p>
             </div>
             <div className="protocol-visual" aria-hidden="true">
-              <DeferredAssetImage className="protocol-orb" assetName={protocol.image} alt="" loading="lazy" width={imageDimensions.width} height={imageDimensions.height} />
+              <DeferredResponsiveImage className="protocol-orb" baseName={responsiveImageBase(protocol.image)} widths={protocolImageWidths[protocol.id]} fallbackWidth={imageDimensions.width} sizes="(max-width: 767px) 296px, 720px" alt="" loading="lazy" width={imageDimensions.width} height={imageDimensions.height} />
               {protocol.id === "staking" && (
                 <>
-                  <img className="protocol-ui protocol-ui--staking-validator" src={asset(protocol.ui[0])} alt="" loading="lazy" />
-                  <img className="protocol-ui protocol-ui--staking-stake" src={asset(protocol.ui[1])} alt="" loading="lazy" />
-                  <img className="protocol-ui protocol-ui--staking-confirmed" src={asset("protocol-staking-confirmed.png")} alt="" loading="lazy" />
+                  <ProtocolUiImage className="protocol-ui protocol-ui--staking-validator" assetName={protocol.ui[0]} />
+                  <ProtocolUiImage className="protocol-ui protocol-ui--staking-stake" assetName={protocol.ui[1]} />
+                  <ProtocolUiImage className="protocol-ui protocol-ui--staking-confirmed" assetName="protocol-staking-confirmed.png" />
                 </>
               )}
               {protocol.id === "swap" && (
                 <>
-                  <img className="protocol-ui protocol-ui--swap-form" src={asset(protocol.ui[0])} alt="" loading="lazy" />
-                  <img className="protocol-ui protocol-ui--swap-confirmed" src={asset("protocol-blue-confirmed.png")} alt="" loading="lazy" />
+                  <ProtocolUiImage className="protocol-ui protocol-ui--swap-form" assetName={protocol.ui[0]} />
+                  <ProtocolUiImage className="protocol-ui protocol-ui--swap-confirmed" assetName="protocol-blue-confirmed.png" />
                 </>
               )}
               {protocol.id === "forex" && (
                 <>
-                  <img className="protocol-ui protocol-ui--forex-deposit" src={asset(protocol.ui[0])} alt="" loading="lazy" />
-                  <img className="protocol-ui protocol-ui--forex-mint" src={asset(protocol.ui[1])} alt="" loading="lazy" />
-                  <img className="protocol-ui protocol-ui--forex-confirmed" src={asset("protocol-blue-confirmed.png")} alt="" loading="lazy" />
+                  <ProtocolUiImage className="protocol-ui protocol-ui--forex-deposit" assetName={protocol.ui[0]} />
+                  <ProtocolUiImage className="protocol-ui protocol-ui--forex-mint" assetName={protocol.ui[1]} />
+                  <ProtocolUiImage className="protocol-ui protocol-ui--forex-confirmed" assetName="protocol-blue-confirmed.png" />
                 </>
               )}
             </div>
@@ -567,6 +613,23 @@ function ProtocolShowcase() {
   );
 }
 
+function NativeTokenIcon({ icon, compact = false }: { icon: string; compact?: boolean }) {
+  return (
+    <DeferredResponsiveImage
+      className={`native-token-card__icon ${compact ? "native-token-card__icon--compact" : ""}`}
+      baseName={responsiveImageBase(icon)}
+      widths={[60]}
+      fallbackWidth={60}
+      sizes={compact ? "(max-width: 767px) 28px, 40px" : "(max-width: 767px) 32px, 50px"}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      width={compact ? "40" : "50"}
+      height={compact ? "40" : "50"}
+    />
+  );
+}
+
 function NativeAssets() {
   const assetPhases = [1, 2, 3, 4].map((phase) => ({
     phase,
@@ -587,7 +650,7 @@ function NativeAssets() {
       <div className="native-assets__group native-assets__group--speculative">
         <h3 className="tc-type-h3">Speculative assets:</h3>
         <div className="native-lunc-row">
-          <DeferredAssetImage className="native-lunc-row__bg" assetName="native-lunc-bg.webp" alt="" aria-hidden="true" loading="lazy" width="385" height="386" />
+          <DeferredResponsiveImage className="native-lunc-row__bg" baseName="native-lunc-bg" widths={[192, 385]} fallbackWidth={385} sizes="(max-width: 767px) 320px, 385px" alt="" aria-hidden="true" loading="lazy" width="385" height="386" />
           <div className="native-lunc-row__identity">
             <img src={asset("native-lunc-logo.svg")} alt="" aria-hidden="true" width="72" height="72" />
             <div className="native-lunc-row__copy">
@@ -621,7 +684,7 @@ function NativeAssets() {
             <ul className="native-token-grid" aria-label={`Forex Protocol phase ${phase} assets`}>
               {items.map((item) => (
                 <li className="native-token-card" key={`${phase}-${item.code}-${item.name}`}>
-                  <img className={`native-token-card__icon ${item.compactIcon ? "native-token-card__icon--compact" : ""}`} src={asset(item.icon)} alt="" aria-hidden="true" loading="lazy" width={item.compactIcon ? "40" : "50"} height={item.compactIcon ? "40" : "50"} />
+                  <NativeTokenIcon icon={item.icon} compact={item.compactIcon} />
                   <div className="native-token-card__text">
                     <strong className="native-token-card__code" aria-label={item.code}>
                       <span>{item.code.slice(0, -2)}</span>
@@ -654,7 +717,7 @@ function Strengths() {
         {strengths.slice(0, 4).map(([title, body], index) => <StrengthCard key={title} index={index} title={title} body={body} />)}
         <div className="strength-visual" aria-hidden="true">
           <span className="strength-visual__bg" />
-          <DeferredAssetImage className="strength-visual__orb" assetName="strength-orb.webp" alt="" loading="lazy" width="900" height="894" />
+          <DeferredResponsiveImage className="strength-visual__orb" baseName="strength-orb" widths={[360, 720, 900]} fallbackWidth={900} sizes="292px" alt="" loading="lazy" width="900" height="894" />
         </div>
         {strengths.slice(4).map(([title, body], index) => <StrengthCard key={title} index={index + 4} title={title} body={body} />)}
       </div>
@@ -691,9 +754,9 @@ function DecentralizationStats() {
         <span />
         <span />
       </div>
-      <img className="stats-decagon-pattern" src={asset("decagon.svg")} alt="" aria-hidden="true" loading="lazy" width="1288" height="1208" />
-      <DeferredAssetImage className="stats-small-planets" assetName="stats-small-planets.webp" alt="" aria-hidden="true" loading="lazy" width="1161" height="636" />
-      <DeferredAssetImage className="stats-big-planet" assetName="stats-big-planet.webp" alt="" aria-hidden="true" loading="lazy" width="270" height="268" />
+      <DecagonPattern />
+      <DeferredResponsiveImage className="stats-small-planets" baseName="stats-small-planets" widths={[360, 720, 1161]} fallbackWidth={1161} sizes="(max-width: 767px) 90vw, 1161px" alt="" aria-hidden="true" loading="lazy" width="1161" height="636" />
+      <DeferredResponsiveImage className="stats-big-planet" baseName="stats-big-planet" widths={[180, 270]} fallbackWidth={270} sizes="270px" alt="" aria-hidden="true" loading="lazy" width="270" height="268" />
       <div className="stats-copy">
         <h2 className="tc-type-h1" id="stats-title">Efficiency driven by decentralization</h2>
         <p className="tc-type-h4">Terra Classic is governed in the open—no CEO, no single company, and no central authority—just a decentralized network where validators, builders, and stakeholders steer the roadmap together.</p>
@@ -751,7 +814,7 @@ function FounderStoryCard({ name, role }: { name: string; role: string }) {
   return (
     <article className="founder-card">
       <div className="founder-card__media">
-        <DeferredAssetImage className="founder-card__portrait" assetName="founder-story-portrait.webp" alt={`${name} portrait`} loading="lazy" width="768" height="1024" />
+        <DeferredResponsiveImage className="founder-card__portrait" baseName="founder-story-portrait" widths={[360, 512, 768]} fallbackWidth={768} sizes="(max-width: 767px) calc(100vw - 48px), 366px" alt={`${name} portrait`} loading="lazy" width="768" height="1024" />
         <div className="founder-card__play" aria-hidden="true">
           <img className="founder-card__dot founder-card__dot--1" src={asset("founder-play-dot.svg")} alt="" />
           <img className="founder-card__dot founder-card__dot--2" src={asset("founder-play-dot.svg")} alt="" />
@@ -788,7 +851,20 @@ function JoinCommunity() {
             <a key={label} href={safeHref} target={safeHref.startsWith("http") ? "_blank" : undefined} rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}>
               <span className="tc-type-link-big">{label}</span>
               <span className={`community-button-icon community-button-icon--${variant}`} aria-hidden="true">
-                <img src={asset(icon)} alt="" />
+                {variant === "github" ? (
+                  <img src={asset(icon)} alt="" />
+                ) : (
+                  <ResponsiveImage
+                    baseName={responsiveImageBase(icon)}
+                    widths={variant === "agora" ? [128, 256, 512, 2080] : [64, 128, 256, 740]}
+                    fallbackWidth={variant === "agora" ? 2080 : 740}
+                    sizes="128px"
+                    alt=""
+                    loading="lazy"
+                    width={variant === "agora" ? "2080" : "740"}
+                    height={variant === "agora" ? "694" : "740"}
+                  />
+                )}
               </span>
             </a>
           );

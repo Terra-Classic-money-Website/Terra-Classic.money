@@ -1,0 +1,246 @@
+/* visual styles */
+.stats-panel h2 { margin: 0; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); font-weight: var(--tc-type-h1-weight); letter-spacing: 0; }
+
+.stats-copy p { margin: 0; width: 100%; font-size: var(--tc-type-h4-size); line-height: var(--tc-type-h4-line-height); font-weight: var(--tc-type-h4-weight); letter-spacing: 0; }
+
+.stats-copy p { font-weight: 500; }
+
+@keyframes bottom-glow-v2-field {
+  0% { border-radius: 56% 44% 62% 38% / 38% 62% 42% 58%; filter: blur(98px); transform: translate3d(132px, -34px, 0) scale(.9); opacity: .5; }
+  48% { border-radius: 34% 66% 46% 54% / 62% 36% 64% 38%; filter: blur(72px); transform: translate3d(-190px, 42px, 0) scale(1.16); opacity: .94; }
+  100% { border-radius: 64% 36% 40% 60% / 44% 64% 36% 56%; filter: blur(92px); transform: translate3d(28px, 86px, 0) scale(1.03); opacity: .62; }
+}
+
+@keyframes bottom-glow-v2-core {
+  0% { border-radius: 62% 38% 52% 48% / 40% 60% 38% 62%; filter: blur(68px); transform: translate3d(82px, 44px, 0) scale(.84); opacity: .5; }
+  44% { border-radius: 34% 66% 42% 58% / 64% 34% 66% 36%; filter: blur(38px); transform: translate3d(-128px, -56px, 0) scale(1.22); opacity: 1; }
+  100% { border-radius: 58% 42% 66% 34% / 44% 62% 38% 56%; filter: blur(76px); transform: translate3d(38px, -18px, 0) scale(.98); opacity: .66; }
+}
+
+@keyframes bottom-glow-v2-source {
+  0% { border-radius: 48% 52% 58% 42% / 52% 46% 54% 48%; filter: blur(72px); transform: translate3d(66px, 30px, 0) scale(.84); opacity: .26; }
+  50% { border-radius: 66% 34% 40% 60% / 38% 62% 36% 64%; filter: blur(46px); transform: translate3d(-92px, -54px, 0) scale(1.2); opacity: .86; }
+  100% { border-radius: 38% 62% 60% 40% / 62% 38% 64% 36%; filter: blur(68px); transform: translate3d(28px, -14px, 0) scale(1); opacity: .48; }
+}
+
+@keyframes bottom-glow-v2-floor-wash {
+  0% { transform: translate3d(176px, 38px, 0) rotate(-8deg) scale(.92); opacity: .12; }
+  46% { transform: translate3d(-168px, -18px, 0) rotate(-3deg) scale(1.15); opacity: .42; }
+  100% { transform: translate3d(34px, 24px, 0) rotate(-6deg) scale(1.02); opacity: .22; }
+}
+
+@keyframes stats-glow-v2-core {
+  0% { border-radius: 62% 38% 52% 48% / 40% 60% 38% 62%; filter: blur(66px); transform: translate3d(118px, 42px, 0) scale(.86); opacity: .5; }
+  42% { border-radius: 34% 66% 42% 58% / 64% 34% 66% 36%; filter: blur(36px); transform: translate3d(-156px, -64px, 0) scale(1.22); opacity: 1; }
+  100% { border-radius: 58% 42% 66% 34% / 44% 62% 38% 56%; filter: blur(76px); transform: translate3d(42px, -16px, 0) scale(.98); opacity: .64; }
+}
+
+@keyframes stats-glow-v2-source {
+  0% { border-radius: 48% 52% 58% 42% / 52% 46% 54% 48%; filter: blur(70px); transform: translate3d(86px, 32px, 0) scale(.84); opacity: .26; }
+  48% { border-radius: 66% 34% 40% 60% / 38% 62% 36% 64%; filter: blur(42px); transform: translate3d(-118px, -60px, 0) scale(1.22); opacity: .9; }
+  100% { border-radius: 38% 62% 60% 40% / 62% 38% 64% 36%; filter: blur(66px); transform: translate3d(32px, -16px, 0) scale(1); opacity: .48; }
+}
+
+@keyframes stats-glow-v2-floor-wash {
+  0% { transform: translate3d(208px, 40px, 0) rotate(-8deg) scale(.9); opacity: .14; }
+  46% { transform: translate3d(-206px, -22px, 0) rotate(-3deg) scale(1.18); opacity: .46; }
+  100% { transform: translate3d(42px, 28px, 0) rotate(-6deg) scale(1.02); opacity: .24; }
+}
+
+.stats-panel { --stats-copy-block-height: 168px; --stats-planets-top: calc(var(--tc-spacing-panel-immersive) + var(--stats-copy-block-height) + 40px); --stats-small-planets-height: 636px; --stats-big-planet-width: 270px; --stats-big-planet-height: 268px; --stats-web-center-y-offset: 11px; width: 100%; height: 95vh; margin-top: 8px; position: relative; overflow: hidden; border-radius: var(--radius-card); background: linear-gradient(to bottom, rgba(16,16,16,0) calc(100% - 3px), rgba(84,245,255,.16) 100%), radial-gradient(ellipse at 54% 100%, rgba(84,245,255,.36) 0%, rgba(42,156,255,.22) 32%, rgba(13,84,205,.1) 60%, rgba(16,16,16,0) 84%), var(--color-black); box-shadow: 0 1px 0 rgba(84,245,255,.16); color: var(--color-white); padding: var(--tc-spacing-panel-immersive); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
+
+.stats-glow { position: absolute; inset: -120px -220px -220px; z-index: 1; pointer-events: none; mix-blend-mode: screen; filter: saturate(1.16); transform: translateZ(0); mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,.26) 28%, #000 42%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,.26) 28%, #000 42%); }
+
+.stats-glow span { position: absolute; display: block; border-radius: 999px; will-change: transform, opacity, border-radius, filter; }
+
+.stats-glow--v2 { filter: saturate(1.38) contrast(1.05); mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,.2) 29%, #000 42%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 18%, rgba(0,0,0,.2) 29%, #000 42%); }
+
+.stats-glow--v2 span:nth-child(1) { left: -150px; right: -150px; top: 72px; bottom: -78px; background: radial-gradient(ellipse at 52% 62%, rgba(18,88,220,.86) 0%, rgba(13,70,190,.72) 27%, rgba(10,43,140,.48) 56%, rgba(8,24,82,.2) 76%, rgba(5,9,32,0) 92%); filter: blur(88px); opacity: .86; animation: bottom-glow-v2-field 28s ease-in-out -7.4s infinite alternate; }
+
+.stats-glow--v2 span:nth-child(2) { left: 300px; right: 120px; bottom: -88px; height: 840px; background: radial-gradient(ellipse at 52% 70%, rgba(108,255,255,1) 0%, rgba(84,245,255,.82) 20%, rgba(42,156,255,.54) 45%, rgba(13,84,205,.22) 70%, rgba(13,84,205,0) 90%); filter: blur(50px); opacity: .88; animation: stats-glow-v2-core 21s var(--tc-ease-emphasized) -10.2s infinite alternate; }
+
+.stats-glow--v2 span:nth-child(3) { left: 418px; right: 230px; bottom: -132px; height: 620px; background: radial-gradient(ellipse at 52% 42%, rgba(194,255,255,.88) 0%, rgba(84,245,255,.6) 34%, rgba(84,245,255,0) 78%); filter: blur(60px); opacity: .7; animation: stats-glow-v2-source 27s ease-in-out -4.8s infinite alternate; }
+
+.stats-glow--v2 span:nth-child(4) { display: block; left: 40px; right: 12px; bottom: -128px; height: 520px; border-radius: 45% 55% 54% 46% / 44% 54% 46% 56%; background: linear-gradient(98deg, rgba(84,245,255,0) 0%, rgba(84,245,255,.18) 22%, rgba(84,245,255,.48) 48%, rgba(66,132,255,.24) 72%, rgba(10,24,84,0) 100%); filter: blur(66px); opacity: .38; transform: rotate(-5deg); animation: stats-glow-v2-floor-wash 33s ease-in-out -13.2s infinite alternate; }
+
+.stats-decagon-pattern { position: absolute; inset: 0; z-index: 2; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); width: 100%; height: 100%; max-width: none; pointer-events: none; overflow: hidden; }
+
+.stats-decagon-pattern span { display: block; background-image: var(--stats-decagon-image); background-size: 400% 400%; background-repeat: no-repeat; }
+
+.stats-decagon-pattern span:nth-child(4n+1) { background-position-x: 0%; }
+.stats-decagon-pattern span:nth-child(4n+2) { background-position-x: 33.333333%; }
+.stats-decagon-pattern span:nth-child(4n+3) { background-position-x: 66.666667%; }
+.stats-decagon-pattern span:nth-child(4n+4) { background-position-x: 100%; }
+.stats-decagon-pattern span:nth-child(-n+4) { background-position-y: 0%; }
+.stats-decagon-pattern span:nth-child(n+5):nth-child(-n+8) { background-position-y: 33.333333%; }
+.stats-decagon-pattern span:nth-child(n+9):nth-child(-n+12) { background-position-y: 66.666667%; }
+.stats-decagon-pattern span:nth-child(n+13) { background-position-y: 100%; }
+
+.stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); z-index: 3; display: block; width: auto; height: var(--stats-small-planets-height); aspect-ratio: 1161 / 636; max-width: none; object-fit: contain; pointer-events: none; transform: translateX(-50.302%); }
+
+.stats-small-planets--cells { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); overflow: hidden; }
+
+.stats-small-planets--cells span { display: block; background-image: var(--stats-planets-image); background-size: 400% 400%; background-repeat: no-repeat; }
+
+.stats-small-planets--cells span:nth-child(4n+1) { background-position-x: 0%; }
+.stats-small-planets--cells span:nth-child(4n+2) { background-position-x: 33.333333%; }
+.stats-small-planets--cells span:nth-child(4n+3) { background-position-x: 66.666667%; }
+.stats-small-planets--cells span:nth-child(4n+4) { background-position-x: 100%; }
+.stats-small-planets--cells span:nth-child(-n+4) { background-position-y: 0%; }
+.stats-small-planets--cells span:nth-child(n+5):nth-child(-n+8) { background-position-y: 33.333333%; }
+.stats-small-planets--cells span:nth-child(n+9):nth-child(-n+12) { background-position-y: 66.666667%; }
+.stats-small-planets--cells span:nth-child(n+13) { background-position-y: 100%; }
+
+.stats-big-planet { position: absolute; left: 50%; top: calc(50% + var(--stats-web-center-y-offset)); z-index: 3; display: block; width: var(--stats-big-planet-width); height: var(--stats-big-planet-height); max-width: none; object-fit: contain; pointer-events: none; transform: translate(-50%, -50%); }
+
+.stats-big-planet--cells { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); overflow: hidden; }
+
+.stats-big-planet--cells span { display: block; background-image: var(--stats-big-planet-image); background-size: 400% 400%; background-repeat: no-repeat; }
+
+.stats-big-planet--cells span:nth-child(4n+1) { background-position-x: 0%; }
+.stats-big-planet--cells span:nth-child(4n+2) { background-position-x: 33.333333%; }
+.stats-big-planet--cells span:nth-child(4n+3) { background-position-x: 66.666667%; }
+.stats-big-planet--cells span:nth-child(4n+4) { background-position-x: 100%; }
+.stats-big-planet--cells span:nth-child(-n+4) { background-position-y: 0%; }
+.stats-big-planet--cells span:nth-child(n+5):nth-child(-n+8) { background-position-y: 33.333333%; }
+.stats-big-planet--cells span:nth-child(n+9):nth-child(-n+12) { background-position-y: 66.666667%; }
+.stats-big-planet--cells span:nth-child(n+13) { background-position-y: 100%; }
+
+.stats-copy { position: relative; z-index: 4; grid-row: 1; left: auto; top: auto; width: auto; min-width: 0; height: auto; }
+
+.stats-panel h2 { width: 100%; max-width: 100%; height: auto; white-space: normal; text-wrap: balance; }
+
+.stats-copy p { max-width: 100%; margin-top: 32px; text-wrap: balance; }
+
+.stats-bottom { position: relative; z-index: 4; grid-row: 3; left: auto; top: auto; width: auto; min-width: 0; height: 232px; }
+
+.stats-row { position: relative; width: 822px; height: 152px; margin: 0; padding: 0; display: block; }
+
+.stats-metric { position: absolute; top: 0; height: 152px; background: var(--color-black); border-radius: var(--radius-card); padding: var(--tc-spacing-card-dense); color: var(--color-white); }
+
+.stats-metric--1 { left: 0; width: 225px; }
+
+.stats-metric--2 { left: 233px; width: 270px; }
+
+.stats-metric--3 { left: 511px; width: 311px; }
+
+.stats-metric dt { position: relative; width: 100%; height: 72px; margin: 0; }
+
+.stats-metric dt span { display: block; font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); font-weight: var(--tc-type-h1-weight); letter-spacing: 0; }
+
+.stats-metric dt img { position: absolute; left: 212px; top: 11px; width: 50px; height: 50px; }
+
+.stats-metric dd { position: absolute; left: 24px; top: 112px; margin: 0; font-size: var(--tc-type-link-normal-size); line-height: var(--tc-type-link-normal-line-height); font-weight: var(--tc-type-link-normal-weight); letter-spacing: 0; }
+
+.stats-button { position: absolute; left: 0; top: 176px; width: 474px; height: 56px; border-radius: var(--radius-pill); background: var(--color-white); color: var(--color-black); display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; padding: var(--tc-spacing-control-pill); font-size: var(--tc-type-link-big-size); line-height: var(--tc-type-link-big-line-height); font-weight: var(--tc-type-link-big-weight); transition: background-color var(--tc-motion-base) var(--tc-ease-standard), color var(--tc-motion-base) var(--tc-ease-standard), transform var(--tc-motion-base) var(--tc-ease-standard), box-shadow var(--tc-motion-base) var(--tc-ease-standard); }
+
+.stats-button__text--mobile { display: none; }
+
+.stats-button:hover, .stats-button:focus-visible { background: var(--color-black); color: var(--color-white); transform: none; box-shadow: none; }
+
+.stats-button img { width: 16px; height: 20px; transform: rotate(-90deg); flex: 0 0 auto; transition: filter var(--tc-motion-fast) var(--tc-ease-standard); }
+
+.stats-button:hover img, .stats-button:focus-visible img { filter: brightness(0) invert(1); }
+
+@media (min-width: 1500px) and (max-width: 1543px) {
+  .stats-panel { --stats-copy-block-height: 272px; }
+}
+
+@media (min-width: 1544px) and (max-width: 1686px) {
+  .stats-panel { --stats-copy-block-height: 240px; }
+}
+
+@media (max-width: 1499px) {
+  .stats-panel { --stats-copy-block-height: 148px; --stats-small-planets-height: 515px; --stats-big-planet-width: 219px; --stats-big-planet-height: 217px; --stats-web-center-y-offset: 9px; height: 95vh; min-height: 0; padding: var(--tc-spacing-panel-immersive); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; row-gap: 40px; }
+  .stats-decagon-pattern { width: 100%; height: 100%; object-fit: cover; }
+  .stats-small-planets { position: absolute; left: 50%; top: var(--stats-planets-top); width: auto; height: var(--stats-small-planets-height); transform: translateX(-50.302%); transform-origin: center; }
+  .stats-big-planet { width: var(--stats-big-planet-width); height: var(--stats-big-planet-height); }
+  .stats-copy,
+    .stats-bottom { position: relative; left: auto; top: auto; width: auto; min-width: 0; height: auto; }
+  .stats-panel h2,
+    .stats-copy p,
+    .stats-row { width: 100%; max-width: 100%; height: auto; }
+  .stats-panel h2 { white-space: normal; }
+  .stats-row { width: 822px; max-width: 100%; height: 152px; display: block; }
+  .stats-metric { position: absolute; top: 0; height: 152px; }
+  .stats-metric--1 { left: 0; width: 225px; }
+  .stats-metric--2 { left: 233px; width: 270px; }
+  .stats-metric--3 { left: 511px; width: 311px; }
+  .stats-metric dt img { left: 212px; right: auto; }
+  .stats-button { position: relative; left: auto; top: auto; margin-top: 24px; flex-wrap: wrap; }
+}
+
+@media (min-width: 1300px) and (max-width: 1335px) {
+  .stats-panel { --stats-copy-block-height: 236px; }
+}
+
+@media (min-width: 1336px) and (max-width: 1387px) {
+  .stats-panel { --stats-copy-block-height: 208px; }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .stats-button span { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+  .stats-panel { --stats-copy-block-height: 236px; }
+  .stats-bottom { height: auto; }
+  .stats-row { width: 100%; height: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .stats-metric,
+    .stats-metric--1,
+    .stats-metric--2,
+    .stats-metric--3 { position: relative; left: auto; top: auto; width: auto; }
+  .stats-metric dt img { left: auto; right: 0; }
+  .stats-button { max-width: 100%; min-width: 0; }
+}
+
+@media (min-width: 900px) and (max-width: 1023px) {
+  .stats-panel { --stats-copy-block-height: 236px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1075px) {
+  .stats-panel { --stats-copy-block-height: 208px; }
+}
+
+@media (max-width: 767px) {
+  .stats-copy p { font-weight: var(--tc-type-h4-weight); }
+  .stats-panel { min-height: auto; }
+  .stats-glow { inset: 0; filter: saturate(1.2); mask-image: none; -webkit-mask-image: none; }
+  .stats-glow span { will-change: transform, opacity; }
+  .stats-glow--v2 { filter: saturate(1.28) contrast(1.03); mask-image: none; -webkit-mask-image: none; }
+  .stats-glow--v2 span:nth-child(1) { left: 50%; right: auto; top: 272px; bottom: auto; width: clamp(620px, 168vw, 960px); height: clamp(620px, 154vw, 900px); margin-left: clamp(-520px, -86vw, -316px); filter: blur(82px); opacity: .82; animation: bottom-glow-v2-field 26s ease-in-out infinite alternate; }
+  .stats-glow--v2 span:nth-child(2) { left: 50%; right: auto; top: 348px; bottom: auto; width: clamp(540px, 146vw, 820px); height: clamp(520px, 132vw, 780px); margin-left: clamp(-430px, -72vw, -250px); filter: blur(50px); opacity: .9; animation: bottom-glow-v2-core 17s var(--tc-ease-emphasized) infinite alternate; }
+  .stats-glow--v2 span:nth-child(3) { left: 50%; right: auto; top: 492px; bottom: auto; width: clamp(420px, 112vw, 700px); height: clamp(340px, 92vw, 560px); margin-left: clamp(-326px, -54vw, -190px); filter: blur(62px); opacity: .62; animation: bottom-glow-v2-source 23s ease-in-out infinite alternate; }
+  .stats-glow--v2 span:nth-child(4) { display: block; left: 50%; right: auto; top: 430px; bottom: auto; width: clamp(520px, 150vw, 780px); height: clamp(190px, 54vw, 280px); margin-left: clamp(-390px, -68vw, -236px); filter: blur(58px); opacity: .28; animation: bottom-glow-v2-floor-wash 29s ease-in-out infinite alternate; }
+  .stats-glow--v2 span:nth-child(1) { top: 332px; }
+  .stats-glow--v2 span:nth-child(2) { top: 410px; }
+  .stats-glow--v2 span:nth-child(3) { top: 560px; }
+  .stats-glow--v2 span:nth-child(4) { top: 500px; }
+  .stats-glow--v2 span:nth-child(1) { opacity: .84; }
+  .stats-glow--v2 span:nth-child(2) { filter: blur(48px); opacity: .92; animation-name: stats-glow-v2-core; animation-duration: 19s; }
+  .stats-glow--v2 span:nth-child(3) { filter: blur(58px); opacity: .68; animation-name: stats-glow-v2-source; animation-duration: 25s; }
+  .stats-glow--v2 span:nth-child(4) { height: clamp(220px, 62vw, 320px); filter: blur(56px); opacity: .34; animation-name: stats-glow-v2-floor-wash; animation-duration: 31s; }
+  .stats-glow--v2 span:nth-child(n) { animation-delay: -8.4s; }
+  .stats-panel { --stats-visual-row-height: 620px; --stats-visual-gap: 40px; --stats-small-planets-height: clamp(360px, 72vw, 520px); --stats-big-planet-width: clamp(178px, 31vw, 224px); --stats-big-planet-offset: 16px; height: auto; min-height: 0; margin-top: 0; padding: var(--tc-spacing-panel-immersive); display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto var(--stats-visual-row-height); row-gap: var(--stats-visual-gap); }
+  .stats-small-planets { position: relative; left: auto; top: auto; grid-column: 1; grid-row: 2; justify-self: center; align-self: start; width: auto; height: var(--stats-small-planets-height); transform: none; transform-origin: top center; }
+  .stats-big-planet { position: relative; left: auto; top: auto; grid-column: 1; grid-row: 2; justify-self: center; align-self: start; width: var(--stats-big-planet-width); height: auto; margin-top: var(--stats-big-planet-offset); transform: none; }
+  .stats-copy p { margin-top: 24px; }
+  .stats-bottom { grid-column: 1; grid-row: 2; align-self: end; margin-top: 0; height: auto; display: flex; flex-direction: column; gap: 24px; }
+  .stats-row { width: 100%; height: auto; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; }
+  .stats-metric,
+    .stats-metric--1,
+    .stats-metric--2,
+    .stats-metric--3 { position: relative; left: auto; top: auto; height: 120px; min-height: 0; padding: var(--tc-spacing-card-dense); display: flex; flex-direction: column; justify-content: flex-start; gap: 12px; }
+  .stats-metric--1 { width: 125px; }
+  .stats-metric--2 { width: 146px; }
+  .stats-metric--3 { width: 184px; }
+  .stats-metric dt { width: 100%; height: 44px; display: flex; align-items: center; gap: 16px; }
+  .stats-metric dt span { font-size: var(--tc-type-h1-size); line-height: var(--tc-type-h1-line-height); }
+  .stats-metric dd { position: static; margin: 0; font-size: var(--tc-type-link-normal-size); line-height: var(--tc-type-link-normal-line-height); }
+  .stats-button { position: relative; left: auto; top: auto; width: 100%; margin-top: 0; }
+  .stats-button__text--desktop { display: none; }
+  .stats-button__text--mobile { display: inline; }
+  .stats-metric dt img { position: static; width: 32px; height: 32px; }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .stats-panel { --stats-visual-row-height: 520px; --stats-visual-gap: 48px; --stats-big-planet-offset: clamp(56px, 12vw, 88px); }
+  .stats-row { justify-content: flex-start; }
+}

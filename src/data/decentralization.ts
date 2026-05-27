@@ -1,4 +1,4 @@
-import { ecosystemCategories, type EcosystemEntry } from "./ecosystem";
+import { developerInfrastructureEntries, networkInspectionEntries, validatorVisibilityEntries } from "./ecosystemVerification";
 
 export type ArticleBlock = {
   id: string;
@@ -12,10 +12,6 @@ export type ArticleReference = {
   source: string;
   href?: string;
 };
-
-const entriesByCategory = Object.fromEntries(
-  ecosystemCategories.map((category) => [category.id, category.entries]),
-) as Record<string, EcosystemEntry[]>;
 
 export const decentralizationArticleLede = [
   "Terra Classic is not operated by a single company, foundation, founder, or private decision-maker.",
@@ -419,16 +415,16 @@ export const decentralizationResourceGroups = [
   {
     title: "Validator visibility",
     description: "Directories and validator channels from the existing Terra Classic link base.",
-    entries: entriesByCategory.validators ?? [],
+    entries: validatorVisibilityEntries,
   },
   {
     title: "Network inspection",
     description: "Explorers, analytics, finders, and public tools copied from the Framer source.",
-    entries: (entriesByCategory.tools ?? []).slice(0, 8),
+    entries: networkInspectionEntries,
   },
   {
     title: "Developer infrastructure",
     description: "Documentation, repositories, endpoints, and snapshots for deeper verification.",
-    entries: (entriesByCategory.developers ?? []).slice(0, 8),
+    entries: developerInfrastructureEntries,
   },
 ];

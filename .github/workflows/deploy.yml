@@ -27,8 +27,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
-      - name: Build
-        run: npm run build
+      - name: Build and check performance budgets
+        run: npm run check
         env:
           VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || format('/{0}/', github.event.repository.name) }}
       - name: Upload artifact
