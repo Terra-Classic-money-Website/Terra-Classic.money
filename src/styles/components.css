@@ -41,12 +41,41 @@
 .pill-button:hover .button-arrow-icon__hover,
 .pill-button:focus-visible .button-arrow-icon__hover { opacity: 1; }
 
-.responsive-image__img { display: block; width: 100%; height: 100%; max-width: none; object-fit: inherit; object-position: inherit; border-radius: inherit; }
+.responsive-image { position: relative; display: block; background: transparent; isolation: isolate; }
+
+.responsive-image::before { content: ""; position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 48%, rgba(255,255,255,.14), rgba(255,255,255,0) 68%); opacity: 0; pointer-events: none; transition: opacity var(--tc-motion-base) var(--tc-ease-standard); }
+
+.responsive-image--loading::before,
+.responsive-image--pending::before { opacity: var(--tc-image-placeholder-opacity, 0); }
+
+.responsive-image__img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; max-width: none; object-fit: inherit; object-position: inherit; border-radius: inherit; }
+
+.responsive-image--reveal .responsive-image__img { opacity: 0; filter: blur(var(--tc-image-reveal-blur, 10px)); transform: scale(var(--tc-image-reveal-scale, 1.012)); transition: opacity var(--tc-motion-slow) var(--tc-ease-standard), filter var(--tc-motion-slow) var(--tc-ease-standard), transform var(--tc-motion-slow) var(--tc-ease-standard); }
+
+.responsive-image--reveal.responsive-image--loaded .responsive-image__img { opacity: 1; filter: blur(0); transform: scale(1); }
+
+.capability-image .responsive-image,
+.founder-card__portrait { --tc-image-placeholder-opacity: .16; overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .responsive-image::before,
+  .responsive-image--reveal .responsive-image__img { transition: none; }
+  .responsive-image--reveal .responsive-image__img { filter: none; transform: none; }
+}
 
 .share-on-x-button.pill-button { min-width: 172px; border: 0; background: var(--color-black); color: var(--color-white); cursor: pointer; white-space: nowrap; }
 
 .share-on-x-button.pill-button:hover,
 .share-on-x-button.pill-button:focus-visible { background: var(--color-grey-50); color: var(--color-black); }
+
+.article-action-icon { position: relative; display: block; flex: 0 0 auto; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+
+.article-share-icon { width: 22px; height: 20px; }
+
+.share-on-x-button .article-action-icon { background: var(--color-white); transition: background-color var(--tc-motion-fast) var(--tc-ease-standard); }
+
+.share-on-x-button:hover .article-action-icon,
+.share-on-x-button:focus-visible .article-action-icon { background: var(--color-black); }
 
 .native-phase__badge { height: 32px; border: 1px solid var(--color-grey-100); border-radius: var(--radius-pill); display: inline-flex; align-items: center; justify-content: center; padding: 0 16px; font-size: 10px; line-height: 12px; letter-spacing: 5px; font-weight: 800; white-space: nowrap; }
 

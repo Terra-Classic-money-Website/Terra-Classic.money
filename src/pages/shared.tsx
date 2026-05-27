@@ -79,10 +79,11 @@ export function ActionButton({ children, dark = false, onClick }: { children: st
 
 export function ShareOnXButton({ href }: { href: string }) {
   const safeHref = isPlaceholderLink(href) ? "#" : href;
+  const xIconMask = `url("${asset("article-x-default.svg")}")`;
   return (
     <a className="share-on-x-button pill-button tc-type-link-big" href={safeHref} target={safeHref.startsWith("http") ? "_blank" : undefined} rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}>
       <span>Share on</span>
-      <span className="article-action-icon article-share-icon" aria-hidden="true" />
+      <span className="article-action-icon article-share-icon" style={{ WebkitMaskImage: xIconMask, maskImage: xIconMask }} aria-hidden="true" />
     </a>
   );
 }

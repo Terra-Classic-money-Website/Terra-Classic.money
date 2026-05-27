@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ImgHTMLAttributes, type Ref } from "react";
+import { useCallback, useEffect, useRef, useState, type ImgHTMLAttributes, type Ref, type SyntheticEvent } from "react";
 
 type ResponsiveImageFormat = "avif" | "webp";
 
@@ -22,6 +22,7 @@ type ResponsiveImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "className
   formats?: readonly ResponsiveImageFormat[];
   sources?: readonly ResponsiveImageSource[];
   enabled?: boolean;
+  reveal?: boolean;
 };
 
 type DeferredResponsiveImageProps = Omit<ResponsiveImageProps, "enabled"> & {
@@ -53,6 +54,15 @@ function srcSetFor(source: ResponsiveImageSource, format: ResponsiveImageFormat)
     .join(", ");
 }
 
+function assignImageRef(ref: Ref<HTMLImageElement> | undefined, value: HTMLImageElement | null) {
+  if (!ref) return;
+  if (typeof ref === "function") {
+    ref(value);
+    return;
+  }
+  (ref as { current: HTMLImageElement | null }).current = value;
+}
+
 export function ResponsiveImage({
   baseName,
   widths,
@@ -64,15 +74,45 @@ export function ResponsiveImage({
   formats = DEFAULT_FORMATS,
   sources = [],
   enabled = true,
+  reveal = false,
   decoding = "async",
+  onLoad,
   ...imgProps
 }: ResponsiveImageProps) {
+  const internalImageRef = useRef<HTMLImageElement | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const fallbackSource: ResponsiveImageSource = { baseName, widths, fallbackWidth, sizes, formats };
   const allSources = [...sources, fallbackSource];
   const fallbackSrc = imageAsset(imageFileName(baseName, fallbackWidth, fallbackWidth, "webp"));
+  const pictureClassName = [
+    "responsive-image",
+    className,
+    reveal ? "responsive-image--reveal" : undefined,
+    enabled ? "responsive-image--enabled" : "responsive-image--pending",
+    isLoaded ? "responsive-image--loaded" : "responsive-image--loading",
+  ].filter(Boolean).join(" ");
+  const setImageRef = useCallback((image: HTMLImageElement | null) => {
+    internalImageRef.current = image;
+    assignImageRef(imgRef, image);
+    if (image?.complete && image.naturalWidth > 0) setIsLoaded(true);
+  }, [imgRef]);
+  const handleLoad = useCallback((event: SyntheticEvent<HTMLImageElement>) => {
+    setIsLoaded(true);
+    onLoad?.(event);
+  }, [onLoad]);
+
+  useEffect(() => {
+    if (!enabled) {
+      setIsLoaded(false);
+      return;
+    }
+
+    const image = internalImageRef.current;
+    if (image?.complete && image.naturalWidth > 0) setIsLoaded(true);
+  }, [enabled, fallbackSrc]);
 
   return (
-    <picture className={className}>
+    <picture className={pictureClassName}>
       {enabled && allSources.flatMap((source) => (
         (source.formats || formats).map((format) => (
           <source
@@ -86,18 +126,19 @@ export function ResponsiveImage({
       ))}
       <img
         {...imgProps}
-        ref={imgRef}
+        ref={setImageRef}
         className={imgClassName}
         src={enabled ? fallbackSrc : undefined}
         srcSet={enabled ? srcSetFor(fallbackSource, "webp") : undefined}
         sizes={sizes}
         decoding={decoding}
+        onLoad={handleLoad}
       />
     </picture>
   );
 }
 
-export function DeferredResponsiveImage({ rootMargin = "320px 0px", ...props }: DeferredResponsiveImageProps) {
+export function DeferredResponsiveImage({ rootMargin = "1200px 0px", ...props }: DeferredResponsiveImageProps) {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
 
