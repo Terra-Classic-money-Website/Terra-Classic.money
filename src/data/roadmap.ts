@@ -90,7 +90,7 @@ export const roadmapRows: RoadmapRow[] = [
     group: "community",
     project: "Juris Protocol",
     shortName: "JP",
-    avatar: "https://framerusercontent.com/images/obdBBFwqR1y1ObX0POf8cyZ6Q.jpg?width=400&height=400",
+    avatar: "avatars/avatar-obdbbfwqr1y1obx0pof8cyz6q-e19587c5b9.webp",
     avatarAlt: "Juris Protocol lending and borrowing dApp on Terra Classic.",
     category: "DeFi / lending",
     source: "project-submitted",

@@ -1,0 +1,51 @@
+# Capabilities semantic rebuild
+
+## Scope
+
+Rebuilt the `Explore what Terra Classic enables` section as semantic React/HTML with measured desktop layout from the Figma section node `1612:1458`.
+
+## Figma alignment
+
+- Section: `1288px` design area, `120px` vertical padding, `64px` horizontal padding, `64px` header-to-grid gap.
+- Header: `895px` wide text block, `56px / 56px` heading, `24px / 32px` intro copy.
+- Cards: positioned from the Figma card coordinates instead of a generic equal grid.
+- CTA buttons: `320px x 56px` pill buttons with exported Figma SVG icons.
+- Visuals: replaced the placeholder capability artwork with Figma-exported PNG assets.
+- Follow-up image pass on 2026-05-17: kept Dawid's updated cropped PNG files and corrected only CSS placement/sizing. The old Figma fill transforms were removed from already-cropped assets to avoid double-cropping.
+- Image slots now follow Figma node `1612:1458` positions:
+  - staking: `32 / 374 / 319 / 162`
+  - forex: `31 / 443 / 314 / 137`
+  - defi: `33 / 371 / 318 / 471`, with a controlled `410px` hand scale and offset
+  - build: `472 / 31 / 221 / 201`
+  - ecosystem: `85 / 311 / 214 / 217`
+  - layer2: `515 / 40 / 213 / 184`
+  - nft: `450 / 41 / 271 / 221`
+- DeFi hand follow-up on 2026-05-17: Dawid recropped `capability-defi-figma.png` to `622 x 919`; the square image override was removed so the asset now renders directly in the Figma DeFi slot at `318 x 471`.
+
+## Assets exported
+
+- `public/assets/capability-staking-figma.png`
+- `public/assets/capability-forex-figma.png`
+- `public/assets/capability-defi-figma.png`
+- `public/assets/capability-build-figma.png`
+- `public/assets/capability-ecosystem-figma.png`
+- `public/assets/capability-layer2-figma.png`
+- `public/assets/capability-nft-figma.png`
+- `public/assets/capability-arrow.svg`
+- `public/assets/capability-defi-arrow.svg`
+- `public/assets/capability-forex-icon.svg`
+- `public/assets/capability-layer2-icon.svg`
+- `public/assets/capability-staking-icon.svg`
+
+## Validation
+
+- `npm run check` passed after implementation.
+- `npm run check` passed after the 2026-05-17 image placement correction.
+- Browser QA was run against `http://127.0.0.1:5173/#ecosystem`.
+- At the desktop composition coordinates, card positions now follow the Figma grid: first row `384 / 376 / 384`, `8px` gutters, wide lower cards, and `1536px` grid height.
+- QA screenshot for the image correction: `docs/audit-screenshots/capabilities-image-crop-fix-2026-05-17.png`.
+- QA screenshot for the recropped DeFi hand: `docs/audit-screenshots/capabilities-defi-recrop-2026-05-17.png`.
+
+## Known follow-up
+
+The section CTA destinations are centralized through `src/data/links.ts`. Final external URLs still need to replace the existing `TODO_REPLACE_*` placeholders once Dawid confirms the target destinations.

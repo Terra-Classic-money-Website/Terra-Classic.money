@@ -12,3 +12,5 @@ node_modules/
 dist/
 .vite/
 *.tsbuildinfo
+.performance-reports/
+.visual-reports/

@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
           openWorkDetail: resolve(__dirname, "open-work-detail.html"),
           roadmap: resolve(__dirname, "roadmap.html"),
           about: resolve(__dirname, "about.html"),
+          privacy: resolve(__dirname, "privacy.html"),
         },
       },
     },
