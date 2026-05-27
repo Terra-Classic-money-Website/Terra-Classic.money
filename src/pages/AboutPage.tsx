@@ -32,6 +32,7 @@ function AboutHero() {
         fetchPriority="high"
         width="1067"
         height="584"
+        reveal
       />
       <div className="stats-copy decentralization-stats-hero__copy about-hero__copy">
         <h1 className="tc-type-h1" id="about-page-title">About terra-classic.money</h1>
@@ -59,16 +60,7 @@ function AboutOwnership() {
     if (owner === "Terraform Labs") {
       return (
         <span className="about-timeline__owner-logo" aria-label="Terraform Labs">
-          <ResponsiveImage
-            baseName="about-terraform-labs-logo"
-            widths={[240, 699]}
-            fallbackWidth={699}
-            sizes="134px"
-            alt=""
-            aria-hidden="true"
-            width="119"
-            height="32"
-          />
+          <img src={asset("about-terraform-labs-logo.webp")} alt="" aria-hidden="true" width="119" height="32" />
         </span>
       );
     }
@@ -154,12 +146,13 @@ function AboutVisualBand({ variant }: { variant: "open-source" | "contribute" })
             sizes: "(max-width: 767px) 70vw, 801px",
           }]}
           alt=""
-          loading="lazy"
+          loading="eager"
           width={foreground.width}
           height={foreground.height}
+          reveal
         />
       ) : (
-        <ResponsiveImage className={`about-visual-band__image about-visual-band__image--${variant}`} baseName="about-contribute-foreground" widths={[360, 720, 947]} fallbackWidth={947} sizes="(max-width: 767px) 70vw, 947px" alt="" loading="lazy" width={foreground.width} height={foreground.height} />
+        <ResponsiveImage className={`about-visual-band__image about-visual-band__image--${variant}`} baseName="about-contribute-foreground" widths={[360, 720, 947]} fallbackWidth={947} sizes="(max-width: 767px) 70vw, 947px" alt="" loading="eager" width={foreground.width} height={foreground.height} reveal />
       )}
     </div>
   );

@@ -150,9 +150,9 @@
 
 .about-visual-band__image { position: absolute; z-index: 3; left: 50%; width: auto; max-width: none; display: block; pointer-events: none; transform: translateX(-50%); }
 
-.about-visual-band__image--open-source { top: 0; height: 100%; }
+.about-visual-band__image--open-source { top: 0; height: 100%; aspect-ratio: 801 / 384; }
 
-.about-visual-band__image--contribute { top: 11.71875%; height: 78.90625%; }
+.about-visual-band__image--contribute { top: 11.71875%; height: 78.90625%; aspect-ratio: 947 / 303; }
 
 .about-open-source .about-section__copy { max-width: none; gap: 64px; }
 

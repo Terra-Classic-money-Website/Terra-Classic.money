@@ -182,22 +182,16 @@ function Hero() {
 }
 
 const supportLogos = [
-  { name: "Binance", asset: "support-binance.svg", className: "support-logo-binance" },
-  { name: "Circle", asset: "support-circle.png", className: "support-logo-circle" },
-  { name: "Franklin Templeton", asset: "support-franklin.png", className: "support-logo-franklin" },
-  { name: "PayPal USD", asset: "support-paypal-usd.png", className: "support-logo-paypal" },
-  { name: "Etherfuse", asset: "support-etherfuse.png", className: "support-logo-etherfuse" },
-  { name: "Binance", asset: "support-binance.svg", className: "support-logo-binance" },
-  { name: "Circle", asset: "support-circle.png", className: "support-logo-circle support-logo-circle-repeat" },
-  { name: "Franklin Templeton", asset: "support-franklin.png", className: "support-logo-franklin" },
+  { name: "Binance", asset: "support-binance.png", className: "support-logo-binance", width: 104, height: 22 },
+  { name: "Kraken", asset: "support-kraken.png", className: "support-logo-kraken", width: 94, height: 16 },
+  { name: "MEXC", asset: "support-mexc.png", className: "support-logo-mexc", width: 97, height: 15 },
+  { name: "HTX", asset: "support-htx.png", className: "support-logo-htx", width: 49, height: 24 },
+  { name: "Cosmos", asset: "support-cosmos.png", className: "support-logo-cosmos", width: 107, height: 20 },
+  { name: "SolidProof", asset: "support-solidproof.png", className: "support-logo-solidproof", width: 116, height: 28 },
+  { name: "Certik", asset: "support-certik.png", className: "support-logo-certik", width: 89, height: 22 },
+  { name: "Keplr", asset: "support-keplr.png", className: "support-logo-keplr", width: 72, height: 22 },
+  { name: "Trust Wallet", asset: "support-trust.png", className: "support-logo-trust", width: 81, height: 22 },
 ];
-
-const supportLogoDimensions: Record<string, { width: number; height: number }> = {
-  "support-circle.png": { width: 165, height: 93 },
-  "support-etherfuse.png": { width: 165, height: 30 },
-  "support-franklin.png": { width: 165, height: 93 },
-  "support-paypal-usd.png": { width: 165, height: 30 },
-};
 
 function SupportLogoStrip() {
   return (
@@ -205,15 +199,11 @@ function SupportLogoStrip() {
       <p className="tc-type-body-small">Decentralization supported by:</p>
       <div className="support-logo-row">
         {supportLogos.map((logo, index) => {
-          const dimensions = supportLogoDimensions[logo.asset];
+          const logoAsset = logo.asset.endsWith(".png") ? `${responsiveImageBase(logo.asset)}.webp` : logo.asset;
 
           return (
             <div className={`support-logo ${logo.className}`} key={`${logo.name}-${index}`}>
-              {dimensions ? (
-                <DeferredResponsiveImage baseName={responsiveImageBase(logo.asset)} widths={[dimensions.width]} fallbackWidth={dimensions.width} sizes="165px" alt={logo.name} loading="lazy" width={dimensions.width} height={dimensions.height} />
-              ) : (
-                <img src={asset(logo.asset)} alt={logo.name} loading="lazy" />
-              )}
+              <img src={asset(logoAsset)} alt={logo.name} loading="eager" width={logo.width} height={logo.height} />
             </div>
           );
         })}
@@ -396,15 +386,15 @@ function WhatIsTerraClassic() {
         </aside>
       </div>
       <div className="what-visual">
-        <DeferredResponsiveImage className="what-surface" baseName="what-surface" widths={[480, 768, 1205]} fallbackWidth={1205} sizes="100vw" alt="" loading="lazy" width="1205" height="1600" />
+        <DeferredResponsiveImage className="what-surface" baseName="what-surface" widths={[480, 768, 1205]} fallbackWidth={1205} sizes="100vw" alt="" loading="eager" width="1205" height="1600" reveal />
         <span className="what-orb-layer what-left-orb" aria-hidden="true">
-          <DeferredResponsiveImage baseName="what-left-orb" widths={[320, 720, 1200]} fallbackWidth={1200} sizes="(max-width: 767px) 177px, 580px" alt="" loading="lazy" width="1200" height="1203" />
+          <DeferredResponsiveImage baseName="what-left-orb" widths={[320, 720, 1200]} fallbackWidth={1200} sizes="(max-width: 767px) 177px, 580px" alt="" loading="eager" width="1200" height="1203" reveal />
         </span>
         <span className="what-orb-layer what-right-orb" aria-hidden="true">
-          <DeferredResponsiveImage baseName="what-right-orb" widths={[320, 720, 1200]} fallbackWidth={1200} sizes="(max-width: 767px) 174px, 570px" alt="" loading="lazy" width="1200" height="1224" />
+          <DeferredResponsiveImage baseName="what-right-orb" widths={[320, 720, 1200]} fallbackWidth={1200} sizes="(max-width: 767px) 174px, 570px" alt="" loading="eager" width="1200" height="1224" reveal />
         </span>
         <span className="what-orb-layer what-main-orb" aria-hidden="true">
-          <DeferredResponsiveImage baseName="what-main-orb" widths={[320, 720, 1024, 1700]} fallbackWidth={1700} sizes="(max-width: 767px) 260px, 860px" alt="" loading="lazy" width="1700" height="1688" />
+          <DeferredResponsiveImage baseName="what-main-orb" widths={[320, 720, 1024, 1700]} fallbackWidth={1700} sizes="(max-width: 767px) 260px, 860px" alt="" loading="eager" width="1700" height="1688" reveal />
         </span>
         {avatars.map((avatar) => (
           <span className={`what-avatar ${avatar.className}`} key={avatar.image}>
@@ -468,7 +458,7 @@ function Capabilities() {
                 <img className={`capability-cta-icon capability-cta-icon--${card.slug}`} src={asset(ctaIcons[card.slug])} alt="" aria-hidden="true" />
               </a>
               <div className="capability-image" aria-hidden="true">
-                <DeferredResponsiveImage baseName={responsiveImageBase(card.image)} widths={capabilityImageWidths[card.slug]} fallbackWidth={imageDimensions.width} sizes="(max-width: 767px) 300px, 320px" alt="" loading="lazy" width={imageDimensions.width} height={imageDimensions.height} />
+                <DeferredResponsiveImage baseName={responsiveImageBase(card.image)} widths={capabilityImageWidths[card.slug]} fallbackWidth={imageDimensions.width} sizes="(max-width: 767px) 300px, 320px" alt="" loading="eager" width={imageDimensions.width} height={imageDimensions.height} reveal />
               </div>
             </article>
           );
@@ -489,9 +479,10 @@ function ProtocolUiImage({ assetName, className }: { assetName: string; classNam
       fallbackWidth={384}
       sizes="(max-width: 767px) 128px, 384px"
       alt=""
-      loading="lazy"
+      loading="eager"
       width={dimensions.width}
       height={dimensions.height}
+      reveal
     />
   );
 }
@@ -554,7 +545,7 @@ function ProtocolShowcase() {
               <p className="tc-type-h4">{protocol.body}</p>
             </div>
             <div className="protocol-visual" aria-hidden="true">
-              <DeferredResponsiveImage className="protocol-orb" baseName={responsiveImageBase(protocol.image)} widths={protocolImageWidths[protocol.id]} fallbackWidth={imageDimensions.width} sizes="(max-width: 767px) 296px, 720px" alt="" loading="lazy" width={imageDimensions.width} height={imageDimensions.height} />
+              <DeferredResponsiveImage className="protocol-orb" baseName={responsiveImageBase(protocol.image)} widths={protocolImageWidths[protocol.id]} fallbackWidth={imageDimensions.width} sizes="(max-width: 767px) 296px, 720px" alt="" loading="eager" width={imageDimensions.width} height={imageDimensions.height} reveal />
               {protocol.id === "staking" && (
                 <>
                   <ProtocolUiImage className="protocol-ui protocol-ui--staking-validator" assetName={protocol.ui[0]} />
@@ -614,16 +605,15 @@ function ProtocolShowcase() {
 }
 
 function NativeTokenIcon({ icon, compact = false }: { icon: string; compact?: boolean }) {
+  const iconAsset = icon.endsWith(".png") ? `${responsiveImageBase(icon)}.webp` : icon;
+
   return (
-    <DeferredResponsiveImage
+    <img
       className={`native-token-card__icon ${compact ? "native-token-card__icon--compact" : ""}`}
-      baseName={responsiveImageBase(icon)}
-      widths={[60]}
-      fallbackWidth={60}
-      sizes={compact ? "(max-width: 767px) 28px, 40px" : "(max-width: 767px) 32px, 50px"}
+      src={asset(iconAsset)}
       alt=""
       aria-hidden="true"
-      loading="lazy"
+      loading="eager"
       width={compact ? "40" : "50"}
       height={compact ? "40" : "50"}
     />
@@ -650,7 +640,7 @@ function NativeAssets() {
       <div className="native-assets__group native-assets__group--speculative">
         <h3 className="tc-type-h3">Speculative assets:</h3>
         <div className="native-lunc-row">
-          <DeferredResponsiveImage className="native-lunc-row__bg" baseName="native-lunc-bg" widths={[192, 385]} fallbackWidth={385} sizes="(max-width: 767px) 320px, 385px" alt="" aria-hidden="true" loading="lazy" width="385" height="386" />
+          <DeferredResponsiveImage className="native-lunc-row__bg" baseName="native-lunc-bg" widths={[192, 385]} fallbackWidth={385} sizes="(max-width: 767px) 320px, 385px" alt="" aria-hidden="true" loading="eager" width="385" height="386" reveal />
           <div className="native-lunc-row__identity">
             <img src={asset("native-lunc-logo.svg")} alt="" aria-hidden="true" width="72" height="72" />
             <div className="native-lunc-row__copy">
@@ -717,7 +707,7 @@ function Strengths() {
         {strengths.slice(0, 4).map(([title, body], index) => <StrengthCard key={title} index={index} title={title} body={body} />)}
         <div className="strength-visual" aria-hidden="true">
           <span className="strength-visual__bg" />
-          <DeferredResponsiveImage className="strength-visual__orb" baseName="strength-orb" widths={[360, 720, 900]} fallbackWidth={900} sizes="292px" alt="" loading="lazy" width="900" height="894" />
+          <DeferredResponsiveImage className="strength-visual__orb" baseName="strength-orb" widths={[360, 720, 900]} fallbackWidth={900} sizes="292px" alt="" loading="eager" width="900" height="894" reveal />
         </div>
         {strengths.slice(4).map(([title, body], index) => <StrengthCard key={title} index={index + 4} title={title} body={body} />)}
       </div>
@@ -755,8 +745,8 @@ function DecentralizationStats() {
         <span />
       </div>
       <DecagonPattern />
-      <DeferredResponsiveImage className="stats-small-planets" baseName="stats-small-planets" widths={[360, 720, 1161]} fallbackWidth={1161} sizes="(max-width: 767px) 90vw, 1161px" alt="" aria-hidden="true" loading="lazy" width="1161" height="636" />
-      <DeferredResponsiveImage className="stats-big-planet" baseName="stats-big-planet" widths={[180, 270]} fallbackWidth={270} sizes="270px" alt="" aria-hidden="true" loading="lazy" width="270" height="268" />
+      <DeferredResponsiveImage className="stats-small-planets" baseName="stats-small-planets" widths={[360, 720, 1161]} fallbackWidth={1161} sizes="(max-width: 767px) 90vw, 1161px" alt="" aria-hidden="true" loading="eager" width="1161" height="636" reveal />
+      <DeferredResponsiveImage className="stats-big-planet" baseName="stats-big-planet" widths={[180, 270]} fallbackWidth={270} sizes="270px" alt="" aria-hidden="true" loading="eager" width="270" height="268" reveal />
       <div className="stats-copy">
         <h2 className="tc-type-h1" id="stats-title">Efficiency driven by decentralization</h2>
         <p className="tc-type-h4">Terra Classic is governed in the open—no CEO, no single company, and no central authority—just a decentralized network where validators, builders, and stakeholders steer the roadmap together.</p>
@@ -851,20 +841,7 @@ function JoinCommunity() {
             <a key={label} href={safeHref} target={safeHref.startsWith("http") ? "_blank" : undefined} rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}>
               <span className="tc-type-link-big">{label}</span>
               <span className={`community-button-icon community-button-icon--${variant}`} aria-hidden="true">
-                {variant === "github" ? (
-                  <img src={asset(icon)} alt="" />
-                ) : (
-                  <ResponsiveImage
-                    baseName={responsiveImageBase(icon)}
-                    widths={variant === "agora" ? [128, 256, 512, 2080] : [64, 128, 256, 740]}
-                    fallbackWidth={variant === "agora" ? 2080 : 740}
-                    sizes="128px"
-                    alt=""
-                    loading="lazy"
-                    width={variant === "agora" ? "2080" : "740"}
-                    height={variant === "agora" ? "694" : "740"}
-                  />
-                )}
+                <img src={asset(icon)} alt="" loading="eager" />
               </span>
             </a>
           );

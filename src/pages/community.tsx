@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DeferredResponsiveImage, ResponsiveImage, responsiveImageBase } from "../components/ResponsiveImage";
+import { DeferredResponsiveImage } from "../components/ResponsiveImage";
 import { faqGroups, founders } from "../data/content";
 import { isPlaceholderLink, links } from "../data/links";
 import { asset } from "./shared";
@@ -72,20 +72,7 @@ export function JoinCommunity() {
             <a key={label} href={safeHref} target={safeHref.startsWith("http") ? "_blank" : undefined} rel={safeHref.startsWith("http") ? "noopener noreferrer" : undefined}>
               <span className="tc-type-link-big">{label}</span>
               <span className={`community-button-icon community-button-icon--${variant}`} aria-hidden="true">
-                {variant === "github" ? (
-                  <img src={asset(icon)} alt="" />
-                ) : (
-                  <ResponsiveImage
-                    baseName={responsiveImageBase(icon)}
-                    widths={variant === "agora" ? [128, 256, 512, 2080] : [64, 128, 256, 740]}
-                    fallbackWidth={variant === "agora" ? 2080 : 740}
-                    sizes="128px"
-                    alt=""
-                    loading="lazy"
-                    width={variant === "agora" ? "2080" : "740"}
-                    height={variant === "agora" ? "694" : "740"}
-                  />
-                )}
+                <img src={asset(icon)} alt="" loading="eager" />
               </span>
             </a>
           );

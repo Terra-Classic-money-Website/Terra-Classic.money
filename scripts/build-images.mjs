@@ -70,14 +70,19 @@ const nativeTokenImages = [
 }));
 
 const supportLogoImages = [
-  "support-circle.png",
-  "support-etherfuse.png",
-  "support-franklin.png",
-  "support-paypal-usd.png",
-].map((source) => ({
+  ["support-binance.png", 104],
+  ["support-kraken.png", 94],
+  ["support-mexc.png", 97],
+  ["support-htx.png", 49],
+  ["support-cosmos.png", 107],
+  ["support-solidproof.png", 116],
+  ["support-certik.png", 89],
+  ["support-keplr.png", 72],
+  ["support-trust.png", 81],
+].map(([source, fallbackWidth]) => ({
   source,
-  fallbackWidth: 165,
-  widths: [165],
+  fallbackWidth,
+  widths: [fallbackWidth],
   ...highFidelityRaster,
 }));
 
