@@ -506,18 +506,6 @@
 
 .protocol-glow--forex.protocol-glow--v2 span:nth-child(n) { animation-delay: -11.1s; }
 
-.protocol-lines { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .1; }
-
-.protocol-lines span { position: absolute; top: 0; width: 1px; height: 100%; background: var(--color-white); }
-
-.protocol-lines span:nth-child(1) { left: 20%; }
-
-.protocol-lines span:nth-child(2) { left: 40%; }
-
-.protocol-lines span:nth-child(3) { left: 60%; }
-
-.protocol-lines span:nth-child(4) { left: 80%; }
-
 .protocol-head { position: relative; z-index: 3; width: 100%; display: flex; flex-direction: column; gap: 32px; }
 
 .protocol-title-row { display: flex; align-items: center; gap: 32px; height: 88px; flex-wrap: wrap; }
@@ -757,8 +745,7 @@
 .strength-visual__orb { position: relative; z-index: 1; display: block; width: 292px; height: auto; max-width: none; }
 
 @supports (content-visibility: auto) {
-  .logo-strip,
-    .what-section,
+  .what-section,
     .capabilities-section,
     .protocols,
     .native-assets,
@@ -766,7 +753,6 @@
       content-visibility: auto;
       contain-intrinsic-size: auto var(--tc-contain-intrinsic-size, 720px);
     }
-  .logo-strip { --tc-contain-intrinsic-size: 180px; }
   .what-section { --tc-contain-intrinsic-size: 1320px; }
   .capabilities-section { --tc-contain-intrinsic-size: 2056px; }
   .protocols { --tc-contain-intrinsic-size: 2400px; }

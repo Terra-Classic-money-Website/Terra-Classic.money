@@ -52,7 +52,7 @@
 .about-contributor-row span,
 .about-contributor-row small { color: var(--color-grey-500); }
 
-.about-hero__bottom { height: auto; display: flex; align-items: flex-start; }
+.stats-bottom.about-hero__bottom { height: auto; display: flex; align-items: flex-start; }
 
 .about-hero-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 
