@@ -58,9 +58,15 @@ const fileStats = await Promise.all(files.map(async (file) => {
   };
 }));
 
+const metadataFileNames = new Set([".DS_Store", "Thumbs.db", "desktop.ini", "ehthumbs.db"]);
+
+function isLocalMetadataFile(fileName) {
+  return metadataFileNames.has(fileName) || fileName.startsWith("._");
+}
+
 const totalDistBytes = fileStats.reduce((sum, file) => sum + file.bytes, 0);
 const largestAsset = fileStats.reduce((largest, file) => (file.bytes > largest.bytes ? file : largest), fileStats[0]);
-const metadataFiles = fileStats.filter((file) => path.basename(file.file) === ".DS_Store");
+const metadataFiles = fileStats.filter((file) => isLocalMetadataFile(path.basename(file.file)));
 const jsFiles = fileStats.filter((file) => file.relative.startsWith("assets/") && file.relative.endsWith(".js"));
 const cssFiles = fileStats.filter((file) => file.relative.startsWith("assets/") && file.relative.endsWith(".css"));
 const htmlFiles = fileStats.filter((file) => file.relative.endsWith(".html"));

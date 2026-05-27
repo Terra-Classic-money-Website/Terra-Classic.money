@@ -163,7 +163,7 @@ function Hero() {
           <article key={group.title} className="hero-group">
             <div className="hero-group-header">
               <h2 className="tc-type-h5">{group.title}</h2>
-              <img src={asset(group.logo)} alt="" style={{ width: group.logoWidth }} />
+              <img src={asset(group.logo)} alt="" width={group.logoWidth} height={group.logoHeight} style={{ width: group.logoWidth }} />
             </div>
             {group.links.map((item, index) => (
               <div className="hero-link-wrap" key={item}>

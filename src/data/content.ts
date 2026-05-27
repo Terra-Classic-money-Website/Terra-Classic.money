@@ -24,18 +24,21 @@ export const heroGroups = [
     title: "Users:",
     logo: "hero-users-logos.svg",
     logoWidth: 75,
+    logoHeight: 32,
     links: ["Understand Terra Classic", "Find wallet", "Stake your LUNC"],
   },
   {
     title: "Developers:",
     logo: "hero-developers-logos.svg",
     logoWidth: 89,
+    logoHeight: 31,
     links: ["Quick start guide", "Check complete documentation"],
   },
   {
     title: "Institutions:",
     logo: "hero-institution-logo.svg",
     logoWidth: 32,
+    logoHeight: 32,
     links: ["Utilise multi-currency suite (20+ assets)", "Build payment gateway"],
   },
 ];

@@ -50,6 +50,21 @@ const pages = [
     file: "privacy.json",
     budgets: { minScore: 95, maxFcpMs: 2200, maxLcpMs: 2500, maxTbtMs: 100, maxCls: 0.06, maxTransferKiB: 300, maxRequests: 20 },
   },
+  {
+    label: "home-desktop",
+    file: "home-desktop.json",
+    budgets: { minScore: 95, maxFcpMs: 1800, maxLcpMs: 2500, maxTbtMs: 100, maxCls: 0.05, maxTransferKiB: 2000, maxRequests: 70 },
+  },
+  {
+    label: "decentralization-desktop",
+    file: "decentralization-desktop.json",
+    budgets: { minScore: 95, maxFcpMs: 1800, maxLcpMs: 2500, maxTbtMs: 100, maxCls: 0.05, maxTransferKiB: 750, maxRequests: 40 },
+  },
+  {
+    label: "about-desktop",
+    file: "about-desktop.json",
+    budgets: { minScore: 95, maxFcpMs: 1800, maxLcpMs: 2500, maxTbtMs: 100, maxCls: 0.05, maxTransferKiB: 750, maxRequests: 40 },
+  },
 ];
 
 function formatMs(value) {

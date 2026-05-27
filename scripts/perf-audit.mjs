@@ -10,15 +10,18 @@ const port = Number(process.env.PERF_AUDIT_PORT || 4173);
 const baseUrl = `http://${host}:${port}`;
 
 const pages = [
-  { label: "home", path: "/", retryOnOutlier: { minScore: 95, maxTbtMs: 150 } },
-  { label: "ecosystem", path: "/ecosystem.html" },
-  { label: "markets", path: "/markets.html" },
-  { label: "roadmap", path: "/roadmap.html" },
-  { label: "open-work", path: "/open-work.html" },
-  { label: "open-work-detail", path: "/open-work-detail.html?work=forex-protocol-implementation" },
-  { label: "decentralization", path: "/decentralization.html", retryOnOutlier: { minScore: 82, maxTbtMs: 400 } },
-  { label: "about", path: "/about.html" },
-  { label: "privacy", path: "/privacy.html" },
+  { label: "home", path: "/", formFactor: "mobile", retryOnOutlier: { minScore: 95, maxTbtMs: 150 } },
+  { label: "ecosystem", path: "/ecosystem.html", formFactor: "mobile" },
+  { label: "markets", path: "/markets.html", formFactor: "mobile" },
+  { label: "roadmap", path: "/roadmap.html", formFactor: "mobile" },
+  { label: "open-work", path: "/open-work.html", formFactor: "mobile" },
+  { label: "open-work-detail", path: "/open-work-detail.html?work=forex-protocol-implementation", formFactor: "mobile" },
+  { label: "decentralization", path: "/decentralization.html", formFactor: "mobile", retryOnOutlier: { minScore: 82, maxTbtMs: 400 } },
+  { label: "about", path: "/about.html", formFactor: "mobile" },
+  { label: "privacy", path: "/privacy.html", formFactor: "mobile" },
+  { label: "home-desktop", path: "/", formFactor: "desktop", retryOnOutlier: { minScore: 95, maxTbtMs: 100 } },
+  { label: "decentralization-desktop", path: "/decentralization.html", formFactor: "desktop" },
+  { label: "about-desktop", path: "/about.html", formFactor: "desktop" },
 ];
 
 function run(command, args, options = {}) {
@@ -71,7 +74,7 @@ async function readPerformanceMetrics(reportPath) {
 }
 
 async function runLighthouse(page, outputPath) {
-  await run("npx", [
+  const args = [
     "--yes",
     "lighthouse@latest",
     `${baseUrl}${page.path}`,
@@ -80,7 +83,13 @@ async function runLighthouse(page, outputPath) {
     `--output-path=${outputPath}`,
     "--chrome-flags=--headless=new --no-sandbox",
     "--quiet",
-  ]);
+  ];
+
+  if (page.formFactor === "desktop") {
+    args.push("--preset=desktop");
+  }
+
+  await run("npx", args);
 }
 
 function shouldRetryOutlier(page, metrics) {

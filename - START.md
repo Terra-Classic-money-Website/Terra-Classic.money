@@ -109,7 +109,7 @@ Run a local Lighthouse performance audit for all production pages:
 npm run perf:audit
 ```
 
-Reports are written to `.performance-reports`, which is intentionally ignored by Git. The audit command also checks the saved reports against page-level Lighthouse budgets for performance score, FCP, LCP, TBT, CLS, transfer weight, and request count.
+Reports are written to `.performance-reports`, which is intentionally ignored by Git. The audit command checks all production pages in the mobile Lighthouse profile, then runs desktop spot checks for Home, Decentralization, and About. Saved reports are checked against page-level Lighthouse budgets for performance score, FCP, LCP, TBT, CLS, transfer weight, and request count.
 
 To re-check the latest saved Lighthouse reports without running a fresh audit:
 
