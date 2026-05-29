@@ -33,7 +33,7 @@ The project remains in responsive correction and implementation hardening. This 
 - Tightened the primary nav gap from `24px` to `16px`.
 - Changed external drawer links to the small Figma treatment and removed the previous Mobile-only Layer 2 planet icon.
 - Neutralized the active-link color in the opened Mobile menu so the state matches the Figma reference.
-- Added the existing LUNC logo as the site favicon to avoid local browser 404 noise during rendered validation.
+- Historical note: this task temporarily used the existing LUNC logo as the site favicon to avoid local browser 404 noise during rendered validation. That favicon approach is superseded by `docs/131 - Favicon source hardening - 2026-05-29.md`; do not reintroduce the old LUNC logo favicon.
 - Kept the existing overlay/body-lock behavior so the menu remains operator-safe and accessible.
 
 ## Validation plan
