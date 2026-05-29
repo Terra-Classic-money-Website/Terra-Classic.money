@@ -45,7 +45,12 @@ Additional artifact checks:
 - `dist/index.html` emits root-relative asset URLs such as `/assets/...` and `/fonts/...`.
 - Built HTML/CSS/JS artifacts contain zero `/Terra-Classic.money/` references.
 
-Deployment validation still needs to run after `main` is pushed:
+Completed deployment validation after `main` was pushed:
 
-- Confirm GitHub Pages workflow succeeds.
-- Confirm `https://terra-classic.money/` serves root-relative assets without the old `/Terra-Classic.money/` prefix.
+- GitHub Pages workflow succeeded.
+- `https://terra-classic.money/` serves root-relative asset URLs such as `/assets/...` and `/fonts/...`.
+- The live homepage contains zero `/Terra-Classic.money/` references.
+- Root asset requests return `200`.
+- Old project-path asset requests under `/Terra-Classic.money/assets/...` return `404`, which confirms the custom domain build is no longer using the repository subpath.
+
+GitHub Actions emitted a non-blocking warning that several upstream actions still run on Node.js 20 and will need attention before GitHub's 2026 Node 24 migration deadlines. This did not block deployment.
