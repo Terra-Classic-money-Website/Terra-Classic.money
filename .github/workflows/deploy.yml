@@ -30,7 +30,7 @@ jobs:
       - name: Build and check performance budgets
         run: npm run check
         env:
-          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || format('/{0}/', github.event.repository.name) }}
+          VITE_BASE_PATH: "/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
