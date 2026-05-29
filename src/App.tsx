@@ -757,7 +757,7 @@ function DecentralizationStats() {
             <div className={`stats-metric stats-metric--${index + 1}`} key={number}>
               <dt>
                 <span className="tc-type-h1">{number}</span>
-                {index === 2 && <img src={asset("lunc-logo.svg")} alt="" aria-hidden="true" width="50" height="50" />}
+                {index === 2 && <img src={asset("native-lunc-logo.svg")} alt="" aria-hidden="true" width="50" height="50" />}
               </dt>
               <dd className="tc-type-link-normal">{label}</dd>
             </div>
