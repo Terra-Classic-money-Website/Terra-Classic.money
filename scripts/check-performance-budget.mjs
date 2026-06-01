@@ -7,7 +7,7 @@ const distDir = path.join(rootDir, "dist");
 const distAssetsDir = path.join(distDir, "assets");
 
 const budgets = {
-  totalDistBytes: 15 * 1024 * 1024,
+  totalDistBytes: 16 * 1024 * 1024,
   largestAssetBytes: 900 * 1024,
   homeInitialJsGzipBytes: 85 * 1024,
   maxInitialJsGzipBytes: 125 * 1024,

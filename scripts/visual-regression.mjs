@@ -32,6 +32,7 @@ const routeViewports = [
   { page: "decentralization", path: "/decentralization.html", viewports: ["mobile-390", "desktop-1632"] },
   { page: "about", path: "/about.html", viewports: ["mobile-390", "desktop-1632"] },
   { page: "privacy", path: "/privacy.html", viewports: ["mobile-390", "desktop-1632"] },
+  { page: "404", path: "/404.html", viewports: ["mobile-390", "tablet-1024", "desktop-1632"] },
 ];
 
 const viewports = {

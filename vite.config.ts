@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
           roadmap: resolve(__dirname, "roadmap.html"),
           about: resolve(__dirname, "about.html"),
           privacy: resolve(__dirname, "privacy.html"),
+          notFound: resolve(__dirname, "404.html"),
         },
       },
     },
