@@ -1,0 +1,36 @@
+name: Correction or broken link
+description: Report an error, stale content, typo, duplicate, or broken link.
+title: "Correction: "
+labels: ["correction", "content"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Page URL, section, or file where the issue appears.
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current problem
+      description: What is wrong, stale, broken, duplicated, or misleading?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed correction
+      description: What should it say or link to instead?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Add a source link for factual corrections when possible.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything maintainers should know before editing.

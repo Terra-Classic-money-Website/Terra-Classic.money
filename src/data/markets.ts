@@ -1,5 +1,7 @@
 import type { EcosystemCategory } from "./ecosystemTypes";
 
+// Contributor note: market listings are informational only.
+// Add CEX/DEX entries with the direct market route when possible.
 export const marketCategories: EcosystemCategory[] = [
   {
     id: "cex",

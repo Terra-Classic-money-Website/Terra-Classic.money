@@ -212,7 +212,7 @@ function AboutContribute() {
       <AboutIndexedGrid items={contributionPaths} visualVariant="contribute" />
       <div className="about-hero-actions">
         <LinkButton href={`${links.websiteRepository}/issues`} dark>Report an issue or suggest a change</LinkButton>
-        <LinkButton href={`${links.websiteRepository}/blob/main/README.md`} dark>View contribution guidelines</LinkButton>
+        <LinkButton href={`${links.websiteRepository}/blob/main/CONTRIBUTING.md`} dark>View contribution guidelines</LinkButton>
       </div>
     </section>
   );

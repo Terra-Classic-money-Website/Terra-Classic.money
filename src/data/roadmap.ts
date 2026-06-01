@@ -11,6 +11,8 @@ export type RoadmapMilestone = {
 
 export type RoadmapRow = {
   id: string;
+  /** Set to false to keep a sourced row in this file without showing it on the public roadmap. */
+  visible?: boolean;
   group: "public" | "community";
   project: string;
   shortName: string;
@@ -40,9 +42,12 @@ export const roadmapMonths = [
   { key: "2026-09", label: "September", year: "2026" },
 ] as const;
 
+// Contributor note: roadmap rows need sources and honest status labels.
+// Use visible: false for tracked-but-not-public rows.
 export const roadmapRows: RoadmapRow[] = [
   {
     id: "public-l1-governance",
+    visible: false,
     group: "public",
     project: "Terra Classic L1",
     shortName: "L1",
@@ -104,6 +109,7 @@ export const roadmapRows: RoadmapRow[] = [
   },
   {
     id: "community-terraport",
+    visible: false,
     group: "community",
     project: "TerraPort",
     shortName: "TP",
@@ -118,6 +124,7 @@ export const roadmapRows: RoadmapRow[] = [
   },
   {
     id: "community-sdk",
+    visible: false,
     group: "community",
     project: "Terra Classic SDK",
     shortName: "SDK",
@@ -133,6 +140,7 @@ export const roadmapRows: RoadmapRow[] = [
   },
   {
     id: "community-selenium",
+    visible: false,
     group: "community",
     project: "Selenium Finance",
     shortName: "SEL",
@@ -148,6 +156,7 @@ export const roadmapRows: RoadmapRow[] = [
   },
   {
     id: "community-garuda",
+    visible: false,
     group: "community",
     project: "Garuda",
     shortName: "GAR",

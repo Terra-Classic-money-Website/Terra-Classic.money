@@ -22,6 +22,8 @@ export type ClosedWorkPackage = {
   delivered: string;
 };
 
+// Contributor note: open work packages should be concrete enough for builders to quote.
+// Keep deliverables and acceptance criteria specific; vague ideas belong in an issue first.
 export const openWorkPackages: OpenWorkPackage[] = [
   {
     id: "forex-protocol-implementation",

@@ -1,0 +1,61 @@
+name: Open work package proposal
+description: Propose a scoped work package for Terra Classic builders.
+title: "Open work package: "
+labels: ["open work", "content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Open work packages should be concrete enough for builders to quote.
+        Vague ideas are better discussed before becoming website content.
+  - type: input
+    id: title
+    attributes:
+      label: Work package title
+    validations:
+      required: true
+  - type: input
+    id: category
+    attributes:
+      label: Category
+      placeholder: Wallet infrastructure, Stablecoins, Chain maintenance
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Explain the work in plain language.
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Expected deliverables
+      description: List concrete outputs.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How should the community know the work is complete?
+    validations:
+      required: true
+  - type: textarea
+    id: ideal_for
+    attributes:
+      label: Ideal contributor or team
+      description: Skills or experience required.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources, context, or prior discussion
+      description: Link to Agora threads, governance proposals, docs, repositories, or public discussions.
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and dependencies
+      description: Mention security, governance, wallet, infrastructure, funding, or maintenance risks.

@@ -1,0 +1,49 @@
+name: Market correction
+description: Suggest a market listing change for CEX or DEX pages.
+title: "Market correction: "
+labels: ["markets", "content"]
+body:
+  - type: input
+    id: venue
+    attributes:
+      label: Market or venue
+      description: Exchange, DEX, swap route, or market name.
+    validations:
+      required: true
+  - type: input
+    id: pair
+    attributes:
+      label: Pair or route
+      description: Example: LUNC/USDT, LUNC/USDC, LUNC/USTC.
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Correct URL
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: dropdown
+    id: action
+    attributes:
+      label: Requested action
+      options:
+        - Add listing
+        - Update listing
+        - Remove listing
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source or evidence
+      description: Provide a source showing the market exists, changed, or was removed.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Mention region restrictions, liquidity concerns, redirects, or safety concerns if relevant.

@@ -3,6 +3,8 @@ import type { EcosystemCategory } from "./ecosystemTypes";
 
 export type { EcosystemCategory, EcosystemEntry } from "./ecosystemTypes";
 
+// Contributor note: add public ecosystem listings in the right category below.
+// Keep summaries short, neutral, and informational. Avatars are optional.
 export const ecosystemCategories: EcosystemCategory[] = [
   {
     id: "applications",

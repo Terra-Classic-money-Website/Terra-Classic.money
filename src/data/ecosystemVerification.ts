@@ -1,5 +1,7 @@
 import type { EcosystemEntry } from "./ecosystemTypes";
 
+// Contributor note: these entries support routing integrity, validator visibility,
+// network inspection, and developer infrastructure rather than ordinary app discovery.
 export const validatorVisibilityEntries: EcosystemEntry[] = [
   {
     name: "StakeBin",

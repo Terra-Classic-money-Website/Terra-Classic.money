@@ -1,0 +1,69 @@
+name: Ecosystem listing request
+description: Suggest a Terra Classic ecosystem listing or listing update.
+title: "Ecosystem listing: "
+labels: ["ecosystem", "content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for apps, wallets, bridges, tools, infrastructure, validators, and information resources.
+        Listings are informational only and do not imply endorsement.
+        Hard rule: Ecosystem listings must provide actual utility for LUNC holders. Token-only, memecoin, speculation-only, and L2-only market projects belong on the separate Layer 2 surface, not the main Ecosystem page.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: Project, tool, wallet, bridge, or resource name.
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: Public link users should visit.
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Applications
+        - Entertainment
+        - Blockchain information
+        - Wallets
+        - Blockchain tools
+        - Bridges
+        - Validators
+        - For developers
+        - Infrastructure & service providers
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: summary
+    attributes:
+      label: Short summary
+      description: Keep it brief, for example "Wallet", "NFT marketplace", or "Analytics".
+    validations:
+      required: true
+  - type: textarea
+    id: lunc_utility
+    attributes:
+      label: Actual utility for LUNC holders
+      description: Explain what this project lets LUNC holders do beyond buying, selling, or speculating on a token.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Source or evidence
+      description: Link to docs, repository, announcement, product page, or other source that supports the listing.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes or risks
+      description: Mention WIP status, custody risk, project-submitted context, or anything maintainers should know.

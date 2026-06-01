@@ -22,14 +22,6 @@ const roadmapStatusLabels: Record<RoadmapMilestone["status"], string> = {
   "source-needed": "Source needed",
 };
 
-const roadmapPageHiddenRowIds = new Set<RoadmapRow["id"]>([
-  "public-l1-governance",
-  "community-terraport",
-  "community-sdk",
-  "community-selenium",
-  "community-garuda",
-]);
-
 function readTimelineMetric(element: HTMLElement, property: string) {
   return Number.parseFloat(getComputedStyle(element).getPropertyValue(property)) || 0;
 }
@@ -166,7 +158,7 @@ function RoadmapProjectRow({
 }
 
 function RoadmapTimeline() {
-  const pageRows = roadmapRows.filter((row) => !roadmapPageHiddenRowIds.has(row.id));
+  const pageRows = roadmapRows.filter((row) => row.visible !== false);
   const publicRows = pageRows.filter((row) => row.group === "public");
   const communityRows = pageRows.filter((row) => row.group === "community");
   const [timelineMetrics, setTimelineMetrics] = useState({ monthWidth: 248, scrollLeft: 0 });

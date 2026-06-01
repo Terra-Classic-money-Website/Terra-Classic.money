@@ -1,0 +1,59 @@
+name: Roadmap update
+description: Suggest a Terra Classic roadmap correction or new roadmap item.
+title: "Roadmap update: "
+labels: ["roadmap", "content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Roadmap updates need sources. If the item is speculative, say so clearly.
+        Project roadmap entries are only eligible if the project is listed on, or clearly eligible for, the main Ecosystem page.
+        See ROADMAP-LISTING-POLICY.md before submitting.
+  - type: input
+    id: project
+    attributes:
+      label: Project or workstream
+      description: Example: Market Module 2.0, Forex Protocol, Juris Protocol.
+    validations:
+      required: true
+  - type: dropdown
+    id: group
+    attributes:
+      label: Roadmap group
+      options:
+        - Public / protocol
+        - Community / project-submitted
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: ecosystem_eligibility
+    attributes:
+      label: Ecosystem eligibility
+      description: Link to the current Ecosystem listing, or explain the actual LUNC-holder utility that makes this project eligible for the main Ecosystem page.
+    validations:
+      required: true
+  - type: textarea
+    id: milestones
+    attributes:
+      label: Proposed milestone changes
+      description: Include title, start month, end month, and status if possible.
+      placeholder: |
+        - Milestone: Public testnet
+          Start: 2026-06
+          End: 2026-07
+          Status: planned
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Link to governance proposal, repository, announcement, documentation, or public maintainer statement.
+    validations:
+      required: true
+  - type: textarea
+    id: uncertainty
+    attributes:
+      label: Uncertainty or dependencies
+      description: Mention assumptions, unverified claims, dependencies, or reasons the item may need `source-needed`.
