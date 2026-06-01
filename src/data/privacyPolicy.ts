@@ -69,10 +69,11 @@ export const privacyPolicySections: PrivacyPolicySection[] = [
   {
     title: "5. Cookies and analytics",
     content: [
-      { type: "paragraph", text: "At the time of this Privacy Policy, terra-classic.money is intended to operate without advertising cookies, behavioral tracking, or invasive analytics." },
-      { type: "paragraph", text: "However, some third-party infrastructure or embedded services may use cookies or similar technologies when you interact with external content, GitHub, social sharing links, media players, analytics tools, or other third-party services." },
-      { type: "paragraph", text: "If privacy-friendly analytics are added in the future, they should be configured to minimize personal data collection where possible." },
-      { type: "paragraph", text: "If non-essential cookies or analytics requiring consent are added, the website should add an appropriate cookie notice or consent mechanism where required by law." },
+      { type: "paragraph", text: "Terra-classic.money uses Google Analytics 4 to understand aggregate website usage, such as page views, traffic sources, device categories, approximate geography, scroll depth, outbound link clicks, and file downloads where those enhanced measurement events are enabled." },
+      { type: "paragraph", text: "Google Analytics 4 does not provide this website with individual IP addresses. Google states that GA4 does not log or store individual IP addresses and uses IP address data only to derive approximate location information before discarding it." },
+      { type: "paragraph", text: "The analytics tag is configured with Google signals and advertising personalization signals disabled. The website does not use Google Analytics for advertising targeting, paid rankings, validator preference, or hidden promotional placement." },
+      { type: "paragraph", text: "Some third-party infrastructure or embedded services may also use cookies or similar technologies when you interact with external content, GitHub, social sharing links, media players, analytics tools, or other third-party services." },
+      { type: "paragraph", text: "If non-essential cookies or analytics requiring consent are added or expanded in the future, the website should add an appropriate cookie notice or consent mechanism where required by law." },
     ],
   },
   {

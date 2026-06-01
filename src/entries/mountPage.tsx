@@ -1,5 +1,6 @@
 import { StrictMode, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
+import { initializeAnalytics } from "../analytics";
 import { SiteShell } from "../components/SiteShell";
 
 export function mountPage(
@@ -9,6 +10,8 @@ export function mountPage(
     sidebarStorageKey?: string;
   } = {},
 ) {
+  initializeAnalytics();
+
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <SiteShell

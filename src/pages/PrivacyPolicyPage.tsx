@@ -23,7 +23,7 @@ export function PrivacyPolicyPage() {
       <article className="legal-page" id="top" aria-labelledby="privacy-policy-title">
         <header className="legal-page__header">
           <h1 className="tc-type-h1" id="privacy-policy-title">Privacy Policy</h1>
-          <p className="legal-page__updated tc-type-h4">Last updated: May 26, 2026</p>
+          <p className="legal-page__updated tc-type-h4">Last updated: June 1, 2026</p>
           <div className="legal-page__intro">
             {privacyPolicyIntro.map((paragraph) => <p className="tc-type-body" key={paragraph}>{paragraph}</p>)}
           </div>
