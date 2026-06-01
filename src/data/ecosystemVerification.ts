@@ -96,7 +96,7 @@ export const developerInfrastructureEntries: EcosystemEntry[] = [
   {
     name: "Documentation",
     summary: "",
-    href: "https://docs.terra-classic.io/",
+    href: "https://docs.terra-classic.money",
     avatar: "avatars/avatar-l5biu5jgsixfxxlktciooktqh8-45742b3e6e.webp",
     avatarAlt: "Terra Classic developer documentation (WIP).",
   },
