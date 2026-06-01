@@ -18,6 +18,7 @@ const pages = [
   { label: "open-work-detail", path: "/open-work-detail.html?work=forex-protocol-implementation", formFactor: "mobile" },
   { label: "decentralization", path: "/decentralization.html", formFactor: "mobile", retryOnOutlier: { minScore: 82, maxTbtMs: 400 } },
   { label: "about", path: "/about.html", formFactor: "mobile" },
+  { label: "analytics", path: "/analytics.html", formFactor: "mobile" },
   { label: "privacy", path: "/privacy.html", formFactor: "mobile" },
   { label: "404", path: "/404.html", formFactor: "mobile" },
   { label: "home-desktop", path: "/", formFactor: "desktop", retryOnOutlier: { minScore: 95, maxTbtMs: 100 } },

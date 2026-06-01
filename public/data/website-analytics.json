@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "status": "setup_required",
+  "generatedAt": null,
+  "source": "Google Analytics 4 Data API",
+  "refresh": {
+    "cadence": "Hourly through GitHub Actions",
+    "workflow": ".github/workflows/website-analytics.yml"
+  },
+  "realtime": {
+    "activeUsers": null,
+    "windowMinutes": 30
+  },
+  "periods": [
+    {
+      "id": "30d",
+      "label": "Last 30 days",
+      "startDate": "29daysAgo",
+      "endDate": "today",
+      "metrics": {
+        "activeUsers": null,
+        "sessions": null,
+        "views": null,
+        "events": null
+      },
+      "topPages": []
+    },
+    {
+      "id": "7d",
+      "label": "Last 7 days",
+      "startDate": "6daysAgo",
+      "endDate": "today",
+      "metrics": {
+        "activeUsers": null,
+        "sessions": null,
+        "views": null,
+        "events": null
+      },
+      "topPages": []
+    },
+    {
+      "id": "1d",
+      "label": "Last 1 day",
+      "startDate": "today",
+      "endDate": "today",
+      "metrics": {
+        "activeUsers": null,
+        "sessions": null,
+        "views": null,
+        "events": null
+      },
+      "topPages": []
+    }
+  ],
+  "notices": [
+    "Analytics feed setup is pending. Add GA4_PROPERTY_ID and GOOGLE_ANALYTICS_SERVICE_ACCOUNT_JSON to GitHub Actions secrets, then run the Website analytics feed workflow."
+  ]
+}

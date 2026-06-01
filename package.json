@@ -8,6 +8,7 @@
     "clean:metadata": "node scripts/clean-local-metadata.mjs",
     "assets:build": "node scripts/build-images.mjs",
     "assets:avatars": "node scripts/localize-avatars.mjs",
+    "analytics:generate": "node scripts/generate-website-analytics.mjs",
     "build": "npm run clean:metadata && npm run assets:build && tsc -b && vite build",
     "typecheck": "tsc -b --pretty",
     "preview": "vite preview --host 127.0.0.1",

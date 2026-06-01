@@ -384,6 +384,7 @@ const componentNames = [
   "Back to top button",
   "Collaps button",
   "APR badge",
+  "Analytics metric",
   "Open work card",
   "Roadmap timeline",
 ];
@@ -887,6 +888,35 @@ function OpenWorkCardPreview() {
   );
 }
 
+function AnalyticsMetricPreview() {
+  return (
+    <article className="analytics-period-card ds-analytics-card">
+      <header>
+        <h2 className="tc-type-h4">Last 30 days</h2>
+        <p className="tc-type-body-small">Generated static feed</p>
+      </header>
+      <dl className="analytics-period-card__metrics">
+        <div className="analytics-metric-tile">
+          <dt className="tc-type-h3">12,480</dt>
+          <dd className="tc-type-link-normal">Views</dd>
+        </div>
+        <div className="analytics-metric-tile">
+          <dt className="tc-type-h3">3,204</dt>
+          <dd className="tc-type-link-normal">Active users</dd>
+        </div>
+        <div className="analytics-metric-tile analytics-metric-tile--pending">
+          <dt className="tc-type-h3">Pending</dt>
+          <dd className="tc-type-link-normal">Realtime</dd>
+        </div>
+        <div className="analytics-metric-tile">
+          <dt className="tc-type-h3">4,110</dt>
+          <dd className="tc-type-link-normal">Sessions</dd>
+        </div>
+      </dl>
+    </article>
+  );
+}
+
 function LeftSectionPreview() {
   const [collapsed, setCollapsed] = useState(false);
   const [languageOpen, setLanguageOpen] = useState(false);
@@ -1218,6 +1248,8 @@ function ComponentPreview({ name }: { name: string }) {
       return <BadgeGallery />;
     case "APR badge":
       return <div className="ds-apr-badge-stage"><AprBadge value="3.42%" /></div>;
+    case "Analytics metric":
+      return <AnalyticsMetricPreview />;
     case "Open work card":
       return <OpenWorkCardPreview />;
     case "CMC / CG Button":
