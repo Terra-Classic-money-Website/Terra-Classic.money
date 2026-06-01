@@ -3,7 +3,7 @@ import { ResponsiveImage } from "../components/ResponsiveImage";
 import { aboutFaqItems, aboutIntroParagraphs, contributionPaths, contributorGroups, openSourcePrinciples, ownershipTimeline, supportBoundaries } from "../data/about";
 import { links } from "../data/links";
 import { FAQ, FounderStories, JoinCommunity } from "./community";
-import { ActionButton, asset, BOTTOM_GLOW_VARIANT, DonationModal, Footer, LinkButton, page, ShareOnXButton } from "./shared";
+import { ActionButton, asset, BOTTOM_GLOW_VARIANT, DisabledLinkButton, DonationModal, Footer, LinkButton, page, ShareOnXButton } from "./shared";
 
 function AboutHero() {
   return (
@@ -261,7 +261,7 @@ function AboutSupport() {
       </div>
       <div className="about-hero-actions">
         <ActionButton dark onClick={() => setDonationOpen(true)}>Make a donation</ActionButton>
-        <LinkButton href={links.layer2} dark>Paid listing packages</LinkButton>
+        <DisabledLinkButton dark>Paid listing packages</DisabledLinkButton>
       </div>
       <DonationModal open={donationOpen} onClose={() => setDonationOpen(false)} />
     </section>

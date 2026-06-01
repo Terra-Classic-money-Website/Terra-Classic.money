@@ -76,6 +76,7 @@ export const contributorGroups = [
       ["Dawid Skinder", "Domain stewardship, project direction, design system, content structure, and website production", ""],
       ["Don Lunc", "Maintainer", ""],
       ["El Paco Lunc", "Maintainer", ""],
+      ["StrathCole", "Created the Terra Classic docs foundation expanded at docs.terra-classic.money", ""],
       ["Whalliam", "Maintainer", ""],
       ["Vladimir POSTHUMAN", "Maintainer", ""],
     ],

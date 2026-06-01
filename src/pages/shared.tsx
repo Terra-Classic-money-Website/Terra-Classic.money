@@ -65,6 +65,18 @@ export function LinkButton({ href, children, dark = false }: { href: string; chi
   );
 }
 
+export function DisabledLinkButton({ children, dark = false }: { children: string; dark?: boolean }) {
+  return (
+    <span className={`pill-button pill-button--disabled tc-type-link-big ${dark ? "pill-button--dark" : ""}`} aria-disabled="true">
+      <span>{children}</span>
+      <span className="button-arrow-icon" aria-hidden="true">
+        <img className="button-arrow-icon__default" src={asset(dark ? "button-arrow-white.svg" : "button-arrow-light.svg")} alt="" />
+        <img className="button-arrow-icon__hover" src={asset(dark ? "button-arrow-black.svg" : "button-arrow-white.svg")} alt="" />
+      </span>
+    </span>
+  );
+}
+
 export function ActionButton({ children, dark = false, onClick }: { children: string; dark?: boolean; onClick: () => void }) {
   return (
     <button className={`pill-button tc-type-link-big ${dark ? "pill-button--dark" : ""}`} type="button" onClick={onClick}>

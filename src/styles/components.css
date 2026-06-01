@@ -31,6 +31,13 @@
 
 .pill-button--dark:hover, .pill-button--dark:focus-visible { background: var(--color-grey-50); color: var(--color-black); }
 
+.pill-button--disabled,
+.pill-button--disabled:hover,
+.pill-button--disabled:focus-visible { background: var(--color-black); color: var(--color-white); cursor: default; pointer-events: none; }
+
+.pill-button--disabled > span:not(.button-arrow-icon),
+.pill-button--disabled .button-arrow-icon { opacity: .28; }
+
 .button-arrow-icon { width: 20px; height: 16px; display: grid; place-items: center; flex: 0 0 auto; }
 
 .button-arrow-icon img { width: 16px; height: 20px; grid-area: 1 / 1; transform: rotate(-90deg); transition: opacity var(--tc-motion-fast) var(--tc-ease-standard); }
@@ -40,6 +47,12 @@
 
 .pill-button:hover .button-arrow-icon__hover,
 .pill-button:focus-visible .button-arrow-icon__hover { opacity: 1; }
+
+.pill-button--disabled:hover .button-arrow-icon__default,
+.pill-button--disabled:focus-visible .button-arrow-icon__default { opacity: 1; }
+
+.pill-button--disabled:hover .button-arrow-icon__hover,
+.pill-button--disabled:focus-visible .button-arrow-icon__hover { opacity: 0; }
 
 .responsive-image { position: relative; display: block; background: transparent; isolation: isolate; }
 
