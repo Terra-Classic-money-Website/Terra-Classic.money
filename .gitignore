@@ -1,8 +1,14 @@
-# Private/operator-only project inputs
+# Private/operator-only project inputs.
+# Never commit these to main or GitHub Pages.
 AGENTS.md
 PROMPTS.md
 - PROMPTS.md
 - KNOWLEDGE/
+docs/
+- START.md
+-- 1. OG BRIEF - 2026.05.14.md
+DESIGN.md
+designsystem.html
 
 # macOS local metadata
 .DS_Store
