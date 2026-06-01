@@ -744,6 +744,7 @@ function AvatarPreview() {
 
 function CardPreview() {
   const [capability] = capabilities;
+  const layer2Capability = capabilities.find((item) => item.slug === "layer2");
   const [strengthTitle, strengthBody] = strengths[0];
   const [indexedTitle, indexedBody] = contributionPaths[0];
 
@@ -762,6 +763,22 @@ function CardPreview() {
           <img src={asset(capability.image)} alt="" loading="lazy" />
         </div>
       </article>
+
+      {layer2Capability && (
+        <article className={`capability-card capability-card--${layer2Capability.slug} ds-card-media`}>
+          <div className="capability-copy">
+            <h3 className="tc-type-h3">{layer2Capability.title}</h3>
+            <p className="tc-type-body">{layer2Capability.body}</p>
+          </div>
+          <span className="capability-cta capability-cta--disabled" aria-disabled="true">
+            <span className="tc-type-link-big">{layer2Capability.cta}</span>
+            <img className={`capability-cta-icon capability-cta-icon--${layer2Capability.slug}`} src={asset("capability-layer2-icon.svg")} alt="" aria-hidden="true" />
+          </span>
+          <div className="capability-image" aria-hidden="true">
+            <img src={asset(layer2Capability.image)} alt="" loading="lazy" />
+          </div>
+        </article>
+      )}
 
       <article className="strength-card ds-card-text">
         <div className="strength-card__copy">
@@ -890,14 +907,29 @@ function LeftSectionPreview() {
               ))}
             </nav>
             <nav className="sidebar-nav sidebar-nav--external">
-              {externalNav.map((item) => (
-                <a href="#components" onClick={stopNavigation} key={item.label}>
+              {externalNav.map((item) => {
+                const icon = (
                   <span className="sidebar-external-icon" aria-hidden="true">
                     <img src={asset("sidebar-external-arrow.svg")} alt="" />
                   </span>
-                  {item.label}
-                </a>
-              ))}
+                );
+
+                if (item.disabled) {
+                  return (
+                    <span className="sidebar-nav__disabled" aria-disabled="true" key={item.label}>
+                      {icon}
+                      {item.label}
+                    </span>
+                  );
+                }
+
+                return (
+                  <a href="#components" onClick={stopNavigation} key={item.label}>
+                    {icon}
+                    {item.label}
+                  </a>
+                );
+              })}
             </nav>
           </div>
         </div>

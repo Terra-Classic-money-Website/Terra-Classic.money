@@ -116,6 +116,30 @@ const HERO_GLOW_VARIANT = "v2";
 const BOTTOM_GLOW_VARIANT = "v2";
 const decagonPatternCells = Array.from({ length: 16 }, (_, index) => index);
 
+function resolveHref(rawHref: string) {
+  if (isPlaceholderLink(rawHref)) return "#";
+  if (rawHref.startsWith("http") || rawHref.startsWith("#")) return rawHref;
+  return page(rawHref);
+}
+
+const isExternalHref = (href: string) => href.startsWith("http");
+
+const heroLinkHrefs: Record<string, string> = {
+  "Understand Terra Classic": "#about",
+  "Find wallet": links.ecosystemWallets,
+  "Stake your LUNC": "#staking-protocol",
+  "Quick start guide": links.docsQuickStart,
+  "Check complete documentation": links.docs,
+  "Utilise multi-currency suite (20+ assets)": links.docsMultiCurrencySuite,
+  "Build payment gateway": links.docsPaymentGateway,
+};
+
+const popularTopicHrefs: Record<string, string> = {
+  "How to stake LUNC": links.docsStakingDelegate,
+  "Terra Classic ecosystem": links.ecosystem,
+  "Terra Classic Roadmap": links.roadmap,
+};
+
 function DecagonPattern() {
   return (
     <span className="stats-decagon-pattern" style={{ "--stats-decagon-image": `url(${asset("decagon.svg")})` } as CSSProperties} aria-hidden="true">
@@ -165,15 +189,20 @@ function Hero() {
               <h2 className="tc-type-h5">{group.title}</h2>
               <img src={asset(group.logo)} alt="" width={group.logoWidth} height={group.logoHeight} style={{ width: group.logoWidth }} />
             </div>
-            {group.links.map((item, index) => (
-              <div className="hero-link-wrap" key={item}>
-                {index > 0 && <span className="hero-group-divider" aria-hidden="true" />}
-                <a className="tc-type-link-normal" href="#about">
-                  {item}
-                  <DotArrowIcon />
-                </a>
-              </div>
-            ))}
+            {group.links.map((item, index) => {
+              const href = resolveHref(heroLinkHrefs[item] || "#about");
+              const isExternal = isExternalHref(href);
+
+              return (
+                <div className="hero-link-wrap" key={item}>
+                  {index > 0 && <span className="hero-group-divider" aria-hidden="true" />}
+                  <a className="tc-type-link-normal" href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                    {item}
+                    <DotArrowIcon />
+                  </a>
+                </div>
+              );
+            })}
           </article>
         ))}
       </div>
@@ -377,12 +406,17 @@ function WhatIsTerraClassic() {
         </div>
         <aside className="what-popular">
           <h3 className="tc-type-h5">Popular topics:</h3>
-          {popularTopics.map((topic) => (
-            <a className="tc-type-link-normal" key={topic} href="#ecosystem">
-              {topic}
-              <DotArrowIcon />
-            </a>
-          ))}
+          {popularTopics.map((topic) => {
+            const href = resolveHref(popularTopicHrefs[topic] || "#ecosystem");
+            const isExternal = isExternalHref(href);
+
+            return (
+              <a className="tc-type-link-normal" key={topic} href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                {topic}
+                <DotArrowIcon />
+              </a>
+            );
+          })}
         </aside>
       </div>
       <div className="what-visual">
@@ -425,14 +459,15 @@ function Capabilities() {
     nft: "capability-arrow.svg",
   };
   const ctaLinks: Record<string, string> = {
-    staking: links.stakingDocs,
-    forex: links.forexDocs,
+    staking: "#staking-protocol",
+    forex: "#forex-protocol",
     defi: links.ecosystem,
     build: links.docs,
     ecosystem: links.ecosystem,
     layer2: links.layer2,
-    nft: links.ecosystem,
+    nft: links.ecosystemApplications,
   };
+  const disabledCtas = new Set(["layer2"]);
 
   return (
     <section id="ecosystem" className="section capabilities-section" aria-labelledby="capabilities-title">
@@ -443,8 +478,9 @@ function Capabilities() {
       <div className="capabilities-grid">
         {capabilities.map((card) => {
           const rawHref = ctaLinks[card.slug];
-          const href = isPlaceholderLink(rawHref) ? "#" : rawHref;
-          const isExternal = href.startsWith("http");
+          const href = resolveHref(rawHref);
+          const isExternal = isExternalHref(href);
+          const isDisabled = disabledCtas.has(card.slug);
           const imageDimensions = capabilityImageDimensions[card.slug];
 
           return (
@@ -453,10 +489,17 @@ function Capabilities() {
                 <h3 className="tc-type-h3">{card.title}</h3>
                 <p className="tc-type-body">{card.body}</p>
               </div>
-              <a className="capability-cta" href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
-                <span className="tc-type-link-big">{card.cta}</span>
-                <img className={`capability-cta-icon capability-cta-icon--${card.slug}`} src={asset(ctaIcons[card.slug])} alt="" aria-hidden="true" />
-              </a>
+              {isDisabled ? (
+                <span className="capability-cta capability-cta--disabled" aria-disabled="true">
+                  <span className="tc-type-link-big">{card.cta}</span>
+                  <img className={`capability-cta-icon capability-cta-icon--${card.slug}`} src={asset(ctaIcons[card.slug])} alt="" aria-hidden="true" />
+                </span>
+              ) : (
+                <a className="capability-cta" href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                  <span className="tc-type-link-big">{card.cta}</span>
+                  <img className={`capability-cta-icon capability-cta-icon--${card.slug}`} src={asset(ctaIcons[card.slug])} alt="" aria-hidden="true" />
+                </a>
+              )}
               <div className="capability-image" aria-hidden="true">
                 <DeferredResponsiveImage baseName={responsiveImageBase(card.image)} widths={capabilityImageWidths[card.slug]} fallbackWidth={imageDimensions.width} sizes="(max-width: 767px) 300px, 320px" alt="" loading="eager" width={imageDimensions.width} height={imageDimensions.height} reveal />
               </div>
@@ -492,7 +535,7 @@ function ProtocolShowcase() {
   const [shouldLoadApr, setShouldLoadApr] = useState(false);
   const stakingApr = useAprInfo(shouldLoadApr);
   const protocolLinks: Record<string, string[]> = {
-    staking: [links.stakingDocs, "#", links.stakingDocs],
+    staking: [links.ecosystemWallets, links.stakingDocs],
     swap: [links.swapDocs],
     forex: [links.forexDocs],
   };
@@ -519,7 +562,7 @@ function ProtocolShowcase() {
         const imageDimensions = protocolImageDimensions[protocol.id];
 
         return (
-          <article key={protocol.id} className={`protocol-panel protocol-panel--${protocol.id}`}>
+          <article key={protocol.id} id={`${protocol.id}-protocol`} className={`protocol-panel protocol-panel--${protocol.id}`}>
             <div className={`protocol-glow protocol-glow--${protocol.id} protocol-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
               <span />
               <span />
@@ -585,8 +628,8 @@ function ProtocolShowcase() {
               <div className="protocol-actions">
                 {protocol.buttons.map((button, index) => {
                   const rawHref = buttonLinks[index] || "#";
-                  const href = isPlaceholderLink(rawHref) ? "#" : rawHref;
-                  const isExternal = href.startsWith("http");
+                  const href = resolveHref(rawHref);
+                  const isExternal = isExternalHref(href);
 
                   return (
                     <a key={button} className={`protocol-button protocol-button--${index === 0 ? "primary" : "secondary"}`} href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
@@ -626,9 +669,9 @@ function NativeAssets() {
     status: phase === 1 ? "IN PROGRESS" : "COMMING SOON",
     items: assets.filter((item) => item.phase === phase),
   }));
-  const coinMarketCapHref = isPlaceholderLink(links.coinMarketCap) ? "#" : links.coinMarketCap;
-  const coinGeckoHref = isPlaceholderLink(links.coinGecko) ? "#" : links.coinGecko;
-  const nativeAssetsContactHref = isPlaceholderLink(links.nativeAssetsContact) ? "#" : links.nativeAssetsContact;
+  const coinMarketCapHref = resolveHref(links.coinMarketCap);
+  const coinGeckoHref = resolveHref(links.coinGecko);
+  const nativeAssetsContactHref = resolveHref(links.nativeAssetsContact);
 
   return (
     <section className="section native-assets" aria-labelledby="assets-title">
@@ -649,10 +692,10 @@ function NativeAssets() {
             </div>
           </div>
           <div className="native-lunc-row__links" aria-label="LUNC market links">
-            <a href={coinMarketCapHref} target={coinMarketCapHref.startsWith("http") ? "_blank" : undefined} rel={coinMarketCapHref.startsWith("http") ? "noopener noreferrer" : undefined} aria-label="LUNC on CoinMarketCap">
+            <a href={coinMarketCapHref} target={isExternalHref(coinMarketCapHref) ? "_blank" : undefined} rel={isExternalHref(coinMarketCapHref) ? "noopener noreferrer" : undefined} aria-label="LUNC on CoinMarketCap">
               <img src={asset("native-cmc-icon.svg")} alt="" aria-hidden="true" />
             </a>
-            <a href={coinGeckoHref} target={coinGeckoHref.startsWith("http") ? "_blank" : undefined} rel={coinGeckoHref.startsWith("http") ? "noopener noreferrer" : undefined} aria-label="LUNC on CoinGecko">
+            <a href={coinGeckoHref} target={isExternalHref(coinGeckoHref) ? "_blank" : undefined} rel={isExternalHref(coinGeckoHref) ? "noopener noreferrer" : undefined} aria-label="LUNC on CoinGecko">
               <img src={asset("native-cg-icon.svg")} alt="" aria-hidden="true" />
             </a>
           </div>
@@ -690,7 +733,7 @@ function NativeAssets() {
       </div>
 
       <p className="native-assets__closing tc-type-h4">Looking to bring a new fiat-pegged stable asset on-chain—whether as an issuer, institution, or public-sector partner—connect with the Terra Classic community to explore integration, collateralization, and governance-led rollout.</p>
-      <a className="native-assets__button" href={nativeAssetsContactHref} target={nativeAssetsContactHref.startsWith("http") ? "_blank" : undefined} rel={nativeAssetsContactHref.startsWith("http") ? "noopener noreferrer" : undefined}>
+      <a className="native-assets__button" href={nativeAssetsContactHref} target={isExternalHref(nativeAssetsContactHref) ? "_blank" : undefined} rel={isExternalHref(nativeAssetsContactHref) ? "noopener noreferrer" : undefined}>
         <span className="tc-type-link-big">Requirements and contact</span>
         <img src={asset("native-button-arrow.svg")} alt="" aria-hidden="true" />
       </a>
@@ -717,7 +760,8 @@ function Strengths() {
 
 function StrengthCard({ index, title, body }: { index: number; title: string; body: string }) {
   const hasButton = title !== "6s block time" && title !== "Deflationary ecosystem" && title !== "Revival narrative";
-  const href = title === "Decentralization" ? page(links.decentralization) : "#";
+  const href = resolveHref(title === "Decentralization" ? links.decentralization : links.docsStrengths);
+  const isExternal = isExternalHref(href);
 
   return (
     <article className={`strength-card strength-card--${index + 1}`}>
@@ -726,7 +770,7 @@ function StrengthCard({ index, title, body }: { index: number; title: string; bo
         <p className="tc-type-body">{body}</p>
       </div>
       {hasButton && (
-        <a className="strength-card__button" href={href}>
+        <a className="strength-card__button" href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
           <span className="tc-type-link-big">Find out more</span>
           <img src={asset("strength-button-arrow.svg")} alt="" aria-hidden="true" />
         </a>
@@ -774,14 +818,14 @@ function DecentralizationStats() {
 }
 
 function FounderStories() {
-  const docsHref = isPlaceholderLink(links.docs) ? "#" : links.docs;
+  const docsHref = resolveHref(links.docs);
 
   return (
     <section className="section founders" aria-labelledby="founders-title">
       <div className="founders-intro">
         <h2 className="tc-type-h2" id="founders-title">Build your own app on Terra Classic:</h2>
         <p className="tc-type-h4">Explore founder stories from teams already scaling real products across the ecosystem. Then launch your product / service with a fast, composable Layer-1 and a community that ships.</p>
-        <a className="founders-docs-button" href={docsHref} target={docsHref.startsWith("http") ? "_blank" : undefined} rel={docsHref.startsWith("http") ? "noopener noreferrer" : undefined}>
+        <a className="founders-docs-button" href={docsHref} target={isExternalHref(docsHref) ? "_blank" : undefined} rel={isExternalHref(docsHref) ? "noopener noreferrer" : undefined}>
           <span className="tc-type-link-big">Check Terra Classic documentation</span>
           <img src={asset("founder-button-arrow.svg")} alt="" aria-hidden="true" />
         </a>

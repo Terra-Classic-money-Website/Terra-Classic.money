@@ -10,7 +10,7 @@ export const sections = [
 ] as const;
 
 export const externalNav = [
-  { label: "Layer 2", href: links.layer2 },
+  { label: "Layer 2", href: links.layer2, disabled: true },
   { label: "Documentation", href: links.docs },
 ];
 
@@ -106,7 +106,7 @@ export const protocols = [
     icon: "protocol-staking-icon.svg",
     image: "protocol-staking-figma.webp",
     ui: ["protocol-validator-ui-figma.png", "protocol-staking-ui-figma.png"],
-    buttons: ["Find a wallet and stake", "Staking rewards calculator", "Staking Protocol docs"],
+    buttons: ["Find a wallet and stake", "Staking Protocol docs"],
     accent: "yellow",
     steps: [
       "Choose a compatible wallet, acquire LUNC, and use staking interface within the wallet.",

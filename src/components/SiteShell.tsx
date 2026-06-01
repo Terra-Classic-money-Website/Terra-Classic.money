@@ -70,14 +70,29 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
         ))}
       </nav>
       <nav className="sidebar-nav sidebar-nav--external" aria-label="External navigation">
-        {externalNav.map((item) => (
-          <a key={item.label} href={isPlaceholderLink(item.href) ? "#" : item.href} target={isPlaceholderLink(item.href) ? undefined : "_blank"} rel={isPlaceholderLink(item.href) ? undefined : "noopener noreferrer"} onClick={() => setDrawerOpen(false)}>
+        {externalNav.map((item) => {
+          const icon = (
             <span className="sidebar-external-icon" aria-hidden="true">
               <img src={asset("sidebar-external-arrow.svg")} alt="" />
             </span>
-            {item.label}
-          </a>
-        ))}
+          );
+
+          if (item.disabled) {
+            return (
+              <span key={item.label} className="sidebar-nav__disabled" aria-disabled="true">
+                {icon}
+                {item.label}
+              </span>
+            );
+          }
+
+          return (
+            <a key={item.label} href={isPlaceholderLink(item.href) ? "#" : item.href} target={isPlaceholderLink(item.href) ? undefined : "_blank"} rel={isPlaceholderLink(item.href) ? undefined : "noopener noreferrer"} onClick={() => setDrawerOpen(false)}>
+              {icon}
+              {item.label}
+            </a>
+          );
+        })}
       </nav>
     </>
   );

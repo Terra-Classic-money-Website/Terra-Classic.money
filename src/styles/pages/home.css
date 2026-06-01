@@ -313,6 +313,10 @@
 
 .capability-cta:hover, .capability-cta:focus-visible { background: var(--color-black); color: var(--color-white); transform: none; box-shadow: none; }
 
+.capability-cta--disabled { color: var(--lunc-light-gray); cursor: default; pointer-events: none; }
+
+.capability-cta--disabled .capability-cta-icon { opacity: .25; }
+
 .capability-card--staking .capability-cta,
 .capability-card--forex .capability-cta,
 .capability-card--defi .capability-cta,
