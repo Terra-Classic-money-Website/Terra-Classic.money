@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://terra-classic.money/sitemap.xml
