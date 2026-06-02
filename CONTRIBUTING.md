@@ -11,6 +11,7 @@ You can contribute by opening an issue, suggesting a correction, or submitting a
 - Suggest a market correction.
 - Suggest a roadmap update with sources.
 - Propose an open work package for builders.
+- Propose a translation or translation correction.
 - Improve wording when it makes the site clearer, more neutral, or more accurate.
 
 ## Content Map
@@ -24,6 +25,28 @@ You can contribute by opening an issue, suggesting a correction, or submitting a
 | Open work packages | `src/data/openWork.ts` |
 | Shared site links | `src/data/links.ts` |
 | About page content | `src/data/about.ts` |
+| Translation registry and lifecycle | `src/i18n/site-i18n.json`, `src/i18n/translation-status.json` |
+
+## Translation Contributions
+
+English is the canonical source language. Translations must preserve meaning, neutrality, official-status disclaimers, and no-financial-advice language.
+
+See `TRANSLATION-GUIDE.md` before proposing a translation.
+
+Important rules:
+
+- Do not publish partial language surfaces.
+- Do not add Polish translations unless the target-language plan changes.
+- Do not edit generated localized HTML route templates directly.
+- Add the target route, target locale, source text, proposed translation, and reviewer notes.
+- Treat legal/risk/governance changes as meaning-sensitive, not style-only.
+
+Useful checks:
+
+```bash
+npm run i18n:validate
+npm run i18n:report
+```
 
 ## Editing Listings
 

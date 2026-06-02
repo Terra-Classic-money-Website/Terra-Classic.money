@@ -80,6 +80,10 @@ const jsFiles = fileStats.filter((file) => file.relative.startsWith("assets/") &
 const cssFiles = fileStats.filter((file) => file.relative.startsWith("assets/") && file.relative.endsWith(".css"));
 const htmlFiles = fileStats.filter((file) => file.relative.endsWith(".html"));
 
+function isLazyLocaleChunk(file) {
+  return /^assets\/renderedText-[A-Za-z0-9_-]+\.js$/.test(file.relative);
+}
+
 async function gzipTotal(filesToMeasure) {
   let total = 0;
   for (const file of filesToMeasure) {
@@ -88,7 +92,10 @@ async function gzipTotal(filesToMeasure) {
   return total;
 }
 
-const jsGzipBytes = await gzipTotal(jsFiles);
+const lazyLocaleJsFiles = jsFiles.filter(isLazyLocaleChunk);
+const budgetedJsFiles = jsFiles.filter((file) => !isLazyLocaleChunk(file));
+const jsGzipBytes = await gzipTotal(budgetedJsFiles);
+const lazyLocaleJsGzipBytes = await gzipTotal(lazyLocaleJsFiles);
 const cssGzipBytes = await gzipTotal(cssFiles);
 const fileByRelativePath = new Map(fileStats.map((file) => [file.relative, file]));
 const pageInitialJs = [];
@@ -183,6 +190,7 @@ console.log(`- Homepage initial JS gzip: ${formatBytes(homeInitialJs?.gzipBytes 
 console.log(`- Largest page initial JS gzip: ${largestInitialJsPage.page} (${formatBytes(largestInitialJsPage.gzipBytes)}) / ${formatBytes(budgets.maxInitialJsGzipBytes)}`);
 console.log(`- Largest page initial CSS gzip: ${largestInitialCssPage.page} (${formatBytes(largestInitialCssPage.gzipBytes)}) / ${formatBytes(budgets.maxInitialCssGzipBytes)}`);
 console.log(`- JS gzip total: ${formatBytes(jsGzipBytes)} / ${formatBytes(budgets.totalJsGzipBytes)}`);
+console.log(`- Lazy locale JS gzip: ${formatBytes(lazyLocaleJsGzipBytes)}`);
 console.log(`- CSS gzip total: ${formatBytes(cssGzipBytes)} / ${formatBytes(budgets.totalCssGzipBytes)}`);
 console.log("- Page initial CSS gzip:");
 for (const page of [...pageInitialCss].sort((a, b) => b.gzipBytes - a.gzipBytes)) {

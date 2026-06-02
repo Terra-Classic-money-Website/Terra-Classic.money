@@ -20,3 +20,4 @@ dist/
 *.tsbuildinfo
 .performance-reports/
 .visual-reports/
+.i18n-reports/

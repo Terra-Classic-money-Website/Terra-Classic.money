@@ -1,14 +1,16 @@
 import { useEffect, useState, type ReactNode } from "react";
 import {
   externalNav,
-  languageOptions,
   sections,
   sidebarDisclaimer,
 } from "../data/content";
 import { isPlaceholderLink } from "../data/links";
+import { defaultLocale, getPublishedLocale, publishedLocales, type LocaleId } from "../i18n/config";
+import { getChromeContent } from "../i18n/content";
+import { equivalentPathForLocale, getCurrentLocaleId, getRouteForPath, matchSupportedLocale, withLocalePath } from "../i18n/routing";
 
 export const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
-export const page = (path = "") => `${import.meta.env.BASE_URL}${path}`;
+export const page = (path = "") => withLocalePath(path || "index.html");
 
 function useStoredBoolean(key: string, fallback: boolean) {
   const [value, setValue] = useState(() => localStorage.getItem(key) === null ? fallback : localStorage.getItem(key) === "true");
@@ -41,12 +43,105 @@ const navHref = (href: string) => {
   return page(href);
 };
 
+function useCurrentLocale() {
+  const [localeId, setLocaleId] = useState<LocaleId>(() => getCurrentLocaleId());
+
+  useEffect(() => {
+    setLocaleId(getCurrentLocaleId());
+  }, []);
+
+  return getPublishedLocale(localeId) || defaultLocale;
+}
+
+function LanguageOptions({
+  className,
+  buttonClassName,
+  onSelect,
+}: {
+  className: string;
+  buttonClassName: string;
+  onSelect: () => void;
+}) {
+  const route = getRouteForPath();
+  const currentLocale = useCurrentLocale();
+  const availableLocales = publishedLocales.filter((locale) => (
+    route ? route.publishedLocales.includes(locale.id) : locale.published
+  ));
+
+  const handleLanguageClick = (localeId: LocaleId) => {
+    localStorage.setItem("tcm-language", localeId);
+    const href = equivalentPathForLocale(localeId);
+    onSelect();
+    if (href) window.location.href = href;
+  };
+
+  return (
+    <div className={className} role="listbox" aria-label={getChromeContent(currentLocale.id).chooseLanguage} aria-hidden="false">
+      {availableLocales.map((locale) => (
+        <button
+          className={buttonClassName}
+          key={locale.id}
+          type="button"
+          aria-label={locale.nativeLabel}
+          aria-selected={locale.id === currentLocale.id}
+          onClick={() => handleLanguageClick(locale.id)}
+        >
+          {locale.shortLabel}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function LanguageSuggestion() {
+  const currentLocale = useCurrentLocale();
+  const chrome = getChromeContent(currentLocale.id);
+  const [suggestedLocale, setSuggestedLocale] = useState<LocaleId | null>(null);
+
+  useEffect(() => {
+    if (currentLocale.id !== defaultLocale.id) return;
+    if (localStorage.getItem("tcm-language")) return;
+    if (localStorage.getItem("tcm-language-suggestion-dismissed") === "true") return;
+
+    const preferredLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
+    const matchedLocale = matchSupportedLocale(preferredLanguages);
+    if (matchedLocale !== defaultLocale.id && equivalentPathForLocale(matchedLocale)) {
+      setSuggestedLocale(matchedLocale);
+    }
+  }, [currentLocale.id]);
+
+  if (!suggestedLocale) return null;
+
+  const suggested = getPublishedLocale(suggestedLocale);
+  const href = equivalentPathForLocale(suggestedLocale);
+  if (!suggested || !href) return null;
+
+  const dismiss = () => {
+    localStorage.setItem("tcm-language-suggestion-dismissed", "true");
+    setSuggestedLocale(null);
+  };
+
+  return (
+    <aside className="language-suggestion" aria-label={chrome.suggestionTitle}>
+      <div>
+        <strong className="tc-type-link-big">{chrome.suggestionTitle}</strong>
+        <p className="tc-type-body-small">{chrome.suggestionBody}</p>
+      </div>
+      <div className="language-suggestion__actions">
+        <a className="tc-type-link-small" href={href} onClick={() => localStorage.setItem("tcm-language", suggested.id)}>{chrome.suggestionSwitch}</a>
+        <button className="tc-type-link-small" type="button" onClick={dismiss}>{chrome.suggestionDismiss}</button>
+      </div>
+    </aside>
+  );
+}
+
 function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed" }: { defaultCollapsed?: boolean; storageKey?: string }) {
   const [collapsed, setCollapsed] = useStoredBoolean(storageKey, defaultCollapsed);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [language, setLanguage] = useState("EN");
   const [langOpen, setLangOpen] = useState(false);
   const [pageScrolled, setPageScrolled] = useState(false);
+  const currentLocale = useCurrentLocale();
+  const chrome = getChromeContent(currentLocale.id);
 
   useEffect(() => {
     document.body.classList.toggle("mobile-drawer-open", drawerOpen);
@@ -101,11 +196,11 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
     <>
       <header className={`mobile-topbar ${drawerOpen ? "mobile-topbar--drawer-open" : ""} ${pageScrolled ? "mobile-topbar--scrolled" : ""}`}>
         <div className="mobile-topbar-left">
-          <button className="mobile-menu-button" aria-label={`${drawerOpen ? "Close" : "Open"} navigation`} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
+          <button className="mobile-menu-button" aria-label={drawerOpen ? chrome.closeNavigation : chrome.openNavigation} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
             <TabletHamburgerIcon open={drawerOpen} />
           </button>
           <span className="mobile-topbar-divider" aria-hidden="true" />
-          <a className="mobile-brand" href={page("#top")} aria-label="Terra Classic homepage">
+          <a className="mobile-brand" href={page("#top")} aria-label={chrome.homeAria}>
             <img src={asset("sidebar-logo.svg")} alt="" />
           </a>
         </div>
@@ -113,27 +208,23 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
           <button className="mobile-language-trigger tc-type-link-small" aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
             <span>
               <img className="language-icon" src={asset("language-icon.svg")} alt="" />
-              Language - {language}
+              {chrome.currentLanguage} - {currentLocale.shortLabel}
             </span>
             <img className="language-arrow" src={asset(langOpen ? "language-arrow-open.svg" : "language-arrow.svg")} alt="" />
           </button>
-          <div className="mobile-language-options" role="listbox" aria-label="Language options" aria-hidden={!langOpen}>
-            {languageOptions.map((option, index) => (
-              <button className="tc-type-link-small" key={`${option}-${index}`} onClick={() => { setLanguage(option); setLangOpen(false); }}>
-                {option}
-              </button>
-            ))}
-          </div>
+          {langOpen && (
+            <LanguageOptions className="mobile-language-options" buttonClassName="tc-type-link-small" onSelect={() => { setLangOpen(false); setDrawerOpen(false); }} />
+          )}
         </div>
       </header>
       <aside className={`sidebar ${collapsed ? "sidebar--collapsed" : ""} ${drawerOpen ? "sidebar--drawer-open" : ""}`}>
         <div className="sidebar-panel sidebar-panel--expanded" aria-hidden={collapsed && !drawerOpen}>
           <div className="sidebar-top">
             <div className="sidebar-brand">
-              <a className="sidebar-home-link" href={page("#top")} aria-label="Terra Classic homepage">
+              <a className="sidebar-home-link" href={page("#top")} aria-label={chrome.homeAria}>
                 <img src={asset("sidebar-logo.svg")} alt="" />
               </a>
-              <button className="sidebar-collapse" aria-label="Collapse sidebar" aria-expanded="true" onClick={() => setCollapsed(true)}>
+              <button className="sidebar-collapse" aria-label={chrome.collapseSidebar} aria-expanded="true" onClick={() => setCollapsed(true)}>
                 <CollapseControl />
               </button>
             </div>
@@ -145,7 +236,7 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
                 <span className="language-trigger-label">
                   <span>
                     <img className="language-icon" src={asset("language-icon.svg")} alt="" />
-                    Language - {language}
+                    {chrome.currentLanguage} - {currentLocale.shortLabel}
                   </span>
                   {langOpen ? (
                     <img className="language-arrow language-arrow--open" src={asset("language-arrow-open.svg")} alt="" />
@@ -154,16 +245,12 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
                   )}
                 </span>
               </button>
-              <div className="language-options language-options-panel" role="listbox" aria-label="Language options" aria-hidden={!langOpen}>
-                {languageOptions.map((option, index) => (
-                  <button className="tc-type-link-small" key={`${option}-${index}`} onClick={() => { setLanguage(option); setLangOpen(false); }}>
-                    {option}
-                  </button>
-                ))}
-              </div>
+              {langOpen && (
+                <LanguageOptions className="language-options language-options-panel" buttonClassName="tc-type-link-small" onSelect={() => setLangOpen(false)} />
+              )}
             </div>
             <div className="disclaimer">
-              <strong>Disclaimers:</strong>
+              <strong>{chrome.disclaimerLabel}</strong>
               <p>{sidebarDisclaimer}</p>
             </div>
           </div>
@@ -171,10 +258,10 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
         <div className="sidebar-panel sidebar-panel--collapsed" aria-hidden={!collapsed || drawerOpen}>
           <div className="sidebar-top">
             <div className="sidebar-brand">
-              <a className="sidebar-home-icon" href={page("#top")} aria-label="Terra Classic homepage">
+              <a className="sidebar-home-icon" href={page("#top")} aria-label={chrome.homeAria}>
                 <img src={asset("sidebar-logo-icon.svg")} alt="" />
               </a>
-              <button className="sidebar-brand-collapsed" aria-label="Expand sidebar" aria-expanded="false" onClick={() => setCollapsed(false)}>
+              <button className="sidebar-brand-collapsed" aria-label={chrome.expandSidebar} aria-expanded="false" onClick={() => setCollapsed(false)}>
                 <CollapseControl collapsed />
               </button>
             </div>
@@ -183,7 +270,7 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
             <div className="collapsed-buttons-stack">
               <div className="vertical-url tc-type-link-small">www.terra-classic.money</div>
               <div className="collapsed-language-slot">
-                <button className={`collapsed-language-button ${langOpen ? "collapsed-language-button--open" : ""}`} aria-label={`${langOpen ? "Close" : "Open"} language selector`} aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
+                <button className={`collapsed-language-button ${langOpen ? "collapsed-language-button--open" : ""}`} aria-label={`${langOpen ? chrome.closeNavigation : chrome.openNavigation} ${chrome.language.toLowerCase()}`} aria-expanded={langOpen} onClick={() => setLangOpen((open) => !open)}>
                   {langOpen ? (
                     <>
                     <img className="language-x-icon language-x-icon--default" src={asset("language-x.svg")} alt="" />
@@ -193,13 +280,9 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
                     <img src={asset("language-icon.svg")} alt="" />
                   )}
                 </button>
-                <div className="collapsed-language-options collapsed-language-panel" role="listbox" aria-label="Language options" aria-hidden={!langOpen}>
-                  {languageOptions.map((option, index) => (
-                    <button className="tc-type-link-small" key={`${option}-${index}`} onClick={() => { setLanguage(option); setLangOpen(false); }}>
-                      {option}
-                    </button>
-                  ))}
-                </div>
+                {langOpen && (
+                  <LanguageOptions className="collapsed-language-options collapsed-language-panel" buttonClassName="tc-type-link-small" onSelect={() => setLangOpen(false)} />
+                )}
               </div>
             </div>
             <div className="collapsed-disclaimer">
@@ -227,6 +310,7 @@ export function SiteShell({
     <div className="app">
       <div className="semantic-app">
         <Sidebar defaultCollapsed={sidebarDefaultCollapsed} storageKey={sidebarStorageKey} />
+        <LanguageSuggestion />
         <main>{children}</main>
       </div>
     </div>

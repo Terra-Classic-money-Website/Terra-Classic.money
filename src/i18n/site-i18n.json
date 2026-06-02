@@ -1,0 +1,242 @@
+{
+  "siteUrl": "https://terra-classic.money",
+  "locales": [
+    {
+      "id": "en",
+      "label": "English",
+      "nativeLabel": "English",
+      "shortLabel": "EN",
+      "htmlLang": "en",
+      "dir": "ltr",
+      "pathPrefix": "",
+      "default": true,
+      "published": true
+    },
+    {
+      "id": "tr",
+      "label": "Turkish",
+      "nativeLabel": "Turkce",
+      "shortLabel": "TR",
+      "htmlLang": "tr",
+      "dir": "ltr",
+      "pathPrefix": "tr",
+      "default": false,
+      "published": true
+    }
+  ],
+  "targetLocales": [
+    { "id": "id", "label": "Indonesian", "nativeLabel": "Bahasa Indonesia", "htmlLang": "id", "status": "planned" },
+    { "id": "hi", "label": "Hindi", "nativeLabel": "Hindi", "htmlLang": "hi", "status": "planned" },
+    { "id": "th", "label": "Thai", "nativeLabel": "Thai", "htmlLang": "th", "status": "planned" },
+    { "id": "pt-BR", "label": "Portuguese (Brazil)", "nativeLabel": "Portugues do Brasil", "htmlLang": "pt-BR", "status": "planned" },
+    { "id": "zh-CN", "label": "Simplified Chinese", "nativeLabel": "Simplified Chinese", "htmlLang": "zh-CN", "status": "planned" },
+    { "id": "de", "label": "German", "nativeLabel": "Deutsch", "htmlLang": "de", "status": "planned" }
+  ],
+  "routes": [
+    {
+      "id": "home",
+      "sourcePath": "index.html",
+      "localizedPath": "index.html",
+      "entry": "home",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Terra Classic - Independent, community-maintained information website for Terra Classic, LUNC & USTC",
+          "description": "Independent community-maintained information website for Terra Classic: explore LUNC and USTC ecosystem resources, markets, roadmap, decentralization, open work, and builder links."
+        },
+        "tr": {
+          "title": "Terra Classic - Terra Classic, LUNC ve USTC icin bagimsiz topluluk bilgi sitesi",
+          "description": "Terra Classic icin bagimsiz, topluluk tarafindan surdurulen bilgi sitesi: LUNC ve USTC ekosistem kaynaklarini, piyasalari, yol haritasini, merkeziyetsizligi, acik isleri ve gelistirici baglantilarini kesfedin."
+        }
+      }
+    },
+    {
+      "id": "ecosystem",
+      "sourcePath": "ecosystem.html",
+      "localizedPath": "ecosystem.html",
+      "entry": "ecosystem",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Terra Classic Ecosystem Directory",
+          "description": "Explore neutral Terra Classic ecosystem links: applications, wallets, bridges, validators, developer resources, infrastructure providers, and community tools."
+        },
+        "tr": {
+          "title": "Terra Classic Ekosistem Dizini",
+          "description": "Tarafsiz Terra Classic ekosistem baglantilarini kesfedin: uygulamalar, cuzdanlar, kopruler, validatorler, gelistirici kaynaklari, altyapi saglayicilari ve topluluk araclari."
+        }
+      }
+    },
+    {
+      "id": "markets",
+      "sourcePath": "markets.html",
+      "localizedPath": "markets.html",
+      "entry": "markets",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Terra Classic LUNC Markets",
+          "description": "Explore neutral Terra Classic LUNC market links across centralized exchanges and decentralized swap routes."
+        },
+        "tr": {
+          "title": "Terra Classic LUNC Piyasalari",
+          "description": "Merkezi borsalar ve merkeziyetsiz takas rotalari genelinde tarafsiz Terra Classic LUNC piyasa baglantilarini kesfedin."
+        }
+      }
+    },
+    {
+      "id": "roadmap",
+      "sourcePath": "roadmap.html",
+      "localizedPath": "roadmap.html",
+      "entry": "roadmap",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Terra Classic Roadmap",
+          "description": "Explore the Terra Classic decentralized roadmap: public L1 milestones and clearly labeled project-submitted L2 and community roadmap entries."
+        },
+        "tr": {
+          "title": "Terra Classic Yol Haritasi",
+          "description": "Terra Classic merkeziyetsiz yol haritasini kesfedin: herkese acik L1 kilometre taslari ve acikca etiketlenmis proje tarafindan sunulan L2 ve topluluk yol haritasi kayitlari."
+        }
+      }
+    },
+    {
+      "id": "decentralization",
+      "sourcePath": "decentralization.html",
+      "localizedPath": "decentralization.html",
+      "entry": "decentralization",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Terra Classic Decentralization",
+          "description": "A detailed, source-aware guide to Terra Classic decentralization, validators, delegators, governance, and community-owned infrastructure."
+        },
+        "tr": {
+          "title": "Terra Classic Merkeziyetsizlik",
+          "description": "Terra Classic merkeziyetsizligi, validatorler, delegatorler, yonetisim ve topluluga ait altyapi hakkinda ayrintili ve kaynak bilincine sahip bir rehber."
+        }
+      }
+    },
+    {
+      "id": "openWork",
+      "sourcePath": "open-work.html",
+      "localizedPath": "open-work.html",
+      "entry": "openWork",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Open Work for Terra Classic Builders",
+          "description": "Explore open Terra Classic work packages that independent builders, software houses, and contributors can prepare proposals or quotes for."
+        },
+        "tr": {
+          "title": "Terra Classic Gelistiricileri Icin Acik Isler",
+          "description": "Bagimsiz gelistiricilerin, yazilim ekiplerinin ve katkilarda bulunanlarin teklif veya fiyat hazirlayabilecegi acik Terra Classic is paketlerini kesfedin."
+        }
+      }
+    },
+    {
+      "id": "openWorkDetail",
+      "sourcePath": "open-work-detail.html",
+      "localizedPath": "open-work-detail.html",
+      "entry": "openWorkDetail",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Open Work Details for Terra Classic Builders",
+          "description": "Review a Terra Classic open work package before preparing a public proposal or quote for community discussion and governance."
+        },
+        "tr": {
+          "title": "Terra Classic Gelistiricileri Icin Acik Is Detaylari",
+          "description": "Topluluk tartismasi ve yonetisim icin herkese acik teklif veya fiyat hazirlamadan once bir Terra Classic acik is paketini inceleyin."
+        }
+      }
+    },
+    {
+      "id": "about",
+      "sourcePath": "about.html",
+      "localizedPath": "about.html",
+      "entry": "about",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "About terra-classic.money",
+          "description": "Learn how terra-classic.money works as an independent, open-source, community-maintained information website for Terra Classic."
+        },
+        "tr": {
+          "title": "terra-classic.money Hakkinda",
+          "description": "terra-classic.money'nin Terra Classic icin bagimsiz, acik kaynakli ve topluluk tarafindan surdurulen bir bilgi sitesi olarak nasil calistigini ogrenin."
+        }
+      }
+    },
+    {
+      "id": "analytics",
+      "sourcePath": "analytics.html",
+      "localizedPath": "analytics.html",
+      "entry": "analytics",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Website analytics | terra-classic.money",
+          "description": "Public aggregate website analytics for terra-classic.money, generated from Google Analytics 4 through GitHub Actions."
+        },
+        "tr": {
+          "title": "Website analizleri | terra-classic.money",
+          "description": "Google Analytics 4 verilerinden GitHub Actions ile uretilen terra-classic.money icin herkese acik toplu website analizleri."
+        }
+      }
+    },
+    {
+      "id": "privacy",
+      "sourcePath": "privacy.html",
+      "localizedPath": "privacy.html",
+      "entry": "privacy",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Privacy Policy - terra-classic.money",
+          "description": "Privacy Policy for terra-classic.money, the independent, community-maintained information website for Terra Classic."
+        },
+        "tr": {
+          "title": "Gizlilik Politikasi - terra-classic.money",
+          "description": "Terra Classic icin bagimsiz, topluluk tarafindan surdurulen bilgi sitesi terra-classic.money icin Gizlilik Politikasi."
+        }
+      }
+    },
+    {
+      "id": "brandAssets",
+      "sourcePath": "brand-assets.html",
+      "localizedPath": "brand-assets.html",
+      "entry": "brandAssets",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Terra Classic brand assets - terra-classic.money",
+          "description": "Download Terra Classic brand assets, including full logos, standalone signs, and key visuals for ecosystem communication and community materials."
+        },
+        "tr": {
+          "title": "Terra Classic marka varliklari - terra-classic.money",
+          "description": "Ekosistem iletisimi ve topluluk materyalleri icin tam logolar, bagimsiz isaretler ve ana gorseller dahil Terra Classic marka varliklarini indirin."
+        }
+      }
+    },
+    {
+      "id": "notFound",
+      "sourcePath": "404.html",
+      "localizedPath": "404.html",
+      "entry": "notFound",
+      "robots": "noindex,follow",
+      "publishedLocales": ["en", "tr"],
+      "meta": {
+        "en": {
+          "title": "Page not found | Terra Classic",
+          "description": "The requested terra-classic.money page was not found. Return to the Terra Classic website or explore the ecosystem directory."
+        },
+        "tr": {
+          "title": "Sayfa bulunamadi | Terra Classic",
+          "description": "Istenen terra-classic.money sayfasi bulunamadi. Terra Classic website'sine donun veya ekosistem dizinini kesfedin."
+        }
+      }
+    }
+  ]
+}

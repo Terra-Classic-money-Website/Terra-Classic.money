@@ -1,0 +1,60 @@
+name: Translation or translation correction
+description: Propose a new translation, fix an existing translation, or flag stale translated content.
+title: "Translation: "
+labels: ["translation", "content"]
+body:
+  - type: dropdown
+    id: target-language
+    attributes:
+      label: Target language
+      options:
+        - Turkish
+        - Indonesian
+        - Hindi
+        - Thai
+        - Brazilian Portuguese
+        - Simplified Chinese
+        - German
+    validations:
+      required: true
+  - type: input
+    id: route
+    attributes:
+      label: Page or route
+      description: Example: /, /ecosystem.html, /privacy.html
+    validations:
+      required: true
+  - type: textarea
+    id: source-text
+    attributes:
+      label: Current English source text
+      description: Paste the English text being translated or corrected.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-translation
+    attributes:
+      label: Proposed translation
+      description: Paste the proposed translated text.
+    validations:
+      required: true
+  - type: dropdown
+    id: change-type
+    attributes:
+      label: Does this change meaning?
+      options:
+        - No, it preserves the English meaning.
+        - Yes, it changes or clarifies meaning.
+        - Unsure, needs reviewer decision.
+    validations:
+      required: true
+  - type: textarea
+    id: risk-notes
+    attributes:
+      label: Risk or reviewer notes
+      description: Mention any legal, financial-advice, official-status, governance, validator, market, staking, bridge, or wallet-risk language.
+  - type: textarea
+    id: reviewer
+    attributes:
+      label: Local reviewer context
+      description: If someone fluent in the target language reviewed this, add their name/handle or notes.

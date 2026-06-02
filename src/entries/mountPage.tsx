@@ -2,6 +2,7 @@ import { StrictMode, type ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import { initializeAnalytics } from "../analytics";
 import { SiteShell } from "../components/SiteShell";
+import { LocalizedDomText } from "../i18n/domTranslation";
 
 export function mountPage(
   children: ReactNode,
@@ -14,6 +15,7 @@ export function mountPage(
 
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
+      <LocalizedDomText />
       <SiteShell
         sidebarDefaultCollapsed={options.sidebarDefaultCollapsed}
         sidebarStorageKey={options.sidebarStorageKey}

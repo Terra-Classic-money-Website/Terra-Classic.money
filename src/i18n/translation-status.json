@@ -1,0 +1,263 @@
+{
+  "canonicalLocale": "en",
+  "allowedPublishedStatuses": [
+    "reviewed"
+  ],
+  "routes": [
+    {
+      "id": "home",
+      "sourceFiles": [
+        "index.html",
+        "src/entries/home.tsx",
+        "src/App.tsx",
+        "src/data/content.ts",
+        "src/data/links.ts",
+        "src/pages/shared.tsx"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "4ef19953fa9362673e804eb5dcd8f4b4dc651de97cbde8f1e5d0f80069af2683",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "ecosystem",
+      "sourceFiles": [
+        "ecosystem.html",
+        "src/entries/ecosystem.tsx",
+        "src/pages/EcosystemPage.tsx",
+        "src/pages/directory.tsx",
+        "src/pages/community.tsx",
+        "src/pages/shared.tsx",
+        "src/data/ecosystem.ts",
+        "src/data/ecosystemVerification.ts",
+        "src/data/links.ts"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "67b4bf15a41adf4cfbad7c614507751a76953be84ba37c9d44ccf4c9f72faa61",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "markets",
+      "sourceFiles": [
+        "markets.html",
+        "src/entries/markets.tsx",
+        "src/pages/MarketsPage.tsx",
+        "src/pages/directory.tsx",
+        "src/pages/community.tsx",
+        "src/pages/shared.tsx",
+        "src/data/markets.ts",
+        "src/data/links.ts"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "9c97f954192db70f4ad2edacc2f2641aaa7e985f5f9aecf19034ae7cea0658d5",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "roadmap",
+      "sourceFiles": [
+        "roadmap.html",
+        "src/entries/roadmap.tsx",
+        "src/pages/RoadmapPage.tsx",
+        "src/pages/shared.tsx",
+        "src/data/roadmap.ts",
+        "src/data/ecosystem.ts",
+        "src/data/links.ts"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "ecff5ebea994eb293168631151f177db5cdd7462f956940b2e8f24e1f1248264",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "decentralization",
+      "sourceFiles": [
+        "decentralization.html",
+        "src/entries/decentralization.tsx",
+        "src/pages/DecentralizationPage.tsx",
+        "src/pages/directory.tsx",
+        "src/pages/community.tsx",
+        "src/pages/shared.tsx",
+        "src/data/decentralization.ts",
+        "src/data/links.ts"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "5f4632fed2f64c60b61ef43c3833050062eaf1e775d3f5afb0312666b3ee947b",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "openWork",
+      "sourceFiles": [
+        "open-work.html",
+        "src/entries/openWork.tsx",
+        "src/pages/OpenWorkPage.tsx",
+        "src/pages/shared.tsx",
+        "src/data/openWork.ts",
+        "src/data/links.ts"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "e874615e1875cafe2104b04624fbb067a33918bb0e033d0c4516be8997c53748",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "openWorkDetail",
+      "sourceFiles": [
+        "open-work-detail.html",
+        "src/entries/openWorkDetail.tsx",
+        "src/pages/OpenWorkDetailPage.tsx",
+        "src/pages/shared.tsx",
+        "src/data/openWork.ts",
+        "src/data/links.ts"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "7abeacb528759ed718376279874fd9f88c810cee224dd0746a9eb81542017caa",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "about",
+      "sourceFiles": [
+        "about.html",
+        "src/entries/about.tsx",
+        "src/pages/AboutPage.tsx",
+        "src/pages/community.tsx",
+        "src/pages/shared.tsx",
+        "src/data/about.ts",
+        "src/data/links.ts"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "d26f189ec96cc2c1b2619b53e2536a518b7a8d485d70ae2eaee61c27e30bbe3f",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "analytics",
+      "sourceFiles": [
+        "analytics.html",
+        "src/entries/analytics.tsx",
+        "src/pages/WebsiteAnalyticsPage.tsx",
+        "src/pages/shared.tsx",
+        "public/data/website-analytics.json"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "ca2b7f9b49f182a5475ddc867801b259432432a371ead51b56f8d14d7b45f096",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "privacy",
+      "sourceFiles": [
+        "privacy.html",
+        "src/entries/privacy.tsx",
+        "src/pages/PrivacyPolicyPage.tsx",
+        "src/pages/shared.tsx",
+        "src/data/privacyPolicy.ts"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "92b4ce686d044ee64dbf6086638058fa543446f78fdcabd93d8aa70d00615247",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "brandAssets",
+      "sourceFiles": [
+        "brand-assets.html",
+        "src/entries/brandAssets.tsx",
+        "src/pages/BrandAssetsPage.tsx",
+        "src/pages/shared.tsx"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "fb097df886fd8534ac778c944770ba1b0a6338abb725f558ef041e4686b78383",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    },
+    {
+      "id": "notFound",
+      "sourceFiles": [
+        "404.html",
+        "src/entries/notFound.tsx",
+        "src/pages/NotFoundPage.tsx",
+        "src/pages/shared.tsx"
+      ],
+      "locales": {
+        "en": {
+          "status": "reviewed"
+        },
+        "tr": {
+          "status": "reviewed",
+          "sourceHash": "428b0455598e84ae3b0dbf4a7f5725b52b0a5d413cb12a2c4a1b53fbb425bff9",
+          "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
+        }
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "../App";
 import { initializeAnalytics } from "../analytics";
+import { LocalizedDomText } from "../i18n/domTranslation";
 import "../styles/tokens.css";
 import "../styles/base.css";
 import "../styles/chrome.css";
@@ -14,6 +15,7 @@ initializeAnalytics();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
+    <LocalizedDomText />
     <App />
   </StrictMode>,
 );
