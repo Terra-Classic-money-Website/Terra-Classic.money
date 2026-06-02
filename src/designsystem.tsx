@@ -385,6 +385,7 @@ const componentNames = [
   "Collaps button",
   "APR badge",
   "Analytics metric",
+  "Asset download card",
   "Open work card",
   "Roadmap timeline",
 ];
@@ -1220,6 +1221,30 @@ function RoadmapTimelinePreview() {
   );
 }
 
+function AssetDownloadCardPreview() {
+  const svgHref = asset("brand-assets/Terra Classic - Logo/svg/Terra Classic.svg");
+  const pngHref = asset("brand-assets/Terra Classic - Logo/png/Terra Classic.png");
+
+  return (
+    <article className="brand-asset-card brand-asset-card--logo ds-brand-asset-card">
+      <div className="brand-asset-card__preview" aria-hidden="true">
+        <img src={svgHref} alt="" loading="lazy" />
+      </div>
+      <div className="brand-asset-card__copy">
+        <div>
+          <h3 className="tc-type-h5">Terra Classic</h3>
+          <p className="tc-type-body-small">Full logo with wordmark</p>
+        </div>
+        <span className="tc-type-body-very-small">6366 x 1000 PNG</span>
+      </div>
+      <div className="brand-asset-card__actions" aria-label="Terra Classic logo downloads">
+        <a className="brand-asset-download tc-type-link-normal" href={svgHref} onClick={stopNavigation}>SVG</a>
+        <a className="brand-asset-download tc-type-link-normal" href={pngHref} onClick={stopNavigation}>PNG</a>
+      </div>
+    </article>
+  );
+}
+
 function ComponentPreview({ name }: { name: string }) {
   switch (name) {
     case "Nav element":
@@ -1250,6 +1275,8 @@ function ComponentPreview({ name }: { name: string }) {
       return <div className="ds-apr-badge-stage"><AprBadge value="3.42%" /></div>;
     case "Analytics metric":
       return <AnalyticsMetricPreview />;
+    case "Asset download card":
+      return <AssetDownloadCardPreview />;
     case "Open work card":
       return <OpenWorkCardPreview />;
     case "CMC / CG Button":

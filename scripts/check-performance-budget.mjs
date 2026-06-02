@@ -7,8 +7,9 @@ const distDir = path.join(rootDir, "dist");
 const distAssetsDir = path.join(distDir, "assets");
 
 const budgets = {
-  totalDistBytes: 16 * 1024 * 1024,
-  largestAssetBytes: 900 * 1024,
+  totalRuntimeDistBytes: 16 * 1024 * 1024,
+  largestRuntimeAssetBytes: 900 * 1024,
+  largestDownloadAssetBytes: 20 * 1024 * 1024,
   homeInitialJsGzipBytes: 85 * 1024,
   maxInitialJsGzipBytes: 125 * 1024,
   maxInitialCssGzipBytes: 25 * 1024,
@@ -64,8 +65,16 @@ function isLocalMetadataFile(fileName) {
   return metadataFileNames.has(fileName) || fileName.startsWith("._");
 }
 
-const totalDistBytes = fileStats.reduce((sum, file) => sum + file.bytes, 0);
-const largestAsset = fileStats.reduce((largest, file) => (file.bytes > largest.bytes ? file : largest), fileStats[0]);
+function isDownloadAsset(file) {
+  return file.relative.startsWith("assets/brand-assets/");
+}
+
+const runtimeFileStats = fileStats.filter((file) => !isDownloadAsset(file));
+const downloadAssetStats = fileStats.filter(isDownloadAsset);
+const totalRuntimeDistBytes = runtimeFileStats.reduce((sum, file) => sum + file.bytes, 0);
+const totalDownloadAssetBytes = downloadAssetStats.reduce((sum, file) => sum + file.bytes, 0);
+const largestRuntimeAsset = runtimeFileStats.reduce((largest, file) => (file.bytes > largest.bytes ? file : largest), runtimeFileStats[0]);
+const largestDownloadAsset = downloadAssetStats.reduce((largest, file) => (file.bytes > largest.bytes ? file : largest), downloadAssetStats[0] || { relative: "none", bytes: 0 });
 const metadataFiles = fileStats.filter((file) => isLocalMetadataFile(path.basename(file.file)));
 const jsFiles = fileStats.filter((file) => file.relative.startsWith("assets/") && file.relative.endsWith(".js"));
 const cssFiles = fileStats.filter((file) => file.relative.startsWith("assets/") && file.relative.endsWith(".css"));
@@ -129,12 +138,16 @@ const largestInitialCssPage = pageInitialCss.reduce((largest, page) => (page.gzi
 
 const failures = [];
 
-if (totalDistBytes > budgets.totalDistBytes) {
-  failures.push(`Total dist size ${formatBytes(totalDistBytes)} exceeds ${formatBytes(budgets.totalDistBytes)}.`);
+if (totalRuntimeDistBytes > budgets.totalRuntimeDistBytes) {
+  failures.push(`Runtime dist size ${formatBytes(totalRuntimeDistBytes)} exceeds ${formatBytes(budgets.totalRuntimeDistBytes)}.`);
 }
 
-if (largestAsset.bytes > budgets.largestAssetBytes) {
-  failures.push(`Largest built file ${largestAsset.relative} is ${formatBytes(largestAsset.bytes)}, above ${formatBytes(budgets.largestAssetBytes)}.`);
+if (largestRuntimeAsset.bytes > budgets.largestRuntimeAssetBytes) {
+  failures.push(`Largest runtime file ${largestRuntimeAsset.relative} is ${formatBytes(largestRuntimeAsset.bytes)}, above ${formatBytes(budgets.largestRuntimeAssetBytes)}.`);
+}
+
+if (largestDownloadAsset.bytes > budgets.largestDownloadAssetBytes) {
+  failures.push(`Largest downloadable brand asset ${largestDownloadAsset.relative} is ${formatBytes(largestDownloadAsset.bytes)}, above ${formatBytes(budgets.largestDownloadAssetBytes)}.`);
 }
 
 if (homeInitialJs && homeInitialJs.gzipBytes > budgets.homeInitialJsGzipBytes) {
@@ -162,8 +175,10 @@ if (metadataFiles.length > 0) {
 }
 
 console.log("Performance budget summary:");
-console.log(`- Total dist: ${formatBytes(totalDistBytes)} / ${formatBytes(budgets.totalDistBytes)}`);
-console.log(`- Largest file: ${largestAsset.relative} (${formatBytes(largestAsset.bytes)}) / ${formatBytes(budgets.largestAssetBytes)}`);
+console.log(`- Runtime dist: ${formatBytes(totalRuntimeDistBytes)} / ${formatBytes(budgets.totalRuntimeDistBytes)}`);
+console.log(`- Downloadable brand assets: ${formatBytes(totalDownloadAssetBytes)}`);
+console.log(`- Largest runtime file: ${largestRuntimeAsset.relative} (${formatBytes(largestRuntimeAsset.bytes)}) / ${formatBytes(budgets.largestRuntimeAssetBytes)}`);
+console.log(`- Largest downloadable brand asset: ${largestDownloadAsset.relative} (${formatBytes(largestDownloadAsset.bytes)}) / ${formatBytes(budgets.largestDownloadAssetBytes)}`);
 console.log(`- Homepage initial JS gzip: ${formatBytes(homeInitialJs?.gzipBytes || 0)} / ${formatBytes(budgets.homeInitialJsGzipBytes)}`);
 console.log(`- Largest page initial JS gzip: ${largestInitialJsPage.page} (${formatBytes(largestInitialJsPage.gzipBytes)}) / ${formatBytes(budgets.maxInitialJsGzipBytes)}`);
 console.log(`- Largest page initial CSS gzip: ${largestInitialCssPage.page} (${formatBytes(largestInitialCssPage.gzipBytes)}) / ${formatBytes(budgets.maxInitialCssGzipBytes)}`);

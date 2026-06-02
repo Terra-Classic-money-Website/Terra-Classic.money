@@ -29,7 +29,7 @@ export const links = {
   github: "https://github.com/classic-terra/",
   discord: "https://discord.gg/eCxdwyapM",
   videoExplainer: "",
-  brandAssets: "TODO_REPLACE_WITH_FINAL_BRAND_ASSETS_URL",
+  brandAssets: "brand-assets.html",
   dawidSkinder: "https://www.dawidskinder.pl",
 };
 

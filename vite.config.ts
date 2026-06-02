@@ -20,6 +20,7 @@ export default defineConfig(({ mode }) => {
           about: resolve(__dirname, "about.html"),
           analytics: resolve(__dirname, "analytics.html"),
           privacy: resolve(__dirname, "privacy.html"),
+          brandAssets: resolve(__dirname, "brand-assets.html"),
           notFound: resolve(__dirname, "404.html"),
         },
       },
