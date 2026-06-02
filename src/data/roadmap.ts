@@ -12,7 +12,6 @@ export type RoadmapMilestone = {
 
 export type RoadmapRow = {
   id: string;
-  /** Set to false to keep a sourced row in this file without showing it on the public roadmap. */
   visible?: boolean;
   group: "public" | "community";
   project: string;
@@ -31,6 +30,7 @@ export type RoadmapTodayMarker = {
 };
 
 export const roadmapMonths = [
+  { key: "2025-06", label: "June", year: "2025" },
   { key: "2025-07", label: "July", year: "2025" },
   { key: "2025-08", label: "August", year: "2025" },
   { key: "2025-09", label: "September", year: "2025" },
@@ -102,13 +102,65 @@ export const roadmapRows: RoadmapRow[] = [
     project: "Market Module 2.0",
     shortName: "MM2",
     category: "Core utility",
-    source: "public",
+    source: "governance",
     accent: "#101010",
     milestones: [
-      { title: "Code merge and audit window", start: "2025-08", end: "2025-10", status: "completed" },
-      { title: "Public testnet", start: "2025-10", end: "2025-11", status: "completed" },
-      { title: "Mainnet upgrade path", start: "2025-11", end: "2026-01", status: "in-progress" },
-      { title: "Post-launch reporting", start: "2026-03", end: "2026-06", status: "planned" },
+      {
+        title: "Forum proposal",
+        start: "2025-06",
+        end: "2025-06",
+        status: "completed",
+        dateLabel: "12 Jun 2025",
+      },
+      {
+        title: "No-mint concept",
+        start: "2025-07",
+        end: "2025-07",
+        status: "completed",
+        dateLabel: "24 Jul 2025",
+      },
+      {
+        title: "Proposal #12188 vote",
+        start: "2025-07",
+        end: "2025-08",
+        status: "completed",
+        dateLabel: "29 Jul-5 Aug 2025",
+      },
+      {
+        title: "Code implementation",
+        start: "2025-10",
+        end: "2025-12",
+        status: "completed",
+        dateLabel: "Oct-Dec 2025",
+      },
+      {
+        title: "Chain upgrade alignment",
+        start: "2026-01",
+        end: "2026-03",
+        status: "completed",
+        dateLabel: "Jan-Mar 2026",
+      },
+      {
+        title: "Final adjustments",
+        start: "2026-04",
+        end: "2026-05",
+        status: "completed",
+        dateLabel: "Apr-May 2026",
+      },
+      {
+        title: "Release readiness",
+        start: "2026-05",
+        end: "2026-05",
+        status: "completed",
+        dateLabel: "May 2026",
+      },
+      {
+        title: "Mainnet release",
+        start: "2026-06",
+        end: "2026-06",
+        status: "planned",
+        dateLabel: "Jun 2026",
+      },
     ],
   },
   {

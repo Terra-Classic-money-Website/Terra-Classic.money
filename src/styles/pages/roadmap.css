@@ -15,7 +15,7 @@
 
 .roadmap-page__trust .native-phase__badge { align-self: center; background: var(--color-white); }
 
-.roadmap-board { --roadmap-axis-sticky-top: 0px; --roadmap-label-width: 280px; --roadmap-month-width: 248px; --roadmap-mask-width: 0px; --roadmap-content-inset: 24px; border-radius: var(--radius-card); background: var(--color-white); box-shadow: inset 0 0 0 1px var(--color-grey-100); overflow: visible; }
+.roadmap-board { --roadmap-axis-sticky-top: 0px; --roadmap-label-width: 280px; --roadmap-month-width: 248px; --roadmap-month-count: 16; --roadmap-mask-width: 0px; --roadmap-content-inset: 24px; border-radius: var(--radius-card); background: var(--color-white); box-shadow: inset 0 0 0 1px var(--color-grey-100); overflow: visible; }
 
 .roadmap-board__headline { min-height: 120px; padding: 24px 32px; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; border-bottom: 1px solid var(--color-grey-100); }
 
@@ -47,11 +47,11 @@
 .roadmap-grid { position: relative; width: max-content; min-width: 100%; }
 
 .roadmap-group,
-.roadmap-row { display: grid; grid-template-columns: var(--roadmap-label-width) var(--roadmap-mask-width) repeat(15, var(--roadmap-month-width)); width: max-content; min-width: 100%; }
+.roadmap-row { display: grid; grid-template-columns: var(--roadmap-label-width) var(--roadmap-mask-width) repeat(var(--roadmap-month-count), var(--roadmap-month-width)); width: max-content; min-width: 100%; }
 
 .roadmap-axis-shell { position: sticky; top: var(--roadmap-axis-sticky-top); z-index: 12; display: grid; grid-template-columns: var(--roadmap-label-width) var(--roadmap-mask-width) minmax(0, 1fr); grid-template-rows: 72px 56px; width: 100%; overflow: hidden; border-radius: var(--radius-card) var(--radius-card) 0 0; background: var(--color-white); box-shadow: inset 0 -1px 0 var(--color-grey-100); }
 
-.roadmap-axis__track { position: relative; grid-column: 3; grid-row: 1 / 3; display: grid; grid-template-columns: repeat(15, var(--roadmap-month-width)); grid-template-rows: 72px 56px; width: max-content; min-width: 100%; transform: translateX(calc(var(--roadmap-scroll-left, 0px) * -1)); will-change: transform; }
+.roadmap-axis__track { position: relative; grid-column: 3; grid-row: 1 / 3; display: grid; grid-template-columns: repeat(var(--roadmap-month-count), var(--roadmap-month-width)); grid-template-rows: 72px 56px; width: max-content; min-width: 100%; transform: translateX(calc(var(--roadmap-scroll-left, 0px) * -1)); will-change: transform; }
 
 .roadmap-axis__corner { position: relative; z-index: 3; grid-column: 1 / 3; grid-row: 1 / 3; background: var(--color-white); }
 
@@ -103,7 +103,7 @@
 
 .roadmap-row__tooltip { display: none; }
 
-.roadmap-lane { grid-column: 3 / -1; position: relative; display: grid; grid-template-columns: repeat(15, var(--roadmap-month-width)); align-items: center; min-height: 136px; }
+.roadmap-lane { grid-column: 3 / -1; position: relative; display: grid; grid-template-columns: repeat(var(--roadmap-month-count), var(--roadmap-month-width)); align-items: center; min-height: 136px; }
 
 .roadmap-lane__month { grid-row: 1; height: 100%; border-left: 1px solid var(--color-grey-100); }
 

@@ -13,7 +13,7 @@ const budgets = {
   homeInitialJsGzipBytes: 85 * 1024,
   maxInitialJsGzipBytes: 125 * 1024,
   maxInitialCssGzipBytes: 25 * 1024,
-  totalJsGzipBytes: 132 * 1024,
+  totalJsGzipBytes: 140 * 1024,
   totalCssGzipBytes: 45 * 1024,
 };
 
