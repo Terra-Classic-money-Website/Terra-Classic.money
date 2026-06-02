@@ -5,6 +5,7 @@ export type RoadmapMilestone = {
   start: string;
   end: string;
   status: RoadmapMilestoneStatus;
+  dateLabel?: string;
   paid?: boolean;
   note?: string;
 };
@@ -24,6 +25,11 @@ export type RoadmapRow = {
   milestones: RoadmapMilestone[];
 };
 
+export type RoadmapTodayMarker = {
+  column: number;
+  label: string;
+};
+
 export const roadmapMonths = [
   { key: "2025-07", label: "July", year: "2025" },
   { key: "2025-08", label: "August", year: "2025" },
@@ -41,6 +47,36 @@ export const roadmapMonths = [
   { key: "2026-08", label: "August", year: "2026" },
   { key: "2026-09", label: "September", year: "2026" },
 ] as const;
+
+function parseRoadmapMonthKey(key: string) {
+  const [year, month] = key.split("-").map(Number);
+  return new Date(year, month - 1, 1);
+}
+
+function getMonthOffset(from: Date, to: Date) {
+  return (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth());
+}
+
+export function getRoadmapTodayMarker(today = new Date()): RoadmapTodayMarker | null {
+  const firstMonth = roadmapMonths[0];
+  const lastMonth = roadmapMonths[roadmapMonths.length - 1];
+  if (!firstMonth || !lastMonth) return null;
+
+  const timelineStart = parseRoadmapMonthKey(firstMonth.key);
+  const lastTimelineMonth = parseRoadmapMonthKey(lastMonth.key);
+  const timelineEnd = new Date(lastTimelineMonth.getFullYear(), lastTimelineMonth.getMonth() + 1, 1);
+  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  if (todayDate < timelineStart || todayDate >= timelineEnd) return null;
+
+  const todayMonthStart = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+  const nextMonthStart = new Date(todayDate.getFullYear(), todayDate.getMonth() + 1, 1);
+  const monthProgress = (todayDate.getTime() - todayMonthStart.getTime()) / (nextMonthStart.getTime() - todayMonthStart.getTime());
+
+  return {
+    column: getMonthOffset(timelineStart, todayMonthStart) + monthProgress,
+    label: "Today",
+  };
+}
 
 // Contributor note: roadmap rows need sources and honest status labels.
 // Use visible: false for tracked-but-not-public rows.
@@ -80,14 +116,33 @@ export const roadmapRows: RoadmapRow[] = [
     group: "public",
     project: "Forex Protocol",
     shortName: "FX",
+    avatar: "hero-institution-logo.svg",
+    avatarAlt: "Forex Protocol multi-currency sign.",
     category: "Stable assets",
-    source: "public",
+    source: "governance",
     accent: "#f9d85e",
     milestones: [
-      { title: "EUTC concept validation", start: "2025-07", end: "2025-09", status: "completed" },
-      { title: "Multi-currency suite design", start: "2025-09", end: "2026-01", status: "in-progress" },
-      { title: "Collateral and issuer requirements", start: "2026-01", end: "2026-04", status: "planned" },
-      { title: "Phase 1 launch readiness", start: "2026-05", end: "2026-08", status: "planned" },
+      {
+        title: "Forum concept",
+        start: "2025-12",
+        end: "2025-12",
+        status: "completed",
+        dateLabel: "7 Dec 2025",
+      },
+      {
+        title: "Proposal #12209 vote",
+        start: "2025-12",
+        end: "2025-12",
+        status: "completed",
+        dateLabel: "13-20 Dec 2025",
+      },
+      {
+        title: "Implementation contractor search",
+        start: "2026-02",
+        end: "2026-07",
+        status: "in-progress",
+        dateLabel: "Feb-Jul 2026",
+      },
     ],
   },
   {

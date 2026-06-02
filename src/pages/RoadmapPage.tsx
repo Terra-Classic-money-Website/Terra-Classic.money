@@ -1,5 +1,13 @@
 import { useState, type CSSProperties } from "react";
-import { roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow } from "../data/roadmap";
+import {
+  getRoadmapTodayMarker,
+  roadmapGroupLabels,
+  roadmapMonths,
+  roadmapRows,
+  type RoadmapMilestone,
+  type RoadmapRow,
+  type RoadmapTodayMarker,
+} from "../data/roadmap";
 import { avatarAsset, Footer } from "./shared";
 
 const roadmapMonthIndex = new Map<string, number>(roadmapMonths.map((month, index) => [month.key, index]));
@@ -21,6 +29,15 @@ const roadmapStatusLabels: Record<RoadmapMilestone["status"], string> = {
   completed: "Completed",
   "source-needed": "Source needed",
 };
+
+function getMilestoneMetaLabel(milestone: RoadmapMilestone) {
+  const status = roadmapStatusLabels[milestone.status];
+  return milestone.dateLabel ? `${status} - ${milestone.dateLabel}` : status;
+}
+
+function getTodayMarkerStyle(marker: RoadmapTodayMarker) {
+  return { "--roadmap-today-column": marker.column } as CSSProperties;
+}
 
 function readTimelineMetric(element: HTMLElement, property: string) {
   return Number.parseFloat(getComputedStyle(element).getPropertyValue(property)) || 0;
@@ -49,7 +66,21 @@ function getMilestoneStack(milestones: RoadmapMilestone[]) {
   return { levels, span: Math.max(1, levelEnds.length) };
 }
 
-function RoadmapAxis({ scrollLeft }: { scrollLeft: number }) {
+function RoadmapAxisTodayMarker({ marker }: { marker: RoadmapTodayMarker }) {
+  return (
+    <span className="roadmap-axis__today" style={getTodayMarkerStyle(marker)}>
+      <span className="roadmap-axis__today-label">{marker.label}</span>
+      <span className="roadmap-axis__today-dot" />
+      <span className="roadmap-axis__today-line" />
+    </span>
+  );
+}
+
+function RoadmapGridTodayMarker({ marker }: { marker: RoadmapTodayMarker }) {
+  return <span className="roadmap-today-grid-line" style={getTodayMarkerStyle(marker)} aria-hidden="true" />;
+}
+
+function RoadmapAxis({ scrollLeft, todayMarker }: { scrollLeft: number; todayMarker: RoadmapTodayMarker | null }) {
   return (
     <div className="roadmap-axis-shell" style={{ "--roadmap-scroll-left": `${scrollLeft}px` } as CSSProperties} aria-hidden="true">
       <div className="roadmap-axis__corner" />
@@ -68,6 +99,7 @@ function RoadmapAxis({ scrollLeft }: { scrollLeft: number }) {
             {month.label}
           </div>
         ))}
+        {todayMarker && <RoadmapAxisTodayMarker marker={todayMarker} />}
       </div>
     </div>
   );
@@ -145,7 +177,7 @@ function RoadmapProjectRow({
             >
               <div className="roadmap-milestone__meta">
                 <strong>{milestone.title}</strong>
-                <span>{roadmapStatusLabels[milestone.status]}</span>
+                <span>{getMilestoneMetaLabel(milestone)}</span>
                 {milestone.paid && <em>Paid entry</em>}
               </div>
               <span className={`roadmap-milestone__bar roadmap-milestone__bar--${milestone.status}`} />
@@ -163,6 +195,7 @@ function RoadmapTimeline() {
   const communityRows = pageRows.filter((row) => row.group === "community");
   const [timelineMetrics, setTimelineMetrics] = useState({ monthWidth: 248, scrollLeft: 0 });
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+  const todayMarker = getRoadmapTodayMarker();
   const visibleLaneStartPx = timelineMetrics.scrollLeft;
 
   const handleTimelineScroll = (event: { currentTarget: HTMLDivElement }) => {
@@ -180,9 +213,10 @@ function RoadmapTimeline() {
   return (
     <section className="roadmap-board" aria-labelledby="roadmap-board-title">
       <h2 className="visually-hidden" id="roadmap-board-title">Decentralized roadmap</h2>
-      <RoadmapAxis scrollLeft={timelineMetrics.scrollLeft} />
+      <RoadmapAxis scrollLeft={timelineMetrics.scrollLeft} todayMarker={todayMarker} />
       <div className="roadmap-scroll" role="region" aria-label="Horizontally scrollable Terra Classic roadmap" tabIndex={0} onScroll={handleTimelineScroll}>
         <div className="roadmap-grid">
+          {todayMarker && <RoadmapGridTodayMarker marker={todayMarker} />}
           <RoadmapGroupHeader group="public" />
           {publicRows.map((row) => (
             <RoadmapProjectRow
@@ -221,7 +255,7 @@ export function RoadmapPage() {
             <p className="tc-type-h4">A source-aware timeline for core protocol work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
           </div>
           <div className="roadmap-page__trust">
-            <span className="native-phase__badge">UPDATED MAY 21, 2026</span>
+            <span className="native-phase__badge">UPDATED JUNE 2, 2026</span>
           </div>
         </div>
         <RoadmapTimeline />

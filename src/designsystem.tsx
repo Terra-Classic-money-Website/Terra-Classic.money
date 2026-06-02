@@ -5,7 +5,7 @@ import { capabilities, externalNav, languageOptions, sections, sidebarDisclaimer
 import { ecosystemCategories, type EcosystemEntry } from "./data/ecosystem";
 import { contributionPaths } from "./data/about";
 import { openWorkPackages } from "./data/openWork";
-import { roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow } from "./data/roadmap";
+import { getRoadmapTodayMarker, roadmapGroupLabels, roadmapMonths, roadmapRows, type RoadmapMilestone, type RoadmapRow, type RoadmapTodayMarker } from "./data/roadmap";
 import "./styles/tokens.css";
 import "./styles/global.css";
 import "./styles/designsystem.css";
@@ -1037,6 +1037,15 @@ const dsRoadmapStatusLabels: Record<RoadmapMilestone["status"], string> = {
   "source-needed": "Source needed",
 };
 
+function getDsMilestoneMetaLabel(milestone: RoadmapMilestone) {
+  const status = dsRoadmapStatusLabels[milestone.status];
+  return milestone.dateLabel ? `${status} - ${milestone.dateLabel}` : status;
+}
+
+function getDsTodayMarkerStyle(marker: RoadmapTodayMarker) {
+  return { "--roadmap-today-column": marker.column } as CSSProperties;
+}
+
 function readDsTimelineMetric(element: HTMLElement, property: string) {
   return Number.parseFloat(getComputedStyle(element).getPropertyValue(property)) || 0;
 }
@@ -1064,7 +1073,21 @@ function getDsMilestoneStack(milestones: RoadmapMilestone[]) {
   return { levels, span: Math.max(1, levelEnds.length) };
 }
 
-function RoadmapTimelinePreviewAxis({ scrollLeft }: { scrollLeft: number }) {
+function RoadmapTimelinePreviewTodayAxisMarker({ marker }: { marker: RoadmapTodayMarker }) {
+  return (
+    <span className="roadmap-axis__today" style={getDsTodayMarkerStyle(marker)}>
+      <span className="roadmap-axis__today-label">{marker.label}</span>
+      <span className="roadmap-axis__today-dot" />
+      <span className="roadmap-axis__today-line" />
+    </span>
+  );
+}
+
+function RoadmapTimelinePreviewTodayGridMarker({ marker }: { marker: RoadmapTodayMarker }) {
+  return <span className="roadmap-today-grid-line" style={getDsTodayMarkerStyle(marker)} aria-hidden="true" />;
+}
+
+function RoadmapTimelinePreviewAxis({ scrollLeft, todayMarker }: { scrollLeft: number; todayMarker: RoadmapTodayMarker | null }) {
   return (
     <div className="roadmap-axis-shell" style={{ "--roadmap-scroll-left": `${scrollLeft}px` } as CSSProperties} aria-hidden="true">
       <div className="roadmap-axis__corner" />
@@ -1083,6 +1106,7 @@ function RoadmapTimelinePreviewAxis({ scrollLeft }: { scrollLeft: number }) {
             {month.label}
           </div>
         ))}
+        {todayMarker && <RoadmapTimelinePreviewTodayAxisMarker marker={todayMarker} />}
       </div>
     </div>
   );
@@ -1131,7 +1155,7 @@ function RoadmapTimelinePreviewRow({
           aria-describedby={tooltipOpen ? `ds-${row.id}-tooltip` : undefined}
           onClick={() => onToggleTooltip(row.id)}
         >
-          {row.avatar ? <img src={row.avatar} alt="" loading="lazy" /> : row.shortName}
+          {row.avatar ? <img src={row.avatar.startsWith("http://") || row.avatar.startsWith("https://") ? row.avatar : asset(row.avatar)} alt="" loading="lazy" /> : row.shortName}
         </button>
         <span className="roadmap-row__identity">
           <strong className="tc-type-h5">{row.project}</strong>
@@ -1161,7 +1185,7 @@ function RoadmapTimelinePreviewRow({
             >
               <div className="roadmap-milestone__meta">
                 <strong>{milestone.title}</strong>
-                <span>{dsRoadmapStatusLabels[milestone.status]}</span>
+                <span>{getDsMilestoneMetaLabel(milestone)}</span>
                 {milestone.paid && <em>Paid entry</em>}
               </div>
               <span className={`roadmap-milestone__bar roadmap-milestone__bar--${milestone.status}`} />
@@ -1178,6 +1202,7 @@ function RoadmapTimelinePreview() {
   const communityRows = roadmapRows.filter((row) => row.group === "community");
   const [timelineMetrics, setTimelineMetrics] = useState({ monthWidth: 248, scrollLeft: 0 });
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+  const todayMarker = getRoadmapTodayMarker();
 
   const handleTimelineScroll = (event: { currentTarget: HTMLDivElement }) => {
     const element = event.currentTarget;
@@ -1190,9 +1215,10 @@ function RoadmapTimelinePreview() {
   return (
     <div className="roadmap-board ds-roadmap-preview" aria-labelledby="ds-roadmap-preview-title">
       <h3 className="visually-hidden" id="ds-roadmap-preview-title">Roadmap timeline component specimen</h3>
-      <RoadmapTimelinePreviewAxis scrollLeft={timelineMetrics.scrollLeft} />
+      <RoadmapTimelinePreviewAxis scrollLeft={timelineMetrics.scrollLeft} todayMarker={todayMarker} />
       <div className="roadmap-scroll" role="region" aria-label="Horizontally scrollable roadmap timeline component specimen" tabIndex={0} onScroll={handleTimelineScroll}>
         <div className="roadmap-grid">
+          {todayMarker && <RoadmapTimelinePreviewTodayGridMarker marker={todayMarker} />}
           <RoadmapTimelinePreviewGroupHeader group="public" />
           {publicRows.map((row) => (
             <RoadmapTimelinePreviewRow
