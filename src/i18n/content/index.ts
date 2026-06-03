@@ -5,6 +5,7 @@ import { chromeContent as idChromeContent } from "./id/chrome";
 import { chromeContent as ptBrChromeContent } from "./pt-BR/chrome";
 import { chromeContent as thChromeContent } from "./th/chrome";
 import { chromeContent as trChromeContent } from "./tr/chrome";
+import { chromeContent as zhCnChromeContent } from "./zh-CN/chrome";
 import { defaultLocale, type LocaleId } from "../config";
 
 const chromeContentByLocale = {
@@ -15,6 +16,7 @@ const chromeContentByLocale = {
   hi: hiChromeContent,
   th: thChromeContent,
   "pt-BR": ptBrChromeContent,
+  "zh-CN": zhCnChromeContent,
 } as const;
 
 export function getChromeContent(localeId: LocaleId) {

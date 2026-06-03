@@ -38,6 +38,11 @@ async function getRenderedTextTranslations(localeId: LocaleId): Promise<TextMap 
     return module.default;
   }
 
+  if (localeId === "zh-CN") {
+    const module = await import("./content/zh-CN/renderedText.json");
+    return module.default;
+  }
+
   return null;
 }
 

@@ -236,16 +236,25 @@ html[lang="th"] {
   --font-family: "Noto Sans Thai", "Leelawadee UI", "Thonburi", Tahoma, "Figtree", Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
+html[lang="zh-CN"] {
+  --font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Figtree", Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
 html[lang="hi"] .native-phase__badge,
 html[lang="th"] .native-phase__badge,
+html[lang="zh-CN"] .native-phase__badge,
 html[lang="hi"] .apr-badge__label,
 html[lang="th"] .apr-badge__label,
+html[lang="zh-CN"] .apr-badge__label,
 html[lang="hi"] .status,
 html[lang="th"] .status,
+html[lang="zh-CN"] .status,
 html[lang="hi"] .roadmap-axis__today-label,
 html[lang="th"] .roadmap-axis__today-label,
+html[lang="zh-CN"] .roadmap-axis__today-label,
 html[lang="hi"] .about-timeline__owner-badge span,
-html[lang="th"] .about-timeline__owner-badge span {
+html[lang="th"] .about-timeline__owner-badge span,
+html[lang="zh-CN"] .about-timeline__owner-badge span {
   letter-spacing: 0;
   text-transform: none;
 }

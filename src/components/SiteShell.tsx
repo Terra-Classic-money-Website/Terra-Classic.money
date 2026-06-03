@@ -77,18 +77,22 @@ function LanguageOptions({
 
   return (
     <div className={className} role="listbox" aria-label={getChromeContent(currentLocale.id).chooseLanguage} aria-hidden="false">
-      {availableLocales.map((locale) => (
-        <button
-          className={buttonClassName}
-          key={locale.id}
-          type="button"
-          aria-label={locale.nativeLabel}
-          aria-selected={locale.id === currentLocale.id}
-          onClick={() => handleLanguageClick(locale.id)}
-        >
-          {locale.shortLabel}
-        </button>
-      ))}
+      {availableLocales.map((locale) => {
+        const isWideLabel = locale.shortLabel.length > 2;
+
+        return (
+          <button
+            className={`${buttonClassName}${isWideLabel ? " language-option--wide" : ""}`}
+            key={locale.id}
+            type="button"
+            aria-label={locale.nativeLabel}
+            aria-selected={locale.id === currentLocale.id}
+            onClick={() => handleLanguageClick(locale.id)}
+          >
+            {locale.shortLabel}
+          </button>
+        );
+      })}
     </div>
   );
 }
