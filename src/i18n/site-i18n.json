@@ -22,15 +22,59 @@
       "pathPrefix": "tr",
       "default": false,
       "published": true
+    },
+    {
+      "id": "id",
+      "label": "Indonesian",
+      "nativeLabel": "Bahasa Indonesia",
+      "shortLabel": "ID",
+      "htmlLang": "id",
+      "dir": "ltr",
+      "pathPrefix": "id",
+      "default": false,
+      "published": true
+    },
+    {
+      "id": "de",
+      "label": "German",
+      "nativeLabel": "Deutsch",
+      "shortLabel": "DE",
+      "htmlLang": "de",
+      "dir": "ltr",
+      "pathPrefix": "de",
+      "default": false,
+      "published": true
     }
   ],
   "targetLocales": [
-    { "id": "id", "label": "Indonesian", "nativeLabel": "Bahasa Indonesia", "htmlLang": "id", "status": "planned" },
-    { "id": "hi", "label": "Hindi", "nativeLabel": "Hindi", "htmlLang": "hi", "status": "planned" },
-    { "id": "th", "label": "Thai", "nativeLabel": "Thai", "htmlLang": "th", "status": "planned" },
-    { "id": "pt-BR", "label": "Portuguese (Brazil)", "nativeLabel": "Portugues do Brasil", "htmlLang": "pt-BR", "status": "planned" },
-    { "id": "zh-CN", "label": "Simplified Chinese", "nativeLabel": "Simplified Chinese", "htmlLang": "zh-CN", "status": "planned" },
-    { "id": "de", "label": "German", "nativeLabel": "Deutsch", "htmlLang": "de", "status": "planned" }
+    {
+      "id": "hi",
+      "label": "Hindi",
+      "nativeLabel": "Hindi",
+      "htmlLang": "hi",
+      "status": "planned"
+    },
+    {
+      "id": "th",
+      "label": "Thai",
+      "nativeLabel": "Thai",
+      "htmlLang": "th",
+      "status": "planned"
+    },
+    {
+      "id": "pt-BR",
+      "label": "Portuguese (Brazil)",
+      "nativeLabel": "Portugues do Brasil",
+      "htmlLang": "pt-BR",
+      "status": "planned"
+    },
+    {
+      "id": "zh-CN",
+      "label": "Simplified Chinese",
+      "nativeLabel": "Simplified Chinese",
+      "htmlLang": "zh-CN",
+      "status": "planned"
+    }
   ],
   "routes": [
     {
@@ -38,7 +82,12 @@
       "sourcePath": "index.html",
       "localizedPath": "index.html",
       "entry": "home",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Terra Classic - Independent, community-maintained information website for Terra Classic, LUNC & USTC",
@@ -47,6 +96,14 @@
         "tr": {
           "title": "Terra Classic - Terra Classic, LUNC ve USTC icin bagimsiz topluluk bilgi sitesi",
           "description": "Terra Classic icin bagimsiz, topluluk tarafindan surdurulen bilgi sitesi: LUNC ve USTC ekosistem kaynaklarini, piyasalari, yol haritasini, merkeziyetsizligi, acik isleri ve gelistirici baglantilarini kesfedin."
+        },
+        "id": {
+          "title": "Terra Classic - Situs informasi komunitas independen untuk Terra Classic, LUNC dan USTC",
+          "description": "Situs informasi independen yang dikelola komunitas untuk Terra Classic: jelajahi sumber daya ekosistem LUNC dan USTC, pasar, peta jalan, desentralisasi, pekerjaan terbuka, dan tautan builder."
+        },
+        "de": {
+          "title": "Terra Classic - Unabhängige, community-gepflegte Informationswebsite für Terra Classic, LUNC und USTC",
+          "description": "Unabhängige, von der Community gepflegte Informationswebsite für Terra Classic: Erkunden Sie Ökosystem-Ressourcen für LUNC und USTC, Märkte, Roadmap, Dezentralisierung, offene Arbeiten und Builder-Links."
         }
       }
     },
@@ -55,7 +112,12 @@
       "sourcePath": "ecosystem.html",
       "localizedPath": "ecosystem.html",
       "entry": "ecosystem",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Terra Classic Ecosystem Directory",
@@ -64,6 +126,14 @@
         "tr": {
           "title": "Terra Classic Ekosistem Dizini",
           "description": "Tarafsiz Terra Classic ekosistem baglantilarini kesfedin: uygulamalar, cuzdanlar, kopruler, validatorler, gelistirici kaynaklari, altyapi saglayicilari ve topluluk araclari."
+        },
+        "id": {
+          "title": "Direktori Ekosistem Terra Classic",
+          "description": "Jelajahi tautan ekosistem Terra Classic yang netral: aplikasi, dompet, bridge, validator, sumber daya developer, penyedia infrastruktur, dan alat komunitas."
+        },
+        "de": {
+          "title": "Terra Classic Ökosystemverzeichnis",
+          "description": "Erkunden Sie neutrale Terra Classic Ökosystem-Links: Anwendungen, Wallets, Bridges, Validatoren, Entwicklerressourcen, Infrastrukturanbieter und Community-Tools."
         }
       }
     },
@@ -72,7 +142,12 @@
       "sourcePath": "markets.html",
       "localizedPath": "markets.html",
       "entry": "markets",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Terra Classic LUNC Markets",
@@ -81,6 +156,14 @@
         "tr": {
           "title": "Terra Classic LUNC Piyasalari",
           "description": "Merkezi borsalar ve merkeziyetsiz takas rotalari genelinde tarafsiz Terra Classic LUNC piyasa baglantilarini kesfedin."
+        },
+        "id": {
+          "title": "Pasar LUNC Terra Classic",
+          "description": "Jelajahi tautan pasar LUNC Terra Classic yang netral di bursa terpusat dan rute swap terdesentralisasi."
+        },
+        "de": {
+          "title": "Terra Classic LUNC Märkte",
+          "description": "Erkunden Sie neutrale Terra Classic LUNC Markt-Links über zentrale Börsen und dezentrale Swap-Routen hinweg."
         }
       }
     },
@@ -89,7 +172,12 @@
       "sourcePath": "roadmap.html",
       "localizedPath": "roadmap.html",
       "entry": "roadmap",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Terra Classic Roadmap",
@@ -98,6 +186,14 @@
         "tr": {
           "title": "Terra Classic Yol Haritasi",
           "description": "Terra Classic merkeziyetsiz yol haritasini kesfedin: herkese acik L1 kilometre taslari ve acikca etiketlenmis proje tarafindan sunulan L2 ve topluluk yol haritasi kayitlari."
+        },
+        "id": {
+          "title": "Peta Jalan Terra Classic",
+          "description": "Jelajahi peta jalan terdesentralisasi Terra Classic: milestone L1 publik serta entri peta jalan L2 dan komunitas yang dikirim proyek dan diberi label jelas."
+        },
+        "de": {
+          "title": "Terra Classic Roadmap",
+          "description": "Erkunden Sie die dezentrale Terra Classic Roadmap: öffentliche L1-Meilensteine sowie klar gekennzeichnete, von Projekten eingereichte L2- und Community-Roadmap-Einträge."
         }
       }
     },
@@ -106,7 +202,12 @@
       "sourcePath": "decentralization.html",
       "localizedPath": "decentralization.html",
       "entry": "decentralization",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Terra Classic Decentralization",
@@ -115,6 +216,14 @@
         "tr": {
           "title": "Terra Classic Merkeziyetsizlik",
           "description": "Terra Classic merkeziyetsizligi, validatorler, delegatorler, yonetisim ve topluluga ait altyapi hakkinda ayrintili ve kaynak bilincine sahip bir rehber."
+        },
+        "id": {
+          "title": "Desentralisasi Terra Classic",
+          "description": "Panduan terperinci dan sadar sumber tentang desentralisasi Terra Classic, validator, delegator, tata kelola, dan infrastruktur milik komunitas."
+        },
+        "de": {
+          "title": "Terra Classic Dezentralisierung",
+          "description": "Ein detaillierter, quellenbewusster Leitfaden zu Terra Classic Dezentralisierung, Validatoren, Delegatoren, Governance und community-eigener Infrastruktur."
         }
       }
     },
@@ -123,7 +232,12 @@
       "sourcePath": "open-work.html",
       "localizedPath": "open-work.html",
       "entry": "openWork",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Open Work for Terra Classic Builders",
@@ -132,6 +246,14 @@
         "tr": {
           "title": "Terra Classic Gelistiricileri Icin Acik Isler",
           "description": "Bagimsiz gelistiricilerin, yazilim ekiplerinin ve katkilarda bulunanlarin teklif veya fiyat hazirlayabilecegi acik Terra Classic is paketlerini kesfedin."
+        },
+        "id": {
+          "title": "Pekerjaan Terbuka untuk Builder Terra Classic",
+          "description": "Jelajahi paket pekerjaan Terra Classic terbuka yang dapat disiapkan proposal atau penawarannya oleh builder independen, software house, dan kontributor."
+        },
+        "de": {
+          "title": "Offene Arbeiten für Terra Classic Builder",
+          "description": "Erkunden Sie offene Terra Classic Arbeitspakete, für die unabhängige Builder, Softwarehäuser und Mitwirkende Vorschläge oder Angebote vorbereiten können."
         }
       }
     },
@@ -140,7 +262,12 @@
       "sourcePath": "open-work-detail.html",
       "localizedPath": "open-work-detail.html",
       "entry": "openWorkDetail",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Open Work Details for Terra Classic Builders",
@@ -149,6 +276,14 @@
         "tr": {
           "title": "Terra Classic Gelistiricileri Icin Acik Is Detaylari",
           "description": "Topluluk tartismasi ve yonetisim icin herkese acik teklif veya fiyat hazirlamadan once bir Terra Classic acik is paketini inceleyin."
+        },
+        "id": {
+          "title": "Detail Pekerjaan Terbuka untuk Builder Terra Classic",
+          "description": "Tinjau paket pekerjaan terbuka Terra Classic sebelum menyiapkan proposal publik atau penawaran untuk diskusi komunitas dan tata kelola."
+        },
+        "de": {
+          "title": "Details zu offenen Arbeiten für Terra Classic Builder",
+          "description": "Prüfen Sie ein offenes Terra Classic Arbeitspaket, bevor Sie einen öffentlichen Vorschlag oder ein Angebot für Community-Diskussion und Governance vorbereiten."
         }
       }
     },
@@ -157,7 +292,12 @@
       "sourcePath": "about.html",
       "localizedPath": "about.html",
       "entry": "about",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "About terra-classic.money",
@@ -166,6 +306,14 @@
         "tr": {
           "title": "terra-classic.money Hakkinda",
           "description": "terra-classic.money'nin Terra Classic icin bagimsiz, acik kaynakli ve topluluk tarafindan surdurulen bir bilgi sitesi olarak nasil calistigini ogrenin."
+        },
+        "id": {
+          "title": "Tentang terra-classic.money",
+          "description": "Pelajari cara kerja terra-classic.money sebagai situs informasi independen, open-source, dan dikelola komunitas untuk Terra Classic."
+        },
+        "de": {
+          "title": "Über terra-classic.money",
+          "description": "Erfahren Sie, wie terra-classic.money als unabhängige, quelloffene und community-gepflegte Informationswebsite für Terra Classic funktioniert."
         }
       }
     },
@@ -174,7 +322,12 @@
       "sourcePath": "analytics.html",
       "localizedPath": "analytics.html",
       "entry": "analytics",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Website analytics | terra-classic.money",
@@ -183,6 +336,14 @@
         "tr": {
           "title": "Website analizleri | terra-classic.money",
           "description": "Google Analytics 4 verilerinden GitHub Actions ile uretilen terra-classic.money icin herkese acik toplu website analizleri."
+        },
+        "id": {
+          "title": "Analitik website | terra-classic.money",
+          "description": "Data agregat publik analitik website untuk terra-classic.money, dibuat dari Google Analytics 4 melalui GitHub Actions."
+        },
+        "de": {
+          "title": "Website-Analytik | terra-classic.money",
+          "description": "Öffentliche aggregierte Website-Analytik für terra-classic.money, erzeugt aus Google Analytics 4 über GitHub Actions."
         }
       }
     },
@@ -191,7 +352,12 @@
       "sourcePath": "privacy.html",
       "localizedPath": "privacy.html",
       "entry": "privacy",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Privacy Policy - terra-classic.money",
@@ -200,6 +366,14 @@
         "tr": {
           "title": "Gizlilik Politikasi - terra-classic.money",
           "description": "Terra Classic icin bagimsiz, topluluk tarafindan surdurulen bilgi sitesi terra-classic.money icin Gizlilik Politikasi."
+        },
+        "id": {
+          "title": "Kebijakan Privasi - terra-classic.money",
+          "description": "Kebijakan Privasi untuk terra-classic.money, situs informasi independen yang dikelola komunitas untuk Terra Classic."
+        },
+        "de": {
+          "title": "Datenschutzerklärung - terra-classic.money",
+          "description": "Datenschutzerklärung für terra-classic.money, die unabhängige, community-gepflegte Informationswebsite für Terra Classic."
         }
       }
     },
@@ -208,7 +382,12 @@
       "sourcePath": "brand-assets.html",
       "localizedPath": "brand-assets.html",
       "entry": "brandAssets",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Terra Classic brand assets - terra-classic.money",
@@ -217,6 +396,14 @@
         "tr": {
           "title": "Terra Classic marka varliklari - terra-classic.money",
           "description": "Ekosistem iletisimi ve topluluk materyalleri icin tam logolar, bagimsiz isaretler ve ana gorseller dahil Terra Classic marka varliklarini indirin."
+        },
+        "id": {
+          "title": "Aset merek Terra Classic - terra-classic.money",
+          "description": "Unduh aset merek Terra Classic, termasuk logo lengkap, tanda mandiri, dan visual utama untuk komunikasi ekosistem dan materi komunitas."
+        },
+        "de": {
+          "title": "Terra Classic Markenassets - terra-classic.money",
+          "description": "Laden Sie Terra Classic Markenassets herunter, einschließlich vollständiger Logos, eigenständiger Zeichen und Key Visuals für Ökosystem-Kommunikation und Community-Materialien."
         }
       }
     },
@@ -226,7 +413,12 @@
       "localizedPath": "404.html",
       "entry": "notFound",
       "robots": "noindex,follow",
-      "publishedLocales": ["en", "tr"],
+      "publishedLocales": [
+        "en",
+        "tr",
+        "id",
+        "de"
+      ],
       "meta": {
         "en": {
           "title": "Page not found | Terra Classic",
@@ -235,6 +427,14 @@
         "tr": {
           "title": "Sayfa bulunamadi | Terra Classic",
           "description": "Istenen terra-classic.money sayfasi bulunamadi. Terra Classic website'sine donun veya ekosistem dizinini kesfedin."
+        },
+        "id": {
+          "title": "Halaman tidak ditemukan | Terra Classic",
+          "description": "Halaman terra-classic.money yang diminta tidak ditemukan. Kembali ke website Terra Classic atau jelajahi direktori ekosistem."
+        },
+        "de": {
+          "title": "Seite nicht gefunden | Terra Classic",
+          "description": "Die angeforderte terra-classic.money Seite wurde nicht gefunden. Kehren Sie zur Terra Classic Website zurück oder erkunden Sie das Ökosystemverzeichnis."
         }
       }
     }

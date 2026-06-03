@@ -13,6 +13,16 @@ async function getRenderedTextTranslations(localeId: LocaleId): Promise<TextMap 
     return module.default;
   }
 
+  if (localeId === "id") {
+    const module = await import("./content/id/renderedText.json");
+    return module.default;
+  }
+
+  if (localeId === "de") {
+    const module = await import("./content/de/renderedText.json");
+    return module.default;
+  }
+
   return null;
 }
 
@@ -113,7 +123,7 @@ function DomTranslator({ translations }: { translations: TextMap }) {
 function LocaleLoadError() {
   return (
     <main style={{ padding: "32px", fontFamily: "system-ui, sans-serif" }}>
-      <p>Türkçe içerik yüklenemedi. Lütfen sayfayı yenileyin.</p>
+      <p>Localized content could not be loaded. Please refresh the page.</p>
     </main>
   );
 }

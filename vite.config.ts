@@ -130,7 +130,7 @@ function localizedHtmlPlugin() {
         if (!match) return html;
 
         const { route, locale } = match;
-        const htmlAttributes = `lang="${locale.htmlLang}"${locale.dir === "rtl" ? ` dir="${locale.dir}"` : ""}`;
+        const htmlAttributes = `lang="${locale.htmlLang}" dir="${locale.dir}"`;
         const cleaned = stripManagedHeadTags(html).replace(/<html[^>]*>/i, `<html ${htmlAttributes}>`);
         return cleaned.replace("</head>", `${managedHeadTags(route, locale)}\n  </head>`);
       },

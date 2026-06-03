@@ -1,6 +1,6 @@
 import rawConfig from "./site-i18n.json";
 
-export type LocaleId = "en" | "tr";
+export type LocaleId = "en" | "tr" | "id" | "de";
 
 export type LocaleConfig = {
   id: LocaleId;
@@ -74,4 +74,3 @@ export function getRouteBySourcePath(sourcePath: string) {
   const normalized = sourcePath.replace(/^\/+/, "") || "index.html";
   return localizedRoutes.find((route) => route.sourcePath === normalized || route.localizedPath === normalized);
 }
-
