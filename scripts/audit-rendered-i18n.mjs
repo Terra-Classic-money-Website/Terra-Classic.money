@@ -64,9 +64,13 @@ const requiredTranslatableLabels = new Set([
   "Blockchain tools",
   "Bridges",
   "Consensus layer",
+  "Completed",
+  "Cooperation terms",
   "Crash",
   "Developer infrastructure",
+  "Delivered",
   "device type",
+  "Discuss with community and validators",
   "Effort",
   "Entertainment",
   "error logs",
@@ -74,6 +78,7 @@ const requiredTranslatableLabels = new Set([
   "Find out more",
   "Forex Protocol - Phase 1",
   "Forex Protocol - Phase 2",
+  "Go through governance",
   "Hardware wallet R&D",
   "Infrastructure and service providers",
   "Interconnectivity",
@@ -82,7 +87,10 @@ const requiredTranslatableLabels = new Set([
   "Network inspection",
   "Opening thesis",
   "Operational decentralization",
+  "Pay per delivered work",
+  "Payment asset and wallet",
   "Post Crash",
+  "Choose an open work package",
   "Quote",
   "referring page",
   "References / bibliography",
@@ -248,6 +256,7 @@ async function auditRenderedPages(baseUrl) {
 
         await englishPage.goto(new URL(englishPath, baseUrl).toString(), { waitUntil: "networkidle" });
         await localizedPage.goto(new URL(localizedPath, baseUrl).toString(), { waitUntil: "networkidle" });
+        await localizedPage.waitForFunction(() => document.documentElement.dataset.localizedDomReady === "true", { timeout: 5000 });
 
         const englishTexts = await extractVisibleTexts(englishPage);
         const localizedTexts = new Set(await extractVisibleTexts(localizedPage));

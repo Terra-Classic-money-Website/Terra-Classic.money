@@ -175,6 +175,30 @@ function KeyVisualSection() {
   );
 }
 
+function BrandAssetsRightsNotice() {
+  return (
+    <section className="brand-assets-rights" aria-labelledby="brand-assets-rights-title">
+      <div>
+        <h2 className="tc-type-h5" id="brand-assets-rights-title">Usage and rights note</h2>
+        <div className="brand-assets-rights__copy">
+          <p className="tc-type-body-small">
+            These assets are made available so the Terra Classic community can communicate about Terra Classic in a clearer, more consistent way.
+          </p>
+          <p className="tc-type-body-small">
+            Most assets on this page were designed by Dawid Skinder. The Terra Classic, LUNC, and USTC standalone signs originate from Terraform Labs. Downloading or using these files does not transfer copyright or ownership; rights remain with their respective creators and rights holders.
+          </p>
+          <p className="tc-type-body-small">
+            You may use these assets for Terra Classic-related communication, education, ecosystem materials, documentation, community posts, and non-commercial promotion connected to Terra Classic.
+          </p>
+          <p className="tc-type-body-small">
+            Please do not use these assets for unrelated projects, misleading endorsements, impersonation, scams, or as branding for another business, token, product, collection, or campaign. Merchandise, resale, paid product use, or any other profit-generating use requires prior written permission and separately agreed commercial terms.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function BrandAssetsPage() {
   return (
     <>
@@ -198,6 +222,7 @@ export function BrandAssetsPage() {
           kind="sign"
         />
         <KeyVisualSection />
+        <BrandAssetsRightsNotice />
       </article>
       <Footer />
     </>

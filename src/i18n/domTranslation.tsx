@@ -23,6 +23,16 @@ async function getRenderedTextTranslations(localeId: LocaleId): Promise<TextMap 
     return module.default;
   }
 
+  if (localeId === "hi") {
+    const module = await import("./content/hi/renderedText.json");
+    return module.default;
+  }
+
+  if (localeId === "th") {
+    const module = await import("./content/th/renderedText.json");
+    return module.default;
+  }
+
   return null;
 }
 
@@ -83,8 +93,19 @@ function translateDom(root: ParentNode, translations: TextMap) {
 function DomTranslator({ translations }: { translations: TextMap }) {
   useLayoutEffect(() => {
     let observer: MutationObserver | null = null;
+    let readyTimer: number | null = null;
+
+    const scheduleReady = () => {
+      if (readyTimer !== null) window.clearTimeout(readyTimer);
+      delete document.documentElement.dataset.localizedDomReady;
+      readyTimer = window.setTimeout(() => {
+        document.documentElement.dataset.localizedDomReady = "true";
+        readyTimer = null;
+      }, 200);
+    };
 
     translateDom(document.body, translations);
+    scheduleReady();
 
     observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
@@ -106,6 +127,8 @@ function DomTranslator({ translations }: { translations: TextMap }) {
           }
         }
       }
+
+      scheduleReady();
     });
 
     observer.observe(document.body, {
@@ -114,7 +137,11 @@ function DomTranslator({ translations }: { translations: TextMap }) {
       subtree: true,
     });
 
-    return () => observer?.disconnect();
+    return () => {
+      if (readyTimer !== null) window.clearTimeout(readyTimer);
+      observer?.disconnect();
+      delete document.documentElement.dataset.localizedDomReady;
+    };
   }, [translations]);
 
   return null;

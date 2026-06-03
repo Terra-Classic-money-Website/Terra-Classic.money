@@ -1,9 +1,25 @@
 import { lazy, Suspense, useEffect, useState, type CSSProperties } from "react";
 import { decentralizationArticleBlocks, decentralizationArticleLede, decentralizationReferences, decentralizationResourceGroups, decentralizationStats } from "../data/decentralization";
+import { getCurrentLocaleId } from "../i18n/routing";
+import type { LocaleId } from "../i18n/config";
 import { ARTICLE_WORDS_PER_MINUTE, asset, BOTTOM_GLOW_VARIANT, DotArrowIcon, Footer, ShareOnXButton } from "./shared";
 
 const planetPatternCells = Array.from({ length: 16 }, (_, index) => index);
 const decagonPatternCells = Array.from({ length: 16 }, (_, index) => index);
+
+const readTimeLabels: Record<LocaleId, (minutes: number) => string> = {
+  en: (minutes) => `${minutes} MIN READ`,
+  tr: (minutes) => `${minutes} DK OKUMA`,
+  id: (minutes) => `${minutes} MENIT BACA`,
+  de: (minutes) => `${minutes} MIN. LESEZEIT`,
+  hi: (minutes) => `${minutes} मिनट पठन`,
+  th: (minutes) => `อ่าน ${minutes} นาที`,
+};
+
+function formatReadTime(minutes: number) {
+  const localeId = getCurrentLocaleId();
+  return (readTimeLabels[localeId] || readTimeLabels.en)(minutes);
+}
 
 function DecagonPattern() {
   return (
@@ -111,6 +127,7 @@ function DecentralizationArticle() {
     ...decentralizationArticleBlocks.flatMap((block) => [`${block.eyebrow} ${block.title}`, ...block.paragraphs]),
   ].join(" ");
   const readMinutes = Math.max(1, Math.ceil(readText.trim().split(/\s+/).length / ARTICLE_WORDS_PER_MINUTE));
+  const readTimeLabel = formatReadTime(readMinutes);
 
   return (
     <article className="decentralization-page" id="top" aria-labelledby="decentralization-page-title">
@@ -138,7 +155,7 @@ function DecentralizationArticle() {
         </span>
         <div className="stats-copy decentralization-stats-hero__copy">
           <div className="article-meta">
-            <span className="native-phase__badge article-meta__badge">{readMinutes} MIN READ</span>
+            <span className="native-phase__badge article-meta__badge">{readTimeLabel}</span>
           </div>
           <h1 className="tc-type-h1" id="decentralization-page-title">Terra Classic decentralization</h1>
           <p className="tc-type-h4">A long-form guide to how Terra Classic decentralization works, why it matters, and how anyone can verify the network for themselves.</p>

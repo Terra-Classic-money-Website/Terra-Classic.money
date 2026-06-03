@@ -13,6 +13,15 @@ export const ecosystemCategories: EcosystemCategory[] = [
       "Apps, DeFi products, launchpads, marketplaces, and aggregators",
     entries: [
       {
+        name: "Astroport",
+        summary: "LUNC native swaps",
+        href: "https://astro.terra-classic.io/swap",
+        avatar:
+          "avatars/avatar-fdxvzkmrb3daaisu9lhundz8-78e7736386.webp",
+        avatarAlt: "Astroport decentralized exchange on Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
         name: "BigbangX",
         summary: "NFT marketplace",
         href: "https://bigbangx.io",
@@ -31,12 +40,29 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
+        name: "Coinhall",
+        summary: "Aggregator",
+        href: "https://coinhall.org/terraclassic/terra1l7vy20x940je7lskm6x9s839vjsmekz9k9mv7g",
+        avatar:
+          "avatars/avatar-bs4kzygcm2k4har3dewmoqgaqhq-ff10291e4b.webp",
+        avatarAlt: "Coinhall aggregator showing Terra Classic prices & charts.",
+      },
+      {
         name: "Cookie.pay",
         summary: "Payments",
         href: "https://lunc.tools/cookie-pay",
         avatar:
           "avatars/avatar-59bhttuddueu8dwvdvtxcgpop4-df9579e717.webp",
         avatarAlt: "Cookie.pay crypto-payments gateway for LUNC and USTC.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "Garuda Defi",
+        summary: "LUNC native swaps",
+        href: "https://garuda-defi.org/",
+        avatar:
+          "avatars/avatar-y4ml5qrfwbzvv4fua1kyrv8vk9i-edd37cef82.webp",
+        avatarAlt: "Garuda Defi decentralized exchange on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
       {
@@ -105,6 +131,14 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
+        name: "Reputation DEX",
+        summary: "Decentralized exchange for reputation tokens",
+        href: "https://reputation.global",
+        avatar: "avatars/avatar-reputation-64a41bbc7d.webp",
+        avatarAlt: "Reputation DEX for reputation tokens on Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
         name: "Selenium",
         summary: "Synthetics platform",
         href: "https://selenium.finance",
@@ -115,6 +149,15 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
+        name: "Sonic",
+        summary: "Social / Messenger",
+        href: "https://www.sonikchain.com",
+        avatar:
+          "avatars/avatar-8cvmlojpoj1enblm5okguhs7k-06a40a446f.webp",
+        avatarAlt:
+          "Sonic decentralized social/messenger dApp on Terra Classic.",
+      },
+      {
         name: "Terra Casino",
         summary: "Leveraged trading",
         href: "https://terracasino.io/trading/BTC",
@@ -122,6 +165,24 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "avatars/avatar-ykbwdvjvbvoafnzgtodstsjpc4-f140c36707.webp",
         avatarAlt:
           "Leveraged trading (BTC, ETH, BNB, XRP, TURBOWAVE) on Terra Casino",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "TERRA.pump",
+        summary: "Launchpad",
+        href: "https://terrapump.fun",
+        avatar:
+          "avatars/avatar-mwa5tpkeg8mtkojpogz5if6zc0-b97990bf6d.webp",
+        avatarAlt: "TERRA.pump launchpad accelerating Terra Classic startups.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "Terraport",
+        summary: "LUNC native swaps",
+        href: "https://terraport.finance/",
+        avatar:
+          "avatars/avatar-c1vrq896uludqqphvn48jh6o0dm-340ab8a75f.webp",
+        avatarAlt: "Terraport native Terra Classic decentralized exchange.",
         badge: "ON-CHAIN NATIVE",
       },
       {
@@ -135,12 +196,12 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
-        name: "TERRA.pump",
-        summary: "Launchpad",
-        href: "https://terrapump.fun",
+        name: "Terraswap",
+        summary: "LUNC / USTC",
+        href: "https://app-classic.terraswap.io/",
         avatar:
-          "avatars/avatar-mwa5tpkeg8mtkojpogz5if6zc0-b97990bf6d.webp",
-        avatarAlt: "TERRA.pump launchpad accelerating Terra Classic startups.",
+          "avatars/avatar-fd3sjbfgpx4rxezztzeobjyw6kw-0b6a20f03f.webp",
+        avatarAlt: "Terraswap AMM for LUNC and USTC on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
       {
@@ -162,73 +223,12 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
-        name: "Coinhall",
-        summary: "Aggregator",
-        href: "https://coinhall.org/terraclassic/terra1l7vy20x940je7lskm6x9s839vjsmekz9k9mv7g",
-        avatar:
-          "avatars/avatar-bs4kzygcm2k4har3dewmoqgaqhq-ff10291e4b.webp",
-        avatarAlt: "Coinhall aggregator showing Terra Classic prices & charts.",
-      },
-      {
-        name: "Sonic",
-        summary: "Social / Messenger",
-        href: "https://www.sonikchain.com",
-        avatar:
-          "avatars/avatar-8cvmlojpoj1enblm5okguhs7k-06a40a446f.webp",
-        avatarAlt:
-          "Sonic decentralized social/messenger dApp on Terra Classic.",
-      },
-      {
-        name: "Astroport",
-        summary: "LUNC native swaps",
-        href: "https://astro.terra-classic.io/swap",
-        avatar:
-          "avatars/avatar-fdxvzkmrb3daaisu9lhundz8-78e7736386.webp",
-        avatarAlt: "Astroport decentralized exchange on Terra Classic.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
-        name: "Terraport",
-        summary: "LUNC native swaps",
-        href: "https://terraport.finance/",
-        avatar:
-          "avatars/avatar-c1vrq896uludqqphvn48jh6o0dm-340ab8a75f.webp",
-        avatarAlt: "Terraport native Terra Classic decentralized exchange.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
         name: "WESO DeFi",
         summary: "LUNC native swaps",
         href: "https://wesoworld.io/",
         avatar:
           "avatars/avatar-ycww93qcobnwgfbfesl7evivwve-a933b65ed8.webp",
         avatarAlt: "WESO DeFi platform offering LUNC trading pairs.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
-        name: "Garuda Defi",
-        summary: "LUNC native swaps",
-        href: "https://garuda-defi.org/",
-        avatar:
-          "avatars/avatar-y4ml5qrfwbzvv4fua1kyrv8vk9i-edd37cef82.webp",
-        avatarAlt: "Garuda Defi decentralized exchange on Terra Classic.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
-        name: "Terraswap",
-        summary: "LUNC / USTC",
-        href: "https://app-classic.terraswap.io/",
-        avatar:
-          "avatars/avatar-fd3sjbfgpx4rxezztzeobjyw6kw-0b6a20f03f.webp",
-        avatarAlt: "Terraswap AMM for LUNC and USTC on Terra Classic.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
-        name: "Reputation DEX",
-        summary: "Decentralized exchange for reputation tokens",
-        href: "https://reputation.global",
-        avatar: "avatars/avatar-reputation-64a41bbc7d.webp",
-        avatarAlt: "Reputation DEX for reputation tokens on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
     ],

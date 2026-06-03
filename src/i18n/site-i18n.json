@@ -44,23 +44,31 @@
       "pathPrefix": "de",
       "default": false,
       "published": true
-    }
-  ],
-  "targetLocales": [
+    },
     {
       "id": "hi",
       "label": "Hindi",
-      "nativeLabel": "Hindi",
+      "nativeLabel": "हिन्दी",
+      "shortLabel": "HI",
       "htmlLang": "hi",
-      "status": "planned"
+      "dir": "ltr",
+      "pathPrefix": "hi",
+      "default": false,
+      "published": true
     },
     {
       "id": "th",
       "label": "Thai",
-      "nativeLabel": "Thai",
+      "nativeLabel": "ไทย",
+      "shortLabel": "TH",
       "htmlLang": "th",
-      "status": "planned"
-    },
+      "dir": "ltr",
+      "pathPrefix": "th",
+      "default": false,
+      "published": true
+    }
+  ],
+  "targetLocales": [
     {
       "id": "pt-BR",
       "label": "Portuguese (Brazil)",
@@ -86,7 +94,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -104,6 +114,14 @@
         "de": {
           "title": "Terra Classic - Unabhängige, community-gepflegte Informationswebsite für Terra Classic, LUNC und USTC",
           "description": "Unabhängige, von der Community gepflegte Informationswebsite für Terra Classic: Erkunden Sie Ökosystem-Ressourcen für LUNC und USTC, Märkte, Roadmap, Dezentralisierung, offene Arbeiten und Builder-Links."
+        },
+        "hi": {
+          "title": "Terra Classic - Terra Classic, LUNC और USTC के लिए स्वतंत्र, समुदाय-संचालित सूचना वेबसाइट",
+          "description": "Terra Classic के लिए स्वतंत्र, समुदाय-संचालित सूचना वेबसाइट: LUNC और USTC इकोसिस्टम संसाधन, मार्केट, रोडमैप, विकेंद्रीकरण, खुले कार्य और बिल्डर लिंक देखें।"
+        },
+        "th": {
+          "title": "Terra Classic - เว็บไซต์ข้อมูลอิสระที่ดูแลโดยชุมชนสำหรับ Terra Classic, LUNC & USTC",
+          "description": "เว็บไซต์ข้อมูลที่ดูแลโดยชุมชนอิสระสำหรับ Terra Classic: สำรวจทรัพยากรระบบนิเวศ LUNC และ USTC ตลาด แผนงาน การกระจายอำนาจ งานแบบเปิด และลิงก์ของผู้สร้าง"
         }
       }
     },
@@ -116,7 +134,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -134,6 +154,14 @@
         "de": {
           "title": "Terra Classic Ökosystemverzeichnis",
           "description": "Erkunden Sie neutrale Terra Classic Ökosystem-Links: Anwendungen, Wallets, Bridges, Validatoren, Entwicklerressourcen, Infrastrukturanbieter und Community-Tools."
+        },
+        "hi": {
+          "title": "Terra Classic इकोसिस्टम डायरेक्टरी",
+          "description": "तटस्थ Terra Classic इकोसिस्टम लिंक देखें: ऐप्स, वॉलेट, ब्रिज, वैलिडेटर, डेवलपर संसाधन, इंफ्रास्ट्रक्चर प्रदाता और समुदाय टूल।"
+        },
+        "th": {
+          "title": "Terra Classic ไดเรกทอรีระบบนิเวศ",
+          "description": "สำรวจลิงก์ระบบนิเวศ Terra Classic ที่เป็นกลาง: แอปพลิเคชัน กระเป๋าเงิน บริดจ์ เครื่องมือตรวจสอบ ทรัพยากรสำหรับนักพัฒนา ผู้ให้บริการโครงสร้างพื้นฐาน และเครื่องมือชุมชน"
         }
       }
     },
@@ -146,7 +174,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -164,6 +194,14 @@
         "de": {
           "title": "Terra Classic LUNC Märkte",
           "description": "Erkunden Sie neutrale Terra Classic LUNC Markt-Links über zentrale Börsen und dezentrale Swap-Routen hinweg."
+        },
+        "hi": {
+          "title": "Terra Classic LUNC मार्केट",
+          "description": "केंद्रीकृत एक्सचेंजों और विकेंद्रीकृत स्वैप रूटों पर तटस्थ Terra Classic LUNC मार्केट लिंक देखें।"
+        },
+        "th": {
+          "title": "Terra Classic LUNC ตลาด",
+          "description": "สำรวจการเชื่อมโยงตลาด Terra Classic LUNC ที่เป็นกลางผ่านการแลกเปลี่ยนแบบรวมศูนย์และเส้นทางการแลกเปลี่ยนแบบกระจายอำนาจ"
         }
       }
     },
@@ -176,7 +214,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -194,6 +234,14 @@
         "de": {
           "title": "Terra Classic Roadmap",
           "description": "Erkunden Sie die dezentrale Terra Classic Roadmap: öffentliche L1-Meilensteine sowie klar gekennzeichnete, von Projekten eingereichte L2- und Community-Roadmap-Einträge."
+        },
+        "hi": {
+          "title": "Terra Classic रोडमैप",
+          "description": "Terra Classic का विकेंद्रीकृत रोडमैप देखें: सार्वजनिक L1 माइलस्टोन और स्पष्ट रूप से लेबल किए गए प्रोजेक्ट-प्रस्तुत L2 तथा समुदाय रोडमैप एंट्री।"
+        },
+        "th": {
+          "title": "Terra Classic แผนการทำงาน",
+          "description": "สำรวจแผนงานแบบกระจายอำนาจ Terra Classic: เหตุการณ์สำคัญ L1 สาธารณะ และรายการแผนงาน L2 ที่ส่งโครงการและชุมชนที่มีป้ายกำกับอย่างชัดเจน"
         }
       }
     },
@@ -206,7 +254,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -224,6 +274,14 @@
         "de": {
           "title": "Terra Classic Dezentralisierung",
           "description": "Ein detaillierter, quellenbewusster Leitfaden zu Terra Classic Dezentralisierung, Validatoren, Delegatoren, Governance und community-eigener Infrastruktur."
+        },
+        "hi": {
+          "title": "Terra Classic विकेंद्रीकरण",
+          "description": "Terra Classic विकेंद्रीकरण, वैलिडेटर, डेलीगेटर, गवर्नेंस और समुदाय-स्वामित्व वाले इंफ्रास्ट्रक्चर पर विस्तृत, स्रोत-जागरूक गाइड।"
+        },
+        "th": {
+          "title": "Terra Classic การกระจายอำนาจ",
+          "description": "คู่มือโดยละเอียดที่ทราบแหล่งที่มาเกี่ยวกับการกระจายอำนาจ Terra Classic ผู้ตรวจสอบ ผู้มอบหมาย การกำกับดูแล และโครงสร้างพื้นฐานที่ชุมชนเป็นเจ้าของ"
         }
       }
     },
@@ -236,7 +294,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -254,6 +314,14 @@
         "de": {
           "title": "Offene Arbeiten für Terra Classic Builder",
           "description": "Erkunden Sie offene Terra Classic Arbeitspakete, für die unabhängige Builder, Softwarehäuser und Mitwirkende Vorschläge oder Angebote vorbereiten können."
+        },
+        "hi": {
+          "title": "Terra Classic बिल्डरों के लिए खुले कार्य",
+          "description": "खुले Terra Classic कार्य पैकेज देखें जिनके लिए स्वतंत्र बिल्डर, सॉफ्टवेयर हाउस और योगदानकर्ता प्रस्ताव या कोट तैयार कर सकते हैं।"
+        },
+        "th": {
+          "title": "เปิดงานสำหรับผู้สร้าง Terra Classic",
+          "description": "สำรวจแพ็คเกจงาน Terra Classic แบบเปิดที่ผู้สร้างอิสระ ผู้พัฒนาซอฟต์แวร์ และผู้มีส่วนร่วมสามารถเตรียมข้อเสนอหรือเสนอราคาได้"
         }
       }
     },
@@ -266,7 +334,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -284,6 +354,14 @@
         "de": {
           "title": "Details zu offenen Arbeiten für Terra Classic Builder",
           "description": "Prüfen Sie ein offenes Terra Classic Arbeitspaket, bevor Sie einen öffentlichen Vorschlag oder ein Angebot für Community-Diskussion und Governance vorbereiten."
+        },
+        "hi": {
+          "title": "Terra Classic बिल्डरों के लिए खुले कार्य का विवरण",
+          "description": "समुदाय चर्चा और गवर्नेंस के लिए सार्वजनिक प्रस्ताव या कोट तैयार करने से पहले Terra Classic का खुला कार्य पैकेज देखें।"
+        },
+        "th": {
+          "title": "เปิดรายละเอียดงานสำหรับ Terra Classic Builders",
+          "description": "ตรวจสอบแพ็คเกจงานแบบเปิด Terra Classic ก่อนที่จะเตรียมข้อเสนอสาธารณะหรือเสนอราคาสำหรับการอภิปรายและการกำกับดูแลของชุมชน"
         }
       }
     },
@@ -296,7 +374,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -314,6 +394,14 @@
         "de": {
           "title": "Über terra-classic.money",
           "description": "Erfahren Sie, wie terra-classic.money als unabhängige, quelloffene und community-gepflegte Informationswebsite für Terra Classic funktioniert."
+        },
+        "hi": {
+          "title": "terra-classic.money के बारे में",
+          "description": "जानें कि terra-classic.money Terra Classic के लिए स्वतंत्र, ओपन-सोर्स, समुदाय-संचालित सूचना वेबसाइट के रूप में कैसे काम करती है।"
+        },
+        "th": {
+          "title": "เกี่ยวกับ terra-classic.money",
+          "description": "เรียนรู้ว่า terra-classic.money ทำงานอย่างไรในฐานะเว็บไซต์ข้อมูลโอเพ่นซอร์สอิสระที่ดูแลโดยชุมชนสำหรับ Terra Classic"
         }
       }
     },
@@ -326,7 +414,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -344,6 +434,14 @@
         "de": {
           "title": "Website-Analytik | terra-classic.money",
           "description": "Öffentliche aggregierte Website-Analytik für terra-classic.money, erzeugt aus Google Analytics 4 über GitHub Actions."
+        },
+        "hi": {
+          "title": "वेबसाइट एनालिटिक्स | terra-classic.money",
+          "description": "terra-classic.money के लिए सार्वजनिक समेकित वेबसाइट एनालिटिक्स, Google Analytics 4 से GitHub Actions के माध्यम से तैयार किया गया।"
+        },
+        "th": {
+          "title": "การวิเคราะห์เว็บไซต์ | terra-classic.money",
+          "description": "การวิเคราะห์เว็บไซต์รวมสาธารณะสำหรับ terra-classic.money สร้างจาก Google Analytics 4 ถึง GitHub การดำเนินการ"
         }
       }
     },
@@ -356,7 +454,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -374,6 +474,14 @@
         "de": {
           "title": "Datenschutzerklärung - terra-classic.money",
           "description": "Datenschutzerklärung für terra-classic.money, die unabhängige, community-gepflegte Informationswebsite für Terra Classic."
+        },
+        "hi": {
+          "title": "गोपनीयता नीति - terra-classic.money",
+          "description": "terra-classic.money के लिए गोपनीयता नीति, Terra Classic की स्वतंत्र, समुदाय-संचालित सूचना वेबसाइट।"
+        },
+        "th": {
+          "title": "นโยบายความเป็นส่วนตัว - terra-classic.money",
+          "description": "นโยบายความเป็นส่วนตัวสำหรับ terra-classic.money เว็บไซต์ข้อมูลอิสระที่ดูแลโดยชุมชนสำหรับ Terra Classic"
         }
       }
     },
@@ -386,7 +494,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -404,6 +514,14 @@
         "de": {
           "title": "Terra Classic Markenassets - terra-classic.money",
           "description": "Laden Sie Terra Classic Markenassets herunter, einschließlich vollständiger Logos, eigenständiger Zeichen und Key Visuals für Ökosystem-Kommunikation und Community-Materialien."
+        },
+        "hi": {
+          "title": "Terra Classic ब्रांड एसेट्स - terra-classic.money",
+          "description": "Terra Classic ब्रांड एसेट्स डाउनलोड करें, जिनमें पूर्ण लोगो, स्वतंत्र चिन्ह और इकोसिस्टम संचार तथा समुदाय सामग्री के लिए मुख्य दृश्य शामिल हैं।"
+        },
+        "th": {
+          "title": "Terra Classic ทรัพย์สินของแบรนด์ - terra-classic.money",
+          "description": "ดาวน์โหลดทรัพย์สินของแบรนด์ Terra Classic รวมถึงโลโก้แบบเต็ม ป้ายแบบสแตนด์อโลน และภาพหลักสำหรับการสื่อสารในระบบนิเวศและสื่อในชุมชน"
         }
       }
     },
@@ -417,7 +535,9 @@
         "en",
         "tr",
         "id",
-        "de"
+        "de",
+        "hi",
+        "th"
       ],
       "meta": {
         "en": {
@@ -435,6 +555,14 @@
         "de": {
           "title": "Seite nicht gefunden | Terra Classic",
           "description": "Die angeforderte terra-classic.money Seite wurde nicht gefunden. Kehren Sie zur Terra Classic Website zurück oder erkunden Sie das Ökosystemverzeichnis."
+        },
+        "hi": {
+          "title": "पेज नहीं मिला | Terra Classic",
+          "description": "मांगा गया terra-classic.money पेज नहीं मिला। Terra Classic वेबसाइट पर लौटें या इकोसिस्टम डायरेक्टरी देखें।"
+        },
+        "th": {
+          "title": "ไม่พบหน้า | Terra Classic",
+          "description": "ไม่พบเพจ terra-classic.money ที่ร้องขอ กลับไปที่เว็บไซต์ Terra Classic หรือสำรวจไดเรกทอรีระบบนิเวศ"
         }
       }
     }
