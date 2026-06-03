@@ -256,7 +256,13 @@ async function auditRenderedPages(baseUrl) {
 
         await englishPage.goto(new URL(englishPath, baseUrl).toString(), { waitUntil: "networkidle" });
         await localizedPage.goto(new URL(localizedPath, baseUrl).toString(), { waitUntil: "networkidle" });
-        await localizedPage.waitForFunction(() => document.documentElement.dataset.localizedDomReady === "true", { timeout: 5000 });
+        try {
+          await localizedPage.waitForFunction(() => document.documentElement.dataset.localizedDomReady === "true", undefined, { timeout: 10000 });
+        } catch {
+          fail(`${locale.id}/${route.id} did not report localized DOM ready for ${localizedPath}.`);
+          await context.close();
+          continue;
+        }
 
         const englishTexts = await extractVisibleTexts(englishPage);
         const localizedTexts = new Set(await extractVisibleTexts(localizedPage));

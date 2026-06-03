@@ -1,7 +1,12 @@
 import { developerInfrastructureEntries, networkInspectionEntries, validatorVisibilityEntries } from "./ecosystemVerification";
-import type { EcosystemCategory } from "./ecosystemTypes";
+import type { EcosystemCategory, EcosystemEntry } from "./ecosystemTypes";
 
 export type { EcosystemCategory, EcosystemEntry } from "./ecosystemTypes";
+
+const sortEntriesByName = (entries: EcosystemEntry[]) =>
+  [...entries].sort((entryA, entryB) =>
+    entryA.name.localeCompare(entryB.name, "en", { sensitivity: "base" }),
+  );
 
 // Contributor note: add public ecosystem listings in the right category below.
 // Keep summaries short, neutral, and informational. Avatars are optional.
@@ -248,15 +253,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
-        name: "BruteMove!",
-        summary: "Game",
-        href: "https://brutemove.net",
-        avatar:
-          "avatars/avatar-cpikmj5mb9pqxhjb1vdfwefrkc-0afbf28d88.webp",
-        avatarAlt: "Galactic Shift WIP blockchain game for Terra Classic.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
         name: "Benance Bird",
         summary: "Play-to-earn and burn arcade game on Terra Classic",
         href: "https://benance-bird-mainnet.vercel.app/",
@@ -264,6 +260,15 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "avatars/avatar-benance-bird-7da149d5e5.webp",
         avatarAlt:
           "Benance Bird play-to-earn and burn arcade game on Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "BruteMove!",
+        summary: "Game",
+        href: "https://brutemove.net",
+        avatar:
+          "avatars/avatar-cpikmj5mb9pqxhjb1vdfwefrkc-0afbf28d88.webp",
+        avatarAlt: "Galactic Shift WIP blockchain game for Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
       {
@@ -276,15 +281,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
-        name: "Genesis Raid",
-        summary: "Play-to-earn RPG game",
-        href: "https://genesisraid.com/",
-        avatar:
-          "avatars/avatar-genesisraid-34836fc648.webp",
-        avatarAlt: "Genesis Raid play-to-earn RPG game on Terra Classic.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
         name: "Garuda The Protector",
         summary: "Game",
         href: "https://play.google.com/store/apps/details?id=com.GarudaNodes.GarudaTheProtector3&pcampaignid=web_share",
@@ -292,6 +288,15 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "avatars/avatar-y4ml5qrfwbzvv4fua1kyrv8vk9i-edd37cef82.webp",
         avatarAlt:
           "Garuda The Protector action game in the Terra Classic universe.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "Genesis Raid",
+        summary: "Play-to-earn RPG game",
+        href: "https://genesisraid.com/",
+        avatar:
+          "avatars/avatar-genesisraid-34836fc648.webp",
+        avatarAlt: "Genesis Raid play-to-earn RPG game on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
       {
@@ -332,6 +337,14 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
+        name: "Terra Casino",
+        summary: "Casino and live poker",
+        href: "https://terracasino.io",
+        avatar:
+          "avatars/avatar-ykbwdvjvbvoafnzgtodstsjpc4-f140c36707.webp",
+        avatarAlt: "Terra Casino online casino accepting LUNC & USTC.",
+      },
+      {
         name: "TRITIUM",
         summary: "Game",
         href: "https://play.terratritium.com",
@@ -349,15 +362,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatarAlt: "WESO DeFi games on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
-      {
-        name: "Terra Casino",
-        summary: "Casino and live poker",
-        href: "https://terracasino.io",
-        avatar:
-          "avatars/avatar-ykbwdvjvbvoafnzgtodstsjpc4-f140c36707.webp",
-        avatarAlt: "Terra Casino online casino accepting LUNC & USTC.",
-      },
-    ],
+      ],
   },
   {
     id: "information",
@@ -372,6 +377,22 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "avatars/avatar-p9cokr28aq4ro8cxf2w9btipyu-e333865bdb.webp",
         avatarAlt: "Discourse - Unofficial discussion forum for Terra Classic.",
         badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "CertiK Audit",
+        summary: "",
+        href: "https://skynet.certik.com/projects/terra",
+        avatar:
+          "avatars/avatar-qe6nqocyqmdityqdronoje6xqs8-d2a683bc49.webp",
+        avatarAlt: "CertiK security audit report for Terra Classic projects.",
+      },
+      {
+        name: "Common.xyz",
+        summary: "Unofficial forum",
+        href: "https://forum.terra-classic.money",
+        avatar:
+          "avatars/avatar-0xgvfdwsbvzyonipenkflnyckye-eacab42e47.webp",
+        avatarAlt: "Common.xyz official discussion forum for Terra Classic.",
       },
       {
         name: "LuncDaily",
@@ -392,15 +413,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
-        name: "Truth Dashboard",
-        summary: "Analytics",
-        href: "https://truth.terra-classic.money/",
-        avatar:
-          "avatars/avatar-truth-dashboard-53ca9df114.webp",
-        avatarAlt: "Truth Dashboard analytics for Terra Classic.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
         name: "Terraclassic.network",
         summary: "News website",
         href: "https://terraclassic.network",
@@ -409,38 +421,13 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatarAlt: "Terraclassic.network community news for Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
-      {
-        name: "CertiK Audit",
-        summary: "",
-        href: "https://skynet.certik.com/projects/terra",
-        avatar:
-          "avatars/avatar-qe6nqocyqmdityqdronoje6xqs8-d2a683bc49.webp",
-        avatarAlt: "CertiK security audit report for Terra Classic projects.",
-      },
-      {
-        name: "Common.xyz",
-        summary: "Unofficial forum",
-        href: "https://forum.terra-classic.money",
-        avatar:
-          "avatars/avatar-0xgvfdwsbvzyonipenkflnyckye-eacab42e47.webp",
-        avatarAlt: "Common.xyz official discussion forum for Terra Classic.",
-      },
-    ],
+      ],
   },
   {
     id: "wallets",
     title: "Wallets",
     description: "Wallets and account tools for Terra Classic users",
     entries: [
-      {
-        name: "LUNCdash",
-        summary: "",
-        href: "https://luncdash.com",
-        avatar:
-          "avatars/avatar-yarx8rwbcc6ytokstcaee5hyolq-b7c09a28d8.webp",
-        avatarAlt: "LUNCdash dashboard & wallet for Terra Classic.",
-        badge: "ON-CHAIN NATIVE",
-      },
       {
         name: "Cosmostation Mobile",
         summary: "",
@@ -467,12 +454,30 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatarAlt: "Keplr multi-chain wallet with Terra Classic support.",
       },
       {
+        name: "LUNCdash",
+        summary: "",
+        href: "https://luncdash.com",
+        avatar:
+          "avatars/avatar-yarx8rwbcc6ytokstcaee5hyolq-b7c09a28d8.webp",
+        avatarAlt: "LUNCdash dashboard & wallet for Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
         name: "Ping.pub",
         summary: "",
         href: "https://ping.pub/terra-luna",
         avatar:
           "avatars/avatar-c0qnl8syo77ssqcozxop8qfaces-3e281e8e96.webp",
         avatarAlt: "Ping.pub explorer & wallet for Cosmos and Terra Classic.",
+      },
+      {
+        name: "Station",
+        summary: "",
+        href: "https://www.station.money",
+        avatar:
+          "avatars/avatar-s1cl4zcap15z4aozckqire4opo-fb2ab21eb9.webp",
+        avatarAlt:
+          "Station wallet interface for Terra Classic blockchain.",
       },
       {
         name: "Trust Wallet",
@@ -490,23 +495,14 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "avatars/avatar-dmgf7gsprxmohm4erwkplvkdwk-50ef9930ca.webp",
         avatarAlt: "Vultisig multi-sig wallet tool for Terra Classic assets.",
       },
-      {
-        name: "Station",
-        summary: "",
-        href: "https://www.station.money",
-        avatar:
-          "avatars/avatar-s1cl4zcap15z4aozckqire4opo-fb2ab21eb9.webp",
-        avatarAlt:
-          "Station wallet interface for Terra Classic blockchain.",
-      },
-    ],
+      ],
   },
   {
     id: "tools",
     title: "Blockchain tools",
     description:
       "Analytics, explorers, finders, DAO tools, and network utilities",
-    entries: [
+    entries: sortEntriesByName([
       ...networkInspectionEntries.filter(({ name }) => name !== "CW-20 Bakery" && name !== "LUNC Burner"),
       {
         name: "Burrito App",
@@ -527,20 +523,20 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "HYBRID INTEGRATION",
       },
       {
-        name: "LuncScan",
-        summary: "Analytics",
-        href: "https://luncscan.com",
-        avatar:
-          "avatars/avatar-ymcvrdodd20tcy4nwoosr1iqpyk-fbb2313815.webp",
-        avatarAlt: "LuncScan blockchain explorer for LUNC transactions.",
-      },
-      {
         name: "Lunc.Tools",
         summary: "Analytics",
         href: "https://lunc.tools",
         avatar:
           "avatars/avatar-dfjxrumpsjao7efojboghw3j8ty-a5f97cda77.webp",
         avatarAlt: "Lunc.Tools suite for Terra Classic stats & notifications.",
+      },
+      {
+        name: "LuncScan",
+        summary: "Analytics",
+        href: "https://luncscan.com",
+        avatar:
+          "avatars/avatar-ymcvrdodd20tcy4nwoosr1iqpyk-fbb2313815.webp",
+        avatarAlt: "LuncScan blockchain explorer for LUNC transactions.",
       },
       {
         name: "Ping.pub",
@@ -592,22 +588,13 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "avatars/avatar-jd3k4cl1k43o9diiccejt6gifa-b70790a293.webp",
         avatarAlt: "Validator.info analytics on Terra Classic validators.",
       },
-    ],
+    ]),
   },
   {
     id: "bridges",
     title: "Bridges",
     description: "Cross-chain transfer and routing surfaces",
     entries: [
-      {
-        name: "Juris Bridge",
-        summary: "",
-        href: "https://dashboard.jurisprotocol.com/bridge",
-        avatar:
-          "avatars/avatar-obdbbfwqr1y1obx0pof8cyz6q-e19587c5b9.webp",
-        avatarAlt: "Juris Bridge connecting Terra Classic with BSC & Ethereum.",
-        badge: "ON-CHAIN NATIVE",
-      },
       {
         name: "DO Secret",
         summary: "Bridge to Secret Network",
@@ -618,12 +605,12 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
-        name: "Terraport Bridge",
+        name: "Juris Bridge",
         summary: "",
-        href: "https://terraport.finance/bridge",
+        href: "https://dashboard.jurisprotocol.com/bridge",
         avatar:
-          "avatars/avatar-c1vrq896uludqqphvn48jh6o0dm-340ab8a75f.webp",
-        avatarAlt: "Terraport Bridge moving assets into Terra Classic DEX.",
+          "avatars/avatar-obdbbfwqr1y1obx0pof8cyz6q-e19587c5b9.webp",
+        avatarAlt: "Juris Bridge connecting Terra Classic with BSC & Ethereum.",
         badge: "ON-CHAIN NATIVE",
       },
       {
@@ -633,6 +620,15 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatar:
           "avatars/avatar-zpfdw8k4aqr3nxn8ytveqb2uso-48b651c4ee.webp",
         avatarAlt: "skip:go bridge for cross-chain LUNC transfers.",
+      },
+      {
+        name: "Terraport Bridge",
+        summary: "",
+        href: "https://terraport.finance/bridge",
+        avatar:
+          "avatars/avatar-c1vrq896uludqqphvn48jh6o0dm-340ab8a75f.webp",
+        avatarAlt: "Terraport Bridge moving assets into Terra Classic DEX.",
+        badge: "ON-CHAIN NATIVE",
       },
       {
         name: "TFM",
@@ -648,22 +644,22 @@ export const ecosystemCategories: EcosystemCategory[] = [
     id: "validators",
     title: "Validators",
     description: "Validator directories and validator community channels",
-    entries: validatorVisibilityEntries.filter(({ name }) => name !== "StakeBin"),
+    entries: sortEntriesByName(validatorVisibilityEntries.filter(({ name }) => name !== "StakeBin")),
   },
   {
     id: "developers",
     title: "For developers",
     description:
       "Documentation, source code, endpoints, channels, and node snapshots",
-    entries: [
+    entries: sortEntriesByName([
       ...developerInfrastructureEntries,
       {
-        name: "Endpoints - RPC - Public Node",
+        name: "Endpoints - API - Hexxagon",
         summary: "",
-        href: "https://terra-classic-rpc.publicnode.com/",
+        href: "https://api.terra-classic.hexxagon.io",
         avatar:
           "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
-        avatarAlt: "Public RPC endpoint for Terra Classic blockchain.",
+        avatarAlt: "Hexxagon API endpoint for Terra Classic data.",
       },
       {
         name: "Endpoints - FDC - Hexxagon",
@@ -698,12 +694,12 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatarAlt: "Hexxagon HIVE endpoint for Terra Classic archives.",
       },
       {
-        name: "Endpoints - API - Hexxagon",
+        name: "Endpoints - RPC - Public Node",
         summary: "",
-        href: "https://api.terra-classic.hexxagon.io",
+        href: "https://terra-classic-rpc.publicnode.com/",
         avatar:
           "avatars/avatar-6vetrd7smob4inxgsfhto1zjsam-5bada12239.webp",
-        avatarAlt: "Hexxagon API endpoint for Terra Classic data.",
+        avatarAlt: "Public RPC endpoint for Terra Classic blockchain.",
       },
       {
         name: "Node snapshots - Hexxagon",
@@ -723,7 +719,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatarAlt:
           "Latest node snapshots for running Terra Classic validators.",
       },
-    ],
+    ]),
   },
   {
     id: "infrastructure",

@@ -43,6 +43,11 @@ async function getRenderedTextTranslations(localeId: LocaleId): Promise<TextMap 
     return module.default;
   }
 
+  if (localeId === "pl") {
+    const module = await import("./content/pl/renderedText.json");
+    return module.default;
+  }
+
   return null;
 }
 

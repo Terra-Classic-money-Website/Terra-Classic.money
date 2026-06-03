@@ -129,10 +129,6 @@ for (const locale of publishedLocales) {
   if (!locale.default && !locale.pathPrefix) fail(`Non-default locale ${locale.id} is missing pathPrefix.`);
 }
 
-if (localeIds.has("pl")) {
-  fail("Polish locale is present, but Polish is explicitly out of scope for now.");
-}
-
 const routeIds = new Set();
 
 for (const route of config.routes) {

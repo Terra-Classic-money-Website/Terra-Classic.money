@@ -1,6 +1,6 @@
 import rawConfig from "./site-i18n.json";
 
-export type LocaleId = "en" | "tr" | "id" | "de" | "hi" | "th" | "pt-BR" | "zh-CN";
+export type LocaleId = "en" | "tr" | "id" | "de" | "hi" | "th" | "pt-BR" | "zh-CN" | "pl";
 
 export type LocaleConfig = {
   id: LocaleId;

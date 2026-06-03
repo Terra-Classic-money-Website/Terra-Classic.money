@@ -88,6 +88,17 @@
       "pathPrefix": "zh-CN",
       "default": false,
       "published": true
+    },
+    {
+      "id": "pl",
+      "label": "Polish",
+      "nativeLabel": "Polski",
+      "shortLabel": "PL",
+      "htmlLang": "pl",
+      "dir": "ltr",
+      "pathPrefix": "pl",
+      "default": false,
+      "published": true
     }
   ],
   "targetLocales": [],
@@ -105,7 +116,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -139,6 +151,10 @@
         "zh-CN": {
           "title": "Terra Classic - Terra Classic、LUNC 和 USTC 的独立、社区维护的信息网站",
           "description": "Terra Classic 的独立社区维护信息网站：探索 LUNC 和 USTC 生态系统资源、市场、路线图、去中心化、开放工作和builders链接。"
+        },
+        "pl": {
+          "title": "Terra Classic - niezależny, utrzymywany przez społeczność serwis informacyjny o Terra Classic, LUNC i USTC",
+          "description": "Niezależny, utrzymywany przez społeczność serwis informacyjny o Terra Classic: poznaj zasoby ekosystemu LUNC i USTC, rynki, roadmapę, decentralizację, otwarte prace i linki dla twórców."
         }
       }
     },
@@ -155,7 +171,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -189,6 +206,10 @@
         "zh-CN": {
           "title": "Terra Classic 生态系统目录",
           "description": "探索中立的 Terra Classic 生态系统链接：应用程序、钱包、桥梁、验证器、开发人员资源、基础设施提供商和社区工具。"
+        },
+        "pl": {
+          "title": "Katalog ekosystemu Terra Classic",
+          "description": "Przeglądaj neutralne linki ekosystemu Terra Classic: aplikacje, portfele, mosty, walidatorów, zasoby developerskie, dostawców infrastruktury i narzędzia społecznościowe."
         }
       }
     },
@@ -205,7 +226,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -239,6 +261,10 @@
         "zh-CN": {
           "title": "Terra Classic LUNC 市场",
           "description": "探索跨中心化交易所和去中心化交换路线的中立 Terra Classic LUNC 市场链接。"
+        },
+        "pl": {
+          "title": "Rynki Terra Classic LUNC",
+          "description": "Przeglądaj neutralne linki rynkowe Terra Classic LUNC na giełdach scentralizowanych i zdecentralizowanych trasach swap."
         }
       }
     },
@@ -255,7 +281,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -289,6 +316,10 @@
         "zh-CN": {
           "title": "Terra 经典路线图",
           "description": "探索 Terra Classic 去中心化路线图：公共 L1 里程碑以及明确标记的项目提交的 L2 和社区路线图条目。"
+        },
+        "pl": {
+          "title": "Roadmapa Terra Classic",
+          "description": "Poznaj zdecentralizowaną roadmapę Terra Classic: publiczne milestone’y L1 oraz jasno oznaczone wpisy L2 i społecznościowe zgłaszane przez projekty."
         }
       }
     },
@@ -305,7 +336,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -339,6 +371,10 @@
         "zh-CN": {
           "title": "Terra Classic 去中心化",
           "description": "关于 Terra Classic 去中心化、验证者、委托者、治理和社区拥有的基础设施的详细的源感知指南。"
+        },
+        "pl": {
+          "title": "Decentralizacja Terra Classic",
+          "description": "Szczegółowy, świadomy źródeł przewodnik po decentralizacji Terra Classic, walidatorach, delegatorach, governance i infrastrukturze utrzymywanej przez społeczność."
         }
       }
     },
@@ -355,7 +391,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -389,6 +426,10 @@
         "zh-CN": {
           "title": "Terra Classic Builders 的开放工作",
           "description": "探索开放的 Terra Classic 工作包，独立builders、软件公司和贡献者可以为其准备提案或报价。"
+        },
+        "pl": {
+          "title": "Otwarte prace dla twórców Terra Classic",
+          "description": "Przeglądaj otwarte pakiety prac Terra Classic, dla których niezależni twórcy, software house’y i kontrybutorzy mogą przygotować propozycje lub wyceny."
         }
       }
     },
@@ -405,7 +446,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -439,6 +481,10 @@
         "zh-CN": {
           "title": "Terra Classic Builders 的开放工作细节",
           "description": "在准备公共提案或报价以供社区讨论和治理之前，请先查看 Terra Classic 开放工作包。"
+        },
+        "pl": {
+          "title": "Szczegóły otwartej pracy dla twórców Terra Classic",
+          "description": "Przejrzyj pakiet otwartej pracy Terra Classic przed przygotowaniem publicznej propozycji lub wyceny do dyskusji społeczności i governance."
         }
       }
     },
@@ -455,7 +501,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -489,6 +536,10 @@
         "zh-CN": {
           "title": "关于 terra-classic.money",
           "description": "了解 terra-classic.money 作为 Terra Classic 的独立、开源、社区维护的信息网站如何运作。"
+        },
+        "pl": {
+          "title": "O terra-classic.money",
+          "description": "Dowiedz się, jak terra-classic.money działa jako niezależny, open-source’owy i utrzymywany przez społeczność serwis informacyjny o Terra Classic."
         }
       }
     },
@@ -505,7 +556,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -539,6 +591,10 @@
         "zh-CN": {
           "title": "网站分析 | terra-classic.money",
           "description": "terra-classic.money 的公共聚合网站分析，通过 GitHub Actions 从 Google Analytics 4 生成。"
+        },
+        "pl": {
+          "title": "Analityka strony | terra-classic.money",
+          "description": "Publiczna, zagregowana analityka strony terra-classic.money, generowana z Google Analytics 4 przez GitHub Actions."
         }
       }
     },
@@ -555,7 +611,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -589,6 +646,10 @@
         "zh-CN": {
           "title": "隐私政策 - terra-classic.money",
           "description": "terra-classic.money 的隐私政策，terra-classic.money 是 Terra Classic 的独立、社区维护的信息网站。"
+        },
+        "pl": {
+          "title": "Polityka prywatności - terra-classic.money",
+          "description": "Polityka prywatności terra-classic.money, niezależnego i utrzymywanego przez społeczność serwisu informacyjnego o Terra Classic."
         }
       }
     },
@@ -605,7 +666,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -639,6 +701,10 @@
         "zh-CN": {
           "title": "Terra Classic 品牌资产 - terra-classic.money",
           "description": "下载 Terra Classic 品牌资产，包括完整徽标、独立标志以及生态系统沟通和社区材料的关键视觉效果。"
+        },
+        "pl": {
+          "title": "Zasoby marki Terra Classic - terra-classic.money",
+          "description": "Pobierz zasoby marki Terra Classic, w tym pełne logotypy, samodzielne znaki i kluczowe wizualizacje do komunikacji ekosystemu oraz materiałów społecznościowych."
         }
       }
     },
@@ -656,7 +722,8 @@
         "hi",
         "th",
         "pt-BR",
-        "zh-CN"
+        "zh-CN",
+        "pl"
       ],
       "meta": {
         "en": {
@@ -690,6 +757,10 @@
         "zh-CN": {
           "title": "找不到页面 |Terra Classic",
           "description": "找不到请求的 terra-classic.money 页面。返回 Terra Classic 网站或浏览生态系统目录。"
+        },
+        "pl": {
+          "title": "Nie znaleziono strony | Terra Classic",
+          "description": "Żądana strona terra-classic.money nie została znaleziona. Wróć do serwisu Terra Classic albo przejrzyj katalog ekosystemu."
         }
       }
     }
