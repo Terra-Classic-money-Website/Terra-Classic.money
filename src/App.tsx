@@ -923,7 +923,7 @@ function FAQ() {
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-links"><a className="tc-type-link-normal" href={isPlaceholderLink(links.privacy) ? "#" : page(links.privacy)}>Privacy Policy</a><a className="tc-type-link-normal" href={isPlaceholderLink(links.brandAssets) ? "#" : links.brandAssets}>Terra Classic brand assets</a></div>
+      <div className="footer-links"><a className="tc-type-link-normal" href={isPlaceholderLink(links.privacy) ? "#" : page(links.privacy)}>Privacy Policy</a><a className="tc-type-link-normal" href={isPlaceholderLink(links.brandAssets) ? "#" : links.brandAssets}>Terra Classic brand assets</a><a className="tc-type-link-normal" href={links.networkStatus} target="_blank" rel="noopener noreferrer">Network status</a></div>
       <p className="footer-credit tc-type-body-very-small">
         <span>Terra-Classic.money designed and developed with</span>
         <img src={asset("footer-heart.svg")} alt="love" width="20" height="19" />

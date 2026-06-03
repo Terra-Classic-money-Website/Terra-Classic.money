@@ -10,8 +10,9 @@ export const sections = [
 ] as const;
 
 export const externalNav = [
-  { label: "Layer 2", href: links.layer2, disabled: true },
   { label: "Documentation", href: links.docs },
+  { label: "Layer 2", href: links.layer2, disabled: true },
+  { label: "Merch", href: links.merch, disabled: true },
 ];
 
 export const languageOptions = ["EN", "PL", "EN", "PL", "EN", "PL", "PL", "EN"];

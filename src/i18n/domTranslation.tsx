@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useState, type ReactNode } from "react";
 import { defaultLocale, type LocaleId } from "./config";
 import { getCurrentLocaleId } from "./routing";
 
@@ -40,10 +40,13 @@ function translateTextNodes(root: ParentNode, translations: TextMap) {
 
   let node = walker.nextNode() as Text | null;
   while (node) {
-    const original = normalizeText(node.nodeValue || "");
+    const rawValue = node.nodeValue || "";
+    const original = normalizeText(rawValue);
     const translated = translations[original];
     if (translated && translated !== original) {
-      node.nodeValue = node.nodeValue?.replace(original, translated) || translated;
+      const leadingWhitespace = rawValue.match(/^\s*/)?.[0] || "";
+      const trailingWhitespace = rawValue.match(/\s*$/)?.[0] || "";
+      node.nodeValue = `${leadingWhitespace}${translated}${trailingWhitespace}`;
     }
     node = walker.nextNode() as Text | null;
   }
@@ -67,46 +70,84 @@ function translateDom(root: ParentNode, translations: TextMap) {
   translateAttributes(root, translations);
 }
 
-export function LocalizedDomText() {
+function DomTranslator({ translations }: { translations: TextMap }) {
   useLayoutEffect(() => {
-    const localeId = getCurrentLocaleId();
+    let observer: MutationObserver | null = null;
+
+    translateDom(document.body, translations);
+
+    observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === "characterData") {
+          const parent = mutation.target.parentElement;
+          if (parent) translateDom(parent, translations);
+          continue;
+        }
+
+        for (const node of Array.from(mutation.addedNodes)) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const parent = node.parentElement;
+            if (parent) translateDom(parent, translations);
+            continue;
+          }
+
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            translateDom(node as Element, translations);
+          }
+        }
+      }
+    });
+
+    observer.observe(document.body, {
+      characterData: true,
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer?.disconnect();
+  }, [translations]);
+
+  return null;
+}
+
+function LocaleLoadError() {
+  return (
+    <main style={{ padding: "32px", fontFamily: "system-ui, sans-serif" }}>
+      <p>Türkçe içerik yüklenemedi. Lütfen sayfayı yenileyin.</p>
+    </main>
+  );
+}
+
+export function LocalizedDomTextProvider({ children }: { children: ReactNode }) {
+  const localeId = getCurrentLocaleId();
+  const [translations, setTranslations] = useState<TextMap | null>(() => localeId === defaultLocale.id ? {} : null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
     if (localeId === defaultLocale.id) return;
 
     let cancelled = false;
-    let observer: MutationObserver | null = null;
-
-    void getRenderedTextTranslations(localeId).then((translations) => {
-      if (cancelled || !translations) return;
-
-      translateDom(document.body, translations);
-
-      observer = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-          for (const node of Array.from(mutation.addedNodes)) {
-            if (node.nodeType === Node.TEXT_NODE) {
-              const parent = node.parentElement;
-              if (parent) translateDom(parent, translations);
-              continue;
-            }
-
-            if (node.nodeType === Node.ELEMENT_NODE) {
-              translateDom(node as Element, translations);
-            }
-          }
-        }
+    void getRenderedTextTranslations(localeId)
+      .then((loadedTranslations) => {
+        if (!cancelled) setTranslations(loadedTranslations || {});
+      })
+      .catch((error) => {
+        console.warn("LOCALIZED_TEXT_LOAD_FAILED", error);
+        if (!cancelled) setFailed(true);
       });
-
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-    });
 
     return () => {
       cancelled = true;
-      observer?.disconnect();
     };
-  }, []);
+  }, [localeId]);
 
-  return null;
+  if (failed) return <LocaleLoadError />;
+  if (localeId !== defaultLocale.id && !translations) return null;
+
+  return (
+    <>
+      {localeId !== defaultLocale.id && translations ? <DomTranslator translations={translations} /> : null}
+      {children}
+    </>
+  );
 }

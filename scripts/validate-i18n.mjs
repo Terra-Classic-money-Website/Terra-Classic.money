@@ -13,6 +13,74 @@ function fail(message) {
   failures.push(message);
 }
 
+const protectedLeadingTerms = [
+  "ATOMScan",
+  "Babylon",
+  "Benance Bird",
+  "CoinGecko",
+  "CoinMarketCap",
+  "Cosmos SDK",
+  "CosmWasm",
+  "DarkSun",
+  "DO Secret",
+  "EUTC",
+  "Forex Protocol",
+  "GitHub",
+  "Google Analytics",
+  "Genesis Raid",
+  "Golden Gram",
+  "IBC",
+  "Juris Protocol",
+  "Ledger",
+  "Legends of Terratria",
+  "LUNC",
+  "Lunc.Tools",
+  "LUNCdash",
+  "LUNC Metrics",
+  "LuncScan",
+  "Ping.pub",
+  "Reputation",
+  "Selenium Finance",
+  "Staking Protocol",
+  "StatsBin",
+  "Swap Protocol",
+  "Terra Casino",
+  "Terra Classic Hong Kong",
+  "Terra Classic",
+  "terra-classic.money",
+  "Terra-classic.money",
+  "Terraport Token Factory",
+  "Terraform Labs",
+  "Trezor",
+  "Truth Dashboard",
+  "USTC",
+];
+
+function stripProtectedLeadingTerm(source, translated) {
+  const protectedTerm = protectedLeadingTerms
+    .toSorted((a, b) => b.length - a.length)
+    .find((term) => source.startsWith(term) && translated.startsWith(term));
+  if (!protectedTerm) return { source, translated };
+  return {
+    source: source.slice(protectedTerm.length).trimStart(),
+    translated: translated.slice(protectedTerm.length).trimStart(),
+  };
+}
+
+function hasCopiedEnglishSourcePrefix(source, translated) {
+  const stripped = stripProtectedLeadingTerm(source.trim(), translated.trim());
+  const sourceWords = stripped.source.match(/[A-Za-z][A-Za-z0-9'’.-]*/g) || [];
+  if (sourceWords.length < 2) return false;
+
+  const maxWords = Math.min(6, sourceWords.length);
+  for (let wordCount = maxWords; wordCount >= 2; wordCount -= 1) {
+    const prefix = sourceWords.slice(0, wordCount).join(" ");
+    if (stripped.translated.startsWith(prefix)) return true;
+  }
+
+  return false;
+}
+
 async function exists(relativePath) {
   try {
     await fs.access(path.join(rootDir, relativePath));
@@ -160,6 +228,35 @@ for (const locale of publishedLocales) {
 
   if (translatedEntries.length < 100) {
     fail(`Published non-default locale ${locale.id} has only ${translatedEntries.length} rendered text translations. This looks like a partial language surface.`);
+  }
+
+  const suspiciousEnglishStarts = [
+    "Prepare ",
+    "However,",
+    "From ",
+    "Therefore,",
+    "Because ",
+    "Although ",
+    "This ",
+    "That ",
+    "These ",
+    "Those ",
+    "What ",
+    "Where ",
+    "When ",
+    "Why ",
+    "How ",
+    "The ",
+  ];
+
+  for (const [source, translated] of translatedEntries) {
+    if (suspiciousEnglishStarts.some((phrase) => translated.trim().startsWith(phrase))) {
+      fail(`Published locale ${locale.id} has suspicious untranslated leading text for "${source}".`);
+    }
+
+    if (hasCopiedEnglishSourcePrefix(source, translated)) {
+      fail(`Published locale ${locale.id} appears to copy the English source prefix for "${source}".`);
+    }
   }
 }
 

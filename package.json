@@ -9,6 +9,7 @@
     "i18n:generate": "node scripts/generate-i18n-html.mjs",
     "i18n:validate": "node scripts/validate-i18n.mjs",
     "i18n:report": "node scripts/report-i18n.mjs",
+    "i18n:audit-rendered": "node scripts/audit-rendered-i18n.mjs",
     "assets:build": "node scripts/build-images.mjs",
     "assets:avatars": "node scripts/localize-avatars.mjs",
     "analytics:generate": "node scripts/generate-website-analytics.mjs",
@@ -20,7 +21,7 @@
     "perf:audit": "node scripts/perf-audit.mjs && npm run perf:lh-budget",
     "visual:snapshots": "npm run build && node scripts/visual-regression.mjs",
     "visual:baseline": "npm run build && VISUAL_UPDATE_BASELINE=1 node scripts/visual-regression.mjs",
-    "check": "npm run build && npm run perf:budget"
+    "check": "npm run build && npm run i18n:audit-rendered && npm run perf:budget"
   },
   "dependencies": {
     "react": "^19.1.0",
