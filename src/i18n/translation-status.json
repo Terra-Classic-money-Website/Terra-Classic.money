@@ -54,17 +54,17 @@
         },
         "tr": {
           "status": "reviewed",
-          "sourceHash": "1be513b910fa1e09bc29febf097dfccef9cc2605d39cba1425932f5b393d6630",
+          "sourceHash": "57be50362c48904e2a06c00d2425188006ce543f73144ddbd013f58c430ceb74",
           "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
         },
         "id": {
           "status": "reviewed",
-          "sourceHash": "1be513b910fa1e09bc29febf097dfccef9cc2605d39cba1425932f5b393d6630",
+          "sourceHash": "57be50362c48904e2a06c00d2425188006ce543f73144ddbd013f58c430ceb74",
           "notes": "Indonesian route content is generated from source-controlled rendered text translations and published as the second non-English locale."
         },
         "de": {
           "status": "reviewed",
-          "sourceHash": "1be513b910fa1e09bc29febf097dfccef9cc2605d39cba1425932f5b393d6630",
+          "sourceHash": "57be50362c48904e2a06c00d2425188006ce543f73144ddbd013f58c430ceb74",
           "notes": "German route content is generated from source-controlled rendered text translations and published as the third non-English locale."
         }
       }
@@ -87,17 +87,17 @@
         },
         "tr": {
           "status": "reviewed",
-          "sourceHash": "249b3a2a2f76cba55d3bd9dcbebc32689bf3cfe92a647599593376ece7e702ad",
+          "sourceHash": "c5bfe1f25ec9009e20cebaa63587e3c5dc337478ebd978a72478b22898a2ac27",
           "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
         },
         "id": {
           "status": "reviewed",
-          "sourceHash": "249b3a2a2f76cba55d3bd9dcbebc32689bf3cfe92a647599593376ece7e702ad",
+          "sourceHash": "c5bfe1f25ec9009e20cebaa63587e3c5dc337478ebd978a72478b22898a2ac27",
           "notes": "Indonesian route content is generated from source-controlled rendered text translations and published as the second non-English locale."
         },
         "de": {
           "status": "reviewed",
-          "sourceHash": "249b3a2a2f76cba55d3bd9dcbebc32689bf3cfe92a647599593376ece7e702ad",
+          "sourceHash": "c5bfe1f25ec9009e20cebaa63587e3c5dc337478ebd978a72478b22898a2ac27",
           "notes": "German route content is generated from source-controlled rendered text translations and published as the third non-English locale."
         }
       }
@@ -119,17 +119,17 @@
         },
         "tr": {
           "status": "reviewed",
-          "sourceHash": "e328a1fcb5b95e95cfd10bd4fde1c3422c3f0e42519675c1a8fd8e0816357d26",
+          "sourceHash": "63d285b255d02f19a35ce362723986cdb756ee946c8950c35ecfe087486d6a68",
           "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
         },
         "id": {
           "status": "reviewed",
-          "sourceHash": "e328a1fcb5b95e95cfd10bd4fde1c3422c3f0e42519675c1a8fd8e0816357d26",
+          "sourceHash": "63d285b255d02f19a35ce362723986cdb756ee946c8950c35ecfe087486d6a68",
           "notes": "Indonesian route content is generated from source-controlled rendered text translations and published as the second non-English locale."
         },
         "de": {
           "status": "reviewed",
-          "sourceHash": "e328a1fcb5b95e95cfd10bd4fde1c3422c3f0e42519675c1a8fd8e0816357d26",
+          "sourceHash": "63d285b255d02f19a35ce362723986cdb756ee946c8950c35ecfe087486d6a68",
           "notes": "German route content is generated from source-controlled rendered text translations and published as the third non-English locale."
         }
       }

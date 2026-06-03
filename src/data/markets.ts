@@ -120,6 +120,14 @@ export const marketCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
+        name: "Reputation DEX",
+        summary: "Decentralized exchange for reputation tokens",
+        href: "https://reputation.global",
+        avatar: "avatars/avatar-reputation-64a41bbc7d.webp",
+        avatarAlt: "Reputation DEX for reputation tokens on Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
         name: "ASTER",
         summary: "1000LUNC/USDT",
         href: "https://www.asterdex.com/en/trade/pro/futures/1000LUNCUSDT",

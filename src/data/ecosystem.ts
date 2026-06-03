@@ -178,6 +178,59 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatarAlt:
           "Sonic decentralized social/messenger dApp on Terra Classic.",
       },
+      {
+        name: "Astroport",
+        summary: "LUNC native swaps",
+        href: "https://astro.terra-classic.io/swap",
+        avatar:
+          "avatars/avatar-fdxvzkmrb3daaisu9lhundz8-78e7736386.webp",
+        avatarAlt: "Astroport decentralized exchange on Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "Terraport",
+        summary: "LUNC native swaps",
+        href: "https://terraport.finance/",
+        avatar:
+          "avatars/avatar-c1vrq896uludqqphvn48jh6o0dm-340ab8a75f.webp",
+        avatarAlt: "Terraport native Terra Classic decentralized exchange.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "WESO DeFi",
+        summary: "LUNC native swaps",
+        href: "https://wesoworld.io/",
+        avatar:
+          "avatars/avatar-ycww93qcobnwgfbfesl7evivwve-a933b65ed8.webp",
+        avatarAlt: "WESO DeFi platform offering LUNC trading pairs.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "Garuda Defi",
+        summary: "LUNC native swaps",
+        href: "https://garuda-defi.org/",
+        avatar:
+          "avatars/avatar-y4ml5qrfwbzvv4fua1kyrv8vk9i-edd37cef82.webp",
+        avatarAlt: "Garuda Defi decentralized exchange on Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "Terraswap",
+        summary: "LUNC / USTC",
+        href: "https://app-classic.terraswap.io/",
+        avatar:
+          "avatars/avatar-fd3sjbfgpx4rxezztzeobjyw6kw-0b6a20f03f.webp",
+        avatarAlt: "Terraswap AMM for LUNC and USTC on Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "Reputation DEX",
+        summary: "Decentralized exchange for reputation tokens",
+        href: "https://reputation.global",
+        avatar: "avatars/avatar-reputation-64a41bbc7d.webp",
+        avatarAlt: "Reputation DEX for reputation tokens on Terra Classic.",
+        badge: "ON-CHAIN NATIVE",
+      },
     ],
   },
   {
@@ -285,6 +338,15 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatar:
           "avatars/avatar-ydcjlj8oxa1ijpiqacljuefikha-7f1bd6a462.webp",
         avatarAlt: "TRITIUM arcade game rewarding Luna Classic players.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "WESO Games",
+        summary: "Games",
+        href: "https://weso.world/games",
+        avatar:
+          "avatars/avatar-ycww93qcobnwgfbfesl7evivwve-a933b65ed8.webp",
+        avatarAlt: "WESO DeFi games on Terra Classic.",
         badge: "ON-CHAIN NATIVE",
       },
       {
