@@ -66,16 +66,20 @@
       "pathPrefix": "th",
       "default": false,
       "published": true
-    }
-  ],
-  "targetLocales": [
+    },
     {
       "id": "pt-BR",
       "label": "Portuguese (Brazil)",
-      "nativeLabel": "Portugues do Brasil",
+      "nativeLabel": "Português do Brasil",
+      "shortLabel": "PT-BR",
       "htmlLang": "pt-BR",
-      "status": "planned"
-    },
+      "dir": "ltr",
+      "pathPrefix": "pt-BR",
+      "default": false,
+      "published": true
+    }
+  ],
+  "targetLocales": [
     {
       "id": "zh-CN",
       "label": "Simplified Chinese",
@@ -96,7 +100,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -122,6 +127,10 @@
         "th": {
           "title": "Terra Classic - เว็บไซต์ข้อมูลอิสระที่ดูแลโดยชุมชนสำหรับ Terra Classic, LUNC & USTC",
           "description": "เว็บไซต์ข้อมูลที่ดูแลโดยชุมชนอิสระสำหรับ Terra Classic: สำรวจทรัพยากรระบบนิเวศ LUNC และ USTC ตลาด แผนงาน การกระจายอำนาจ งานแบบเปิด และลิงก์ของผู้สร้าง"
+        },
+        "pt-BR": {
+          "title": "Terra Classic - Site de informações independente e mantido pela comunidade para Terra Classic, LUNC e USTC",
+          "description": "Site de informações independente mantido pela comunidade para Terra Classic: explore os recursos do ecossistema LUNC e USTC, mercados, roteiro, descentralização, trabalho aberto e links de construtores."
         }
       }
     },
@@ -136,7 +145,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -162,6 +172,10 @@
         "th": {
           "title": "Terra Classic ไดเรกทอรีระบบนิเวศ",
           "description": "สำรวจลิงก์ระบบนิเวศ Terra Classic ที่เป็นกลาง: แอปพลิเคชัน กระเป๋าเงิน บริดจ์ เครื่องมือตรวจสอบ ทรัพยากรสำหรับนักพัฒนา ผู้ให้บริการโครงสร้างพื้นฐาน และเครื่องมือชุมชน"
+        },
+        "pt-BR": {
+          "title": "Diretório de ecossistemas Terra Classic",
+          "description": "Explore links neutros do ecossistema Terra Classic: aplicativos, carteiras, pontes, validadores, recursos para desenvolvedores, provedores de infraestrutura e ferramentas comunitárias."
         }
       }
     },
@@ -176,7 +190,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -202,6 +217,10 @@
         "th": {
           "title": "Terra Classic LUNC ตลาด",
           "description": "สำรวจการเชื่อมโยงตลาด Terra Classic LUNC ที่เป็นกลางผ่านการแลกเปลี่ยนแบบรวมศูนย์และเส้นทางการแลกเปลี่ยนแบบกระจายอำนาจ"
+        },
+        "pt-BR": {
+          "title": "Mercados Terra Classic LUNC",
+          "description": "Explore links de mercado neutros do Terra Classic LUNC em exchanges centralizadas e rotas de swap descentralizadas."
         }
       }
     },
@@ -216,7 +235,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -242,6 +262,10 @@
         "th": {
           "title": "Terra Classic แผนการทำงาน",
           "description": "สำรวจแผนงานแบบกระจายอำนาจ Terra Classic: เหตุการณ์สำคัญ L1 สาธารณะ และรายการแผนงาน L2 ที่ส่งโครงการและชุมชนที่มีป้ายกำกับอย่างชัดเจน"
+        },
+        "pt-BR": {
+          "title": "Roteiro Terra Classic",
+          "description": "Explore o roteiro descentralizado do Terra Classic: marcos públicos de L1 e entradas de roteiro comunitário e L2 enviadas pelo projeto claramente identificadas."
         }
       }
     },
@@ -256,7 +280,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -282,6 +307,10 @@
         "th": {
           "title": "Terra Classic การกระจายอำนาจ",
           "description": "คู่มือโดยละเอียดที่ทราบแหล่งที่มาเกี่ยวกับการกระจายอำนาจ Terra Classic ผู้ตรวจสอบ ผู้มอบหมาย การกำกับดูแล และโครงสร้างพื้นฐานที่ชุมชนเป็นเจ้าของ"
+        },
+        "pt-BR": {
+          "title": "Descentralização Terra Classic",
+          "description": "Um guia detalhado e com reconhecimento de fonte para descentralização, validadores, delegadores, governança e infraestrutura de propriedade da comunidade do Terra Classic."
         }
       }
     },
@@ -296,7 +325,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -322,6 +352,10 @@
         "th": {
           "title": "เปิดงานสำหรับผู้สร้าง Terra Classic",
           "description": "สำรวจแพ็คเกจงาน Terra Classic แบบเปิดที่ผู้สร้างอิสระ ผู้พัฒนาซอฟต์แวร์ และผู้มีส่วนร่วมสามารถเตรียมข้อเสนอหรือเสนอราคาได้"
+        },
+        "pt-BR": {
+          "title": "Obra aberta para Terra Classic Builders",
+          "description": "Explore pacotes de trabalho abertos do Terra Classic para os quais construtores independentes, empresas de software e colaboradores podem preparar propostas ou orçamentos."
         }
       }
     },
@@ -336,7 +370,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -362,6 +397,10 @@
         "th": {
           "title": "เปิดรายละเอียดงานสำหรับ Terra Classic Builders",
           "description": "ตรวจสอบแพ็คเกจงานแบบเปิด Terra Classic ก่อนที่จะเตรียมข้อเสนอสาธารณะหรือเสนอราคาสำหรับการอภิปรายและการกำกับดูแลของชุมชน"
+        },
+        "pt-BR": {
+          "title": "Detalhes de trabalho abertos para Terra Classic Builders",
+          "description": "Revise um pacote de trabalho aberto do Terra Classic antes de preparar uma proposta pública ou orçamento para discussão e governança comunitária."
         }
       }
     },
@@ -376,7 +415,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -402,6 +442,10 @@
         "th": {
           "title": "เกี่ยวกับ terra-classic.money",
           "description": "เรียนรู้ว่า terra-classic.money ทำงานอย่างไรในฐานะเว็บไซต์ข้อมูลโอเพ่นซอร์สอิสระที่ดูแลโดยชุมชนสำหรับ Terra Classic"
+        },
+        "pt-BR": {
+          "title": "Sobre terra-classic.money",
+          "description": "Saiba como terra-classic.money funciona como um site de informações independente, de código aberto e mantido pela comunidade para o Terra Classic."
         }
       }
     },
@@ -416,7 +460,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -442,6 +487,10 @@
         "th": {
           "title": "การวิเคราะห์เว็บไซต์ | terra-classic.money",
           "description": "การวิเคราะห์เว็บไซต์รวมสาธารณะสำหรับ terra-classic.money สร้างจาก Google Analytics 4 ถึง GitHub การดำเนินการ"
+        },
+        "pt-BR": {
+          "title": "Análise de sites | terra-classic.money",
+          "description": "Análise pública agregada de sites para terra-classic.money, gerada a partir do Google Analytics 4 por meio do GitHub Actions."
         }
       }
     },
@@ -456,7 +505,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -482,6 +532,10 @@
         "th": {
           "title": "นโยบายความเป็นส่วนตัว - terra-classic.money",
           "description": "นโยบายความเป็นส่วนตัวสำหรับ terra-classic.money เว็บไซต์ข้อมูลอิสระที่ดูแลโดยชุมชนสำหรับ Terra Classic"
+        },
+        "pt-BR": {
+          "title": "Política de Privacidade - terra-classic.money",
+          "description": "Política de privacidade do terra-classic.money, o site de informações independente e mantido pela comunidade do Terra Classic."
         }
       }
     },
@@ -496,7 +550,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -522,6 +577,10 @@
         "th": {
           "title": "Terra Classic ทรัพย์สินของแบรนด์ - terra-classic.money",
           "description": "ดาวน์โหลดทรัพย์สินของแบรนด์ Terra Classic รวมถึงโลโก้แบบเต็ม ป้ายแบบสแตนด์อโลน และภาพหลักสำหรับการสื่อสารในระบบนิเวศและสื่อในชุมชน"
+        },
+        "pt-BR": {
+          "title": "Ativos da marca Terra Classic - terra-classic.money",
+          "description": "Baixe os ativos da marca Terra Classic, incluindo logotipos completos, placas independentes e recursos visuais importantes para comunicação do ecossistema e materiais comunitários."
         }
       }
     },
@@ -537,7 +596,8 @@
         "id",
         "de",
         "hi",
-        "th"
+        "th",
+        "pt-BR"
       ],
       "meta": {
         "en": {
@@ -563,6 +623,10 @@
         "th": {
           "title": "ไม่พบหน้า | Terra Classic",
           "description": "ไม่พบเพจ terra-classic.money ที่ร้องขอ กลับไปที่เว็บไซต์ Terra Classic หรือสำรวจไดเรกทอรีระบบนิเวศ"
+        },
+        "pt-BR": {
+          "title": "Página não encontrada | Terra Classic",
+          "description": "A página terra-classic.money solicitada não foi encontrada. Volte ao site do Terra Classic ou explore o diretório do ecossistema."
         }
       }
     }

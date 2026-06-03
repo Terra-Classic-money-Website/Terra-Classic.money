@@ -14,6 +14,7 @@ const readTimeLabels: Record<LocaleId, (minutes: number) => string> = {
   de: (minutes) => `${minutes} MIN. LESEZEIT`,
   hi: (minutes) => `${minutes} मिनट पठन`,
   th: (minutes) => `อ่าน ${minutes} นาที`,
+  "pt-BR": (minutes) => `${minutes} MIN DE LEITURA`,
 };
 
 function formatReadTime(minutes: number) {
