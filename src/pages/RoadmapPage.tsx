@@ -178,7 +178,6 @@ function RoadmapProjectRow({
               <div className="roadmap-milestone__meta">
                 <strong>{milestone.title}</strong>
                 <span>{getMilestoneMetaLabel(milestone)}</span>
-                {milestone.paid && <em>Paid entry</em>}
               </div>
               <span className={`roadmap-milestone__bar roadmap-milestone__bar--${milestone.status}`} />
             </div>
@@ -255,7 +254,7 @@ export function RoadmapPage() {
             <p className="tc-type-h4">A source-aware timeline for core protocol work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
           </div>
           <div className="roadmap-page__trust">
-            <span className="native-phase__badge">UPDATED JUNE 2, 2026</span>
+            <span className="native-phase__badge">UPDATED JUNE 4, 2026</span>
           </div>
         </div>
         <RoadmapTimeline />

@@ -15,7 +15,7 @@
 
 .roadmap-page__trust .native-phase__badge { align-self: center; background: var(--color-white); }
 
-.roadmap-board { --roadmap-axis-sticky-top: 0px; --roadmap-label-width: 280px; --roadmap-month-width: 248px; --roadmap-month-count: 16; --roadmap-mask-width: 0px; --roadmap-content-inset: 24px; border-radius: var(--radius-card); background: var(--color-white); box-shadow: inset 0 0 0 1px var(--color-grey-100); overflow: visible; }
+.roadmap-board { --roadmap-axis-sticky-top: 0px; --roadmap-label-width: 280px; --roadmap-month-width: 248px; --roadmap-month-count: 19; --roadmap-mask-width: 0px; --roadmap-content-inset: 24px; border-radius: var(--radius-card); background: var(--color-white); box-shadow: inset 0 0 0 1px var(--color-grey-100); overflow: visible; }
 
 .roadmap-board__headline { min-height: 120px; padding: 24px 32px; display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; border-bottom: 1px solid var(--color-grey-100); }
 
