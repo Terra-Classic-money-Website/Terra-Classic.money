@@ -194,3 +194,11 @@
   .footer-credit { align-items: flex-start; gap: 6px; }
   .back-top { width: 100%; }
 }
+
+@media (min-width: 768px) {
+  html:not(:lang(en)) .pill-button > span:first-child,
+  html:not(:lang(en)) .back-top > span:first-child {
+    min-width: 0;
+    white-space: nowrap;
+  }
+}

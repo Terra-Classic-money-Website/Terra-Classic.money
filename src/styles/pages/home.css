@@ -1158,3 +1158,100 @@
 @media (prefers-reduced-motion: reduce) {
   .apr-badge { transition: border-color var(--tc-motion-base) var(--tc-ease-standard), opacity var(--tc-motion-base) var(--tc-ease-standard); }
 }
+
+@media (min-width: 900px) {
+  html:not(:lang(en)) .hero-copy {
+    width: min(780px, 76%);
+    max-width: 76%;
+    height: auto;
+    gap: clamp(40px, 4vw, 64px);
+  }
+
+  html:lang(de) .hero-copy {
+    width: min(820px, 80%);
+    max-width: 80%;
+    gap: 40px;
+  }
+
+  html:not(:lang(en)) .hero-copy p {
+    max-width: 720px;
+  }
+
+  html:not(:lang(en)) .what-video-button {
+    width: min(760px, calc(100% - 64px));
+  }
+
+  html:not(:lang(en)) .what-video-button > span:first-child,
+  html:not(:lang(en)) .capability-cta span,
+  html:not(:lang(en)) .protocol-button span,
+  html:not(:lang(en)) .native-assets__button span,
+  html:not(:lang(en)) .strength-card__button span {
+    min-width: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  html:not(:lang(en)) .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  html:not(:lang(en)) .capability-cta span,
+  html:not(:lang(en)) .protocol-button span,
+  html:not(:lang(en)) .native-assets__button span,
+  html:not(:lang(en)) .strength-card__button span {
+    min-width: 0;
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1299px) {
+  html:not(:lang(en)) .what-video-button {
+    width: min(640px, calc(100% - 64px));
+  }
+
+  html:not(:lang(en)) .what-video-button > span:first-child {
+    flex: 0 1 auto;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  html:not(:lang(en)) .capabilities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  html:not(:lang(en)) .capability-card,
+  html:not(:lang(en)) .capability-card--staking,
+  html:not(:lang(en)) .capability-card--forex,
+  html:not(:lang(en)) .capability-card--defi,
+  html:not(:lang(en)) .capability-card--build,
+  html:not(:lang(en)) .capability-card--ecosystem,
+  html:not(:lang(en)) .capability-card--layer2,
+  html:not(:lang(en)) .capability-card--nft {
+    min-height: 428px;
+  }
+
+  html:not(:lang(en)) .capability-cta {
+    width: min(420px, 100%);
+  }
+
+  html:not(:lang(en)) .protocol-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  html:not(:lang(en)) .protocol-button {
+    width: max-content;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  html:not(:lang(en)) .hero-copy h1 {
+    overflow-wrap: anywhere;
+  }
+}
