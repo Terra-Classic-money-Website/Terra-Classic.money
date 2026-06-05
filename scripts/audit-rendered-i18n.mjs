@@ -9,7 +9,7 @@ const reportDir = path.join(rootDir, ".i18n-reports");
 const reportPath = path.join(reportDir, "rendered-latest.md");
 const config = JSON.parse(await fs.readFile(path.join(rootDir, "src", "i18n", "site-i18n.json"), "utf8"));
 const defaultLocale = config.locales.find((locale) => locale.default);
-const localizedLocales = config.locales.filter((locale) => locale.published && !locale.default);
+const allLocalizedLocales = config.locales.filter((locale) => locale.published && !locale.default);
 const failures = [];
 const observations = [];
 
@@ -116,6 +116,35 @@ const uiLabelWords = /\b(account|address|bibliography|channel|consensus|consent|
 function fail(message) {
   failures.push(message);
 }
+
+function listFilter(envName) {
+  const rawValue = process.env[envName];
+  if (!rawValue) return null;
+
+  const values = rawValue
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  return values.length > 0 ? new Set(values) : null;
+}
+
+function filterBySet(items, filter, key, label, envName) {
+  if (!filter) return items;
+
+  const available = new Set(items.map(key));
+  const unknown = [...filter].filter((value) => !available.has(value));
+  if (unknown.length > 0) {
+    throw new Error(`Unknown ${label} in ${envName}: ${unknown.join(", ")}. Available: ${[...available].join(", ")}.`);
+  }
+
+  return items.filter((item) => filter.has(key(item)));
+}
+
+const routeFilter = listFilter("I18N_AUDIT_ROUTES");
+const localeFilter = listFilter("I18N_AUDIT_LOCALES");
+const auditedRoutes = filterBySet(config.routes, routeFilter, (route) => route.id, "route", "I18N_AUDIT_ROUTES");
+const localizedLocales = filterBySet(allLocalizedLocales, localeFilter, (locale) => locale.id, "locale", "I18N_AUDIT_LOCALES");
 
 function routePathFor(locale, route) {
   const routePath = route.localizedPath === "index.html" ? "" : route.localizedPath;
@@ -241,7 +270,7 @@ async function auditRenderedPages(baseUrl) {
 
   try {
     for (const locale of localizedLocales) {
-      for (const route of config.routes) {
+      for (const route of auditedRoutes) {
         if (!route.publishedLocales.includes(locale.id)) continue;
 
         const context = await browser.newContext({
@@ -294,6 +323,8 @@ async function writeReport() {
     "# Rendered i18n audit",
     "",
     `Generated: ${new Date().toISOString()}`,
+    `Routes: ${routeFilter ? [...routeFilter].join(", ") : "all published routes"}`,
+    `Locales: ${localeFilter ? [...localeFilter].join(", ") : "all published non-default locales"}`,
     "",
     "## Route results",
     "",

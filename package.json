@@ -21,6 +21,13 @@
     "perf:audit": "node scripts/perf-audit.mjs && npm run perf:lh-budget",
     "visual:snapshots": "npm run build && node scripts/visual-regression.mjs",
     "visual:baseline": "npm run build && VISUAL_UPDATE_BASELINE=1 node scripts/visual-regression.mjs",
+    "visual:roadmap": "npm run build && VISUAL_ROUTES=roadmap VISUAL_VIEWPORTS=mobile-390,tablet-1024,desktop-1632 node scripts/visual-regression.mjs",
+    "check:quick": "npm run i18n:generate && npm run typecheck",
+    "check:build": "npm run build && npm run perf:budget",
+    "check:i18n": "npm run i18n:generate && npm run i18n:validate && npm run i18n:report",
+    "check:i18n-rendered": "npm run build && npm run i18n:audit-rendered",
+    "check:roadmap": "npm run check:quick && npm run build && I18N_AUDIT_ROUTES=roadmap npm run i18n:audit-rendered",
+    "check:deploy": "npm run check",
     "check": "npm run build && npm run i18n:audit-rendered && npm run perf:budget"
   },
   "dependencies": {
