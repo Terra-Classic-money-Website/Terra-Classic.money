@@ -1073,6 +1073,27 @@ function getDsMilestoneStack(milestones: RoadmapMilestone[]) {
   return { levels, span: Math.max(1, levelEnds.length) };
 }
 
+function getDsMilestoneStartMarkers(milestones: RoadmapMilestone[]) {
+  const visibleStarts = new Set<number>();
+
+  milestones.forEach((milestone) => {
+    const startIndex = dsRoadmapMonthIndex.get(milestone.start) ?? 0;
+    const isCrossedByExistingBar = milestones.some((candidate) => {
+      if (candidate === milestone) return false;
+
+      const candidateStart = dsRoadmapMonthIndex.get(candidate.start) ?? 0;
+      const candidateEnd = dsRoadmapMonthIndex.get(candidate.end) ?? candidateStart;
+      return candidateStart < startIndex && candidateEnd >= startIndex;
+    });
+
+    if (!isCrossedByExistingBar) {
+      visibleStarts.add(startIndex);
+    }
+  });
+
+  return Array.from(visibleStarts).sort((a, b) => a - b);
+}
+
 function RoadmapTimelinePreviewTodayAxisMarker({ marker }: { marker: RoadmapTodayMarker }) {
   return (
     <span className="roadmap-axis__today" style={getDsTodayMarkerStyle(marker)}>
@@ -1142,6 +1163,7 @@ function RoadmapTimelinePreviewRow({
   onToggleTooltip: (id: string) => void;
 }) {
   const milestoneStack = getDsMilestoneStack(row.milestones);
+  const milestoneStartMarkers = getDsMilestoneStartMarkers(row.milestones);
   const tooltipOpen = activeTooltip === row.id;
 
   return (
@@ -1168,6 +1190,14 @@ function RoadmapTimelinePreviewRow({
       </div>
       <div className="roadmap-lane">
         {roadmapMonths.map((month) => <span className="roadmap-lane__month" key={`ds-${row.id}-${month.key}`} aria-hidden="true" />)}
+        {milestoneStartMarkers.map((startIndex) => (
+          <span
+            className="ds-roadmap-milestone-start"
+            style={{ "--ds-roadmap-milestone-start-column": startIndex } as CSSProperties}
+            key={`ds-${row.id}-${startIndex}-start`}
+            aria-hidden="true"
+          />
+        ))}
         {row.milestones.map((milestone) => {
           const startIndex = dsRoadmapMonthIndex.get(milestone.start) ?? 0;
           const startsBeforeVisibleLane = visibleLaneStartPx > 0 && startIndex * monthWidth < visibleLaneStartPx + 32;
