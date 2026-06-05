@@ -176,6 +176,21 @@
 
 .section-intro { max-width: 920px; margin: 64px 0; }
 
+.founder-card--placeholder:hover, .founder-card--placeholder:focus-within { cursor: default; }
+
+.founder-card__media--placeholder { display: block; border: 0; padding: 0; background: var(--color-grey-100); color: inherit; cursor: pointer; }
+
+.founder-card__media--placeholder::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,0)); opacity: .45; pointer-events: none; }
+
+.founder-card__media--placeholder:hover,
+.founder-card__media--placeholder:focus-visible { background: var(--color-grey-100); outline: 0; }
+
+.founder-card__media--placeholder:focus-visible::before { opacity: .7; }
+
+.founder-card--placeholder .founder-card__copy { min-height: 140px; }
+
+.founder-card--placeholder p { max-width: 37ch; }
+
 .split { display: grid; grid-template-columns: minmax(0, 715px) 381px; justify-content: space-between; gap: 64px; }
 
 .split h2 { margin-bottom: 48px; }
@@ -1177,11 +1192,6 @@
     max-width: 720px;
   }
 
-  html:not(:lang(en)) .what-video-button {
-    width: min(760px, calc(100% - 64px));
-  }
-
-  html:not(:lang(en)) .what-video-button > span:first-child,
   html:not(:lang(en)) .capability-cta span,
   html:not(:lang(en)) .protocol-button span,
   html:not(:lang(en)) .native-assets__button span,
@@ -1205,17 +1215,6 @@
     min-width: 0;
     white-space: nowrap;
     overflow-wrap: normal;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1299px) {
-  html:not(:lang(en)) .what-video-button {
-    width: min(640px, calc(100% - 64px));
-  }
-
-  html:not(:lang(en)) .what-video-button > span:first-child {
-    flex: 0 1 auto;
-    white-space: nowrap;
   }
 }
 

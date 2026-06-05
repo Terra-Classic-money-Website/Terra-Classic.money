@@ -124,11 +124,20 @@
 
 .modal-backdrop { position: fixed; inset: 0; z-index: 20; background: rgba(0,0,0,.68); display: grid; place-items: center; padding: var(--tc-spacing-overlay-shell); }
 
-.modal { width: min(760px, 100%); min-height: 360px; background: var(--color-white); border-radius: var(--radius-card); padding: var(--tc-spacing-modal-surface); position: relative; }
+.modal { width: min(760px, 100%); min-height: 360px; max-height: min(760px, calc(100vh - 48px)); overflow: auto; background: var(--color-white); border-radius: var(--radius-card); padding: var(--tc-spacing-modal-surface); position: relative; }
 
 .modal-close { position: absolute; right: 16px; top: 16px; width: 40px; height: 40px; border: 0; border-radius: 999px; background: var(--color-grey-50); cursor: pointer; }
 
 .modal iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; }
+
+.video-modal-copy { display: flex; flex-direction: column; gap: 24px; padding-right: 24px; }
+
+.video-modal-copy h2,
+.video-modal-copy p { margin: 0; }
+
+.video-modal-copy h2 { max-width: 620px; }
+
+.video-modal-copy p { max-width: 640px; }
 
 .donation-modal-backdrop { z-index: 40; }
 
