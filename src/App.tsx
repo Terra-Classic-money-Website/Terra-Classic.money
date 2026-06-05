@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { createPortal } from "react-dom";
 import {
   assets,
   capabilities,
   faqGroups,
-  founders,
   heroGroups,
   popularTopics,
   protocols,
@@ -222,6 +222,31 @@ const supportLogos = [
   { name: "Trust Wallet", asset: "support-trust.png", className: "support-logo-trust", width: 81, height: 22 },
 ];
 
+type VideoModalVariant = "community" | "founders";
+
+const videoModalCopy: Record<VideoModalVariant, { title: string; paragraphs: string[] }> = {
+  community: {
+    title: "Call to action to #TerraClassic community members:",
+    paragraphs: [
+      "We are building the video sections for https://terra-classic.money from real voices in the ecosystem.",
+      'Record and send a 30 sec vertical smartphone video answering one question: "What is Terra Classic?" The best clips will be used to create the homepage explainer video.',
+      "Keep it simple: vertical video, smartphone is enough, clear audio, real answer, no overproduction.",
+      "Send to email address kontakt@dawidskinder.pl.",
+      "If your video is used, you will be listed as a contributor on the About terra-classic.money page.",
+    ],
+  },
+  founders: {
+    title: "Call to action to #TerraClassic L2 projects:",
+    paragraphs: [
+      "We are building the video sections for https://terra-classic.money from real voices in the ecosystem.",
+      "Record and send a 1 min vertical smartphone video telling the story of your project: what you are building, why Terra Classic, and why it matters. These videos will be published in the Founder Stories section.",
+      "Keep it simple: vertical video, smartphone is enough, clear audio, real answer, no overproduction.",
+      "Send to email address kontakt@dawidskinder.pl.",
+      "If your video is used, you will be listed as a contributor on the About terra-classic.money page.",
+    ],
+  },
+};
+
 function SupportLogoStrip() {
   return (
     <section className="logo-strip" aria-label="Decentralization supported by">
@@ -241,8 +266,10 @@ function SupportLogoStrip() {
   );
 }
 
-function VideoModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+function VideoModal({ open, variant, onClose }: { open: boolean; variant: VideoModalVariant; onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
+  const copy = videoModalCopy[variant];
+
   useEffect(() => {
     if (!open) return;
     const previous = document.activeElement as HTMLElement | null;
@@ -262,19 +289,19 @@ function VideoModal({ open, onClose }: { open: boolean; onClose: () => void }) {
     return () => { document.removeEventListener("keydown", onKey); previous?.focus(); };
   }, [open, onClose]);
   if (!open) return null;
-  return (
+  return createPortal((
     <div className="modal-backdrop" onMouseDown={onClose}>
       <div className="modal" role="dialog" aria-modal="true" aria-labelledby="video-title" ref={ref} tabIndex={-1} onMouseDown={(event) => event.stopPropagation()}>
         <button className="modal-close" aria-label="Close video modal" onClick={onClose}>×</button>
         {links.videoExplainer ? <iframe title="Terra Classic video explainer" src={links.videoExplainer} allowFullScreen /> : (
-          <>
-            <h2 className="tc-type-h2" id="video-title">Video coming soon</h2>
-            <p className="tc-type-body">The explainer URL is centralized in <code>src/data/links.ts</code> and can be enabled without changing component code.</p>
-          </>
+          <div className="video-modal-copy">
+            <h2 className="tc-type-h3" id="video-title">{copy.title}</h2>
+            {copy.paragraphs.map((paragraph) => <p className="tc-type-body" key={paragraph}>{paragraph}</p>)}
+          </div>
         )}
       </div>
     </div>
-  );
+  ), document.body);
 }
 
 const donationAddresses = [
@@ -443,7 +470,7 @@ function WhatIsTerraClassic() {
           </span>
         </button>
       </div>
-      <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
+      <VideoModal open={videoOpen} variant="community" onClose={() => setVideoOpen(false)} />
     </section>
   );
 }
@@ -819,12 +846,27 @@ function DecentralizationStats() {
 
 function FounderStories() {
   const docsHref = resolveHref(links.docs);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const storyPlaceholders = [
+    [
+      "Founder stories in preparation",
+      "Recorded stories from Terra Classic builders and L2 teams will be added here as submissions are reviewed.",
+    ],
+    [
+      "L2 project stories wanted",
+      "Teams building on Terra Classic can prepare a 1 min vertical video about what they are building and why it matters.",
+    ],
+    [
+      "Community collection opening soon",
+      "This section will feature real voices from the ecosystem instead of placeholder profiles.",
+    ],
+  ];
 
   return (
     <section className="section founders" aria-labelledby="founders-title">
       <div className="founders-intro">
         <h2 className="tc-type-h2" id="founders-title">Build your own app on Terra Classic:</h2>
-        <p className="tc-type-h4">Explore founder stories from teams already scaling real products across the ecosystem. Then launch your product / service with a fast, composable Layer-1 and a community that ships.</p>
+        <p className="tc-type-h4">Founder stories are being collected from Terra Classic builders and L2 teams. The section will feature real project clips as the community submits and reviews them.</p>
         <a className="founders-docs-button" href={docsHref} target={isExternalHref(docsHref) ? "_blank" : undefined} rel={isExternalHref(docsHref) ? "noopener noreferrer" : undefined}>
           <span className="tc-type-link-big">Check Terra Classic documentation</span>
           <img src={asset("founder-button-arrow.svg")} alt="" aria-hidden="true" />
@@ -838,29 +880,29 @@ function FounderStories() {
         </div>
       </div>
       <div className="founder-grid">
-        {founders.map(([name, role]) => <FounderStoryCard key={name} name={name} role={role} />)}
+        {storyPlaceholders.map(([title, body]) => <FounderStoryCard key={title} title={title} body={body} onPlay={() => setVideoOpen(true)} />)}
       </div>
+      <VideoModal open={videoOpen} variant="founders" onClose={() => setVideoOpen(false)} />
     </section>
   );
 }
 
-function FounderStoryCard({ name, role }: { name: string; role: string }) {
+function FounderStoryCard({ title, body, onPlay }: { title: string; body: string; onPlay: () => void }) {
   return (
-    <article className="founder-card">
-      <div className="founder-card__media">
-        <DeferredResponsiveImage className="founder-card__portrait" baseName="founder-story-portrait" widths={[360, 512, 768]} fallbackWidth={768} sizes="(max-width: 767px) calc(100vw - 48px), 366px" alt={`${name} portrait`} loading="lazy" width="768" height="1024" />
-        <div className="founder-card__play" aria-hidden="true">
+    <article className="founder-card founder-card--placeholder">
+      <button className="founder-card__media founder-card__media--placeholder" type="button" onClick={onPlay} aria-label="Open founder story video submission call to action">
+        <span className="founder-card__play" aria-hidden="true">
           <img className="founder-card__dot founder-card__dot--1" src={asset("founder-play-dot.svg")} alt="" />
           <img className="founder-card__dot founder-card__dot--2" src={asset("founder-play-dot.svg")} alt="" />
           <img className="founder-card__dot founder-card__dot--3" src={asset("founder-play-dot.svg")} alt="" />
           <img className="founder-card__dot founder-card__dot--4" src={asset("founder-play-dot-alt.svg")} alt="" />
           <img className="founder-card__dot founder-card__dot--5" src={asset("founder-play-dot.svg")} alt="" />
           <img className="founder-card__dot founder-card__dot--6" src={asset("founder-play-dot.svg")} alt="" />
-        </div>
-      </div>
+        </span>
+      </button>
       <div className="founder-card__copy">
-        <h4 className="tc-type-h4">{name}</h4>
-        <p className="tc-type-body">{role}</p>
+        <h4 className="tc-type-h4">{title}</h4>
+        <p className="tc-type-body">{body}</p>
       </div>
     </article>
   );

@@ -176,6 +176,21 @@
 
 .section-intro { max-width: 920px; margin: 64px 0; }
 
+.founder-card--placeholder:hover, .founder-card--placeholder:focus-within { cursor: default; }
+
+.founder-card__media--placeholder { display: block; border: 0; padding: 0; background: var(--color-grey-100); color: inherit; cursor: pointer; }
+
+.founder-card__media--placeholder::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,0)); opacity: .45; pointer-events: none; }
+
+.founder-card__media--placeholder:hover,
+.founder-card__media--placeholder:focus-visible { background: var(--color-grey-100); outline: 0; }
+
+.founder-card__media--placeholder:focus-visible::before { opacity: .7; }
+
+.founder-card--placeholder .founder-card__copy { min-height: 140px; }
+
+.founder-card--placeholder p { max-width: 37ch; }
+
 .split { display: grid; grid-template-columns: minmax(0, 715px) 381px; justify-content: space-between; gap: 64px; }
 
 .split h2 { margin-bottom: 48px; }
@@ -1157,4 +1172,85 @@
 
 @media (prefers-reduced-motion: reduce) {
   .apr-badge { transition: border-color var(--tc-motion-base) var(--tc-ease-standard), opacity var(--tc-motion-base) var(--tc-ease-standard); }
+}
+
+@media (min-width: 900px) {
+  html:not(:lang(en)) .hero-copy {
+    width: min(780px, 76%);
+    max-width: 76%;
+    height: auto;
+    gap: clamp(40px, 4vw, 64px);
+  }
+
+  html:lang(de) .hero-copy {
+    width: min(820px, 80%);
+    max-width: 80%;
+    gap: 40px;
+  }
+
+  html:not(:lang(en)) .hero-copy p {
+    max-width: 720px;
+  }
+
+  html:not(:lang(en)) .capability-cta span,
+  html:not(:lang(en)) .protocol-button span,
+  html:not(:lang(en)) .native-assets__button span,
+  html:not(:lang(en)) .strength-card__button span {
+    min-width: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  html:not(:lang(en)) .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  html:not(:lang(en)) .capability-cta span,
+  html:not(:lang(en)) .protocol-button span,
+  html:not(:lang(en)) .native-assets__button span,
+  html:not(:lang(en)) .strength-card__button span {
+    min-width: 0;
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  html:not(:lang(en)) .capabilities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  html:not(:lang(en)) .capability-card,
+  html:not(:lang(en)) .capability-card--staking,
+  html:not(:lang(en)) .capability-card--forex,
+  html:not(:lang(en)) .capability-card--defi,
+  html:not(:lang(en)) .capability-card--build,
+  html:not(:lang(en)) .capability-card--ecosystem,
+  html:not(:lang(en)) .capability-card--layer2,
+  html:not(:lang(en)) .capability-card--nft {
+    min-height: 428px;
+  }
+
+  html:not(:lang(en)) .capability-cta {
+    width: min(420px, 100%);
+  }
+
+  html:not(:lang(en)) .protocol-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  html:not(:lang(en)) .protocol-button {
+    width: max-content;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  html:not(:lang(en)) .hero-copy h1 {
+    overflow-wrap: anywhere;
+  }
 }
