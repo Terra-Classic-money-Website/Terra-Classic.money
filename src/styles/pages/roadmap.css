@@ -109,6 +109,8 @@
 
 .roadmap-lane__month:last-of-type { border-right: 1px solid var(--color-grey-100); }
 
+.roadmap-milestone-start { position: absolute; top: 0; bottom: 0; left: calc(var(--roadmap-milestone-start-column) * var(--roadmap-month-width)); z-index: 1; width: 1px; background: var(--color-grey-100); pointer-events: none; }
+
 .roadmap-milestone { --roadmap-stack-gap: 64px; --roadmap-stack-half-gap: 32px; position: relative; z-index: 2; grid-row: 1; align-self: center; min-width: 0; padding: 0 var(--roadmap-content-inset); display: flex; flex-direction: column; gap: 9px; overflow: hidden; transform: translateY(calc((var(--roadmap-stack, 0) * var(--roadmap-stack-gap)) - ((var(--roadmap-stack-span, 1) - 1) * var(--roadmap-stack-half-gap)))); }
 
 .roadmap-milestone__meta { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 3px 8px; transition: opacity var(--tc-motion-base) var(--tc-ease-standard), visibility var(--tc-motion-base) var(--tc-ease-standard); }
