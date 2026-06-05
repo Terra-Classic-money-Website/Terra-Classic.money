@@ -284,7 +284,7 @@ export function RoadmapPage() {
             <p className="tc-type-h4">A source-aware timeline for core protocol work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
           </div>
           <div className="roadmap-page__trust">
-            <span className="native-phase__badge">UPDATED JUNE 4, 2026</span>
+            <span className="native-phase__badge">UPDATED JUNE 5, 2026</span>
           </div>
         </div>
         <RoadmapTimeline />
