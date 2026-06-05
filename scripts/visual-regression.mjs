@@ -18,7 +18,7 @@ const updateBaseline = process.env.VISUAL_UPDATE_BASELINE === "1";
 const baselineOutputDir = path.resolve(rootDir, process.env.VISUAL_BASELINE_OUTPUT_DIR || path.join("tests", "visual-baselines"));
 const maxDiffRatio = Number(process.env.VISUAL_MAX_DIFF_RATIO || 0.01);
 
-const routeViewports = [
+const allRouteViewports = [
   { page: "home", path: "/", viewports: ["mobile-390", "tablet-768", "tablet-1024", "desktop-1400", "desktop-1632"] },
   { page: "ecosystem", path: "/ecosystem.html", viewports: ["mobile-390", "desktop-1632"] },
   { page: "markets", path: "/markets.html", viewports: ["mobile-390", "desktop-1632"] },
@@ -43,6 +43,47 @@ const viewports = {
   "desktop-1400": { width: 1400, height: 1000 },
   "desktop-1632": { width: 1632, height: 1000 },
 };
+
+function listFilter(envName) {
+  const rawValue = process.env[envName];
+  if (!rawValue) return null;
+
+  const values = rawValue
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  return values.length > 0 ? new Set(values) : null;
+}
+
+function assertKnownFilterValues(filter, available, label, envName) {
+  if (!filter) return;
+
+  const unknown = [...filter].filter((value) => !available.has(value));
+  if (unknown.length > 0) {
+    throw new Error(`Unknown ${label} in ${envName}: ${unknown.join(", ")}. Available: ${[...available].join(", ")}.`);
+  }
+}
+
+const routeFilter = listFilter("VISUAL_ROUTES");
+const viewportFilter = listFilter("VISUAL_VIEWPORTS");
+const availableRoutes = new Set(allRouteViewports.map((route) => route.page));
+const availableViewports = new Set(Object.keys(viewports));
+
+assertKnownFilterValues(routeFilter, availableRoutes, "route", "VISUAL_ROUTES");
+assertKnownFilterValues(viewportFilter, availableViewports, "viewport", "VISUAL_VIEWPORTS");
+
+const routeViewports = allRouteViewports
+  .filter((route) => !routeFilter || routeFilter.has(route.page))
+  .map((route) => ({
+    ...route,
+    viewports: viewportFilter ? route.viewports.filter((viewport) => viewportFilter.has(viewport)) : route.viewports,
+  }));
+
+const emptyViewportRoutes = routeViewports.filter((route) => route.viewports.length === 0);
+if (emptyViewportRoutes.length > 0) {
+  throw new Error(`No selected viewports apply to route(s): ${emptyViewportRoutes.map((route) => route.page).join(", ")}.`);
+}
 
 function timestamp() {
   return new Date().toISOString().replace(/[:.]/g, "-");
@@ -266,6 +307,8 @@ async function writeSummary(results) {
     `Base URL: ${baseUrl}`,
     `Screenshots: ${path.relative(rootDir, screenshotsDir)}`,
     baselineDir ? `Baseline: ${path.relative(rootDir, baselineDir)}` : "Baseline: none",
+    `Routes: ${routeFilter ? [...routeFilter].join(", ") : "all"}`,
+    `Viewports: ${viewportFilter ? [...viewportFilter].join(", ") : "all configured per route"}`,
     `Max diff ratio: ${formatPercent(maxDiffRatio)}`,
     "",
     "| Page | Viewport | Status | Diff | Console |",
