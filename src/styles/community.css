@@ -61,7 +61,22 @@
 
 .founder-card:hover, .founder-card:focus-within { cursor: pointer; }
 
+.founder-card--placeholder:hover, .founder-card--placeholder:focus-within { cursor: default; }
+
 .founder-card:hover .founder-card__portrait, .founder-card:focus-within .founder-card__portrait { opacity: 1; }
+
+.founder-card__media--placeholder { display: block; border: 0; padding: 0; background: var(--color-grey-100); color: inherit; cursor: pointer; }
+
+.founder-card__media--placeholder::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,0)); opacity: .45; pointer-events: none; }
+
+.founder-card__media--placeholder:hover,
+.founder-card__media--placeholder:focus-visible { background: var(--color-grey-100); outline: 0; }
+
+.founder-card__media--placeholder:focus-visible::before { opacity: .7; }
+
+.founder-card--placeholder .founder-card__copy { min-height: 140px; }
+
+.founder-card--placeholder p { max-width: 37ch; }
 
 .founder-card__copy { width: 100%; min-height: 92px; height: auto; padding: var(--tc-spacing-card-media); color: var(--color-black); }
 
