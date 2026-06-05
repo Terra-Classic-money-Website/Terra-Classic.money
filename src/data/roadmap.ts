@@ -201,6 +201,38 @@ export const roadmapRows: RoadmapRow[] = [
     ],
   },
   {
+    id: "public-ustc-staking",
+    group: "public",
+    project: "USTC Staking",
+    shortName: "USTC",
+    category: "Asset staking",
+    source: "governance",
+    accent: "#5493f7",
+    milestones: [
+      {
+        title: "Design & module implementation",
+        start: "2026-07",
+        end: "2026-08",
+        status: "planned",
+        dateLabel: "Jul-Aug 2026",
+      },
+      {
+        title: "Lifecycle hooks & testnet validation",
+        start: "2026-08",
+        end: "2026-09",
+        status: "planned",
+        dateLabel: "Aug-Sep 2026",
+      },
+      {
+        title: "Documentation & upgrade preparation",
+        start: "2026-09",
+        end: "2026-10",
+        status: "planned",
+        dateLabel: "Sep-Oct 2026",
+      },
+    ],
+  },
+  {
     id: "community-garuda",
     group: "community",
     project: "Garuda Defi",
