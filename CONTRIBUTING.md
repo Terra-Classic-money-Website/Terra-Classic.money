@@ -36,7 +36,6 @@ See `TRANSLATION-GUIDE.md` before proposing a translation.
 Important rules:
 
 - Do not publish partial language surfaces.
-- Do not add Polish translations unless the target-language plan changes.
 - Do not edit generated localized HTML route templates directly.
 - Add the target route, target locale, source text, proposed translation, and reviewer notes.
 - Treat legal/risk/governance changes as meaning-sensitive, not style-only.
