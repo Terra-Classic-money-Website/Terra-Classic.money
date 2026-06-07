@@ -282,6 +282,31 @@ export const roadmapRows: RoadmapRow[] = [
     ],
   },
   {
+    id: "community-hyperlane",
+    group: "community",
+    project: "Hyperlane",
+    shortName: "HYP",
+    category: "Integration on Terra Classic",
+    source: "project-submitted",
+    accent: "#6c5ce7",
+    milestones: [
+      {
+        title: "Hyperlane Multichain Bridge Launch",
+        start: "2026-06",
+        end: "2026-06",
+        status: "in-progress",
+        dateLabel: "Jun 2026",
+      },
+      {
+        title: "Stabilization & Ecosystem Onboarding",
+        start: "2026-07",
+        end: "2026-07",
+        status: "planned",
+        dateLabel: "Jul 2026",
+      },
+    ],
+  },
+  {
     id: "community-juris",
     group: "community",
     project: "Juris Protocol",
