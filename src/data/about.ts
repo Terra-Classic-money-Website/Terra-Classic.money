@@ -59,26 +59,26 @@ export const contributorGroups = [
     title: "Donors and sponsors",
     description: "",
     rows: [
-      ["Public supporter records", "Open for verified public entries", "Pending"],
+      ["Public supporter records", "Open for verified public entries", "Pending", ""],
     ],
   },
   {
     title: "Translations",
     description: "",
     rows: [
-      ["Public translation records", "Open for verified public entries", "Pending"],
+      ["Public translation records", "Open for verified public entries", "Pending", ""],
     ],
   },
   {
     title: "Service contributors, domain owners and maintainers",
     description: "",
     rows: [
-      ["Dawid Skinder", "Domain stewardship, project direction, design system, content structure, and website production", ""],
-      ["Don Lunc", "Maintainer", ""],
-      ["El Paco Lunc", "Maintainer", ""],
-      ["StrathCole", "Created the Terra Classic docs foundation expanded at docs.terra-classic.money", ""],
-      ["Whalliam", "Maintainer", ""],
-      ["Vladimir POSTHUMAN", "Maintainer", ""],
+      ["Dawid Skinder", "Domain stewardship, project direction, design system, content structure, and website production", "", "about-photos/dawid-skinder.png"],
+      ["Don Lunc", "Maintainer", "", "about-photos/don-lunc.png"],
+      ["El Paco Lunc", "Maintainer", "", "about-photos/el-paco-lunc.png"],
+      ["StrathCole", "Created the Terra Classic docs foundation expanded at docs.terra-classic.money", "", "about-photos/strathcole.png"],
+      ["Whalliam", "Maintainer", "", "about-photos/whalliam.png"],
+      ["Vladimir POSTHUMAN", "Maintainer", "", "about-photos/vladimir-posthuman.png"],
     ],
   },
 ] as const;
