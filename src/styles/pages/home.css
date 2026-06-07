@@ -561,7 +561,7 @@
 
 .protocol-ui--staking-validator { left: 0; top: 12.3%; width: 25%; height: 38.09%; }
 
-.protocol-ui--staking-stake { left: 16.93%; top: 51.95%; width: 25%; height: 35.55%; border-radius: 8px; }
+.protocol-ui--staking-stake { left: 16.93%; top: 51.95%; width: 25%; height: 35.55%; border-radius: 8px; object-position: top center; }
 
 .protocol-ui--staking-confirmed { left: 76.79%; top: 20.31%; width: 23.21%; height: 28.71%; }
 

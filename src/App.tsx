@@ -54,7 +54,7 @@ const protocolUiImageDimensions: Record<string, { width: number; height: number 
   "protocol-deposit-ui-figma.png": { width: 384, height: 312 },
   "protocol-mint-ui-figma.png": { width: 384, height: 440 },
   "protocol-staking-confirmed.png": { width: 384, height: 272 },
-  "protocol-staking-ui-figma.png": { width: 384, height: 336 },
+  "protocol-staking-ui-figma.png": { width: 384, height: 314 },
   "protocol-swap-ui-figma.png": { width: 384, height: 440 },
   "protocol-validator-ui-figma.png": { width: 384, height: 336 },
 };
