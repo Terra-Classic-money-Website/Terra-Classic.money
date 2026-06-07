@@ -296,9 +296,11 @@ function AboutContributors() {
               <span className="about-contributor-count tc-type-h4">{group.rows.length}</span>
             </header>
             <div className="about-contributor-rows">
-              {group.rows.map(([name, role, period]) => (
+              {group.rows.map(([name, role, period, avatar]) => (
                 <article className="directory-list-item about-contributor-row" key={`${group.title}-${name}-${role}`}>
-                  <span className="directory-list-item__avatar about-contributor-avatar" aria-hidden="true">{getContributorInitials(name)}</span>
+                  <span className="directory-list-item__avatar about-contributor-avatar" aria-hidden="true">
+                    {avatar ? <img src={asset(avatar)} alt="" loading="lazy" /> : getContributorInitials(name)}
+                  </span>
                   <span className="directory-list-item__copy">
                     <strong className="directory-list-item__name tc-type-h5">{name}</strong>
                     <span className="directory-list-item__summary tc-type-body-small">{role}</span>
