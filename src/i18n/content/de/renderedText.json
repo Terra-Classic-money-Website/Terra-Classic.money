@@ -795,6 +795,7 @@
   "UPDATED JUNE 2, 2026": "AKTUALISIERT AM 2. JUNI 2026",
   "UPDATED JUNE 4, 2026": "AKTUALISIERT AM 4. JUNI 2026",
   "UPDATED JUNE 5, 2026": "AKTUALISIERT AM 5. JUNI 2026",
+  "UPDATED JUNE 8, 2026": "AKTUALISIERT AM 8. JUNI 2026",
   "USTC Staking": "USTC Staking",
   "USTC is a native Terra Classic asset with historical stablecoin origins, but today it should be treated as a freely traded crypto asset, not as a guaranteed $1 redeemable stablecoin. Any future stable-asset design should be evaluated by its collateral model, liquidity, governance approval, and live market behavior.": "USTC ist ein nativer Terra-Classic-Asset mit historischen Stablecoin-Ursprüngen, aber heute sollte er als frei gehandelter Krypto-Asset behandelt werden, nicht als garantierter einlösbarer Stablecoin im Wert von 1 US-Dollar. Jedes zukünftige Design stabiler Vermögenswerte sollte anhand seines Besicherungsmodells, seiner Liquidität, seiner Governance-Genehmigung und seines aktuellen Marktverhaltens bewertet werden.",
   "Understand Terra Classic": "Terra Classic verstehen",
@@ -1011,5 +1012,17 @@
   "Hyperlane Multichain Bridge Launch": "Start der Hyperlane-Multichain-Bridge",
   "Stabilization & Ecosystem Onboarding": "Stabilisierung & Ecosystem-Onboarding",
   "In progress - Jun 2026": "In Bearbeitung - Juni 2026",
-  "Planned - Jul 2026": "Geplant - Juli 2026"
+  "Planned - Jul 2026": "Geplant - Juli 2026",
+  "AscendEX listing": "AscendEX-Listing",
+  "BTCC listing": "BTCC-Listing",
+  "Completed - Mar-May 2026": "Abgeschlossen - Mär-Mai 2026",
+  "Compliance and institutional adoption": "Compliance und institutionelle Adoption",
+  "Fiat on/off-ramp and debit card": "Fiat-Ein-/Auszahlung und Debitkarte",
+  "In progress - May-Aug 2026": "In Bearbeitung - Mai-Aug 2026",
+  "In progress - May-Jun 2026": "In Bearbeitung - Mai-Jun 2026",
+  "L2 project integrations": "L2-Projektintegrationen",
+  "Migration and handover": "Migration und Übergabe",
+  "Public beta mainnet launch": "Start des öffentlichen Beta-Mainnets",
+  "Public beta mainnet preparation": "Vorbereitung des öffentlichen Beta-Mainnets",
+  "UX/UI polish and mainnet preparation": "UX/UI-Feinschliff und Mainnet-Vorbereitung"
 }

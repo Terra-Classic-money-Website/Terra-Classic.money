@@ -878,6 +878,7 @@
   "UPDATED JUNE 2, 2026": "อัปเดตเมื่อวันที่ 2 มิถุนายน 2026",
   "UPDATED JUNE 4, 2026": "อัปเดตเมื่อวันที่ 4 มิถุนายน 2026",
   "UPDATED JUNE 5, 2026": "อัปเดตเมื่อวันที่ 5 มิถุนายน 2026",
+  "UPDATED JUNE 8, 2026": "อัปเดตเมื่อวันที่ 8 มิถุนายน 2026",
   "USTC Staking": "USTC Staking",
   "Upgrade Terra Classic hardware-wallet access from partial Ledger support into a safer, clearer, and more complete user experience, with a practical path toward Ledger Wallet / Ledger Live readiness.": "อัปเกรดการเข้าถึงกระเป๋าเงินฮาร์ดแวร์ Terra Classic จากการสนับสนุน Ledger บางส่วนให้เป็นประสบการณ์ผู้ใช้ที่ปลอดภัย ชัดเจนยิ่งขึ้น และสมบูรณ์ยิ่งขึ้น พร้อมเส้นทางที่ใช้งานได้จริงสู่ความพร้อม Ledger Wallet / Ledger Live",
   "Usage and rights note": "หมายเหตุการใช้งานและสิทธิ์",
@@ -1024,5 +1025,17 @@
   "Hyperlane Multichain Bridge Launch": "เปิดตัวสะพานมัลติเชน Hyperlane",
   "Stabilization & Ecosystem Onboarding": "การทำให้เสถียรและการเริ่มต้นใช้งานระบบนิเวศ",
   "In progress - Jun 2026": "อยู่ระหว่างดำเนินการ - มิ.ย. 2026",
-  "Planned - Jul 2026": "วางแผน - ก.ค. 2026"
+  "Planned - Jul 2026": "วางแผน - ก.ค. 2026",
+  "AscendEX listing": "การลิสต์บน AscendEX",
+  "BTCC listing": "การลิสต์บน BTCC",
+  "Completed - Mar-May 2026": "เสร็จสมบูรณ์ - มี.ค.-พ.ค. 2026",
+  "Compliance and institutional adoption": "การปฏิบัติตามข้อกำหนดและการนำไปใช้ระดับสถาบัน",
+  "Fiat on/off-ramp and debit card": "ช่องทางเข้า/ออก fiat และบัตรเดบิต",
+  "In progress - May-Aug 2026": "อยู่ระหว่างดำเนินการ - พ.ค.-ส.ค. 2026",
+  "In progress - May-Jun 2026": "อยู่ระหว่างดำเนินการ - พ.ค.-มิ.ย. 2026",
+  "L2 project integrations": "การผสานรวมโปรเจกต์ L2",
+  "Migration and handover": "การย้ายระบบและส่งมอบ",
+  "Public beta mainnet launch": "เปิดตัว public beta mainnet",
+  "Public beta mainnet preparation": "เตรียม public beta mainnet",
+  "UX/UI polish and mainnet preparation": "ขัดเกลา UX/UI และเตรียม mainnet"
 }

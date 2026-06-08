@@ -795,6 +795,7 @@
   "UPDATED JUNE 2, 2026": "DIPERBARUI 2 JUNI 2026",
   "UPDATED JUNE 4, 2026": "DIPERBARUI 4 JUNI 2026",
   "UPDATED JUNE 5, 2026": "DIPERBARUI 5 JUNI 2026",
+  "UPDATED JUNE 8, 2026": "DIPERBARUI 8 JUNI 2026",
   "USTC Staking": "USTC Staking",
   "USTC is a native Terra Classic asset with historical stablecoin origins, but today it should be treated as a freely traded crypto asset, not as a guaranteed $1 redeemable stablecoin. Any future stable-asset design should be evaluated by its collateral model, liquidity, governance approval, and live market behavior.": "USTC adalah aset asli Terra Classic dengan asal usul stablecoin historis, tetapi saat ini USTC harus diperlakukan sebagai aset kripto yang diperdagangkan secara bebas, bukan sebagai stablecoin yang dijamin dapat ditukarkan dengan $1. Setiap desain aset stabil di masa depan harus dievaluasi berdasarkan model agunan, likuiditas, persetujuan tata kelola, dan perilaku pasar saat ini.",
   "Understand Terra Classic": "Pahami Terra Classic",
@@ -1011,5 +1012,17 @@
   "Hyperlane Multichain Bridge Launch": "Peluncuran bridge multichain Hyperlane",
   "Stabilization & Ecosystem Onboarding": "Stabilisasi & onboarding ekosistem",
   "In progress - Jun 2026": "Sedang berlangsung - Jun 2026",
-  "Planned - Jul 2026": "Direncanakan - Jul 2026"
+  "Planned - Jul 2026": "Direncanakan - Jul 2026",
+  "AscendEX listing": "Pencatatan AscendEX",
+  "BTCC listing": "Pencatatan BTCC",
+  "Completed - Mar-May 2026": "Selesai - Mar-Mei 2026",
+  "Compliance and institutional adoption": "Kepatuhan dan adopsi institusional",
+  "Fiat on/off-ramp and debit card": "Jalur masuk/keluar fiat dan kartu debit",
+  "In progress - May-Aug 2026": "Sedang berlangsung - Mei-Agu 2026",
+  "In progress - May-Jun 2026": "Sedang berlangsung - Mei-Jun 2026",
+  "L2 project integrations": "Integrasi proyek L2",
+  "Migration and handover": "Migrasi dan serah terima",
+  "Public beta mainnet launch": "Peluncuran mainnet beta publik",
+  "Public beta mainnet preparation": "Persiapan mainnet beta publik",
+  "UX/UI polish and mainnet preparation": "Polesan UX/UI dan persiapan mainnet"
 }

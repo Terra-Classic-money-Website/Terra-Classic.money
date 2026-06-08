@@ -1243,7 +1243,7 @@ function RoadmapTimelinePreview() {
   };
 
   return (
-    <div className="roadmap-board ds-roadmap-preview" aria-labelledby="ds-roadmap-preview-title">
+    <div className="roadmap-board ds-roadmap-preview" style={{ "--roadmap-month-count": roadmapMonths.length } as CSSProperties} aria-labelledby="ds-roadmap-preview-title">
       <h3 className="visually-hidden" id="ds-roadmap-preview-title">Roadmap timeline component specimen</h3>
       <RoadmapTimelinePreviewAxis scrollLeft={timelineMetrics.scrollLeft} todayMarker={todayMarker} />
       <div className="roadmap-scroll" role="region" aria-label="Horizontally scrollable roadmap timeline component specimen" tabIndex={0} onScroll={handleTimelineScroll}>

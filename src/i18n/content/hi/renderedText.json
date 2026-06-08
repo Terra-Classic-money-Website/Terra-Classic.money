@@ -878,6 +878,7 @@
   "UPDATED JUNE 2, 2026": "2 जून 2026 को अद्यतन किया गया",
   "UPDATED JUNE 4, 2026": "4 जून 2026 को अद्यतन किया गया",
   "UPDATED JUNE 5, 2026": "5 जून 2026 को अद्यतन किया गया",
+  "UPDATED JUNE 8, 2026": "8 जून 2026 को अद्यतन किया गया",
   "USTC Staking": "USTC Staking",
   "Upgrade Terra Classic hardware-wallet access from partial Ledger support into a safer, clearer, and more complete user experience, with a practical path toward Ledger Wallet / Ledger Live readiness.": "आंशिक Ledger समर्थन से Terra Classic हार्डवेयर-वॉलेट एक्सेस को Ledger Wallet / Ledger Live तत्परता की दिशा में एक व्यावहारिक मार्ग के साथ सुरक्षित, स्पष्ट और अधिक संपूर्ण उपयोगकर्ता अनुभव में अपग्रेड करें।",
   "Usage and rights note": "उपयोग और अधिकार नोट",
@@ -1021,5 +1022,17 @@
   "Hyperlane Multichain Bridge Launch": "Hyperlane मल्टीचेन ब्रिज लॉन्च",
   "Stabilization & Ecosystem Onboarding": "स्थिरीकरण और इकोसिस्टम ऑनबोर्डिंग",
   "In progress - Jun 2026": "प्रगति पर - जून 2026",
-  "Planned - Jul 2026": "नियोजित - जुलाई 2026"
+  "Planned - Jul 2026": "नियोजित - जुलाई 2026",
+  "AscendEX listing": "AscendEX लिस्टिंग",
+  "BTCC listing": "BTCC लिस्टिंग",
+  "Completed - Mar-May 2026": "पूर्ण - मार्च-मई 2026",
+  "Compliance and institutional adoption": "अनुपालन और संस्थागत अपनाना",
+  "Fiat on/off-ramp and debit card": "फिएट ऑन/ऑफ-रैंप और डेबिट कार्ड",
+  "In progress - May-Aug 2026": "प्रगति पर - मई-अगस्त 2026",
+  "In progress - May-Jun 2026": "प्रगति पर - मई-जून 2026",
+  "L2 project integrations": "L2 प्रोजेक्ट इंटीग्रेशन",
+  "Migration and handover": "माइग्रेशन और हैंडओवर",
+  "Public beta mainnet launch": "सार्वजनिक बीटा मेननेट लॉन्च",
+  "Public beta mainnet preparation": "सार्वजनिक बीटा मेननेट तैयारी",
+  "UX/UI polish and mainnet preparation": "UX/UI पॉलिश और मेननेट तैयारी"
 }

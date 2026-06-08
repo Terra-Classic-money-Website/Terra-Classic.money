@@ -240,7 +240,7 @@ function RoadmapTimeline() {
   };
 
   return (
-    <section className="roadmap-board" aria-labelledby="roadmap-board-title">
+    <section className="roadmap-board" style={{ "--roadmap-month-count": roadmapMonths.length } as CSSProperties} aria-labelledby="roadmap-board-title">
       <h2 className="visually-hidden" id="roadmap-board-title">Decentralized roadmap</h2>
       <RoadmapAxis scrollLeft={timelineMetrics.scrollLeft} todayMarker={todayMarker} />
       <div className="roadmap-scroll" role="region" aria-label="Horizontally scrollable Terra Classic roadmap" tabIndex={0} onScroll={handleTimelineScroll}>
@@ -284,7 +284,7 @@ export function RoadmapPage() {
             <p className="tc-type-h4">A source-aware timeline for core protocol work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
           </div>
           <div className="roadmap-page__trust">
-            <span className="native-phase__badge">UPDATED JUNE 5, 2026</span>
+            <span className="native-phase__badge">UPDATED JUNE 8, 2026</span>
           </div>
         </div>
         <RoadmapTimeline />
