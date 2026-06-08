@@ -256,3 +256,19 @@
   .stats-panel { --stats-visual-row-height: 520px; --stats-visual-gap: 48px; --stats-big-planet-offset: clamp(56px, 12vw, 88px); }
   .stats-row { justify-content: flex-start; }
 }
+
+@media (max-width: 767px) {
+  html.tc-platform-android .stats-panel { isolation: isolate; }
+
+  html.tc-platform-android .stats-glow {
+    mix-blend-mode: normal;
+    filter: none !important;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  html.tc-platform-android .stats-glow span {
+    animation: none !important;
+    will-change: auto;
+  }
+}

@@ -1170,6 +1170,25 @@
     .capability-card--nft .capability-image img { max-height: 240px; }
 }
 
+@media (max-width: 767px) {
+  html.tc-platform-android .hero,
+    html.tc-platform-android .protocol-panel { isolation: isolate; }
+
+  html.tc-platform-android .hero-glow,
+    html.tc-platform-android .protocol-glow {
+      mix-blend-mode: normal;
+      filter: none !important;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+
+  html.tc-platform-android .hero-glow span,
+    html.tc-platform-android .protocol-glow span {
+      animation: none !important;
+      will-change: auto;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .apr-badge { transition: border-color var(--tc-motion-base) var(--tc-ease-standard), opacity var(--tc-motion-base) var(--tc-ease-standard); }
 }
