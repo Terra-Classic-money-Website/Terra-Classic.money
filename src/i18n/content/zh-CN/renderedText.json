@@ -884,6 +884,7 @@
   "UPDATED JUNE 2, 2026": "更新于 2026 年 6 月 2 日",
   "UPDATED JUNE 4, 2026": "更新于 2026 年 6 月 4 日",
   "UPDATED JUNE 5, 2026": "更新于 2026 年 6 月 5 日",
+  "UPDATED JUNE 8, 2026": "更新于 2026 年 6 月 8 日",
   "Upgrade Terra Classic hardware-wallet access from partial Ledger support into a safer, clearer, and more complete user experience, with a practical path toward Ledger Wallet / Ledger Live readiness.": "将 Terra Classic 硬件钱包访问从部分 Ledger 支持升级为更安全、更清晰、更完整的用户体验，并为 Ledger 钱包/Ledger Live 做好准备提供实用途径。",
   "USTC Staking": "USTC Staking",
   "Usage and rights note": "使用和权利说明",
@@ -1024,5 +1025,17 @@
   "Hyperlane Multichain Bridge Launch": "Hyperlane 多链桥上线",
   "Stabilization & Ecosystem Onboarding": "稳定化与生态入驻",
   "In progress - Jun 2026": "进行中 - 2026 年 6 月",
-  "Planned - Jul 2026": "计划中 - 2026 年 7 月"
+  "Planned - Jul 2026": "计划中 - 2026 年 7 月",
+  "AscendEX listing": "AscendEX 上线",
+  "BTCC listing": "BTCC 上线",
+  "Completed - Mar-May 2026": "已完成 - 2026 年 3 月-5 月",
+  "Compliance and institutional adoption": "合规与机构采用",
+  "Fiat on/off-ramp and debit card": "法币出入金和借记卡",
+  "In progress - May-Aug 2026": "进行中 - 2026 年 5 月-8 月",
+  "In progress - May-Jun 2026": "进行中 - 2026 年 5 月-6 月",
+  "L2 project integrations": "L2 项目集成",
+  "Migration and handover": "迁移和交接",
+  "Public beta mainnet launch": "公开测试版主网上线",
+  "Public beta mainnet preparation": "公开测试版主网准备",
+  "UX/UI polish and mainnet preparation": "UX/UI 打磨和主网准备"
 }
