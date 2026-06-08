@@ -658,7 +658,7 @@ function BadgeGallery() {
         <span className="status status--active">ACTIVE<img src={asset("protocol-badge-active-arrow.svg")} alt="" /></span>
         <span className="ds-badge ds-badge--black">ACTIVE</span>
       </div>
-      <span className="native-phase__badge native-phase__badge--soon">COMMING SOON</span>
+      <span className="native-phase__badge native-phase__badge--soon">COMING SOON</span>
     </div>
   );
 }
