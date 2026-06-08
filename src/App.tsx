@@ -693,7 +693,7 @@ function NativeTokenIcon({ icon, compact = false }: { icon: string; compact?: bo
 function NativeAssets() {
   const assetPhases = [1, 2, 3, 4].map((phase) => ({
     phase,
-    status: phase === 1 ? "IN PROGRESS" : "COMMING SOON",
+    status: phase === 1 ? "IN PROGRESS" : "COMING SOON",
     items: assets.filter((item) => item.phase === phase),
   }));
   const coinMarketCapHref = resolveHref(links.coinMarketCap);
