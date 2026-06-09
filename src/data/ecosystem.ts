@@ -737,6 +737,11 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "Allnodes non-custodial node-hosting service for Terra Classic validators.",
       },
       {
+        name: "Colapsar",
+        summary: "Infrastructure services",
+        href: "https://colapsar.space",
+      },
+      {
         name: "Hexxagon",
         summary: "Validator hosting",
         href: "https://www.hexxagon.io",

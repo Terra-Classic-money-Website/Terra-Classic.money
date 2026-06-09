@@ -75,7 +75,6 @@ export const contributorGroups = [
     rows: [
       ["Dawid Skinder", "Domain stewardship, project direction, design system, content structure, and website production", "", "about-photos/dawid-skinder.png"],
       ["Don Lunc", "Maintainer", "", "about-photos/don-lunc.png"],
-      ["El Paco Lunc", "Maintainer", "", "about-photos/el-paco-lunc.png"],
       ["StrathCole", "Created the Terra Classic docs foundation expanded at docs.terra-classic.money", "", "about-photos/strathcole.png"],
       ["Whalliam", "Maintainer", "", "about-photos/whalliam.png"],
       ["Vladimir POSTHUMAN", "Maintainer", "", "about-photos/vladimir-posthuman.png"],
