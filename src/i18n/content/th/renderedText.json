@@ -1041,5 +1041,10 @@
   "Migration and handover": "การย้ายระบบและส่งมอบ",
   "Public beta mainnet launch": "เปิดตัว public beta mainnet",
   "Public beta mainnet preparation": "เตรียม public beta mainnet",
-  "UX/UI polish and mainnet preparation": "ขัดเกลา UX/UI และเตรียม mainnet"
+  "UX/UI polish and mainnet preparation": "ขัดเกลา UX/UI และเตรียม mainnet",
+  "CL8Y DEX final QA, public release and stabilization": "QA ขั้นสุดท้ายของ CL8Y DEX การเปิดตัวสาธารณะ และการทำให้เสถียร",
+  "Bridge, DEX, Repeg & GameFI": "บริดจ์, DEX, Repeg และ GameFI",
+  "DEX liquidity programs and locked LP incentives": "โปรแกรมสภาพคล่อง DEX และแรงจูงใจ LP แบบล็อก",
+  "In progress - Jun-Aug 2026": "กำลังดำเนินการ - มิ.ย.-ส.ค. 2026",
+  "UST1 vFDUSD window, liquidity growth and money-market readiness": "หน้าต่าง UST1 vFDUSD การเติบโตของสภาพคล่อง และความพร้อมของตลาดเงิน"
 }
