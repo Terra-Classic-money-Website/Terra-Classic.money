@@ -274,6 +274,24 @@ function RoadmapTimeline() {
   );
 }
 
+function RoadmapDisclaimer() {
+  return (
+    <section className="roadmap-disclaimer" aria-labelledby="roadmap-disclaimer-title">
+      <div>
+        <h2 className="tc-type-h5" id="roadmap-disclaimer-title">Roadmap note</h2>
+        <div className="roadmap-disclaimer__copy">
+          <p className="tc-type-body-small">
+            Roadmaps shown on this page are simplified public summaries intended to make Terra Classic ecosystem work easier to follow. Some projects plan around work schedules, review cycles, funding, dependencies, or technical readiness rather than fixed delivery dates, so dates and milestone placement may change.
+          </p>
+          <p className="tc-type-body-small">
+            These entries should not be treated as official, exhaustive, exclusive, or binding roadmaps for any project. Each project's own website, repository, governance posts, and announcement channels remain the source of truth for its plans, progress, and delivery updates.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function RoadmapPage() {
   return (
     <>
@@ -288,6 +306,7 @@ export function RoadmapPage() {
           </div>
         </div>
         <RoadmapTimeline />
+        <RoadmapDisclaimer />
       </section>
       <Footer />
     </>
