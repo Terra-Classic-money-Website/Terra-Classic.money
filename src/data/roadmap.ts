@@ -524,12 +524,26 @@ export const roadmapRows: RoadmapRow[] = [
       {
         title: "NFT Orderflow System",
         start: "2026-06",
+        end: "2026-06",
+        status: "completed",
+        dateLabel: "Jun 2026",
+      },
+      {
+        title: "NFT Rankings",
+        start: "2026-06",
         end: "2026-07",
-        status: "in-progress",
+        status: "planned",
         dateLabel: "Jun-Jul 2026",
       },
       {
-        title: "Token Listings & Bots Upgrade",
+        title: "Alert Bots",
+        start: "2026-06",
+        end: "2026-08",
+        status: "planned",
+        dateLabel: "Jun-Aug 2026",
+      },
+      {
+        title: "User Profiles",
         start: "2026-07",
         end: "2026-08",
         status: "planned",
