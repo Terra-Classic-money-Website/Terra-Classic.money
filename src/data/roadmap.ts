@@ -536,14 +536,7 @@ export const roadmapRows: RoadmapRow[] = [
         dateLabel: "Jun-Jul 2026",
       },
       {
-        title: "Alert Bots",
-        start: "2026-07",
-        end: "2026-08",
-        status: "planned",
-        dateLabel: "Jul-Aug 2026",
-      },
-      {
-        title: "User Profiles",
+        title: "Alert Bots & User Profiles",
         start: "2026-07",
         end: "2026-08",
         status: "planned",
