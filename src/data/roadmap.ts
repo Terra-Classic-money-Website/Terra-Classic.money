@@ -522,7 +522,7 @@ export const roadmapRows: RoadmapRow[] = [
     accent: "#35c96f",
     milestones: [
       {
-        title: "NFT Orderflow System",
+        title: "NFT Orderflow System & Burn Tracker",
         start: "2026-06",
         end: "2026-06",
         status: "completed",
@@ -537,10 +537,10 @@ export const roadmapRows: RoadmapRow[] = [
       },
       {
         title: "Alert Bots",
-        start: "2026-06",
+        start: "2026-07",
         end: "2026-08",
         status: "planned",
-        dateLabel: "Jun-Aug 2026",
+        dateLabel: "Jul-Aug 2026",
       },
       {
         title: "User Profiles",
