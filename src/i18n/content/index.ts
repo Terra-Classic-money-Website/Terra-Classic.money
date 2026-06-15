@@ -1,4 +1,5 @@
 import { chromeContent as enChromeContent } from "./en/chrome";
+import { chromeContent as arChromeContent } from "./ar/chrome";
 import { chromeContent as deChromeContent } from "./de/chrome";
 import { chromeContent as hiChromeContent } from "./hi/chrome";
 import { chromeContent as idChromeContent } from "./id/chrome";
@@ -16,6 +17,7 @@ const chromeContentByLocale = {
   de: deChromeContent,
   hi: hiChromeContent,
   th: thChromeContent,
+  ar: arChromeContent,
   "pt-BR": ptBrChromeContent,
   "zh-CN": zhCnChromeContent,
   pl: plChromeContent,

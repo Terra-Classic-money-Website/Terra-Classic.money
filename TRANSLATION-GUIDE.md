@@ -78,3 +78,7 @@ A locale can be visible in the public language selector only when:
 - `npm run i18n:validate` passes.
 
 Draft translations can exist in the repo, but they must not be linked publicly.
+
+## RTL Locales
+
+Text direction is controlled by each locale's `dir` field in `src/i18n/site-i18n.json`. Future RTL languages should set `dir: "rtl"`, complete the same content, metadata, and lifecycle coverage as other published locales, and avoid adding language-specific direction checks unless a real layout issue requires it.
