@@ -118,7 +118,7 @@ export const protocols = [
   {
     id: "swap",
     title: "Swap Protocol",
-    status: "COMMING SOON",
+    status: "COMING SOON",
     body: "Exchange LUNC and USTC through Market Module 2.0—a no-mint, oracle-aware swap layer designed to restore native utility with live pricing, protocol liquidity, and hard safety brakes.",
     icon: "protocol-swap-icon.svg",
     image: "protocol-swap-figma.webp",
@@ -134,7 +134,7 @@ export const protocols = [
   {
     id: "forex",
     title: "Forex Protocol",
-    status: "COMMING SOON",
+    status: "COMING SOON",
     body: "Create and exchange collateral-backed, fiat-pegged stable assets on-chain—so multi-currency swaps feel as fluid as FX, while remaining transparent, governed, and liquidity-driven.",
     icon: "protocol-forex-icon.svg",
     image: "protocol-forex-figma.webp",

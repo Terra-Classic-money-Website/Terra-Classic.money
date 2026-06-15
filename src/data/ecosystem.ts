@@ -281,25 +281,6 @@ export const ecosystemCategories: EcosystemCategory[] = [
         badge: "ON-CHAIN NATIVE",
       },
       {
-        name: "Garuda The Protector",
-        summary: "Game",
-        href: "https://play.google.com/store/apps/details?id=com.GarudaNodes.GarudaTheProtector3&pcampaignid=web_share",
-        avatar:
-          "avatars/avatar-y4ml5qrfwbzvv4fua1kyrv8vk9i-edd37cef82.webp",
-        avatarAlt:
-          "Garuda The Protector action game in the Terra Classic universe.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
-        name: "Genesis Raid",
-        summary: "Play-to-earn RPG game",
-        href: "https://genesisraid.com/",
-        avatar:
-          "avatars/avatar-genesisraid-34836fc648.webp",
-        avatarAlt: "Genesis Raid play-to-earn RPG game on Terra Classic.",
-        badge: "ON-CHAIN NATIVE",
-      },
-      {
         name: "Legends of Terratria",
         summary: "Game",
         href: "https://aetherverge.io/games/lot",
@@ -735,6 +716,11 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "avatars/avatar-sfx9q2ragqjp8eint0ahx4rkk-413826f64d.webp",
         avatarAlt:
           "Allnodes non-custodial node-hosting service for Terra Classic validators.",
+      },
+      {
+        name: "Colapsar",
+        summary: "Infrastructure services",
+        href: "https://colapsar.space",
       },
       {
         name: "Hexxagon",

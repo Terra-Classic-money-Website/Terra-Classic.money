@@ -33,6 +33,16 @@ const rootDir = dirname(fileURLToPath(import.meta.url));
 const i18nConfig = JSON.parse(readFileSync(resolve(rootDir, "src/i18n/site-i18n.json"), "utf8")) as SiteI18nConfig;
 const defaultLocale = i18nConfig.locales.find((locale) => locale.default) || i18nConfig.locales[0];
 const publishedLocales = i18nConfig.locales.filter((locale) => locale.published);
+const androidPlatformClassScript = `    <script>
+      (function () {
+        var userAgent = navigator.userAgent || "";
+        var platform = navigator.userAgentData && navigator.userAgentData.platform;
+
+        if (platform === "Android" || /Android/i.test(userAgent)) {
+          document.documentElement.classList.add("tc-platform-android");
+        }
+      })();
+    </script>`;
 
 function escapeHtml(value: string) {
   return value
@@ -132,7 +142,7 @@ function localizedHtmlPlugin() {
         const { route, locale } = match;
         const htmlAttributes = `lang="${locale.htmlLang}" dir="${locale.dir}"`;
         const cleaned = stripManagedHeadTags(html).replace(/<html[^>]*>/i, `<html ${htmlAttributes}>`);
-        return cleaned.replace("</head>", `${managedHeadTags(route, locale)}\n  </head>`);
+        return cleaned.replace("</head>", `${androidPlatformClassScript}\n${managedHeadTags(route, locale)}\n  </head>`);
       },
     },
   };

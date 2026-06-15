@@ -355,3 +355,15 @@
   .about-hero__planet { width: 100%; height: auto; max-width: 760px; aspect-ratio: auto; align-self: center; }
   .about-hero__bottom { align-self: stretch; }
 }
+
+@media (max-width: 767px) {
+  html.tc-platform-android .about-visual-band__background {
+    mix-blend-mode: normal;
+    filter: none !important;
+  }
+
+  html.tc-platform-android .about-visual-band__background span {
+    animation: none !important;
+    will-change: auto;
+  }
+}

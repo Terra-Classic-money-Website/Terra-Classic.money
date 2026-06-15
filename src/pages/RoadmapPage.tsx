@@ -240,7 +240,7 @@ function RoadmapTimeline() {
   };
 
   return (
-    <section className="roadmap-board" aria-labelledby="roadmap-board-title">
+    <section className="roadmap-board" style={{ "--roadmap-month-count": roadmapMonths.length } as CSSProperties} aria-labelledby="roadmap-board-title">
       <h2 className="visually-hidden" id="roadmap-board-title">Decentralized roadmap</h2>
       <RoadmapAxis scrollLeft={timelineMetrics.scrollLeft} todayMarker={todayMarker} />
       <div className="roadmap-scroll" role="region" aria-label="Horizontally scrollable Terra Classic roadmap" tabIndex={0} onScroll={handleTimelineScroll}>
@@ -274,6 +274,24 @@ function RoadmapTimeline() {
   );
 }
 
+function RoadmapDisclaimer() {
+  return (
+    <section className="roadmap-disclaimer" aria-labelledby="roadmap-disclaimer-title">
+      <div>
+        <h2 className="tc-type-h5" id="roadmap-disclaimer-title">Roadmap note</h2>
+        <div className="roadmap-disclaimer__copy">
+          <p className="tc-type-body-small">
+            Roadmaps shown on this page are simplified public summaries intended to make Terra Classic ecosystem work easier to follow. Some projects plan around work schedules, review cycles, funding, dependencies, or technical readiness rather than fixed delivery dates, so dates and milestone placement may change.
+          </p>
+          <p className="tc-type-body-small">
+            These entries should not be treated as official, exhaustive, exclusive, or binding roadmaps for any project. Each project's own website, repository, governance posts, and announcement channels remain the source of truth for its plans, progress, and delivery updates.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function RoadmapPage() {
   return (
     <>
@@ -284,10 +302,11 @@ export function RoadmapPage() {
             <p className="tc-type-h4">A source-aware timeline for core protocol work and project-submitted L2 / community milestones, so users can see what is being built, what is live, and what still needs verification.</p>
           </div>
           <div className="roadmap-page__trust">
-            <span className="native-phase__badge">UPDATED JUNE 5, 2026</span>
+            <span className="native-phase__badge">UPDATED JUNE 8, 2026</span>
           </div>
         </div>
         <RoadmapTimeline />
+        <RoadmapDisclaimer />
       </section>
       <Footer />
     </>
