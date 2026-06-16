@@ -118,6 +118,22 @@ npm run check
 
 If you cannot run local checks, say that in the pull request.
 
+## GitHub Pull Request Checks
+
+Pull requests to `main` run GitHub validation before they can be merged.
+
+The required checks are the source of truth for merge readiness. Contributor checkboxes in the pull request template are useful context, but they do not replace passing GitHub checks.
+
+Required pull request checks cover:
+
+- quick TypeScript and route-generation validation;
+- production build and deterministic performance budgets;
+- rendered i18n safety for localized pages.
+
+If checks fail, that does not mean the contribution is rejected or malicious. It means the branch still needs fixes before it can be safely merged. Maintainers may ask the contributor to update the PR, or may port the useful change into a maintainer integration branch when that is safer for the website.
+
+High-risk PRs, including translations, RTL support, shared layout, shared navigation, build scripts, deployment, analytics, or validation changes, may be tested on a maintainer branch before publication.
+
 ## Neutrality Rules
 
 The main site is an informational public-good website. Listings are not endorsements.

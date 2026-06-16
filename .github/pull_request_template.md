@@ -13,6 +13,12 @@
 - [ ] Documentation
 - [ ] Code / layout
 
+## Risk class
+
+- [ ] Low - narrow typo, link, source, or documentation change
+- [ ] Medium - page-specific content, listing, market, roadmap, or open work change
+- [ ] High - i18n, shared layout, shared CSS, routing, build, workflow, deployment, analytics, security, or broad data contract change
+
 ## Sources
 
 Add links for factual, listing, market, or roadmap changes:
@@ -20,6 +26,8 @@ Add links for factual, listing, market, or roadmap changes:
 - 
 
 ## Validation
+
+Contributor-reported checks:
 
 - [ ] I ran `npm run check`
 - [ ] I ran `npm run i18n:validate` for translation or route metadata changes
@@ -30,6 +38,8 @@ Add links for factual, listing, market, or roadmap changes:
 Notes:
 
 - 
+
+GitHub required checks are the source of truth for merge readiness. These boxes help reviewers understand what the contributor already tried.
 
 ## Neutrality check
 
@@ -47,3 +57,11 @@ Notes:
 - [ ] This translation does not weaken unofficial-status, no-financial-advice, risk, governance, validator-neutrality, or paid-listing language.
 - [ ] This does not publish a partial non-English language surface.
 - [ ] The target route, target locale, source text, and reviewer notes are included.
+
+## Maintainer review
+
+- [ ] GitHub required checks passed.
+- [ ] Scope and risk class reviewed.
+- [ ] Source / neutrality review completed where needed.
+- [ ] Rendered UI QA completed where needed.
+- [ ] Safe to publish to `main`.
