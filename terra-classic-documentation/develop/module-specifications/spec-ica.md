@@ -1,1 +1,0 @@
-> Terra Classic runs the ICS-27 interchain accounts controller and host stacks. Please refer to the [upstream documentation](https://ibc.cosmos.network/v7/apps/interchain-accounts/overview/) for a complete overview.

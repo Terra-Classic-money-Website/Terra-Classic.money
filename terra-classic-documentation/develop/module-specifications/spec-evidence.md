@@ -1,1 +1,0 @@
-> Terra Classic uses the Cosmos SDK [`x/evidence`](https://docs.cosmos.network/main/modules/evidence/) module without modifications. Refer to the upstream specification for message formats, handlers, and state.
