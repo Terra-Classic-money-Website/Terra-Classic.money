@@ -36,7 +36,6 @@ See `TRANSLATION-GUIDE.md` before proposing a translation.
 Important rules:
 
 - Do not publish partial language surfaces.
-- Do not add Polish translations unless the target-language plan changes.
 - Do not edit generated localized HTML route templates directly.
 - Add the target route, target locale, source text, proposed translation, and reviewer notes.
 - Treat legal/risk/governance changes as meaning-sensitive, not style-only.
@@ -118,6 +117,22 @@ npm run check
 ```
 
 If you cannot run local checks, say that in the pull request.
+
+## GitHub Pull Request Checks
+
+Pull requests to `main` run GitHub validation before they can be merged.
+
+The required checks are the source of truth for merge readiness. Contributor checkboxes in the pull request template are useful context, but they do not replace passing GitHub checks.
+
+Required pull request checks cover:
+
+- quick TypeScript and route-generation validation;
+- production build and deterministic performance budgets;
+- rendered i18n safety for localized pages.
+
+If checks fail, that does not mean the contribution is rejected or malicious. It means the branch still needs fixes before it can be safely merged. Maintainers may ask the contributor to update the PR, or may port the useful change into a maintainer integration branch when that is safer for the website.
+
+High-risk PRs, including translations, RTL support, shared layout, shared navigation, build scripts, deployment, analytics, or validation changes, may be tested on a maintainer branch before publication.
 
 ## Neutrality Rules
 
