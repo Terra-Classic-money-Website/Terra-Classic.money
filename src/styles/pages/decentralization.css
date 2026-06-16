@@ -106,6 +106,46 @@
 
 .decentralization-stats-hero__bottom .decentralization-hero-actions { position: relative; left: auto; top: auto; margin-top: 0; }
 
+html[dir="rtl"] .decentralization-stats-hero .stats-decagon-pattern,
+html[dir="rtl"] .decentralization-stats-hero .stats-small-planets--cells,
+html[dir="rtl"] .decentralization-stats-hero .stats-big-planet--cells {
+  direction: ltr;
+}
+
+html[dir="rtl"] .decentralization-stats-hero__copy { align-items: flex-start; text-align: right; }
+
+html[dir="rtl"] .decentralization-stats-hero__copy h1 { max-width: calc(100% - 240px); }
+
+html[dir="rtl"] .decentralization-stats-hero__copy p { max-width: 760px; margin-left: 0; margin-right: 0; }
+
+html[dir="rtl"] .decentralization-stats-hero .article-meta { left: 0; right: auto; }
+
+html[dir="rtl"] .stats-row.decentralization-stats-row { gap: 12px; }
+
+html[dir="rtl"] .decentralization-stats-row .stats-metric {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .decentralization-stats-row .stats-metric dt span {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+html[dir="rtl"] .decentralization-stats-row .stats-metric dd { text-wrap: balance; }
+
+html[dir="rtl"] .decentralization-hero-actions {
+  direction: rtl;
+  align-self: flex-start;
+}
+
+@media (min-width: 1500px) {
+  html[dir="rtl"] .decentralization-stats-row .stats-metric dt span {
+    font-size: 60px;
+    line-height: 60px;
+  }
+}
+
 .article-body { max-width: 1040px; margin: 0 auto; padding: 80px 0 96px; }
 
 .article-lede { padding: 0 0 56px 160px; border-bottom: 1px solid var(--color-grey-100); display: flex; flex-direction: column; gap: 24px; }
@@ -190,6 +230,8 @@
   .decentralization-stats-hero .stats-glow--v2 span:nth-child(3) { top: 560px; bottom: auto; height: clamp(340px, 92vw, 560px); }
   .decentralization-stats-hero .stats-glow--v2 span:nth-child(4) { top: 500px; bottom: auto; height: clamp(220px, 62vw, 320px); }
   .decentralization-stats-hero__copy h1 { max-width: 100%; margin-top: 24px; }
+  html[dir="rtl"] .decentralization-stats-hero__copy h1,
+    html[dir="rtl"] .decentralization-stats-hero__copy p { max-width: 100%; }
   .article-meta { position: static; width: max-content; max-width: 100%; gap: 6px; }
   .article-meta__badge { min-height: 28px; height: 28px; padding: 0 12px; }
   .stats-row.decentralization-stats-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }

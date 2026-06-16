@@ -66,7 +66,8 @@ export const contributorGroups = [
     title: "Translations",
     description: "",
     rows: [
-      ["Public translation records", "Open for verified public entries", "Pending", ""],
+      ["Dawid Skinder", "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations", "", "about-photos/dawid-skinder.png"],
+      ["amm-s-cloud", "Arabic locale, Arabic translations, and reusable RTL support", "", ""],
     ],
   },
   {
