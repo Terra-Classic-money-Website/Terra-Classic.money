@@ -1,1 +1,0 @@
-Galaxy Station by Hexxagon offers a WalletConnect-capable browser extension for Terra Classic. Use this section to install the wallet, manage accounts, and perform common actions across mainnet (`columbus-5`) and the `rebel-2` testnet.

@@ -1,1 +1,0 @@
-> Terra Classic leverages the ibc-hooks middleware to trigger CosmWasm contract callbacks on IBC packets. Please refer to the [upstream documentation](https://ibc.cosmos.network/v7/ibc/overview/) for a complete overview.
