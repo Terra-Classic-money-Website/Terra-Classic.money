@@ -101,6 +101,17 @@
 
 .hero-group a:hover .dot-arrow-icon, .hero-group a:focus-visible .dot-arrow-icon { color: var(--color-blue); }
 
+html[dir="rtl"] .hero-glow {
+  inset: -128px -24px -170px -250px;
+  transform: scaleX(-1) translateZ(0);
+}
+
+html[dir="rtl"] .hero-orb {
+  left: -484px;
+  right: auto;
+  transform: scaleX(-1);
+}
+
 @keyframes hero-glow-v2-body {
   0% { border-radius: 50% 50% 58% 42% / 50% 44% 56% 50%; filter: blur(52px); transform: translate3d(58px, -20px, 0) scale(.9); opacity: .58; }
   42% { border-radius: 66% 34% 42% 58% / 36% 62% 38% 64%; filter: blur(34px); transform: translate3d(-178px, 44px, 0) scale(1.22); opacity: 1; }
@@ -777,6 +788,7 @@
 
 @media (max-width: 1499px) {
   .hero-orb { right: -620px; }
+  html[dir="rtl"] .hero-orb { left: -620px; right: auto; }
   .hero-group { height: auto; min-height: 147px; }
   .hero-group:nth-child(1) { min-height: 192px; height: auto; }
   .hero-group:nth-child(2) { min-height: 146px; height: auto; }
@@ -880,6 +892,8 @@
   .hero-copy { max-width: 100%; height: auto; }
   .hero-glow { inset: -88px -520px -140px -40px; }
   .hero-orb { left: auto; right: -520px; opacity: .55; }
+  html[dir="rtl"] .hero-glow { inset: -88px -40px -140px -520px; }
+  html[dir="rtl"] .hero-orb { left: -520px; right: auto; }
   .what-editorial { height: auto; grid-template-columns: minmax(0, 1fr) clamp(220px, 30vw, 381px); gap: clamp(32px, 5vw, 64px); }
   .what-copy h2 { white-space: normal; }
   .what-popular { max-width: 381px; }
@@ -973,6 +987,8 @@
   .hero-lines span:nth-child(3),
     .hero-lines span:nth-child(4) { display: none; }
   .hero-orb { left: 50%; right: auto; top: auto; bottom: -184px; width: clamp(296px, 82%, 480px); height: auto; transform: translateX(-50%); opacity: 1; }
+  html[dir="rtl"] .hero-glow { inset: 0; transform: translateZ(0); }
+  html[dir="rtl"] .hero-orb { left: 50%; right: auto; transform: translateX(-50%); }
   .hero-copy { width: 100%; max-width: none; height: auto; gap: 16px; }
   .hero-group:nth-child(n) { height: auto; min-height: 0; }
   .hero-group:nth-child(1) { height: 170px; }

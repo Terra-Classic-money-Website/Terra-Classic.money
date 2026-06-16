@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState, type ReactNode } from "react";
-import { defaultLocale, type LocaleId } from "./config";
+import { defaultLocale, getPublishedLocale, type LocaleId } from "./config";
 import { getCurrentLocaleId } from "./routing";
 
 type TextMap = Record<string, string>;
@@ -8,6 +8,11 @@ const TRANSLATABLE_ATTRIBUTES = ["aria-label", "alt", "title", "placeholder"] as
 const SKIP_TEXT_TAGS = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "CODE", "PRE"]);
 
 async function getRenderedTextTranslations(localeId: LocaleId): Promise<TextMap | null> {
+  if (localeId === "ar") {
+    const module = await import("./content/ar/renderedText.json");
+    return module.default;
+  }
+
   if (localeId === "tr") {
     const module = await import("./content/tr/renderedText.json");
     return module.default;
@@ -172,8 +177,14 @@ function LocaleLoadError() {
 
 export function LocalizedDomTextProvider({ children }: { children: ReactNode }) {
   const localeId = getCurrentLocaleId();
+  const locale = getPublishedLocale(localeId) || defaultLocale;
   const [translations, setTranslations] = useState<TextMap | null>(() => localeId === defaultLocale.id ? {} : null);
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.lang = locale.htmlLang;
+    document.documentElement.dir = locale.dir;
+  }, [locale.dir, locale.htmlLang]);
 
   useEffect(() => {
     if (localeId === defaultLocale.id) return;
