@@ -388,6 +388,7 @@ const componentNames = [
   "Asset download card",
   "Open work card",
   "Roadmap timeline",
+  "RTL chrome specimen",
 ];
 
 const collapsedSidebarDisclaimer =
@@ -999,6 +1000,37 @@ function LeftSectionPreview() {
   );
 }
 
+function RtlChromePreview() {
+  return (
+    <div className="ds-rtl-chrome-preview" dir="rtl" lang="ar" aria-label="RTL chrome specimen">
+      <aside className="ds-rtl-chrome-preview__sidebar">
+        <div className="ds-rtl-chrome-preview__brand">
+          <img src={asset("sidebar-logo.svg")} alt="Terra Classic" />
+          <CollapseControl hoverable />
+        </div>
+        <nav className="ds-rtl-chrome-preview__nav" aria-label="RTL navigation specimen">
+          <a href="#components" onClick={stopNavigation}>المنظومة</a>
+          <a href="#components" onClick={stopNavigation}>الأسواق</a>
+          <a href="#components" onClick={stopNavigation}>خريطة الطريق</a>
+          <a href="#components" onClick={stopNavigation}>حول terra-classic.money</a>
+        </nav>
+        <div className="ds-rtl-chrome-preview__language" aria-label="RTL language selector specimen">
+          <span>اللغة - AR</span>
+          <div>
+            {["AR", "EN", "TR", "ID", "DE", "PT-BR"].map((option) => (
+              <span key={option}>{option}</span>
+            ))}
+          </div>
+        </div>
+      </aside>
+      <section className="ds-rtl-chrome-preview__page">
+        <h3>واجهة عربية باتجاه RTL</h3>
+        <p>الشريط الجانبي، عناصر اللغة، والأسهم يجب أن تنعكس من إعداد الاتجاه المشترك، لا من أنماط محلية مؤقتة.</p>
+      </section>
+    </div>
+  );
+}
+
 function BackTopPreview() {
   return (
     <a className="back-top ds-back-top" href="#typography" onClick={stopNavigation}>
@@ -1357,6 +1389,8 @@ function ComponentPreview({ name }: { name: string }) {
       return <CollapseButtonPreview />;
     case "Roadmap timeline":
       return <RoadmapTimelinePreview />;
+    case "RTL chrome specimen":
+      return <RtlChromePreview />;
     default:
       return null;
   }

@@ -68,6 +68,17 @@
       "published": true
     },
     {
+      "id": "ar",
+      "label": "Arabic",
+      "nativeLabel": "العربية",
+      "shortLabel": "AR",
+      "htmlLang": "ar",
+      "dir": "rtl",
+      "pathPrefix": "ar",
+      "default": false,
+      "published": true
+    },
+    {
       "id": "pt-BR",
       "label": "Portuguese (Brazil)",
       "nativeLabel": "Português do Brasil",
@@ -115,6 +126,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -155,6 +167,10 @@
         "pl": {
           "title": "Terra Classic - niezależny, utrzymywany przez społeczność serwis informacyjny o Terra Classic, LUNC i USTC",
           "description": "Niezależny, utrzymywany przez społeczność serwis informacyjny o Terra Classic: poznaj zasoby ekosystemu LUNC i USTC, rynki, roadmapę, decentralizację, otwarte prace i linki dla twórców."
+        },
+        "ar": {
+          "title": "Terra Classic - موقع معلومات مستقل يديره المجتمع عن Terra Classic وLUNC وUSTC",
+          "description": "موقع معلومات مستقل يديره المجتمع عن Terra Classic: استكشف موارد منظومة LUNC وUSTC، والأسواق، وخريطة الطريق، واللامركزية، والأعمال المفتوحة، وروابط البناة."
         }
       }
     },
@@ -170,6 +186,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -210,6 +227,10 @@
         "pl": {
           "title": "Katalog ekosystemu Terra Classic",
           "description": "Przeglądaj neutralne linki ekosystemu Terra Classic: aplikacje, portfele, mosty, walidatorów, zasoby developerskie, dostawców infrastruktury i narzędzia społecznościowe."
+        },
+        "ar": {
+          "title": "دليل منظومة Terra Classic",
+          "description": "استكشف روابط محايدة داخل منظومة Terra Classic، تشمل التطبيقات، والمحافظ، والجسور، والمدققين، وموارد المطورين، ومزودي البنية التحتية، وأدوات المجتمع."
         }
       }
     },
@@ -225,6 +246,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -265,6 +287,10 @@
         "pl": {
           "title": "Rynki Terra Classic LUNC",
           "description": "Przeglądaj neutralne linki rynkowe Terra Classic LUNC na giełdach scentralizowanych i zdecentralizowanych trasach swap."
+        },
+        "ar": {
+          "title": "أسواق Terra Classic LUNC",
+          "description": "استكشف روابط محايدة لأسواق Terra Classic LUNC عبر منصات التداول المركزية ومسارات المبادلة اللامركزية."
         }
       }
     },
@@ -280,6 +306,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -320,6 +347,10 @@
         "pl": {
           "title": "Roadmapa Terra Classic",
           "description": "Poznaj zdecentralizowaną roadmapę Terra Classic: publiczne milestone’y L1 oraz jasno oznaczone wpisy L2 i społecznościowe zgłaszane przez projekty."
+        },
+        "ar": {
+          "title": "خريطة طريق Terra Classic",
+          "description": "استكشف خريطة طريق Terra Classic اللامركزية: مراحل L1 العامة، وعناصر خريطة الطريق الخاصة بـL2 والمجتمع والمقدَّمة من المشاريع مع تمييزها بوضوح."
         }
       }
     },
@@ -335,6 +366,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -375,6 +407,10 @@
         "pl": {
           "title": "Decentralizacja Terra Classic",
           "description": "Szczegółowy, świadomy źródeł przewodnik po decentralizacji Terra Classic, walidatorach, delegatorach, governance i infrastrukturze utrzymywanej przez społeczność."
+        },
+        "ar": {
+          "title": "لامركزية Terra Classic",
+          "description": "دليل مفصل قائم على المصادر عن لامركزية Terra Classic، والمدققين، والمفوّضين، والحوكمة، والبنية التحتية التي يملكها المجتمع."
         }
       }
     },
@@ -390,6 +426,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -430,6 +467,10 @@
         "pl": {
           "title": "Otwarte prace dla twórców Terra Classic",
           "description": "Przeglądaj otwarte pakiety prac Terra Classic, dla których niezależni twórcy, software house’y i kontrybutorzy mogą przygotować propozycje lub wyceny."
+        },
+        "ar": {
+          "title": "أعمال مفتوحة لبناة Terra Classic",
+          "description": "استكشف حزم أعمال Terra Classic المفتوحة التي يمكن للبناة المستقلين، وشركات البرمجيات، والمساهمين إعداد مقترحات أو عروض أسعار لها."
         }
       }
     },
@@ -445,6 +486,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -485,6 +527,10 @@
         "pl": {
           "title": "Szczegóły otwartej pracy dla twórców Terra Classic",
           "description": "Przejrzyj pakiet otwartej pracy Terra Classic przed przygotowaniem publicznej propozycji lub wyceny do dyskusji społeczności i governance."
+        },
+        "ar": {
+          "title": "تفاصيل الأعمال المفتوحة لبناة Terra Classic",
+          "description": "راجع حزمة عمل مفتوحة من Terra Classic قبل إعداد مقترح عام أو عرض سعر للنقاش المجتمعي والحوكمة."
         }
       }
     },
@@ -500,6 +546,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -540,6 +587,10 @@
         "pl": {
           "title": "O terra-classic.money",
           "description": "Dowiedz się, jak terra-classic.money działa jako niezależny, open-source’owy i utrzymywany przez społeczność serwis informacyjny o Terra Classic."
+        },
+        "ar": {
+          "title": "حول terra-classic.money",
+          "description": "تعرّف على كيفية عمل terra-classic.money كموقع معلومات مستقل ومفتوح المصدر يديره المجتمع من أجل Terra Classic."
         }
       }
     },
@@ -555,6 +606,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -595,6 +647,10 @@
         "pl": {
           "title": "Analityka strony | terra-classic.money",
           "description": "Publiczna, zagregowana analityka strony terra-classic.money, generowana z Google Analytics 4 przez GitHub Actions."
+        },
+        "ar": {
+          "title": "تحليلات الموقع | terra-classic.money",
+          "description": "تحليلات عامة ومجمّعة لموقع terra-classic.money، يتم توليدها من Google Analytics 4 عبر GitHub Actions."
         }
       }
     },
@@ -610,6 +666,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -650,6 +707,10 @@
         "pl": {
           "title": "Polityka prywatności - terra-classic.money",
           "description": "Polityka prywatności terra-classic.money, niezależnego i utrzymywanego przez społeczność serwisu informacyjnego o Terra Classic."
+        },
+        "ar": {
+          "title": "سياسة الخصوصية - terra-classic.money",
+          "description": "سياسة الخصوصية لموقع terra-classic.money، وهو موقع معلومات مستقل يديره المجتمع عن Terra Classic."
         }
       }
     },
@@ -665,6 +726,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -705,6 +767,10 @@
         "pl": {
           "title": "Zasoby marki Terra Classic - terra-classic.money",
           "description": "Pobierz zasoby marki Terra Classic, w tym pełne logotypy, samodzielne znaki i kluczowe wizualizacje do komunikacji ekosystemu oraz materiałów społecznościowych."
+        },
+        "ar": {
+          "title": "أصول علامة Terra Classic التجارية - terra-classic.money",
+          "description": "نزّل أصول علامة Terra Classic التجارية، بما في ذلك الشعارات الكاملة، والرموز المستقلة، والمرئيات الرئيسية للتواصل داخل المنظومة ومواد المجتمع."
         }
       }
     },
@@ -721,6 +787,7 @@
         "de",
         "hi",
         "th",
+        "ar",
         "pt-BR",
         "zh-CN",
         "pl"
@@ -761,6 +828,10 @@
         "pl": {
           "title": "Nie znaleziono strony | Terra Classic",
           "description": "Żądana strona terra-classic.money nie została znaleziona. Wróć do serwisu Terra Classic albo przejrzyj katalog ekosystemu."
+        },
+        "ar": {
+          "title": "الصفحة غير موجودة | Terra Classic",
+          "description": "لم يتم العثور على صفحة terra-classic.money المطلوبة. عُد إلى موقع Terra Classic أو استكشف دليل المنظومة."
         }
       }
     }

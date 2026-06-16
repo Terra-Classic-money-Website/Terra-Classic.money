@@ -113,6 +113,18 @@ Open a Turkish localized subpage locally at:
 http://127.0.0.1:5173/tr/ecosystem.html
 ```
 
+Open the Arabic localized homepage locally at:
+
+```text
+http://127.0.0.1:5173/ar/
+```
+
+Open an Arabic localized subpage locally at:
+
+```text
+http://127.0.0.1:5173/ar/ecosystem.html
+```
+
 ## Build and checks
 
 Use the narrowest check that credibly covers the change, then run the full gate before deployment or broad shared changes.

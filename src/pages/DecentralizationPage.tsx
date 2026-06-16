@@ -9,6 +9,7 @@ const decagonPatternCells = Array.from({ length: 16 }, (_, index) => index);
 
 const readTimeLabels: Record<LocaleId, (minutes: number) => string> = {
   en: (minutes) => `${minutes} MIN READ`,
+  ar: (minutes) => `${minutes} دقائق للقراءة`,
   tr: (minutes) => `${minutes} DK OKUMA`,
   id: (minutes) => `${minutes} MENIT BACA`,
   de: (minutes) => `${minutes} MIN. LESEZEIT`,

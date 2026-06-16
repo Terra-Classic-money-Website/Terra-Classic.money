@@ -390,3 +390,80 @@ main { margin-left: var(--sidebar-width-expanded); padding: var(--tc-spacing-pag
     .sidebar .language,
     .sidebar-panel--collapsed { display: none; }
 }
+
+html[dir="rtl"] main { margin-left: 0; margin-right: var(--sidebar-width-expanded); }
+
+html[dir="rtl"] .sidebar--collapsed + main,
+html[dir="rtl"] .sidebar.sidebar--collapsed ~ main { margin-left: 0; margin-right: var(--sidebar-width-collapsed); }
+
+html[dir="rtl"] .sidebar { inset: 0 0 0 auto; }
+
+html[dir="rtl"] .sidebar-panel { inset: 32px 32px 32px 16px; }
+
+html[dir="rtl"] .collapsed-language-options { left: auto; right: 40px; }
+
+html[dir="rtl"] .collapsed-language-panel { transform-origin: right bottom; }
+
+html[dir="rtl"] .sidebar-external-icon img { transform: scaleX(-1); }
+
+html[dir="rtl"] .language-suggestion {
+  left: auto;
+  right: calc(var(--sidebar-width-expanded) + 24px);
+  width: min(360px, calc(100vw - var(--sidebar-width-expanded) - 48px));
+}
+
+html[dir="rtl"] .sidebar--collapsed ~ .language-suggestion {
+  left: auto;
+  right: calc(var(--sidebar-width-collapsed) + 24px);
+  width: min(360px, calc(100vw - var(--sidebar-width-collapsed) - 48px));
+}
+
+@media (max-width: 1299px) {
+  html[dir="rtl"] main,
+  html[dir="rtl"] .sidebar--collapsed + main,
+  html[dir="rtl"] .sidebar.sidebar--collapsed ~ main { margin-left: 0; margin-right: 0; }
+
+  html[dir="rtl"] .sidebar {
+    left: auto;
+    right: -360px;
+    transform: none;
+  }
+
+  html[dir="rtl"] .sidebar.sidebar--drawer-open {
+    right: 0;
+    transform: none !important;
+  }
+
+  html[dir="rtl"] .language-suggestion,
+  html[dir="rtl"] .sidebar--collapsed ~ .language-suggestion {
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1299px) {
+  html[dir="rtl"] .mobile-language-options {
+    left: 0;
+    right: auto;
+    transform-origin: left top;
+  }
+}
+
+@media (max-width: 767px) {
+  html[dir="rtl"] .mobile-language { margin-left: 0; margin-right: auto; }
+
+  html[dir="rtl"] .mobile-language-options {
+    left: 0;
+    right: auto;
+    transform-origin: left top;
+  }
+
+  html[dir="rtl"] .sidebar {
+    left: 0;
+    right: 0;
+    transform: scale(.985);
+  }
+
+  html[dir="rtl"] .sidebar.sidebar--drawer-open { transform: scale(1) !important; }
+}
