@@ -371,6 +371,7 @@
   "Instead, the chain continued through its remaining decentralized components: validators, delegators, governance, community developers, infrastructure operators, wallet maintainers, explorers, researchers, educators, builders, and holders who refused to abandon the network.": "بدلاً من ذلك، استمرت السلسلة عبر مكوناتها اللامركزية المتبقية: المدققين والمفوّضين والحوكمة ومطوري المجتمع ومشغلي البنية التحتية ومشرفي المحافظ والمستكشفات والباحثين والمعلمين والبنائين والحائزين الذين رفضوا التخلي عن الشبكة.",
   "Institutions and public-sector partners": "المؤسسات وشركاء القطاع العام",
   "Institutions:": "المؤسسات:",
+  "Interchain peers": "نظراء بين السلاسل",
   "Interchain security R&D": "البحث والتطوير للأمان بين السلاسل",
   "INTERCHAIN SECURITY R&D": "البحث والتطوير للأمان بين السلاسل",
   "Interconnectivity": "الترابط بين السلاسل",
@@ -523,6 +524,7 @@
   "operating system": "نظام التشغيل",
   "Operational decentralization": "اللامركزية التشغيلية",
   "Operational decentralization asks a broader question:": "تطرح اللامركزية التشغيلية سؤالاً أوسع:",
+  "Oracle-vote participation": "المشاركة في تصويتات الأوراكل",
   "Oracle, vault, and risk-system specialists": "متخصصو الأوراكل والخزنات وأنظمة المخاطر",
   "pages visited": "الصفحات التي تمت زيارتها",
   "Paid listing packages": "حزم الإدراج المدفوع",
@@ -1032,5 +1034,7 @@
   "Bridge, DEX, Repeg & GameFI": "Bridge وDEX وRepeg وGameFI",
   "DEX liquidity programs and locked LP incentives": "برامج سيولة DEX وحوافز LP المقفلة",
   "In progress - Jun-Aug 2026": "قيد التنفيذ - يونيو-أغسطس 2026",
-  "UST1 vFDUSD window, liquidity growth and money-market readiness": "نافذة UST1 vFDUSD، ونمو السيولة، والجاهزية لسوق المال"
+  "UST1 vFDUSD window, liquidity growth and money-market readiness": "نافذة UST1 vFDUSD، ونمو السيولة، والجاهزية لسوق المال",
+  "Arabic locale, Arabic translations, and reusable RTL support": "اللغة العربية، الترجمات العربية، ودعم RTL القابل لإعادة الاستخدام",
+  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "الترجمات التركية والإندونيسية والألمانية والهندية والتايلاندية والبرتغالية البرازيلية والصينية المبسطة والبولندية"
 }

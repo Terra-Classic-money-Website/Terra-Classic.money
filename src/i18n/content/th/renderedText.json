@@ -1045,5 +1045,7 @@
   "Bridge, DEX, Repeg & GameFI": "บริดจ์, DEX, Repeg และ GameFI",
   "DEX liquidity programs and locked LP incentives": "โปรแกรมสภาพคล่อง DEX และแรงจูงใจ LP แบบล็อก",
   "In progress - Jun-Aug 2026": "กำลังดำเนินการ - มิ.ย.-ส.ค. 2026",
-  "UST1 vFDUSD window, liquidity growth and money-market readiness": "หน้าต่าง UST1 vFDUSD การเติบโตของสภาพคล่อง และความพร้อมของตลาดเงิน"
+  "UST1 vFDUSD window, liquidity growth and money-market readiness": "หน้าต่าง UST1 vFDUSD การเติบโตของสภาพคล่อง และความพร้อมของตลาดเงิน",
+  "Arabic locale, Arabic translations, and reusable RTL support": "โลแคลภาษาอาหรับ การแปลภาษาอาหรับ และการรองรับ RTL ที่ใช้ซ้ำได้",
+  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "การแปลภาษาตุรกี อินโดนีเซีย เยอรมัน ฮินดี ไทย โปรตุเกสบราซิล จีนตัวย่อ และโปแลนด์"
 }
