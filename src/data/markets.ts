@@ -1,8 +1,16 @@
 import type { EcosystemCategory } from "./ecosystemTypes";
 
+export type MarketAssetId = "lunc" | "ustc";
+
+export type MarketAssetGroup = {
+  id: MarketAssetId;
+  title: string;
+  categories: EcosystemCategory[];
+};
+
 // Contributor note: market listings are informational only.
 // Add CEX/DEX entries with the direct market route when possible.
-export const marketCategories: EcosystemCategory[] = [
+const luncMarketCategories: EcosystemCategory[] = [
   {
     id: "cex",
     title: "CEX",
@@ -172,3 +180,75 @@ export const marketCategories: EcosystemCategory[] = [
     ],
   },
 ];
+
+const ustcMarketCategories: EcosystemCategory[] = [
+  {
+    id: "cex",
+    title: "CEX",
+    description: "Centralized exchange spot markets for USTC",
+    entries: [
+      {"name":"Binance","summary":"USTC/USDT","href":"https://www.binance.com/en/trade/USTC_USDT","avatar":"avatars/avatar-270-7c1ed6c627.webp","avatarAlt":"Binance exchange logo."},
+      {"name":"Binance","summary":"USTC/TRY","href":"https://www.binance.com/en/trade/USTC_TRY","avatar":"avatars/avatar-270-7c1ed6c627.webp","avatarAlt":"Binance exchange logo."},
+      {"name":"Bybit","summary":"USTC/USDT","href":"https://www.bybit.com/en-US/trade/spot/USTC/USDT","avatar":"avatars/avatar-521-e4f42f87e0.webp","avatarAlt":"Bybit exchange logo."},
+      {"name":"Bitget","summary":"USTC/USDT","href":"https://www.bitget.com/spot/USTCUSDT","avatar":"avatars/avatar-513-e98db653d2.webp","avatarAlt":"Bitget exchange logo."},
+      {"name":"Gate","summary":"USTC/USDT","href":"https://www.gate.com/trade/USTC_USDT","avatar":"avatars/avatar-302-2836a5fb9e.webp","avatarAlt":"Gate exchange logo."},
+      {"name":"KuCoin","summary":"USTC/USDT","href":"https://www.kucoin.com/trade/USTC-USDT","avatar":"avatars/avatar-311-c957b8aad0.webp","avatarAlt":"KuCoin exchange logo."},
+      {"name":"MEXC","summary":"USTC/USDT","href":"https://www.mexc.com/exchange/USTC_USDT","avatar":"avatars/avatar-544-379b4b579b.webp","avatarAlt":"MEXC exchange logo."},
+      {"name":"HTX","summary":"USTC/USDT","href":"https://www.huobi.com/en-us/exchange/ustc_usdt","avatar":"avatars/avatar-102-d4ba133502.webp","avatarAlt":"HTX exchange logo."},
+      {"name":"BingX","summary":"USTC/USDT","href":"https://bingx.com/en-us/spot/USTCUSDT","avatar":"avatars/avatar-1064-6a55411c96.webp","avatarAlt":"BingX exchange logo."},
+      {"name":"Binance TR","summary":"USTC/TRY","href":"https://www.binance.tr/en/trade/USTC_TRY","avatar":"avatars/avatar-1375-40963e5253.webp","avatarAlt":"Binance TR exchange logo."},
+      {"name":"XT.COM","summary":"USTC/USDT","href":"https://www.xt.com/en/trade/ustc_usdt","avatar":"avatars/avatar-525-32e6110074.webp","avatarAlt":"XT.COM exchange logo."},
+      {"name":"Tokocrypto","summary":"USTC/USDT","href":"https://tokocrypto.com/en/trade/USTC_USDT","avatar":"avatars/avatar-710-9e615c28f6.webp","avatarAlt":"Tokocrypto exchange logo."},
+      {"name":"OrangeX","summary":"USTC/USDT","href":"https://www.orangex.com/spot/USTC-USDT-SPOT","avatar":"avatars/avatar-8125-c5c44f6797.webp","avatarAlt":"OrangeX exchange logo."},
+      {"name":"Binance TH","summary":"USTC/USDT","href":"https://www.binance.th/en/markets","avatar":"avatars/avatar-9662-9d314ce7cc.webp","avatarAlt":"Binance TH exchange logo."},
+      {"name":"Pionex","summary":"USTC/USDT","href":"https://www.pionex.com/en/trade/USTC_USDT/Bot","avatar":"avatars/avatar-790-d2b53dabee.webp","avatarAlt":"Pionex exchange logo."},
+      {"name":"Bitrue","summary":"USTC/USDT","href":"https://www.bitrue.com/trade/ustc_usdt","avatar":"avatars/avatar-433-c0037c8d3b.webp","avatarAlt":"Bitrue exchange logo."},
+      {"name":"CoinEx","summary":"USTC/USDT","href":"https://www.coinex.com/exchange/ustc-usdt","avatar":"avatars/avatar-350-40e186f671.webp","avatarAlt":"CoinEx exchange logo."},
+      {"name":"WEEX","summary":"USTC/USDT","href":"https://www.weex.com/spot/USTC-USDT","avatar":"avatars/avatar-5751-17a5333293.webp","avatarAlt":"WEEX exchange logo."},
+      {"name":"KuCoin","summary":"USTC/USDC","href":"https://www.kucoin.com/trade/USTC-USDC","avatar":"avatars/avatar-311-c957b8aad0.webp","avatarAlt":"KuCoin exchange logo."},
+      {"name":"KoinBX","summary":"USTC/INR","href":"https://koinbx.com/trade/USTC-INR","avatar":"avatars/avatar-1145-877c9092af.webp","avatarAlt":"KoinBX exchange logo."},
+      {"name":"BYDFi","summary":"USTC/USDT","href":"https://www.bydfi.com/en/spot/ustc_usdt","avatar":"avatars/avatar-1188-33a6c6c08a.webp","avatarAlt":"BYDFi exchange logo."},
+      {"name":"BigONE","summary":"USTC/USDT","href":"https://big.one/trade/USTC-USDT","avatar":"avatars/avatar-330-09a93165e4.webp","avatarAlt":"BigONE exchange logo."},
+      {"name":"Bitazza","summary":"USTC/USDT","href":"https://trade.bitazza.com/gl/spot/USTCUSDT","avatar":"avatars/avatar-1124-744d03ab54.webp","avatarAlt":"Bitazza exchange logo."},
+      {"name":"Cofinex","summary":"USTC/USDT","href":"https://cofinex.io/market/spot/USTC-USDT","avatar":"avatars/avatar-12779-26821462b2.webp","avatarAlt":"Cofinex exchange logo."},
+      {"name":"Hibt","summary":"USTC/USDT","href":"https://www.hibt.com/trade?symbol=USTC_USDT","avatar":"avatars/avatar-9218-4fb373d67a.webp","avatarAlt":"Hibt exchange logo."},
+      {"name":"Picol","summary":"USTC/USDT","href":"https://www.picol.com","avatar":"avatars/avatar-32784-ef57697ac6.webp","avatarAlt":"Picol exchange logo."},
+      {"name":"SuperEx","summary":"USTC/USDT","href":"https://www.superex.com/trade/USTC_USDT","avatar":"avatars/avatar-5319-5e86bdb5b4.webp","avatarAlt":"SuperEx exchange logo."},
+      {"name":"Bitcoiva","summary":"USTC/USDT","href":"https://bitcoiva.com/trade/USTC_USDT","avatar":"avatars/avatar-1131-77fd15e444.webp","avatarAlt":"Bitcoiva exchange logo."},
+    ],
+  },
+  {
+    id: "dex",
+    title: "DEX",
+    description: "Decentralized and on-chain routes where USTC can be swapped",
+    entries: [
+      {"name":"SushiSwap (Ethereum)","summary":"UST / WETH","href":"https://www.sushi.com/swap","avatar":"avatars/avatar-1141-81eed96d52.webp","avatarAlt":"SushiSwap decentralized exchange logo."},
+      {"name":"Osmosis","summary":"USTC / OSMO","href":"https://app.osmosis.zone/?tab=swap&to=OSMO&sellOpen=false&buyOpen=false&from=USTC","avatar":"avatars/avatar-x8kyiglibp7rqinws2t1nj4bira-ec4bad57a3.webp","avatarAlt":"Osmosis Cosmos DEX routing IBC liquidity to Terra Classic."},
+      {"name":"Osmosis","summary":"LUNC / USTC","href":"https://app.osmosis.zone/?tab=swap&to=USTC&sellOpen=false&buyOpen=false&from=LUNC","avatar":"avatars/avatar-x8kyiglibp7rqinws2t1nj4bira-ec4bad57a3.webp","avatarAlt":"Osmosis Cosmos DEX routing IBC liquidity to Terra Classic."},
+      {"name":"Uniswap v2","summary":"MIR / UST","href":"https://app.uniswap.org/#/swap?inputCurrency=0x09a3EcAFa817268f77BE1283176B946C4ff2E608&outputCurrency=0xa47c8bf37f92aBed4A126BDA807A7b7498661acD","avatar":"avatars/avatar-gxuxdaqojrsjeobhho3nv1ugw-93cf55fe0d.webp","avatarAlt":"Uniswap decentralized exchange logo."},
+      {"name":"PancakeSwap v2 (BSC)","summary":"UST / BUSD","href":"https://pancakeswap.finance/swap","avatar":"avatars/avatar-qxrgif4wczhpkhbkoy9ojpn4oq-f2d65d28e1.webp","avatarAlt":"PancakeSwap AMM enabling BSC swaps."},
+      {"name":"Uniswap v3 (Ethereum)","summary":"USTC / WETH","href":"https://app.uniswap.org/#/swap","avatar":"avatars/avatar-gxuxdaqojrsjeobhho3nv1ugw-93cf55fe0d.webp","avatarAlt":"Uniswap decentralized exchange logo."},
+      {"name":"LFJ (Avalanche)","summary":"WAVAX / USTC","href":"https://lfj.gg/","avatar":"avatars/avatar-1456-470ee7d8ca.webp","avatarAlt":"LFJ decentralized exchange logo."},
+      {"name":"Uniswap v3 (Ethereum)","summary":"USDC / USTC","href":"https://app.uniswap.org/#/swap","avatar":"avatars/avatar-gxuxdaqojrsjeobhho3nv1ugw-93cf55fe0d.webp","avatarAlt":"Uniswap decentralized exchange logo."},
+      {"name":"Dfyn Network","summary":"USTC / USDT","href":"https://exchange.dfyn.network/","avatar":"avatars/avatar-1304-b002a1569b.webp","avatarAlt":"Dfyn Network decentralized exchange logo."},
+      {"name":"Pangolin","summary":"USTC / USDC","href":"https://app.pangolin.exchange/#/swap","avatar":"avatars/avatar-1340-2d3024cac4.webp","avatarAlt":"Pangolin decentralized exchange logo."},
+      {"name":"Dfyn Network","summary":"USDC.e / USTC","href":"https://exchange.dfyn.network/","avatar":"avatars/avatar-1304-b002a1569b.webp","avatarAlt":"Dfyn Network decentralized exchange logo."},
+      {"name":"Biswap v2","summary":"USTC / BUSD","href":"https://exchange.biswap.org/#/swap","avatar":"avatars/avatar-1445-f8f1239829.webp","avatarAlt":"Biswap decentralized exchange logo."},
+      {"name":"Osmosis","summary":"XPRT / USTC","href":"https://app.osmosis.zone/?tab=swap&to=USTC&sellOpen=false&buyOpen=false&from=XPRT","avatar":"avatars/avatar-x8kyiglibp7rqinws2t1nj4bira-ec4bad57a3.webp","avatarAlt":"Osmosis Cosmos DEX routing IBC liquidity to Terra Classic."},
+      {"name":"PancakeSwap v2 (BSC)","summary":"USTC / WBNB","href":"https://pancakeswap.finance/swap","avatar":"avatars/avatar-qxrgif4wczhpkhbkoy9ojpn4oq-f2d65d28e1.webp","avatarAlt":"PancakeSwap AMM enabling BSC swaps."},
+      {"name":"Gravity Finance","summary":"USDC.e / USTC","href":"https://gravityfinance.io/","avatar":"avatars/avatar-1922-ad7d01a3d3.webp","avatarAlt":"Gravity Finance decentralized exchange logo."},
+      {"name":"PancakeSwap v2 (BSC)","summary":"LUNC / USTC","href":"https://pancakeswap.finance/swap","avatar":"avatars/avatar-qxrgif4wczhpkhbkoy9ojpn4oq-f2d65d28e1.webp","avatarAlt":"PancakeSwap AMM enabling BSC swaps."},
+      {"name":"Osmosis","summary":"JUNO / USTC","href":"https://app.osmosis.zone/?tab=swap&to=USTC&sellOpen=false&buyOpen=false&from=JUNO","avatar":"avatars/avatar-x8kyiglibp7rqinws2t1nj4bira-ec4bad57a3.webp","avatarAlt":"Osmosis Cosmos DEX routing IBC liquidity to Terra Classic."},
+      {"name":"Orca","summary":"USTC / USDC","href":"https://www.orca.so/","avatar":"avatars/avatar-1426-bf75b00aed.webp","avatarAlt":"Orca decentralized exchange logo."},
+      {"name":"QuickSwap","summary":"USDC.e / USTC","href":"https://quickswap.exchange/","avatar":"avatars/avatar-1293-8e948857db.webp","avatarAlt":"QuickSwap decentralized exchange logo."},
+      {"name":"PancakeSwap v2 (BSC)","summary":"CAKE / USTC","href":"https://pancakeswap.finance/swap","avatar":"avatars/avatar-qxrgif4wczhpkhbkoy9ojpn4oq-f2d65d28e1.webp","avatarAlt":"PancakeSwap AMM enabling BSC swaps."},
+    ],
+  },
+];
+
+export const marketAssetGroups: MarketAssetGroup[] = [
+  { id: "lunc", title: "LUNC", categories: luncMarketCategories },
+  { id: "ustc", title: "USTC", categories: ustcMarketCategories },
+];
+
+export const marketCategories = luncMarketCategories;

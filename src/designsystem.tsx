@@ -753,6 +753,12 @@ function DotArrowIcon({ className = "" }: { className?: string }) {
 function DirectoryNavigationButtonPreview() {
   return (
     <nav className="directory-nav ds-directory-nav" aria-label="Directory navigation button specimen">
+      <button className="directory-nav__button directory-nav__button--active tc-type-link-big" type="button" aria-pressed="true">
+        LUNC
+      </button>
+      <button className="directory-nav__button tc-type-link-big" type="button" aria-pressed="false">
+        USTC
+      </button>
       {ecosystemCategories.map((category) => (
         <button className="directory-nav__button tc-type-link-big" type="button" key={category.id}>
           {category.title} <span>({category.entries.length})</span>

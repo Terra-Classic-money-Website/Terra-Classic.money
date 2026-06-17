@@ -1048,5 +1048,10 @@
   "In progress - Jun-Aug 2026": "กำลังดำเนินการ - มิ.ย.-ส.ค. 2026",
   "UST1 vFDUSD window, liquidity growth and money-market readiness": "หน้าต่าง UST1 vFDUSD การเติบโตของสภาพคล่อง และความพร้อมของตลาดเงิน",
   "Arabic locale, Arabic translations, and reusable RTL support": "โลแคลภาษาอาหรับ การแปลภาษาอาหรับ และการรองรับ RTL ที่ใช้ซ้ำได้",
-  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "การแปลภาษาตุรกี อินโดนีเซีย เยอรมัน ฮินดี ไทย โปรตุเกสบราซิล จีนตัวย่อ และโปแลนด์"
+  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "การแปลภาษาตุรกี อินโดนีเซีย เยอรมัน ฮินดี ไทย โปรตุเกสบราซิล จีนตัวย่อ และโปแลนด์",
+  "A neutral directory of centralized and decentralized places where LUNC and USTC can be bought or swapped. Listings are informational only and do not imply endorsement, liquidity quality, custody safety, or investment advice.": "ไดเรกทอรีที่เป็นกลางของสถานที่แบบรวมศูนย์และกระจายศูนย์ที่สามารถซื้อหรือสลับ LUNC และ USTC ได้ รายการมีไว้เพื่อข้อมูลเท่านั้น และไม่ถือเป็นการรับรอง คุณภาพสภาพคล่อง ความปลอดภัยในการดูแลสินทรัพย์ หรือคำแนะนำการลงทุน",
+  "Centralized exchange spot markets for USTC": "ตลาดสปอตของศูนย์ซื้อขายแบบรวมศูนย์สำหรับ USTC",
+  "Decentralized and on-chain routes where USTC can be swapped": "เส้นทางแบบกระจายศูนย์และบนเชนที่สามารถสลับ USTC ได้",
+  "Help users find safer routes to LUNC and USTC.": "ช่วยให้ผู้ใช้พบเส้นทางที่ปลอดภัยขึ้นสำหรับ LUNC และ USTC",
+  "Market availability changes often. Share the directory, then use GitHub to suggest corrections when exchanges add, remove, or change LUNC or USTC pairs.": "ความพร้อมของตลาดเปลี่ยนแปลงบ่อย แชร์ไดเรกทอรีนี้ แล้วใช้ GitHub เพื่อเสนอการแก้ไขเมื่อศูนย์ซื้อขายเพิ่ม ลบ หรือเปลี่ยนคู่ LUNC หรือ USTC"
 }

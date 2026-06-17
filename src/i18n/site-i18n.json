@@ -309,52 +309,52 @@
       ],
       "meta": {
         "en": {
-          "title": "Terra Classic LUNC Markets",
-          "description": "Explore neutral Terra Classic LUNC market links across centralized exchanges and decentralized swap routes."
+          "title": "Terra Classic LUNC and USTC Markets",
+          "description": "Explore neutral Terra Classic LUNC and USTC market links across centralized exchanges and decentralized swap routes."
         },
         "tr": {
-          "title": "Terra Classic LUNC Piyasalari",
-          "description": "Merkezi borsalar ve merkeziyetsiz takas rotalari genelinde tarafsiz Terra Classic LUNC piyasa baglantilarini kesfedin."
+          "title": "Terra Classic LUNC ve USTC Piyasalari",
+          "description": "Merkezi borsalar ve merkeziyetsiz takas rotalari genelinde tarafsiz Terra Classic LUNC ve USTC piyasa baglantilarini kesfedin."
         },
         "id": {
-          "title": "Pasar LUNC Terra Classic",
-          "description": "Jelajahi tautan pasar LUNC Terra Classic yang netral di bursa terpusat dan rute swap terdesentralisasi."
+          "title": "Pasar LUNC dan USTC Terra Classic",
+          "description": "Jelajahi tautan pasar LUNC dan USTC Terra Classic yang netral di bursa terpusat dan rute swap terdesentralisasi."
         },
         "de": {
-          "title": "Terra Classic LUNC Märkte",
-          "description": "Erkunden Sie neutrale Terra Classic LUNC Markt-Links über zentrale Börsen und dezentrale Swap-Routen hinweg."
+          "title": "Terra Classic LUNC und USTC Märkte",
+          "description": "Erkunden Sie neutrale Terra Classic LUNC und USTC Markt-Links über zentrale Börsen und dezentrale Swap-Routen hinweg."
         },
         "hi": {
-          "title": "Terra Classic LUNC मार्केट",
-          "description": "केंद्रीकृत एक्सचेंजों और विकेंद्रीकृत स्वैप रूटों पर तटस्थ Terra Classic LUNC मार्केट लिंक देखें।"
+          "title": "Terra Classic LUNC और USTC मार्केट",
+          "description": "केंद्रीकृत एक्सचेंजों और विकेंद्रीकृत स्वैप रूटों पर तटस्थ Terra Classic LUNC और USTC मार्केट लिंक देखें।"
         },
         "th": {
-          "title": "Terra Classic LUNC ตลาด",
-          "description": "สำรวจการเชื่อมโยงตลาด Terra Classic LUNC ที่เป็นกลางผ่านการแลกเปลี่ยนแบบรวมศูนย์และเส้นทางการแลกเปลี่ยนแบบกระจายอำนาจ"
+          "title": "ตลาด Terra Classic LUNC และ USTC",
+          "description": "สำรวจลิงก์ตลาด Terra Classic LUNC และ USTC ที่เป็นกลางผ่านการแลกเปลี่ยนแบบรวมศูนย์และเส้นทางการแลกเปลี่ยนแบบกระจายอำนาจ"
         },
         "pt-BR": {
-          "title": "Mercados Terra Classic LUNC",
-          "description": "Explore links de mercado neutros do Terra Classic LUNC em exchanges centralizadas e rotas de swap descentralizadas."
+          "title": "Mercados Terra Classic LUNC e USTC",
+          "description": "Explore links de mercado neutros do Terra Classic LUNC e USTC em exchanges centralizadas e rotas de swap descentralizadas."
         },
         "zh-CN": {
-          "title": "Terra Classic LUNC 市场",
-          "description": "探索跨中心化交易所和去中心化交换路线的中立 Terra Classic LUNC 市场链接。"
+          "title": "Terra Classic LUNC 和 USTC 市场",
+          "description": "探索跨中心化交易所和去中心化交换路线的中立 Terra Classic LUNC 和 USTC 市场链接。"
         },
         "pl": {
-          "title": "Rynki Terra Classic LUNC",
-          "description": "Przeglądaj neutralne linki rynkowe Terra Classic LUNC na giełdach scentralizowanych i zdecentralizowanych trasach swap."
+          "title": "Rynki Terra Classic LUNC i USTC",
+          "description": "Przeglądaj neutralne linki rynkowe Terra Classic LUNC i USTC na giełdach scentralizowanych i zdecentralizowanych trasach swap."
         },
         "ar": {
-          "title": "أسواق Terra Classic LUNC",
-          "description": "استكشف روابط محايدة لأسواق Terra Classic LUNC عبر منصات التداول المركزية ومسارات المبادلة اللامركزية."
+          "title": "أسواق Terra Classic LUNC و USTC",
+          "description": "استكشف روابط محايدة لأسواق Terra Classic LUNC و USTC عبر منصات التداول المركزية ومسارات المبادلة اللامركزية."
         },
         "es": {
-          "title": "Mercados LUNC de Terra Classic",
-          "description": "Explora enlaces neutrales de mercados LUNC de Terra Classic en exchanges centralizados y rutas de swap descentralizadas."
+          "title": "Mercados LUNC y USTC de Terra Classic",
+          "description": "Explora enlaces neutrales de mercados LUNC y USTC de Terra Classic en exchanges centralizados y rutas de swap descentralizadas."
         },
         "fr": {
-          "title": "Marchés LUNC de Terra Classic",
-          "description": "Explorez des liens neutres vers les marchés LUNC de Terra Classic sur les exchanges centralisés et les routes de swap décentralisées."
+          "title": "Marchés LUNC et USTC de Terra Classic",
+          "description": "Explorez des liens neutres vers les marchés LUNC et USTC de Terra Classic sur les exchanges centralisés et les routes de swap décentralisées."
         }
       }
     },

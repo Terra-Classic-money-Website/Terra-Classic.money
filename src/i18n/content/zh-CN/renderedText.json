@@ -1048,5 +1048,10 @@
   "In progress - Jun-Aug 2026": "进行中 - 2026年6月-8月",
   "UST1 vFDUSD window, liquidity growth and money-market readiness": "面向 UST1 vFDUSD 的窗口、流动性增长和货币市场准备",
   "Arabic locale, Arabic translations, and reusable RTL support": "阿拉伯语区域设置、阿拉伯语翻译和可复用 RTL 支持",
-  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "土耳其语、印尼语、德语、印地语、泰语、巴西葡萄牙语、简体中文和波兰语翻译"
+  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "土耳其语、印尼语、德语、印地语、泰语、巴西葡萄牙语、简体中文和波兰语翻译",
+  "A neutral directory of centralized and decentralized places where LUNC and USTC can be bought or swapped. Listings are informational only and do not imply endorsement, liquidity quality, custody safety, or investment advice.": "一个中立目录，列出可购买或兑换 LUNC 和 USTC 的中心化与去中心化场所。列表仅供参考，并不代表背书、流动性质量、托管安全或投资建议。",
+  "Centralized exchange spot markets for USTC": "USTC 的中心化交易所现货市场",
+  "Decentralized and on-chain routes where USTC can be swapped": "可兑换 USTC 的去中心化和链上路径",
+  "Help users find safer routes to LUNC and USTC.": "帮助用户找到更安全的 LUNC 和 USTC 路径。",
+  "Market availability changes often. Share the directory, then use GitHub to suggest corrections when exchanges add, remove, or change LUNC or USTC pairs.": "市场可用性经常变化。分享此目录，并在交易所新增、移除或更改 LUNC 或 USTC 交易对时通过 GitHub 建议修正。"
 }

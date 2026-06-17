@@ -1035,5 +1035,10 @@
   "In progress - Jun-Aug 2026": "Devam ediyor - Haziran-Ağustos 2026",
   "UST1 vFDUSD window, liquidity growth and money-market readiness": "vFDUSD için UST1 penceresi, likidite büyümesi ve para piyasası hazırlığı",
   "Arabic locale, Arabic translations, and reusable RTL support": "Arapça yerel ayarı, Arapça çeviriler ve yeniden kullanılabilir RTL desteği",
-  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "Türkçe, Endonezce, Almanca, Hintçe, Tayca, Brezilya Portekizcesi, Basitleştirilmiş Çince ve Lehçe çeviriler"
+  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "Türkçe, Endonezce, Almanca, Hintçe, Tayca, Brezilya Portekizcesi, Basitleştirilmiş Çince ve Lehçe çeviriler",
+  "A neutral directory of centralized and decentralized places where LUNC and USTC can be bought or swapped. Listings are informational only and do not imply endorsement, liquidity quality, custody safety, or investment advice.": "LUNC ve USTC’nin satın alınabileceği veya takas edilebileceği merkezi ve merkeziyetsiz yerlerin tarafsız dizini. Listelemeler yalnızca bilgilendirme amaçlıdır ve onay, likidite kalitesi, saklama güvenliği veya yatırım tavsiyesi anlamına gelmez.",
+  "Centralized exchange spot markets for USTC": "USTC için merkezi borsa spot piyasaları",
+  "Decentralized and on-chain routes where USTC can be swapped": "USTC’nin takas edilebildiği merkeziyetsiz ve zincir üstü rotalar",
+  "Help users find safer routes to LUNC and USTC.": "Kullanıcıların LUNC ve USTC için daha güvenli rotalar bulmasına yardımcı olun.",
+  "Market availability changes often. Share the directory, then use GitHub to suggest corrections when exchanges add, remove, or change LUNC or USTC pairs.": "Piyasa erişilebilirliği sık değişir. Dizini paylaşın, ardından borsalar LUNC veya USTC çiftleri eklediğinde, kaldırdığında ya da değiştirdiğinde düzeltme önermek için GitHub’ı kullanın."
 }

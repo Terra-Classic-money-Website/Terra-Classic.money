@@ -21,9 +21,9 @@
 
 .directory-nav__button span { color: var(--color-grey-500); transition: color var(--tc-motion-base) var(--tc-ease-standard); }
 
-.directory-nav__button:hover, .directory-nav__button:focus-visible { background: var(--color-black); color: var(--color-white); }
+.directory-nav__button:hover, .directory-nav__button:focus-visible, .directory-nav__button--active { background: var(--color-black); color: var(--color-white); }
 
-.directory-nav__button:hover span, .directory-nav__button:focus-visible span { color: var(--color-white); }
+.directory-nav__button:hover span, .directory-nav__button:focus-visible span, .directory-nav__button--active span { color: var(--color-white); }
 
 .ecosystem-category { margin-top: 72px; scroll-margin-top: 32px; }
 
@@ -108,7 +108,7 @@
 }
 
 @media (max-width: 767px) {
-  .ecosystem-page { padding: 40px 24px 56px; }
+  .ecosystem-page { padding: 88px 24px 56px; }
   .ecosystem-page__intro { gap: 24px; }
   .directory-nav { margin-top: 32px; }
   .directory-nav__button { width: auto; max-width: 100%; justify-content: flex-start; }
