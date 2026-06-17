@@ -96,16 +96,17 @@ body:has(.ds-app) { background: var(--lunc-white); }
 .ds-nav-element--icon { display: inline-flex; align-items: center; gap: 12px; }
 .ds-inline-options { width: auto; }
 .ds-language-open { position: relative; }
-.language, .language-trigger, .language-options, .language-options button, .collapsed-language-button, .collapsed-language-options, .collapsed-language-options button { transition-duration: var(--ds-motion-base); transition-timing-function: var(--ds-ease-standard); }
+.language, .language-trigger, .language-options, .language-option, .collapsed-language-button, .collapsed-language-options, .language-option-label, .language-option-flag { transition-duration: var(--ds-motion-base); transition-timing-function: var(--ds-ease-standard); }
 .language { transition-property: min-height, padding, background-color; }
 .language-trigger { transition-property: background-color, color, padding, border-radius; }
-.language-options button, .collapsed-language-options button, .collapsed-language-button { transition-property: background-color, color, transform; }
+.language-option, .collapsed-language-button { transition-property: background-color, color, transform; }
+.language-option-label, .language-option-flag { transition-property: opacity, transform; }
 .ds-language-options-panel { max-height: 0; opacity: 0; transform: translateY(-6px); overflow: hidden; pointer-events: none; transition-property: max-height, opacity, transform; }
 .language--open .ds-language-options-panel { max-height: 112px; opacity: 1; transform: translateY(0); pointer-events: auto; }
 .ds-collapsed-language-panel { opacity: 0; transform: translate(0, 8px) scale(.96); pointer-events: none; transition-property: opacity, transform; transform-origin: left bottom; }
 .ds-collapsed-language-panel[aria-hidden="false"] { opacity: 1; transform: translate(0, 0) scale(1); pointer-events: auto; }
-.ds-language-options-panel[aria-hidden="true"] button,
-.ds-collapsed-language-panel[aria-hidden="true"] button { pointer-events: none; }
+.ds-language-options-panel[aria-hidden="true"] .language-option,
+.ds-collapsed-language-panel[aria-hidden="true"] .language-option { pointer-events: none; }
 .language-trigger:hover .language-icon,
 .language-trigger:focus-visible .language-icon { filter: none; opacity: 1; }
 .language-trigger:hover .language-arrow,
@@ -298,8 +299,7 @@ body:has(.ds-app) { background: var(--lunc-white); }
   body:has(.ds-app) .ds-left-section-preview .sidebar-nav a,
   body:has(.ds-app) .language,
   body:has(.ds-app) .language-trigger,
-  body:has(.ds-app) .language-options button,
-  body:has(.ds-app) .collapsed-language-options button,
+  body:has(.ds-app) .language-option,
   body:has(.ds-app) .collapsed-language-button,
   body:has(.ds-app) .ds-announcement,
   body:has(.ds-app) .ds-reset-button,

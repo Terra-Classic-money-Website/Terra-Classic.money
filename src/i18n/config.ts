@@ -7,6 +7,7 @@ export type LocaleConfig = {
   label: string;
   nativeLabel: string;
   shortLabel: string;
+  flagAsset: string;
   htmlLang: string;
   dir: "ltr" | "rtl";
   pathPrefix: string;
