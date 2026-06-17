@@ -1048,5 +1048,10 @@
   "In progress - Jun-Aug 2026": "W toku - czerwiec-sierpień 2026",
   "UST1 vFDUSD window, liquidity growth and money-market readiness": "Okno UST1 vFDUSD, wzrost płynności i gotowość rynku pieniężnego",
   "Arabic locale, Arabic translations, and reusable RTL support": "Lokalizacja arabska, tłumaczenia arabskie i wielokrotnego użytku obsługa RTL",
-  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "Tłumaczenia tureckie, indonezyjskie, niemieckie, hindi, tajskie, brazylijsko-portugalskie, chińskie uproszczone i polskie"
+  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "Tłumaczenia tureckie, indonezyjskie, niemieckie, hindi, tajskie, brazylijsko-portugalskie, chińskie uproszczone i polskie",
+  "A neutral directory of centralized and decentralized places where LUNC and USTC can be bought or swapped. Listings are informational only and do not imply endorsement, liquidity quality, custody safety, or investment advice.": "Neutralny katalog scentralizowanych i zdecentralizowanych miejsc, w których można kupić lub wymienić LUNC i USTC. Listy mają wyłącznie charakter informacyjny i nie oznaczają rekomendacji, jakości płynności, bezpieczeństwa depozytu ani porady inwestycyjnej.",
+  "Centralized exchange spot markets for USTC": "Scentralizowane rynki spot giełd dla USTC",
+  "Decentralized and on-chain routes where USTC can be swapped": "Zdecentralizowane i on-chain trasy, na których można wymieniać USTC",
+  "Help users find safer routes to LUNC and USTC.": "Pomóż użytkownikom znaleźć bezpieczniejsze ścieżki do LUNC i USTC.",
+  "Market availability changes often. Share the directory, then use GitHub to suggest corrections when exchanges add, remove, or change LUNC or USTC pairs.": "Dostępność rynków często się zmienia. Udostępnij katalog, a następnie użyj GitHuba, aby zasugerować poprawki, gdy giełdy dodają, usuwają lub zmieniają pary LUNC albo USTC."
 }

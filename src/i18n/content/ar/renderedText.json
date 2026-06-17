@@ -1037,5 +1037,10 @@
   "In progress - Jun-Aug 2026": "قيد التنفيذ - يونيو-أغسطس 2026",
   "UST1 vFDUSD window, liquidity growth and money-market readiness": "نافذة UST1 vFDUSD، ونمو السيولة، والجاهزية لسوق المال",
   "Arabic locale, Arabic translations, and reusable RTL support": "اللغة العربية، الترجمات العربية، ودعم RTL القابل لإعادة الاستخدام",
-  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "الترجمات التركية والإندونيسية والألمانية والهندية والتايلاندية والبرتغالية البرازيلية والصينية المبسطة والبولندية"
+  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "الترجمات التركية والإندونيسية والألمانية والهندية والتايلاندية والبرتغالية البرازيلية والصينية المبسطة والبولندية",
+  "A neutral directory of centralized and decentralized places where LUNC and USTC can be bought or swapped. Listings are informational only and do not imply endorsement, liquidity quality, custody safety, or investment advice.": "دليل محايد للأماكن المركزية واللامركزية التي يمكن فيها شراء أو مبادلة LUNC و USTC. القوائم معلوماتية فقط ولا تعني تأييداً أو جودة سيولة أو أمان حفظ أو نصيحة استثمارية.",
+  "Centralized exchange spot markets for USTC": "أسواق التداول الفوري المركزية لـ USTC",
+  "Decentralized and on-chain routes where USTC can be swapped": "مسارات لامركزية وعلى السلسلة يمكن من خلالها مبادلة USTC",
+  "Help users find safer routes to LUNC and USTC.": "ساعد المستخدمين على العثور على مسارات أكثر أماناً إلى LUNC و USTC.",
+  "Market availability changes often. Share the directory, then use GitHub to suggest corrections when exchanges add, remove, or change LUNC or USTC pairs.": "يتغير توفر الأسواق كثيراً. شارك الدليل، ثم استخدم GitHub لاقتراح التصحيحات عندما تضيف المنصات أزواج LUNC أو USTC أو تزيلها أو تغيرها."
 }

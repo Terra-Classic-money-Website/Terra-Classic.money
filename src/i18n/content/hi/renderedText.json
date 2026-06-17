@@ -1045,5 +1045,10 @@
   "In progress - Jun-Aug 2026": "प्रगति में - जून-अगस्त 2026",
   "UST1 vFDUSD window, liquidity growth and money-market readiness": "vFDUSD के लिए UST1 विंडो, लिक्विडिटी वृद्धि और मनी-मार्केट तैयारी",
   "Arabic locale, Arabic translations, and reusable RTL support": "अरबी लोकेल, अरबी अनुवाद और पुन: उपयोग योग्य RTL समर्थन",
-  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "तुर्की, इंडोनेशियाई, जर्मन, हिंदी, थाई, ब्राज़ीलियाई पुर्तगाली, सरलीकृत चीनी और पोलिश अनुवाद"
+  "Turkish, Indonesian, German, Hindi, Thai, Brazilian Portuguese, Simplified Chinese, and Polish translations": "तुर्की, इंडोनेशियाई, जर्मन, हिंदी, थाई, ब्राज़ीलियाई पुर्तगाली, सरलीकृत चीनी और पोलिश अनुवाद",
+  "A neutral directory of centralized and decentralized places where LUNC and USTC can be bought or swapped. Listings are informational only and do not imply endorsement, liquidity quality, custody safety, or investment advice.": "केंद्रीकृत और विकेंद्रीकृत स्थानों की एक तटस्थ निर्देशिका, जहां LUNC और USTC खरीदे या स्वैप किए जा सकते हैं। सूचियां केवल जानकारी के लिए हैं और समर्थन, तरलता गुणवत्ता, कस्टडी सुरक्षा या निवेश सलाह का संकेत नहीं देतीं।",
+  "Centralized exchange spot markets for USTC": "USTC के लिए केंद्रीकृत एक्सचेंज स्पॉट बाजार",
+  "Decentralized and on-chain routes where USTC can be swapped": "विकेंद्रीकृत और ऑन-चेन रूट जहां USTC स्वैप किया जा सकता है",
+  "Help users find safer routes to LUNC and USTC.": "उपयोगकर्ताओं को LUNC और USTC तक सुरक्षित रूट खोजने में मदद करें।",
+  "Market availability changes often. Share the directory, then use GitHub to suggest corrections when exchanges add, remove, or change LUNC or USTC pairs.": "बाजार उपलब्धता अक्सर बदलती रहती है। निर्देशिका साझा करें, फिर जब एक्सचेंज LUNC या USTC पेयर जोड़ें, हटाएं या बदलें तो सुधार सुझाने के लिए GitHub का उपयोग करें।"
 }
