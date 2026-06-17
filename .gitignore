@@ -10,6 +10,13 @@ docs/
 DESIGN.md
 designsystem.html
 
+# Paused WIP. Do not commit or publish until Dawid explicitly resumes this page.
+decentralization-scorecard.html
+src/data/decentralizationScorecard.ts
+src/entries/decentralizationScorecard.tsx
+src/pages/DecentralizationScorecardPage.tsx
+src/styles/pages/decentralization-scorecard.css
+
 # macOS local metadata
 .DS_Store
 
