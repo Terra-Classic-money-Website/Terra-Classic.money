@@ -1,6 +1,8 @@
 import { chromeContent as enChromeContent } from "./en/chrome";
 import { chromeContent as arChromeContent } from "./ar/chrome";
 import { chromeContent as deChromeContent } from "./de/chrome";
+import { chromeContent as esChromeContent } from "./es/chrome";
+import { chromeContent as frChromeContent } from "./fr/chrome";
 import { chromeContent as hiChromeContent } from "./hi/chrome";
 import { chromeContent as idChromeContent } from "./id/chrome";
 import { chromeContent as plChromeContent } from "./pl/chrome";
@@ -21,6 +23,8 @@ const chromeContentByLocale = {
   "pt-BR": ptBrChromeContent,
   "zh-CN": zhCnChromeContent,
   pl: plChromeContent,
+  es: esChromeContent,
+  fr: frChromeContent,
 } as const;
 
 export function getChromeContent(localeId: LocaleId) {

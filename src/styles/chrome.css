@@ -178,7 +178,7 @@ main { margin-left: var(--sidebar-width-expanded); padding: var(--tc-spacing-pag
 
 .language { width: 264px; position: relative; transition: min-height var(--tc-motion-base) var(--tc-ease-standard), padding var(--tc-motion-base) var(--tc-ease-standard), background-color var(--tc-motion-base) var(--tc-ease-standard); }
 
-.language--open { min-height: 116px; border-radius: var(--radius-card); background: var(--color-grey-100); padding: 8px 16px; display: flex; flex-direction: column; gap: 12px; }
+.language--open { min-height: 172px; border-radius: var(--radius-card); background: var(--color-grey-100); padding: 8px 16px; display: flex; flex-direction: column; gap: 12px; }
 
 .language-trigger { width: 264px; height: 32px; border: 0; border-radius: var(--radius-pill); background: var(--color-grey-50); cursor: pointer; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; font-size: var(--tc-type-link-small-size); line-height: var(--tc-type-link-small-line-height); font-weight: var(--tc-type-link-small-weight); transition: background-color var(--tc-motion-base) var(--tc-ease-standard), color var(--tc-motion-base) var(--tc-ease-standard), padding var(--tc-motion-base) var(--tc-ease-standard), border-radius var(--tc-motion-base) var(--tc-ease-standard); }
 
@@ -225,7 +225,7 @@ main { margin-left: var(--sidebar-width-expanded); padding: var(--tc-spacing-pag
 
 .language-options-panel { max-height: 0; opacity: 0; transform: translateY(-6px); overflow: hidden; pointer-events: none; transition: max-height var(--tc-motion-base) var(--tc-ease-standard), opacity var(--tc-motion-base) var(--tc-ease-standard), transform var(--tc-motion-base) var(--tc-ease-standard); }
 
-.language--open .language-options-panel { max-height: 72px; opacity: 1; transform: translateY(0); pointer-events: auto; }
+.language--open .language-options-panel { max-height: 112px; opacity: 1; transform: translateY(0); pointer-events: auto; }
 
 .language-options-panel[aria-hidden="true"] button { pointer-events: none; }
 

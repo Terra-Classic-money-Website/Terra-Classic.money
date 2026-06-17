@@ -14,13 +14,15 @@ Target locales based on previous website visit data:
 
 - Turkish
 - Indonesian
+- Spanish
+- French
 - Hindi
 - Thai
 - Brazilian Portuguese
 - Simplified Chinese
 - German
-
-Polish is not planned for now.
+- Polish
+- Arabic
 
 ## How To Propose A Translation
 

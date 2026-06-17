@@ -113,6 +113,30 @@ Open a Turkish localized subpage locally at:
 http://127.0.0.1:5173/tr/ecosystem.html
 ```
 
+Open the Spanish localized homepage locally at:
+
+```text
+http://127.0.0.1:5173/es/
+```
+
+Open a Spanish localized subpage locally at:
+
+```text
+http://127.0.0.1:5173/es/ecosystem.html
+```
+
+Open the French localized homepage locally at:
+
+```text
+http://127.0.0.1:5173/fr/
+```
+
+Open a French localized subpage locally at:
+
+```text
+http://127.0.0.1:5173/fr/ecosystem.html
+```
+
 Open the Arabic localized homepage locally at:
 
 ```text

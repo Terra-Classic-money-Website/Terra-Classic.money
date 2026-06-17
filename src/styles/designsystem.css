@@ -101,7 +101,7 @@ body:has(.ds-app) { background: var(--lunc-white); }
 .language-trigger { transition-property: background-color, color, padding, border-radius; }
 .language-options button, .collapsed-language-options button, .collapsed-language-button { transition-property: background-color, color, transform; }
 .ds-language-options-panel { max-height: 0; opacity: 0; transform: translateY(-6px); overflow: hidden; pointer-events: none; transition-property: max-height, opacity, transform; }
-.language--open .ds-language-options-panel { max-height: 72px; opacity: 1; transform: translateY(0); pointer-events: auto; }
+.language--open .ds-language-options-panel { max-height: 112px; opacity: 1; transform: translateY(0); pointer-events: auto; }
 .ds-collapsed-language-panel { opacity: 0; transform: translate(0, 8px) scale(.96); pointer-events: none; transition-property: opacity, transform; transform-origin: left bottom; }
 .ds-collapsed-language-panel[aria-hidden="false"] { opacity: 1; transform: translate(0, 0) scale(1); pointer-events: auto; }
 .ds-language-options-panel[aria-hidden="true"] button,

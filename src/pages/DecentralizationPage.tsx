@@ -18,6 +18,8 @@ const readTimeLabels: Record<LocaleId, (minutes: number) => string> = {
   "pt-BR": (minutes) => `${minutes} MIN DE LEITURA`,
   "zh-CN": (minutes) => `${minutes} 分钟阅读`,
   pl: (minutes) => `${minutes} MIN CZYTANIA`,
+  es: (minutes) => `${minutes} MIN DE LECTURA`,
+  fr: (minutes) => `${minutes} MIN DE LECTURE`,
 };
 
 function formatReadTime(minutes: number) {
