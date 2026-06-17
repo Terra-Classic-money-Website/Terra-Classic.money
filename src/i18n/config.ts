@@ -1,12 +1,13 @@
 import rawConfig from "./site-i18n.json";
 
-export type LocaleId = "en" | "ar" | "tr" | "id" | "de" | "hi" | "th" | "pt-BR" | "zh-CN" | "pl";
+export type LocaleId = "en" | "ar" | "tr" | "id" | "de" | "hi" | "th" | "pt-BR" | "zh-CN" | "pl" | "es" | "fr";
 
 export type LocaleConfig = {
   id: LocaleId;
   label: string;
   nativeLabel: string;
   shortLabel: string;
+  flagAsset: string;
   htmlLang: string;
   dir: "ltr" | "rtl";
   pathPrefix: string;

@@ -12,6 +12,36 @@ import "./styles/designsystem.css";
 
 const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
 
+const languageFlagAssets: Record<string, string> = {
+  AR: "language-flags/ar.svg",
+  DE: "language-flags/de.svg",
+  EN: "language-flags/en.svg",
+  ES: "language-flags/es.svg",
+  FR: "language-flags/fr.svg",
+  HI: "language-flags/hi.svg",
+  ID: "language-flags/id.svg",
+  PL: "language-flags/pl.svg",
+  "PT-BR": "language-flags/pt-br.svg",
+  TH: "language-flags/th.svg",
+  TR: "language-flags/tr.svg",
+  "ZH-CN": "language-flags/cn.svg",
+};
+
+function LanguageOptionContent({ option }: { option: string }) {
+  const flagAsset = languageFlagAssets[option];
+
+  return (
+    <>
+      <span className="language-option-label">{option}</span>
+      {flagAsset ? (
+        <span className="language-option-flag" aria-hidden="true">
+          <img src={asset(flagAsset)} alt="" loading="lazy" />
+        </span>
+      ) : null}
+    </>
+  );
+}
+
 function stopNavigation(event: MouseEvent<HTMLElement>) {
   event.preventDefault();
 }
@@ -500,7 +530,9 @@ function LanguageButton({ compact = false, open = false, onToggle }: { compact?:
       </button>
       <div className="language-options ds-language-options-panel" aria-hidden={!open}>
         {languageOptions.map((option, index) => (
-          <button type="button" key={`${option}-${index}`}>{option}</button>
+          <button className={`language-option${option.length > 2 ? " language-option--wide" : ""}`} type="button" key={`${option}-${index}`}>
+            <LanguageOptionContent option={option} />
+          </button>
         ))}
       </div>
     </div>
@@ -526,7 +558,9 @@ function InteractiveLanguageButton() {
         </button>
         <div className="collapsed-language-options ds-collapsed-language-panel" aria-hidden={!compactOpen}>
           {languageOptions.map((option, index) => (
-            <button type="button" key={`${option}-${index}`}>{option}</button>
+            <button className={`language-option${option.length > 2 ? " language-option--wide" : ""}`} type="button" key={`${option}-${index}`}>
+              <LanguageOptionContent option={option} />
+            </button>
           ))}
         </div>
       </div>
@@ -550,7 +584,9 @@ function CompactLanguageDemo() {
       </button>
       <div className="collapsed-language-options ds-compact-language-options ds-collapsed-language-panel" aria-hidden={!open}>
         {languageOptions.map((option, index) => (
-          <button type="button" key={`${option}-${index}`}>{option}</button>
+          <button className={`language-option${option.length > 2 ? " language-option--wide" : ""}`} type="button" key={`${option}-${index}`}>
+            <LanguageOptionContent option={option} />
+          </button>
         ))}
       </div>
     </>
@@ -1342,7 +1378,7 @@ function ComponentPreview({ name }: { name: string }) {
     case "Language button":
       return <InteractiveLanguageButton />;
     case "Particular language button":
-      return <div className="language-options ds-inline-options"><button type="button">EN</button><button type="button">PL</button></div>;
+      return <div className="language-options ds-inline-options"><button className="language-option" type="button"><LanguageOptionContent option="EN" /></button><button className="language-option" type="button"><LanguageOptionContent option="PL" /></button></div>;
     case "Language button - X":
       return <button className="collapsed-language-button collapsed-language-button--open ds-language-x-button" type="button" aria-label="Language X hover specimen"><img className="language-x-icon language-x-icon--default" src={asset("language-x.svg")} alt="" /><img className="language-x-icon language-x-icon--hover" src={asset("language-x-hover.svg")} alt="" /></button>;
     case "LEFT SECTION":

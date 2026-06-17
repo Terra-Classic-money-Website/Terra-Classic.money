@@ -15,7 +15,7 @@ export const externalNav = [
   { label: "Merch", href: links.merch, disabled: true },
 ];
 
-export const languageOptions = ["EN", "PL", "EN", "PL", "EN", "PL", "PL", "EN"];
+export const languageOptions = ["EN", "TR", "ID", "ES", "FR", "HI", "TH", "PT-BR", "ZH-CN", "DE", "PL", "AR"];
 
 export const sidebarDisclaimer =
   "Terra-Classic.money is not the official website of Terra Classic. Just as no one owns the technology behind email, no one owns the Terra Classic blockchain. Accordingly, no single entity can speak with authority on behalf of Terra Classic.\n\nThis website is provided for informational purposes only and does not constitute investment advice, a solicitation, or an offer to buy or sell any securities, tokens, or other financial instruments. The content presented is intended to offer insight into the Terra Classic blockchain and its native assets (LUNC and USTC), and should not be interpreted as legal or financial guidance. Visitors are strongly encouraged to conduct their own independent research, and to consult with qualified legal and financial professionals before making any investment decisions. The authors, contributors, and affiliated entities expressly disclaim all liability for any actions taken based on the content of this website.";

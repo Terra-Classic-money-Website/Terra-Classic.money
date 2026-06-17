@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import {
   externalNav,
   sections,
@@ -68,29 +68,40 @@ function LanguageOptions({
     route ? route.publishedLocales.includes(locale.id) : locale.published
   ));
 
-  const handleLanguageClick = (localeId: LocaleId) => {
-    localStorage.setItem("tcm-language", localeId);
-    const href = equivalentPathForLocale(localeId);
-    onSelect();
-    if (href) window.location.href = href;
+  const rememberLanguageChoice = (event: MouseEvent<HTMLAnchorElement>, localeId: LocaleId, href: string) => {
+    try {
+      localStorage.setItem("tcm-language", localeId);
+    } catch {
+      // Navigation must still work if browser storage is unavailable.
+    }
+    if (href === "#") {
+      event.preventDefault();
+      onSelect();
+    }
   };
 
   return (
     <div className={className} role="listbox" aria-label={getChromeContent(currentLocale.id).chooseLanguage} aria-hidden="false">
       {availableLocales.map((locale) => {
         const isWideLabel = locale.shortLabel.length > 2;
+        const flagSrc = asset(locale.flagAsset);
+        const href = equivalentPathForLocale(locale.id) || "#";
 
         return (
-          <button
-            className={`${buttonClassName}${isWideLabel ? " language-option--wide" : ""}`}
+          <a
+            className={`${buttonClassName} language-option${isWideLabel ? " language-option--wide" : ""}`}
+            href={href}
             key={locale.id}
-            type="button"
+            role="option"
             aria-label={locale.nativeLabel}
             aria-selected={locale.id === currentLocale.id}
-            onClick={() => handleLanguageClick(locale.id)}
+            onClick={(event) => rememberLanguageChoice(event, locale.id, href)}
           >
-            {locale.shortLabel}
-          </button>
+            <span className="language-option-label">{locale.shortLabel}</span>
+            <span className="language-option-flag" aria-hidden="true">
+              <img src={flagSrc} alt="" loading="lazy" />
+            </span>
+          </a>
         );
       })}
     </div>
@@ -228,7 +239,7 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
               <a className="sidebar-home-link" href={page("#top")} aria-label={chrome.homeAria}>
                 <img src={asset("sidebar-logo.svg")} alt="" />
               </a>
-              <button className="sidebar-collapse" aria-label={chrome.collapseSidebar} aria-expanded="true" onClick={() => setCollapsed(true)}>
+              <button className="sidebar-collapse" aria-label={chrome.collapseSidebar} aria-expanded="true" onClick={() => { setLangOpen(false); setCollapsed(true); }}>
                 <CollapseControl />
               </button>
             </div>
@@ -265,7 +276,7 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
               <a className="sidebar-home-icon" href={page("#top")} aria-label={chrome.homeAria}>
                 <img src={asset("sidebar-logo-icon.svg")} alt="" />
               </a>
-              <button className="sidebar-brand-collapsed" aria-label={chrome.expandSidebar} aria-expanded="false" onClick={() => setCollapsed(false)}>
+              <button className="sidebar-brand-collapsed" aria-label={chrome.expandSidebar} aria-expanded="false" onClick={() => { setLangOpen(false); setCollapsed(false); }}>
                 <CollapseControl collapsed />
               </button>
             </div>

@@ -6,6 +6,7 @@
       "label": "English",
       "nativeLabel": "English",
       "shortLabel": "EN",
+      "flagAsset": "language-flags/en.svg",
       "htmlLang": "en",
       "dir": "ltr",
       "pathPrefix": "",
@@ -17,6 +18,7 @@
       "label": "Turkish",
       "nativeLabel": "Turkce",
       "shortLabel": "TR",
+      "flagAsset": "language-flags/tr.svg",
       "htmlLang": "tr",
       "dir": "ltr",
       "pathPrefix": "tr",
@@ -28,6 +30,7 @@
       "label": "Indonesian",
       "nativeLabel": "Bahasa Indonesia",
       "shortLabel": "ID",
+      "flagAsset": "language-flags/id.svg",
       "htmlLang": "id",
       "dir": "ltr",
       "pathPrefix": "id",
@@ -35,13 +38,26 @@
       "published": true
     },
     {
-      "id": "de",
-      "label": "German",
-      "nativeLabel": "Deutsch",
-      "shortLabel": "DE",
-      "htmlLang": "de",
+      "id": "es",
+      "label": "Spanish",
+      "nativeLabel": "Español",
+      "shortLabel": "ES",
+      "flagAsset": "language-flags/es.svg",
+      "htmlLang": "es",
       "dir": "ltr",
-      "pathPrefix": "de",
+      "pathPrefix": "es",
+      "default": false,
+      "published": true
+    },
+    {
+      "id": "fr",
+      "label": "French",
+      "nativeLabel": "Français",
+      "shortLabel": "FR",
+      "flagAsset": "language-flags/fr.svg",
+      "htmlLang": "fr",
+      "dir": "ltr",
+      "pathPrefix": "fr",
       "default": false,
       "published": true
     },
@@ -50,6 +66,7 @@
       "label": "Hindi",
       "nativeLabel": "हिन्दी",
       "shortLabel": "HI",
+      "flagAsset": "language-flags/hi.svg",
       "htmlLang": "hi",
       "dir": "ltr",
       "pathPrefix": "hi",
@@ -61,20 +78,10 @@
       "label": "Thai",
       "nativeLabel": "ไทย",
       "shortLabel": "TH",
+      "flagAsset": "language-flags/th.svg",
       "htmlLang": "th",
       "dir": "ltr",
       "pathPrefix": "th",
-      "default": false,
-      "published": true
-    },
-    {
-      "id": "ar",
-      "label": "Arabic",
-      "nativeLabel": "العربية",
-      "shortLabel": "AR",
-      "htmlLang": "ar",
-      "dir": "rtl",
-      "pathPrefix": "ar",
       "default": false,
       "published": true
     },
@@ -83,6 +90,7 @@
       "label": "Portuguese (Brazil)",
       "nativeLabel": "Português do Brasil",
       "shortLabel": "PT-BR",
+      "flagAsset": "language-flags/pt-br.svg",
       "htmlLang": "pt-BR",
       "dir": "ltr",
       "pathPrefix": "pt-BR",
@@ -94,9 +102,22 @@
       "label": "Simplified Chinese",
       "nativeLabel": "简体中文",
       "shortLabel": "ZH-CN",
+      "flagAsset": "language-flags/cn.svg",
       "htmlLang": "zh-CN",
       "dir": "ltr",
       "pathPrefix": "zh-CN",
+      "default": false,
+      "published": true
+    },
+    {
+      "id": "de",
+      "label": "German",
+      "nativeLabel": "Deutsch",
+      "shortLabel": "DE",
+      "flagAsset": "language-flags/de.svg",
+      "htmlLang": "de",
+      "dir": "ltr",
+      "pathPrefix": "de",
       "default": false,
       "published": true
     },
@@ -105,9 +126,22 @@
       "label": "Polish",
       "nativeLabel": "Polski",
       "shortLabel": "PL",
+      "flagAsset": "language-flags/pl.svg",
       "htmlLang": "pl",
       "dir": "ltr",
       "pathPrefix": "pl",
+      "default": false,
+      "published": true
+    },
+    {
+      "id": "ar",
+      "label": "Arabic",
+      "nativeLabel": "العربية",
+      "shortLabel": "AR",
+      "flagAsset": "language-flags/ar.svg",
+      "htmlLang": "ar",
+      "dir": "rtl",
+      "pathPrefix": "ar",
       "default": false,
       "published": true
     }
@@ -123,13 +157,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -171,6 +207,14 @@
         "ar": {
           "title": "Terra Classic - موقع معلومات مستقل يديره المجتمع عن Terra Classic وLUNC وUSTC",
           "description": "موقع معلومات مستقل يديره المجتمع عن Terra Classic: استكشف موارد منظومة LUNC وUSTC، والأسواق، وخريطة الطريق، واللامركزية، والأعمال المفتوحة، وروابط البناة."
+        },
+        "es": {
+          "title": "Terra Classic - Sitio informativo independiente y mantenido por la comunidad para Terra Classic, LUNC y USTC",
+          "description": "Sitio informativo independiente y mantenido por la comunidad para Terra Classic: explora recursos del ecosistema LUNC y USTC, mercados, hoja de ruta, descentralización, trabajo abierto y enlaces para desarrolladores."
+        },
+        "fr": {
+          "title": "Terra Classic - Site d’information indépendant et maintenu par la communauté pour Terra Classic, LUNC et USTC",
+          "description": "Site d’information indépendant et maintenu par la communauté pour Terra Classic: explorez les ressources de l’écosystème LUNC et USTC, les marchés, la feuille de route, la décentralisation, les travaux ouverts et les liens pour les développeurs."
         }
       }
     },
@@ -183,13 +227,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -231,6 +277,14 @@
         "ar": {
           "title": "دليل منظومة Terra Classic",
           "description": "استكشف روابط محايدة داخل منظومة Terra Classic، تشمل التطبيقات، والمحافظ، والجسور، والمدققين، وموارد المطورين، ومزودي البنية التحتية، وأدوات المجتمع."
+        },
+        "es": {
+          "title": "Directorio del ecosistema Terra Classic",
+          "description": "Explora enlaces neutrales del ecosistema Terra Classic: aplicaciones, wallets, puentes, validadores, recursos para desarrolladores, proveedores de infraestructura y herramientas comunitarias."
+        },
+        "fr": {
+          "title": "Répertoire de l’écosystème Terra Classic",
+          "description": "Explorez des liens neutres de l’écosystème Terra Classic: applications, wallets, ponts, validateurs, ressources pour développeurs, fournisseurs d’infrastructure et outils communautaires."
         }
       }
     },
@@ -243,13 +297,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -291,6 +347,14 @@
         "ar": {
           "title": "أسواق Terra Classic LUNC",
           "description": "استكشف روابط محايدة لأسواق Terra Classic LUNC عبر منصات التداول المركزية ومسارات المبادلة اللامركزية."
+        },
+        "es": {
+          "title": "Mercados LUNC de Terra Classic",
+          "description": "Explora enlaces neutrales de mercados LUNC de Terra Classic en exchanges centralizados y rutas de swap descentralizadas."
+        },
+        "fr": {
+          "title": "Marchés LUNC de Terra Classic",
+          "description": "Explorez des liens neutres vers les marchés LUNC de Terra Classic sur les exchanges centralisés et les routes de swap décentralisées."
         }
       }
     },
@@ -303,13 +367,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -351,6 +417,14 @@
         "ar": {
           "title": "خريطة طريق Terra Classic",
           "description": "استكشف خريطة طريق Terra Classic اللامركزية: مراحل L1 العامة، وعناصر خريطة الطريق الخاصة بـL2 والمجتمع والمقدَّمة من المشاريع مع تمييزها بوضوح."
+        },
+        "es": {
+          "title": "Hoja de ruta de Terra Classic",
+          "description": "Explora la hoja de ruta descentralizada de Terra Classic: hitos públicos de L1 y entradas de hoja de ruta L2 y comunitarias claramente etiquetadas como enviadas por proyectos."
+        },
+        "fr": {
+          "title": "Feuille de route de Terra Classic",
+          "description": "Explorez la feuille de route décentralisée de Terra Classic: jalons publics L1 et entrées de feuille de route L2 et communautaires clairement étiquetées comme soumises par des projets."
         }
       }
     },
@@ -363,13 +437,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -411,6 +487,14 @@
         "ar": {
           "title": "لامركزية Terra Classic",
           "description": "دليل مفصل قائم على المصادر عن لامركزية Terra Classic، والمدققين، والمفوّضين، والحوكمة، والبنية التحتية التي يملكها المجتمع."
+        },
+        "es": {
+          "title": "Descentralización de Terra Classic",
+          "description": "Una guía detallada y basada en fuentes sobre la descentralización de Terra Classic, validadores, delegadores, gobernanza e infraestructura comunitaria."
+        },
+        "fr": {
+          "title": "Décentralisation de Terra Classic",
+          "description": "Un guide détaillé et sourcé sur la décentralisation de Terra Classic, les validateurs, les délégants, la gouvernance et l’infrastructure communautaire."
         }
       }
     },
@@ -423,13 +507,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -471,6 +557,14 @@
         "ar": {
           "title": "أعمال مفتوحة لبناة Terra Classic",
           "description": "استكشف حزم أعمال Terra Classic المفتوحة التي يمكن للبناة المستقلين، وشركات البرمجيات، والمساهمين إعداد مقترحات أو عروض أسعار لها."
+        },
+        "es": {
+          "title": "Trabajo abierto para desarrolladores de Terra Classic",
+          "description": "Explora paquetes de trabajo abiertos de Terra Classic para los que desarrolladores independientes, empresas de software y contribuyentes pueden preparar propuestas o presupuestos."
+        },
+        "fr": {
+          "title": "Travaux ouverts pour les développeurs Terra Classic",
+          "description": "Explorez les lots de travaux ouverts de Terra Classic pour lesquels développeurs indépendants, sociétés logicielles et contributeurs peuvent préparer des propositions ou des devis."
         }
       }
     },
@@ -483,13 +577,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -531,6 +627,14 @@
         "ar": {
           "title": "تفاصيل الأعمال المفتوحة لبناة Terra Classic",
           "description": "راجع حزمة عمل مفتوحة من Terra Classic قبل إعداد مقترح عام أو عرض سعر للنقاش المجتمعي والحوكمة."
+        },
+        "es": {
+          "title": "Detalles de trabajo abierto para desarrolladores de Terra Classic",
+          "description": "Revisa un paquete de trabajo abierto de Terra Classic antes de preparar una propuesta pública o un presupuesto para discusión comunitaria y gobernanza."
+        },
+        "fr": {
+          "title": "Détails des travaux ouverts pour les développeurs Terra Classic",
+          "description": "Examinez un lot de travaux ouvert de Terra Classic avant de préparer une proposition publique ou un devis pour discussion communautaire et gouvernance."
         }
       }
     },
@@ -543,13 +647,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -591,6 +697,14 @@
         "ar": {
           "title": "حول terra-classic.money",
           "description": "تعرّف على كيفية عمل terra-classic.money كموقع معلومات مستقل ومفتوح المصدر يديره المجتمع من أجل Terra Classic."
+        },
+        "es": {
+          "title": "Acerca de terra-classic.money",
+          "description": "Conoce cómo terra-classic.money funciona como un sitio informativo independiente, open-source y mantenido por la comunidad para Terra Classic."
+        },
+        "fr": {
+          "title": "À propos de terra-classic.money",
+          "description": "Découvrez comment terra-classic.money fonctionne comme un site d’information indépendant, open source et maintenu par la communauté pour Terra Classic."
         }
       }
     },
@@ -603,13 +717,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -651,6 +767,14 @@
         "ar": {
           "title": "تحليلات الموقع | terra-classic.money",
           "description": "تحليلات عامة ومجمّعة لموقع terra-classic.money، يتم توليدها من Google Analytics 4 عبر GitHub Actions."
+        },
+        "es": {
+          "title": "Analítica del sitio web | terra-classic.money",
+          "description": "Analítica pública agregada del sitio web terra-classic.money, generada desde Google Analytics 4 mediante GitHub Actions."
+        },
+        "fr": {
+          "title": "Analytique du site web | terra-classic.money",
+          "description": "Analytique publique agrégée du site web terra-classic.money, générée depuis Google Analytics 4 via GitHub Actions."
         }
       }
     },
@@ -663,13 +787,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -711,6 +837,14 @@
         "ar": {
           "title": "سياسة الخصوصية - terra-classic.money",
           "description": "سياسة الخصوصية لموقع terra-classic.money، وهو موقع معلومات مستقل يديره المجتمع عن Terra Classic."
+        },
+        "es": {
+          "title": "Política de privacidad - terra-classic.money",
+          "description": "Política de privacidad de terra-classic.money, el sitio informativo independiente y mantenido por la comunidad para Terra Classic."
+        },
+        "fr": {
+          "title": "Politique de confidentialité - terra-classic.money",
+          "description": "Politique de confidentialité de terra-classic.money, le site d’information indépendant et maintenu par la communauté pour Terra Classic."
         }
       }
     },
@@ -723,13 +857,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -771,6 +907,14 @@
         "ar": {
           "title": "أصول علامة Terra Classic التجارية - terra-classic.money",
           "description": "نزّل أصول علامة Terra Classic التجارية، بما في ذلك الشعارات الكاملة، والرموز المستقلة، والمرئيات الرئيسية للتواصل داخل المنظومة ومواد المجتمع."
+        },
+        "es": {
+          "title": "Activos de marca Terra Classic - terra-classic.money",
+          "description": "Descarga activos de marca Terra Classic, incluidos logotipos completos, signos independientes y visuales clave para comunicación del ecosistema y materiales comunitarios."
+        },
+        "fr": {
+          "title": "Actifs de marque Terra Classic - terra-classic.money",
+          "description": "Téléchargez les actifs de marque Terra Classic, notamment les logos complets, les signes autonomes et les visuels clés pour la communication de l’écosystème et les supports communautaires."
         }
       }
     },
@@ -784,13 +928,15 @@
         "en",
         "tr",
         "id",
-        "de",
+        "es",
+        "fr",
         "hi",
         "th",
-        "ar",
         "pt-BR",
         "zh-CN",
-        "pl"
+        "de",
+        "pl",
+        "ar"
       ],
       "meta": {
         "en": {
@@ -832,6 +978,14 @@
         "ar": {
           "title": "الصفحة غير موجودة | Terra Classic",
           "description": "لم يتم العثور على صفحة terra-classic.money المطلوبة. عُد إلى موقع Terra Classic أو استكشف دليل المنظومة."
+        },
+        "es": {
+          "title": "Página no encontrada | Terra Classic",
+          "description": "No se encontró la página solicitada de terra-classic.money. Vuelve al sitio web Terra Classic o explora el directorio del ecosistema."
+        },
+        "fr": {
+          "title": "Page introuvable | Terra Classic",
+          "description": "La page terra-classic.money demandée est introuvable. Revenez au site web Terra Classic ou explorez le répertoire de l’écosystème."
         }
       }
     }

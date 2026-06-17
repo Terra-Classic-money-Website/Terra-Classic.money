@@ -31,6 +31,7 @@ const protectedExactTexts = new Set([
   "Google Analytics 4",
   "HKtc",
   "IBC",
+  "Legends of Terratria",
   "LUNC",
   "LuncScan",
   "Lunc.Tools",

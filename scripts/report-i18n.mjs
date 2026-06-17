@@ -96,7 +96,7 @@ const lines = [
   "- English is the canonical source locale.",
   "- Turkish is the first published non-English pilot locale.",
   "- Non-English routes must not be published unless their lifecycle status is reviewed and their recorded English source hash is current.",
-  "- Polish is intentionally out of scope until the target-language strategy changes.",
+  "- Published locales are complete-site surfaces; draft or partial locales must remain unpublished until route coverage, metadata, lifecycle status, and source hashes are current.",
 ];
 
 await fs.mkdir(reportDir, { recursive: true });
