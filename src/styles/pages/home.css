@@ -773,11 +773,12 @@ html[dir="rtl"] .hero-orb {
 .strength-visual__orb { position: relative; z-index: 1; display: block; width: 292px; height: auto; max-width: none; }
 
 .protocol-panel--quantum { --protocol-visual-width: 908px; --protocol-visual-height: 512px; --protocol-visual-ratio: 908 / 512; --protocol-visual-center-offset: -4.735%; margin-top: 8px; clip-path: inset(0 round var(--radius-card)); background:
+  linear-gradient(180deg, #101010 0%, rgba(16,16,16,.96) 18%, rgba(16,16,16,.46) 31%, rgba(16,16,16,0) 40%),
   radial-gradient(ellipse at 58% 82%, rgba(238,252,249,.96) 0%, rgba(211,233,241,.88) 17%, rgba(111,132,188,.58) 38%, rgba(47,56,122,.5) 61%, rgba(20,24,60,0) 86%),
-  radial-gradient(ellipse at 92% 37%, rgba(120,151,224,.68) 0%, rgba(78,96,168,.48) 36%, rgba(30,36,88,0) 78%),
-  linear-gradient(180deg, #111633 0%, #222858 34%, #48558f 68%, #ddecf1 100%); box-shadow: 0 1px 0 rgba(194,231,255,.18); }
+  radial-gradient(ellipse at 92% 46%, rgba(93,119,202,.36) 0%, rgba(55,72,147,.26) 34%, rgba(16,16,16,0) 76%),
+  linear-gradient(180deg, #101010 0%, #101010 20%, #15204a 44%, #48558f 70%, #ddecf1 100%); box-shadow: 0 1px 0 rgba(194,231,255,.18); }
 
-.protocol-glow--quantum { inset: -128px -220px -220px; filter: saturate(1.24) contrast(1.04); }
+.protocol-glow--quantum { inset: -128px -220px -220px; filter: saturate(1.24) contrast(1.04); mask-image: linear-gradient(to bottom, transparent 0%, transparent 24%, rgba(0,0,0,.24) 32%, #000 44%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 24%, rgba(0,0,0,.24) 32%, #000 44%); }
 
 .protocol-glow--quantum span { position: absolute; display: block; border-radius: 999px; will-change: transform, opacity, border-radius, filter; }
 
