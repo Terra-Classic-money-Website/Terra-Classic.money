@@ -26,6 +26,35 @@ export type ClosedWorkPackage = {
 // Keep deliverables and acceptance criteria specific; vague ideas belong in an issue first.
 export const openWorkPackages: OpenWorkPackage[] = [
   {
+    id: "post-quantum-roadmap-implementation-strategy",
+    title: "Post-Quantum Roadmap implementation strategy",
+    summary: "Turn the Post-Quantum Roadmap RFC into governance-ready implementation work packages for Terra Classic, including consensus feasibility, wallet/tx migration planning, IBC risk handling, and audit-gated delivery stages.",
+    detailSummary: "Prepare an RFC-aligned implementation strategy for Terra Classic's post-quantum roadmap: from RFC freeze support and CometBFT feasibility work to consensus-path prototyping, wallet/tx hybrid planning, IBC counterparty coordination, audit gates, and production migration decision packages.",
+    category: "Long-term protocol security",
+    status: "OPEN FOR PROPOSALS",
+    effort: "Large",
+    quoteType: "RFC-aligned discovery + milestone quote required",
+    idealFor: ["Cosmos SDK / CometBFT security teams", "Post-quantum cryptography and protocol engineers", "IBC, validator-operations, and wallet-infrastructure specialists"],
+    deliverables: [
+      "RFC-to-implementation mapping that separates Phase Omega, consensus path, wallet/tx path, client ecosystem, audit gates, and governance decision points.",
+      "Feasibility and architecture plan for a PQ-enabled consensus path, including CometBFT, Cosmos SDK, wasmd, validator key binding, deterministic cutover logic, and no-go criteria.",
+      "IBC and migration risk package covering counterparty-chain readiness, relayer requirements, fallback operating modes, route-impact communication, and external dependency tracking.",
+      "Milestone-based implementation, testnet, audit, documentation, and governance proposal plan that can be quoted, reviewed, and executed without implying immediate mainnet migration.",
+    ],
+    acceptanceCriteria: [
+      "The work explicitly follows the Post-Quantum Roadmap RFC and does not claim Terra Classic is already post-quantum, quantum resistant, or production-ready for PQ migration.",
+      "The plan clearly distinguishes RFC freeze, feasibility study, prototype work, migration-component work, audit gates, and production Go/No-Go decisions.",
+      "Consensus-path scope treats ML-DSA, validator key binding, safety/liveness, deterministic upgrade behavior, and larger-signature resource impact as security-critical review areas.",
+      "No mainnet cutover, wallet/tx activation, or client rollout is proposed without prior governance authorization, testnet evidence, independent review, and explicit residual-risk disclosure.",
+    ],
+    quoteRequirements: [
+      "A discovery phase that validates the RFC assumptions, identifies missing technical evidence, and defines which phase or work package the quote covers first.",
+      "A milestone plan with separate pricing for research, architecture, prototype, testnet operation, audit coordination, documentation, and governance-support work.",
+      "Relevant experience with Cosmos SDK, CometBFT, IBC, validator infrastructure, wallet signing flows, cryptographic migrations, or post-quantum signature schemes.",
+      "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.",
+    ],
+  },
+  {
     id: "forex-protocol-implementation",
     title: "Forex Protocol implementation",
     summary: "Build the first production version of Terra Classic's collateral-backed Forex Protocol, starting with EUTC minting, redemption, collateral vaults, oracle inputs, DEX liquidity flows, and safety controls.",
