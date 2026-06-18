@@ -779,13 +779,15 @@ html[dir="rtl"] .hero-orb {
 
 .protocol-glow--quantum span { position: absolute; display: block; border-radius: 999px; will-change: transform, opacity, border-radius, filter; }
 
-.protocol-glow--quantum span:nth-child(1) { left: -120px; right: -90px; top: 56px; bottom: -80px; background: radial-gradient(ellipse at 55% 66%, rgba(24,83,214,.72) 0%, rgba(47,76,174,.62) 32%, rgba(31,42,112,.4) 58%, rgba(17,22,61,0) 88%); filter: blur(88px); opacity: .8; animation: bottom-glow-v2-field 30s ease-in-out -6s infinite alternate; }
+.protocol-glow--quantum span:nth-child(1) { left: -120px; right: -90px; top: 56px; bottom: -80px; background: radial-gradient(ellipse at 55% 66%, rgba(24,83,214,.72) 0%, rgba(47,76,174,.62) 32%, rgba(31,42,112,.4) 58%, rgba(17,22,61,0) 88%); filter: blur(88px); opacity: .8; animation: bottom-glow-v2-field 26s ease-in-out infinite alternate; }
 
-.protocol-glow--quantum span:nth-child(2) { left: 302px; right: 20px; bottom: -118px; height: 820px; background: radial-gradient(ellipse at 58% 70%, rgba(225,250,255,.9) 0%, rgba(158,211,255,.72) 20%, rgba(92,131,220,.46) 48%, rgba(44,62,150,.2) 72%, rgba(44,62,150,0) 92%); filter: blur(54px); opacity: .82; animation: stats-glow-v2-core 23s var(--tc-ease-emphasized) -10s infinite alternate; }
+.protocol-glow--quantum span:nth-child(2) { left: 302px; right: 20px; bottom: -118px; height: 820px; background: radial-gradient(ellipse at 58% 70%, rgba(225,250,255,.9) 0%, rgba(158,211,255,.72) 20%, rgba(92,131,220,.46) 48%, rgba(44,62,150,.2) 72%, rgba(44,62,150,0) 92%); filter: blur(54px); opacity: .82; animation: bottom-glow-v2-core 17s var(--tc-ease-emphasized) infinite alternate; }
 
-.protocol-glow--quantum span:nth-child(3) { left: 436px; right: 120px; bottom: -150px; height: 560px; background: radial-gradient(ellipse at 52% 42%, rgba(245,255,255,.84) 0%, rgba(185,232,255,.58) 32%, rgba(117,150,221,.22) 62%, rgba(117,150,221,0) 82%); filter: blur(62px); opacity: .72; animation: stats-glow-v2-source 27s ease-in-out -4s infinite alternate; }
+.protocol-glow--quantum span:nth-child(3) { left: 436px; right: 120px; bottom: -150px; height: 560px; background: radial-gradient(ellipse at 52% 42%, rgba(245,255,255,.84) 0%, rgba(185,232,255,.58) 32%, rgba(117,150,221,.22) 62%, rgba(117,150,221,0) 82%); filter: blur(62px); opacity: .72; animation: bottom-glow-v2-source 23s ease-in-out infinite alternate; }
 
-.protocol-glow--quantum span:nth-child(4) { left: 72px; right: -20px; bottom: -90px; height: 420px; border-radius: 45% 55% 54% 46% / 44% 54% 46% 56%; background: linear-gradient(96deg, rgba(120,151,224,0) 0%, rgba(158,211,255,.22) 28%, rgba(244,255,255,.5) 54%, rgba(109,127,207,.22) 76%, rgba(30,36,88,0) 100%); filter: blur(70px); opacity: .34; transform: rotate(-4deg); animation: stats-glow-v2-floor-wash 34s ease-in-out -13s infinite alternate; }
+.protocol-glow--quantum span:nth-child(4) { left: 72px; right: -20px; bottom: -90px; height: 420px; border-radius: 45% 55% 54% 46% / 44% 54% 46% 56%; background: linear-gradient(96deg, rgba(120,151,224,0) 0%, rgba(158,211,255,.22) 28%, rgba(244,255,255,.5) 54%, rgba(109,127,207,.22) 76%, rgba(30,36,88,0) 100%); filter: blur(70px); opacity: .34; transform: rotate(-4deg); animation: bottom-glow-v2-floor-wash 29s ease-in-out infinite alternate; }
+
+.protocol-glow--quantum.protocol-glow--v2 span:nth-child(n) { animation-delay: -15.8s; }
 
 .protocol-title-row--quantum { height: 88px; min-height: 88px; align-items: center; justify-content: space-between; }
 
@@ -971,7 +973,7 @@ html[dir="rtl"] .hero-orb {
   .protocol-title-row--quantum { flex-wrap: nowrap; align-items: center; gap: 24px; }
   .protocol-title-row--quantum h2 { flex: 0 1 min(620px, calc(100% - 194px)); width: min(620px, calc(100% - 194px)); max-width: calc(100% - 194px); }
   .protocol-title-row--quantum .status { margin-left: auto; margin-top: 0; }
-  .protocol-visual--quantum { width: min(100%, var(--protocol-visual-width)); height: auto; max-height: var(--protocol-visual-height); }
+  .protocol-visual--quantum { width: min(90%, calc(var(--protocol-visual-width) * .9)); height: auto; max-height: calc(var(--protocol-visual-height) * .9); }
   .protocol-title-row { min-height: 88px; height: auto; align-items: center; }
   .status { position: static; flex: 0 0 auto; margin: 0; }
   .native-lunc-row__bg { opacity: .42; }
