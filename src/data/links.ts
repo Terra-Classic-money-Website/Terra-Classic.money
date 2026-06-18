@@ -24,6 +24,8 @@ export const links = {
   stakingDocs: "https://docs.terra-classic.money/staking-protocol/overview/",
   swapDocs: "https://docs.terra-classic.money/swap-protocol/overview/",
   forexDocs: "https://docs.terra-classic.money/forex-protocol/overview/",
+  quantumReadinessDocs: "https://docs.terra-classic.money/develop/post-quantum-roadmap-rfc/",
+  quantumReadinessPackage: "open-work.html",
   coinMarketCap: "https://coinmarketcap.com/currencies/terra-luna/",
   coinGecko: "https://www.coingecko.com/en/coins/terra-luna-classic",
   nativeAssetsContact: "https://docs.terra-classic.money/institutions/requirements-and-contact/",
