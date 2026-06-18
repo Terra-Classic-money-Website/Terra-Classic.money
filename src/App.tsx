@@ -57,7 +57,15 @@ const protocolUiImageDimensions: Record<string, { width: number; height: number 
   "protocol-staking-ui-figma.png": { width: 384, height: 314 },
   "protocol-swap-ui-figma.png": { width: 384, height: 440 },
   "protocol-validator-ui-figma.png": { width: 384, height: 336 },
+  "quantum-readiness-rfc-ui.png": { width: 333, height: 152 },
+  "quantum-readiness-roadmap-ui.png": { width: 384, height: 296 },
 };
+
+const quantumReadinessImageDimensions = {
+  main: { width: 2193, height: 2230 },
+  blue: { width: 412, height: 409 },
+  yellow: { width: 383, height: 383 },
+} as const;
 
 type AprInfoState = {
   status: "loading" | "ready" | "error";
@@ -545,9 +553,9 @@ function ProtocolUiImage({ assetName, className }: { assetName: string; classNam
     <DeferredResponsiveImage
       className={className}
       baseName={responsiveImageBase(assetName)}
-      widths={[384]}
-      fallbackWidth={384}
-      sizes="(max-width: 767px) 128px, 384px"
+      widths={[dimensions.width]}
+      fallbackWidth={dimensions.width}
+      sizes={`(max-width: 767px) ${Math.round(dimensions.width / 2)}px, ${dimensions.width}px`}
       alt=""
       loading="eager"
       width={dimensions.width}
@@ -844,6 +852,59 @@ function DecentralizationStats() {
   );
 }
 
+function QuantumReadiness() {
+  const buttons = [
+    ["Post-Quantum Roadmap RFC docs", links.quantumReadinessDocs],
+    ["Submit an implementation quote", links.quantumReadinessPackage],
+  ] as const;
+
+  return (
+    <article id="quantum-readiness" className="protocol-panel protocol-panel--quantum" aria-labelledby="quantum-readiness-title">
+      <div className={`protocol-glow protocol-glow--quantum protocol-glow--${BOTTOM_GLOW_VARIANT}`} aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="protocol-lines" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="protocol-head protocol-head--quantum">
+        <div className="protocol-title-row protocol-title-row--quantum">
+          <h2 className="tc-type-h1" id="quantum-readiness-title">Quantum Readiness</h2>
+          <span className="status status--soon">COMING SOON</span>
+        </div>
+        <p className="tc-type-h4">Terra Classic is bringing post-quantum readiness into public roadmap discussion early, with a community-authored RFC, staged migration logic, and audit-first governance before any production change.</p>
+      </div>
+      <div className="protocol-visual protocol-visual--quantum" aria-hidden="true">
+        <DeferredResponsiveImage className="quantum-readiness__orb quantum-readiness__orb--blue" baseName="quantum-readiness-blue-orb" widths={[258, 412]} fallbackWidth={quantumReadinessImageDimensions.blue.width} sizes="(max-width: 767px) 138px, 258px" alt="" loading="eager" width={quantumReadinessImageDimensions.blue.width} height={quantumReadinessImageDimensions.blue.height} reveal />
+        <DeferredResponsiveImage className="quantum-readiness__orb quantum-readiness__orb--yellow" baseName="quantum-readiness-yellow-orb" widths={[255, 383]} fallbackWidth={quantumReadinessImageDimensions.yellow.width} sizes="(max-width: 767px) 136px, 255px" alt="" loading="eager" width={quantumReadinessImageDimensions.yellow.width} height={quantumReadinessImageDimensions.yellow.height} reveal />
+        <DeferredResponsiveImage className="protocol-orb quantum-readiness__orb quantum-readiness__orb--main" baseName="quantum-readiness-orb" widths={[480, 768, 1200]} fallbackWidth={quantumReadinessImageDimensions.main.width} sizes="(max-width: 767px) 296px, 720px" alt="" loading="eager" width={quantumReadinessImageDimensions.main.width} height={quantumReadinessImageDimensions.main.height} reveal />
+        <ProtocolUiImage className="protocol-ui quantum-readiness__ui quantum-readiness__ui--roadmap" assetName="quantum-readiness-roadmap-ui.png" />
+        <ProtocolUiImage className="protocol-ui quantum-readiness__ui quantum-readiness__ui--rfc" assetName="quantum-readiness-rfc-ui.png" />
+      </div>
+      <div className="protocol-bottom protocol-bottom--quantum">
+        <div className="protocol-actions protocol-actions--quantum">
+          {buttons.map(([label, rawHref], index) => {
+            const href = resolveHref(rawHref);
+            const isExternal = isExternalHref(href);
+
+            return (
+              <a key={label} className={`protocol-button protocol-button--${index === 0 ? "primary" : "secondary"}`} href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noopener noreferrer" : undefined}>
+                <span className="tc-type-link-big">{label}</span>
+                <img src={asset("protocol-button-arrow.svg")} alt="" aria-hidden="true" />
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function FounderStories() {
   const docsHref = resolveHref(links.docs);
   const [videoOpen, setVideoOpen] = useState(false);
@@ -990,6 +1051,7 @@ export default function App() {
       <NativeAssets />
       <Strengths />
       <DecentralizationStats />
+      <QuantumReadiness />
       <FounderStories />
       <JoinCommunity />
       <FAQ />

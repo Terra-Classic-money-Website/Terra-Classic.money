@@ -7,14 +7,14 @@ const distDir = path.join(rootDir, "dist");
 const distAssetsDir = path.join(distDir, "assets");
 
 const budgets = {
-  totalRuntimeDistBytes: 18.25 * 1024 * 1024,
+  totalRuntimeDistBytes: 19.75 * 1024 * 1024,
   largestRuntimeAssetBytes: 900 * 1024,
   largestDownloadAssetBytes: 20 * 1024 * 1024,
-  homeInitialJsGzipBytes: 96 * 1024,
+  homeInitialJsGzipBytes: 97 * 1024,
   maxInitialJsGzipBytes: 125 * 1024,
   maxInitialCssGzipBytes: 28 * 1024,
   totalJsGzipBytes: 160 * 1024,
-  totalCssGzipBytes: 45 * 1024,
+  totalCssGzipBytes: 46 * 1024,
 };
 
 async function walk(dir) {
