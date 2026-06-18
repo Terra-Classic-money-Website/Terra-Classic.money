@@ -875,14 +875,14 @@ function QuantumReadiness() {
       <div className="protocol-head protocol-head--quantum">
         <div className="protocol-title-row protocol-title-row--quantum">
           <h2 className="tc-type-h1" id="quantum-readiness-title">Quantum Readiness</h2>
-          <span className="status status--soon">COMING SOON</span>
+          <span className="status status--planned">PLANNED</span>
         </div>
         <p className="tc-type-h4">Terra Classic is bringing post-quantum readiness into public roadmap discussion early, with a community-authored RFC, staged migration logic, and audit-first governance before any production change.</p>
       </div>
       <div className="protocol-visual protocol-visual--quantum" aria-hidden="true">
         <DeferredResponsiveImage className="quantum-readiness__orb quantum-readiness__orb--blue" baseName="quantum-readiness-blue-orb" widths={[258, 412]} fallbackWidth={quantumReadinessImageDimensions.blue.width} sizes="(max-width: 767px) 138px, 258px" alt="" loading="eager" width={quantumReadinessImageDimensions.blue.width} height={quantumReadinessImageDimensions.blue.height} reveal />
         <DeferredResponsiveImage className="quantum-readiness__orb quantum-readiness__orb--yellow" baseName="quantum-readiness-yellow-orb" widths={[255, 383]} fallbackWidth={quantumReadinessImageDimensions.yellow.width} sizes="(max-width: 767px) 136px, 255px" alt="" loading="eager" width={quantumReadinessImageDimensions.yellow.width} height={quantumReadinessImageDimensions.yellow.height} reveal />
-        <DeferredResponsiveImage className="protocol-orb quantum-readiness__orb quantum-readiness__orb--main" baseName="quantum-readiness-orb" widths={[480, 768, 1200]} fallbackWidth={quantumReadinessImageDimensions.main.width} sizes="(max-width: 767px) 296px, 720px" alt="" loading="eager" width={quantumReadinessImageDimensions.main.width} height={quantumReadinessImageDimensions.main.height} reveal />
+        <ResponsiveImage className="protocol-orb quantum-readiness__orb quantum-readiness__orb--main" baseName="quantum-readiness-orb" widths={[480, 768, 1200]} fallbackWidth={1200} sizes="(max-width: 767px) 296px, 720px" formats={["webp"]} alt="" loading="eager" fetchPriority="high" width={quantumReadinessImageDimensions.main.width} height={quantumReadinessImageDimensions.main.height} reveal />
         <ProtocolUiImage className="protocol-ui quantum-readiness__ui quantum-readiness__ui--roadmap" assetName="quantum-readiness-roadmap-ui.png" />
         <ProtocolUiImage className="protocol-ui quantum-readiness__ui quantum-readiness__ui--rfc" assetName="quantum-readiness-rfc-ui.png" />
       </div>
