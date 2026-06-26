@@ -157,6 +157,8 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
   const [pageScrolled, setPageScrolled] = useState(false);
   const currentLocale = useCurrentLocale();
   const chrome = getChromeContent(currentLocale.id);
+  const expandedPanelHidden = collapsed && !drawerOpen;
+  const collapsedPanelHidden = !collapsed || drawerOpen;
 
   useEffect(() => {
     document.body.classList.toggle("mobile-drawer-open", drawerOpen);
@@ -233,7 +235,7 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
         </div>
       </header>
       <aside className={`sidebar ${collapsed ? "sidebar--collapsed" : ""} ${drawerOpen ? "sidebar--drawer-open" : ""}`}>
-        <div className="sidebar-panel sidebar-panel--expanded" aria-hidden={collapsed && !drawerOpen}>
+        <div className="sidebar-panel sidebar-panel--expanded" aria-hidden={expandedPanelHidden} inert={expandedPanelHidden ? true : undefined}>
           <div className="sidebar-top">
             <div className="sidebar-brand">
               <a className="sidebar-home-link" href={page("#top")} aria-label={chrome.homeAria}>
@@ -270,7 +272,7 @@ function Sidebar({ defaultCollapsed = false, storageKey = "tcm-sidebar-collapsed
             </div>
           </div>
         </div>
-        <div className="sidebar-panel sidebar-panel--collapsed" aria-hidden={!collapsed || drawerOpen}>
+        <div className="sidebar-panel sidebar-panel--collapsed" aria-hidden={collapsedPanelHidden} inert={collapsedPanelHidden ? true : undefined}>
           <div className="sidebar-top">
             <div className="sidebar-brand">
               <a className="sidebar-home-icon" href={page("#top")} aria-label={chrome.homeAria}>
