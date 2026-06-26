@@ -103,8 +103,8 @@ function BrandAssetCard({ item, kind }: { item: BrandAsset; kind: "logo" | "sign
         <span className="tc-type-body-very-small">{dimensions}</span>
       </div>
       <div className="brand-asset-card__actions" aria-label={`${item.name} ${kind} downloads`}>
-        <a className="brand-asset-download tc-type-link-normal" href={svgHref} download={downloadName(item.name, kind, "svg")}>SVG</a>
-        <a className="brand-asset-download tc-type-link-normal" href={pngHref} download={downloadName(item.name, kind, "png")}>PNG</a>
+        <a className="brand-asset-download tc-type-link-normal" href={svgHref} download={downloadName(item.name, kind, "svg")} aria-label={`Download ${item.name} ${kind} as SVG`}>SVG</a>
+        <a className="brand-asset-download tc-type-link-normal" href={pngHref} download={downloadName(item.name, kind, "png")} aria-label={`Download ${item.name} ${kind} as PNG`}>PNG</a>
       </div>
     </article>
   );
@@ -127,7 +127,7 @@ function KeyVisualCard({ item }: { item: KeyVisualAsset }) {
         <span className="tc-type-body-very-small">{item.dimensions}</span>
       </div>
       <div className="brand-asset-card__actions" aria-label={`${item.name} key visual downloads`}>
-        <a className="brand-asset-download tc-type-link-normal" href={pngHref} download={downloadName(item.name, "key-visual", "png")}>PNG</a>
+        <a className="brand-asset-download tc-type-link-normal" href={pngHref} download={downloadName(item.name, "key-visual", "png")} aria-label={`Download ${item.name} key visual as PNG`}>PNG</a>
       </div>
     </article>
   );

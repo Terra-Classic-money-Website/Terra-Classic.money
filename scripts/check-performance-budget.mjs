@@ -8,6 +8,7 @@ const distAssetsDir = path.join(distDir, "assets");
 
 const budgets = {
   totalRuntimeDistBytes: 19.75 * 1024 * 1024,
+  agentContextBytes: 160 * 1024,
   largestRuntimeAssetBytes: 900 * 1024,
   largestDownloadAssetBytes: 20 * 1024 * 1024,
   homeInitialJsGzipBytes: 97 * 1024,
@@ -69,10 +70,20 @@ function isDownloadAsset(file) {
   return file.relative.startsWith("assets/brand-assets/");
 }
 
-const runtimeFileStats = fileStats.filter((file) => !isDownloadAsset(file));
+function isAgentContextFile(file) {
+  return (
+    file.relative === "llms.txt" ||
+    file.relative.startsWith("ai-context/") ||
+    /^data\/(site-index|ecosystem|markets|roadmap|open-work|policies|faq)\.json$/.test(file.relative)
+  );
+}
+
+const runtimeFileStats = fileStats.filter((file) => !isDownloadAsset(file) && !isAgentContextFile(file));
 const downloadAssetStats = fileStats.filter(isDownloadAsset);
+const agentContextStats = fileStats.filter(isAgentContextFile);
 const totalRuntimeDistBytes = runtimeFileStats.reduce((sum, file) => sum + file.bytes, 0);
 const totalDownloadAssetBytes = downloadAssetStats.reduce((sum, file) => sum + file.bytes, 0);
+const totalAgentContextBytes = agentContextStats.reduce((sum, file) => sum + file.bytes, 0);
 const largestRuntimeAsset = runtimeFileStats.reduce((largest, file) => (file.bytes > largest.bytes ? file : largest), runtimeFileStats[0]);
 const largestDownloadAsset = downloadAssetStats.reduce((largest, file) => (file.bytes > largest.bytes ? file : largest), downloadAssetStats[0] || { relative: "none", bytes: 0 });
 const metadataFiles = fileStats.filter((file) => isLocalMetadataFile(path.basename(file.file)));
@@ -149,6 +160,10 @@ if (totalRuntimeDistBytes > budgets.totalRuntimeDistBytes) {
   failures.push(`Runtime dist size ${formatBytes(totalRuntimeDistBytes)} exceeds ${formatBytes(budgets.totalRuntimeDistBytes)}.`);
 }
 
+if (totalAgentContextBytes > budgets.agentContextBytes) {
+  failures.push(`AI agent context size ${formatBytes(totalAgentContextBytes)} exceeds ${formatBytes(budgets.agentContextBytes)}.`);
+}
+
 if (largestRuntimeAsset.bytes > budgets.largestRuntimeAssetBytes) {
   failures.push(`Largest runtime file ${largestRuntimeAsset.relative} is ${formatBytes(largestRuntimeAsset.bytes)}, above ${formatBytes(budgets.largestRuntimeAssetBytes)}.`);
 }
@@ -183,6 +198,7 @@ if (metadataFiles.length > 0) {
 
 console.log("Performance budget summary:");
 console.log(`- Runtime dist: ${formatBytes(totalRuntimeDistBytes)} / ${formatBytes(budgets.totalRuntimeDistBytes)}`);
+console.log(`- AI agent context: ${formatBytes(totalAgentContextBytes)} / ${formatBytes(budgets.agentContextBytes)}`);
 console.log(`- Downloadable brand assets: ${formatBytes(totalDownloadAssetBytes)}`);
 console.log(`- Largest runtime file: ${largestRuntimeAsset.relative} (${formatBytes(largestRuntimeAsset.bytes)}) / ${formatBytes(budgets.largestRuntimeAssetBytes)}`);
 console.log(`- Largest downloadable brand asset: ${largestDownloadAsset.relative} (${formatBytes(largestDownloadAsset.bytes)}) / ${formatBytes(budgets.largestDownloadAssetBytes)}`);

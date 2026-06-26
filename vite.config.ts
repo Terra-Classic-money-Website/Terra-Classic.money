@@ -107,6 +107,7 @@ function managedHeadTags(route: RouteConfig, locale: LocaleConfig) {
   const title = escapeHtml(meta.title);
   const description = escapeHtml(meta.description);
   const url = escapeHtml(canonicalUrl);
+  const structuredDataTag = route.robots ? "" : structuredDataScript(route, locale);
 
   return [
     robotsTag,
@@ -127,7 +128,236 @@ function managedHeadTags(route: RouteConfig, locale: LocaleConfig) {
     `    <meta name="twitter:title" content="${title}" />`,
     `    <meta name="twitter:description" content="${description}" />`,
     `    <meta name="twitter:image" content="${i18nConfig.siteUrl}/assets/terra-classic-money-ogimage.png" />`,
+    structuredDataTag,
   ].filter(Boolean).join("\n");
+}
+
+function schemaPageType(routeId: string) {
+  const collectionPages = new Set(["ecosystem", "markets", "openWork", "brandAssets"]);
+
+  if (routeId === "about") return "AboutPage";
+  if (routeId === "decentralization") return "Article";
+  if (routeId === "privacy") return "WebPage";
+  if (routeId === "openWorkDetail") return "Article";
+  if (collectionPages.has(routeId)) return "CollectionPage";
+  return "WebPage";
+}
+
+function routeDataLinks(routeId: string) {
+  const linksByRoute: Record<string, string[]> = {
+    home: ["/data/site-index.json", "/data/faq.json", "/ai-context/site.md"],
+    ecosystem: ["/data/ecosystem.json"],
+    markets: ["/data/markets.json"],
+    roadmap: ["/data/roadmap.json"],
+    openWork: ["/data/open-work.json", "/ai-context/open-work.md"],
+    openWorkDetail: ["/data/open-work.json"],
+    about: ["/data/policies.json", "/ai-context/policies.md"],
+    privacy: ["/data/policies.json"],
+    brandAssets: ["/data/site-index.json"],
+  };
+
+  return (linksByRoute[routeId] || ["/data/site-index.json"]).map((href) => `${i18nConfig.siteUrl}${href}`);
+}
+
+function structuredDataScript(route: RouteConfig, locale: LocaleConfig) {
+  const meta = route.meta[locale.id] || route.meta[defaultLocale.id];
+  const canonicalUrl = absoluteUrlFor(locale, route);
+  const pageType = schemaPageType(route.id);
+  const pageNodeType = pageType === "WebPage" ? "WebPage" : [pageType, "WebPage"];
+  const graph: Array<Record<string, unknown>> = [
+    {
+      "@type": "WebSite",
+      "@id": `${i18nConfig.siteUrl}/#website`,
+      url: `${i18nConfig.siteUrl}/`,
+      name: "terra-classic.money",
+      description: "Independent, community-maintained information website for Terra Classic, LUNC, and USTC.",
+      inLanguage: locale.htmlLang,
+      publisher: { "@id": `${i18nConfig.siteUrl}/#maintainers` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${i18nConfig.siteUrl}/#maintainers`,
+      name: "terra-classic.money community maintainers",
+      url: `${i18nConfig.siteUrl}/about.html`,
+      description: "Independent community maintainers of the Terra Classic public information website.",
+    },
+    {
+      "@type": pageNodeType,
+      "@id": `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: meta.title,
+      description: meta.description,
+      isPartOf: { "@id": `${i18nConfig.siteUrl}/#website` },
+      inLanguage: locale.htmlLang,
+      significantLink: routeDataLinks(route.id),
+    },
+  ];
+
+  if (locale.id === defaultLocale.id) {
+    const itemList = routeItemList(route.id, canonicalUrl);
+    if (itemList) graph.push(itemList);
+  }
+
+  if (route.id === "home" && locale.id === defaultLocale.id) {
+    const faqQuestions = readGeneratedFaqQuestions();
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${canonicalUrl}#faq`,
+      url: canonicalUrl,
+      inLanguage: locale.htmlLang,
+      isPartOf: { "@id": `${canonicalUrl}#webpage` },
+      mainEntity: faqQuestions,
+    });
+  }
+
+  const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c");
+  return `    <script type="application/ld+json">${json}</script>`;
+}
+
+function routeItemList(routeId: string, canonicalUrl: string) {
+  if (routeId === "ecosystem") {
+    const data = readGeneratedJson<{ categories?: Array<{ id: string; title: string; description: string; entries?: unknown[] }> }>("ecosystem.json");
+    return itemListNode(
+      `${canonicalUrl}#ecosystem-categories`,
+      "Terra Classic ecosystem categories",
+      canonicalUrl,
+      (data?.categories || []).map((category) => ({
+        name: category.title,
+        description: `${category.description}. ${category.entries?.length || 0} listed resources.`,
+        url: `${canonicalUrl}#${category.id}`,
+      })),
+    );
+  }
+
+  if (routeId === "markets") {
+    const data = readGeneratedJson<{
+      assetGroups?: Array<{ title: string; categories?: Array<{ id: string; title: string; description: string; entries?: unknown[] }> }>;
+    }>("markets.json");
+    return itemListNode(
+      `${canonicalUrl}#market-categories`,
+      "LUNC and USTC market information categories",
+      canonicalUrl,
+      (data?.assetGroups || []).flatMap((assetGroup) =>
+        (assetGroup.categories || []).map((category) => ({
+          name: `${assetGroup.title}: ${category.title}`,
+          description: `${category.description}. ${category.entries?.length || 0} informational routes.`,
+          url: `${canonicalUrl}#${assetGroup.title.toLowerCase()}-${category.id}`,
+        })),
+      ),
+    );
+  }
+
+  if (routeId === "roadmap") {
+    const data = readGeneratedJson<{ rows?: Array<{ id: string; project: string; category?: string; source?: string }> }>("roadmap.json");
+    return itemListNode(
+      `${canonicalUrl}#roadmap-projects`,
+      "Terra Classic public roadmap rows",
+      canonicalUrl,
+      (data?.rows || []).map((row) => ({
+        name: row.project,
+        description: [row.category, row.source].filter(Boolean).join(" - "),
+        url: `${canonicalUrl}#${row.id}`,
+      })),
+    );
+  }
+
+  if (routeId === "openWork") {
+    const data = readGeneratedJson<{ openPackages?: Array<{ title: string; summary: string; detailUrl: string; status?: string }> }>("open-work.json");
+    return itemListNode(
+      `${canonicalUrl}#open-work-packages`,
+      "Terra Classic open work packages",
+      canonicalUrl,
+      (data?.openPackages || []).map((workPackage) => ({
+        name: workPackage.title,
+        description: [workPackage.summary, workPackage.status].filter(Boolean).join(" - "),
+        url: workPackage.detailUrl,
+      })),
+    );
+  }
+
+  if (routeId === "brandAssets") {
+    return itemListNode(
+      `${canonicalUrl}#brand-asset-groups`,
+      "Terra Classic downloadable brand asset groups",
+      canonicalUrl,
+      [
+        {
+          name: "Full logos",
+          description: "Logo sets combining the Terra Classic sign with each brand wordmark.",
+          url: `${canonicalUrl}#full-logos`,
+        },
+        {
+          name: "Signs",
+          description: "Standalone Terra Classic, LUNC, USTC, and protocol signs.",
+          url: `${canonicalUrl}#signs`,
+        },
+        {
+          name: "Key visuals",
+          description: "Ready-to-use visual compositions for ecosystem materials.",
+          url: `${canonicalUrl}#key-visuals`,
+        },
+      ],
+    );
+  }
+
+  return null;
+}
+
+function itemListNode(id: string, name: string, url: string, items: Array<{ name: string; description?: string; url?: string }>) {
+  if (items.length === 0) return null;
+
+  return {
+    "@type": "ItemList",
+    "@id": id,
+    name,
+    url,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Thing",
+        name: item.name,
+        description: item.description || undefined,
+        url: item.url || url,
+      },
+    })),
+  };
+}
+
+function readGeneratedJson<T>(fileName: string) {
+  const filePath = resolve(rootDir, "public/data", fileName);
+  if (!existsSync(filePath)) return null;
+
+  try {
+    return JSON.parse(readFileSync(filePath, "utf8")) as T;
+  } catch {
+    return null;
+  }
+}
+
+function readGeneratedFaqQuestions() {
+  const faqPath = resolve(rootDir, "public/data/faq.json");
+  if (!existsSync(faqPath)) return [];
+
+  try {
+    const faq = JSON.parse(readFileSync(faqPath, "utf8")) as {
+      groups?: Array<{ page?: string; items?: Array<{ question?: string; answer?: string }> }>;
+    };
+    return (faq.groups || [])
+      .filter((group) => group.page === "home")
+      .flatMap((group) => group.items || [])
+      .filter((item) => item.question && item.answer)
+      .map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      }));
+  } catch {
+    return [];
+  }
 }
 
 function localizedHtmlPlugin() {
