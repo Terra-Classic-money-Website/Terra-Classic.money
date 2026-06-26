@@ -27,6 +27,22 @@ Vite prints the local URL, normally `http://127.0.0.1:5173/`.
 
 `npm run dev` generates localized static route templates before starting Vite.
 
+It also generates the static AI-agent context layer before starting Vite:
+
+```text
+public/llms.txt
+public/ai-context/
+public/data/site-index.json
+public/data/ecosystem.json
+public/data/markets.json
+public/data/roadmap.json
+public/data/open-work.json
+public/data/policies.json
+public/data/faq.json
+```
+
+These files are generated from repository source data and are ignored in Git. They are copied into `dist` during production builds.
+
 Open the Ecosystem subpage locally at:
 
 ```text
@@ -163,6 +179,36 @@ npm run check:quick
 
 This generates localized route templates and runs TypeScript checking. It does not run browser i18n audits, image generation, performance budgets, Lighthouse, or visual snapshots.
 
+It also regenerates and validates the AI-agent context files so broken `llms.txt` or machine-readable JSON is caught early.
+
+### AI-agent context checks
+
+Generate the static AI-agent context layer:
+
+```bash
+npm run agent:generate
+```
+
+Validate generated agent files in `public`:
+
+```bash
+npm run agent:validate
+```
+
+Validate the built `dist` copy, including generated JSON-LD in production HTML:
+
+```bash
+AGENT_VALIDATE_DIST=1 npm run agent:validate
+```
+
+Run a full local agent-readability audit against a production build and Lighthouse's agentic browsing checks:
+
+```bash
+npm run agent:audit
+```
+
+Reports are written to `.agent-reports`, which is intentionally ignored by Git.
+
 ### Production build check
 
 Use this when the change should prove that the production artifact still builds and stays inside deterministic size budgets:
@@ -172,6 +218,8 @@ npm run check:build
 ```
 
 This runs the production build and `npm run perf:budget`.
+
+`npm run perf:budget` tracks the static AI-agent context files as their own capped bucket, separate from interactive runtime payload. This keeps `/llms.txt`, `/ai-context/*`, and generated agent JSON useful for assistants without hiding their published size cost.
 
 ### Translation checks
 

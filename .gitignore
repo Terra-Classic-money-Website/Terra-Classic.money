@@ -28,3 +28,16 @@ dist/
 .performance-reports/
 .visual-reports/
 .i18n-reports/
+.agent-reports/
+
+# Generated AI-agent context files. Source of truth is scripts/generate-agent-context.mjs
+# plus the structured data modules under src/data.
+public/llms.txt
+public/ai-context/
+public/data/site-index.json
+public/data/ecosystem.json
+public/data/markets.json
+public/data/roadmap.json
+public/data/open-work.json
+public/data/policies.json
+public/data/faq.json
