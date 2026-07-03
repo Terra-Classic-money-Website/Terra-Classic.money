@@ -166,9 +166,9 @@ export const roadmapRows: RoadmapRow[] = [
       {
         title: "Mainnet release",
         start: "2026-06",
-        end: "2026-06",
+        end: "2026-07",
         status: "planned",
-        dateLabel: "Jun 2026",
+        dateLabel: "Jun-Jul 2026",
       },
     ],
   },
