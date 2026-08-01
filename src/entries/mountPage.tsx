@@ -1,19 +1,20 @@
 import { StrictMode, type ReactNode } from "react";
-import { createRoot } from "react-dom/client";
 import { initializeAnalytics } from "../analytics";
 import { SiteShell } from "../components/SiteShell";
 import { LocalizedDomTextProvider } from "../i18n/domTranslation";
+import { renderClientRoot } from "./renderClientRoot";
 
 export function mountPage(
   children: ReactNode,
   options: {
     sidebarDefaultCollapsed?: boolean;
     sidebarStorageKey?: string;
+    forceClientRender?: boolean;
   } = {},
 ) {
   initializeAnalytics();
 
-  createRoot(document.getElementById("root")!).render(
+  renderClientRoot(
     <StrictMode>
       <LocalizedDomTextProvider>
         <SiteShell
@@ -24,5 +25,6 @@ export function mountPage(
         </SiteShell>
       </LocalizedDomTextProvider>
     </StrictMode>,
+    { forceClientRender: options.forceClientRender },
   );
 }

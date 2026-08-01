@@ -1,4 +1,18 @@
 User-agent: *
+# Search, answer grounding, citation, and reference use are welcome. No
+# ai-train preference is expressed here; training rights are not implied.
+Content-Signal: search=yes, ai-input=yes, use=reference
+Allow: /
+
+# Explicit search and user-request crawler groups make the public-information
+# intent clear while the wildcard rule continues to cover other agents.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Content-Signal: search=yes, ai-input=yes, use=reference
 Allow: /
 
 Sitemap: https://terra-classic.money/sitemap.xml

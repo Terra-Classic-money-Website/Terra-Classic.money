@@ -8,7 +8,8 @@ const distAssetsDir = path.join(distDir, "assets");
 
 const budgets = {
   totalRuntimeDistBytes: 19.75 * 1024 * 1024,
-  agentContextBytes: 160 * 1024,
+  staticPrerenderedHtmlBytes: 5.5 * 1024 * 1024,
+  agentContextBytes: 220 * 1024,
   largestRuntimeAssetBytes: 900 * 1024,
   largestDownloadAssetBytes: 20 * 1024 * 1024,
   homeInitialJsGzipBytes: 97 * 1024,
@@ -73,23 +74,30 @@ function isDownloadAsset(file) {
 function isAgentContextFile(file) {
   return (
     file.relative === "llms.txt" ||
+    file.relative === "llms-full.txt" ||
+    file.relative === "feed.xml" ||
     file.relative.startsWith("ai-context/") ||
     /^data\/(site-index|ecosystem|markets|roadmap|open-work|policies|faq)\.json$/.test(file.relative)
   );
 }
 
-const runtimeFileStats = fileStats.filter((file) => !isDownloadAsset(file) && !isAgentContextFile(file));
+function isHtmlFile(file) {
+  return file.relative.endsWith(".html");
+}
+
+const runtimeFileStats = fileStats.filter((file) => !isDownloadAsset(file) && !isAgentContextFile(file) && !isHtmlFile(file));
 const downloadAssetStats = fileStats.filter(isDownloadAsset);
 const agentContextStats = fileStats.filter(isAgentContextFile);
+const htmlFiles = fileStats.filter(isHtmlFile);
 const totalRuntimeDistBytes = runtimeFileStats.reduce((sum, file) => sum + file.bytes, 0);
 const totalDownloadAssetBytes = downloadAssetStats.reduce((sum, file) => sum + file.bytes, 0);
 const totalAgentContextBytes = agentContextStats.reduce((sum, file) => sum + file.bytes, 0);
+const totalStaticPrerenderedHtmlBytes = htmlFiles.reduce((sum, file) => sum + file.bytes, 0);
 const largestRuntimeAsset = runtimeFileStats.reduce((largest, file) => (file.bytes > largest.bytes ? file : largest), runtimeFileStats[0]);
 const largestDownloadAsset = downloadAssetStats.reduce((largest, file) => (file.bytes > largest.bytes ? file : largest), downloadAssetStats[0] || { relative: "none", bytes: 0 });
 const metadataFiles = fileStats.filter((file) => isLocalMetadataFile(path.basename(file.file)));
 const jsFiles = fileStats.filter((file) => file.relative.startsWith("assets/") && file.relative.endsWith(".js"));
 const cssFiles = fileStats.filter((file) => file.relative.startsWith("assets/") && file.relative.endsWith(".css"));
-const htmlFiles = fileStats.filter((file) => file.relative.endsWith(".html"));
 
 function isLazyLocaleChunk(file) {
   return /^assets\/renderedText-[A-Za-z0-9_-]+\.js$/.test(file.relative);
@@ -160,6 +168,10 @@ if (totalRuntimeDistBytes > budgets.totalRuntimeDistBytes) {
   failures.push(`Runtime dist size ${formatBytes(totalRuntimeDistBytes)} exceeds ${formatBytes(budgets.totalRuntimeDistBytes)}.`);
 }
 
+if (totalStaticPrerenderedHtmlBytes > budgets.staticPrerenderedHtmlBytes) {
+  failures.push(`Static prerendered HTML size ${formatBytes(totalStaticPrerenderedHtmlBytes)} exceeds ${formatBytes(budgets.staticPrerenderedHtmlBytes)}.`);
+}
+
 if (totalAgentContextBytes > budgets.agentContextBytes) {
   failures.push(`AI agent context size ${formatBytes(totalAgentContextBytes)} exceeds ${formatBytes(budgets.agentContextBytes)}.`);
 }
@@ -198,6 +210,7 @@ if (metadataFiles.length > 0) {
 
 console.log("Performance budget summary:");
 console.log(`- Runtime dist: ${formatBytes(totalRuntimeDistBytes)} / ${formatBytes(budgets.totalRuntimeDistBytes)}`);
+console.log(`- Static prerendered HTML: ${formatBytes(totalStaticPrerenderedHtmlBytes)} / ${formatBytes(budgets.staticPrerenderedHtmlBytes)}`);
 console.log(`- AI agent context: ${formatBytes(totalAgentContextBytes)} / ${formatBytes(budgets.agentContextBytes)}`);
 console.log(`- Downloadable brand assets: ${formatBytes(totalDownloadAssetBytes)}`);
 console.log(`- Largest runtime file: ${largestRuntimeAsset.relative} (${formatBytes(largestRuntimeAsset.bytes)}) / ${formatBytes(budgets.largestRuntimeAssetBytes)}`);

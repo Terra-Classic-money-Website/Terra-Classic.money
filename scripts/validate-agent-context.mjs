@@ -7,7 +7,11 @@ const distDir = path.join(rootDir, "dist");
 const siteI18nPath = path.join(rootDir, "src/i18n/site-i18n.json");
 
 const requiredPublicFiles = [
+  "robots.txt",
+  "sitemap.xml",
   "llms.txt",
+  "llms-full.txt",
+  "feed.xml",
   "ai-context/site.md",
   "ai-context/policies.md",
   "ai-context/faq.md",
@@ -194,6 +198,41 @@ async function validateBase(baseDir, { built = false } = {}) {
     if (!await exists(filePath) && !await exists(rootFilePath)) {
       failures.push(`Link target from llms.txt is missing locally: ${link}`);
     }
+  }
+
+  const llmsFull = await readText(baseDir, "llms-full.txt");
+  if (!llmsFull.startsWith("# ") || llmsFull.length < 20_000) {
+    failures.push(`${built ? "dist" : "public"}/llms-full.txt is missing consolidated agent context.`);
+  }
+  for (const phrase of requiredPhrases) {
+    if (!llmsFull.toLowerCase().includes(phrase.toLowerCase())) {
+      failures.push(`${built ? "dist" : "public"}/llms-full.txt is missing required phrase: ${phrase}`);
+    }
+  }
+
+  const feed = await readText(baseDir, "feed.xml");
+  const feedEntries = [...feed.matchAll(/<entry>/g)].length;
+  if (!feed.startsWith("<?xml") || !feed.includes('<feed xmlns="http://www.w3.org/2005/Atom">') || feedEntries < 8) {
+    failures.push(`${built ? "dist" : "public"}/feed.xml is not a complete Atom route feed.`);
+  }
+
+  const robots = await readText(baseDir, "robots.txt");
+  for (const directive of [
+    "Content-Signal: search=yes, ai-input=yes, use=reference",
+    "User-agent: OAI-SearchBot",
+    "User-agent: ChatGPT-User",
+    "User-agent: Claude-SearchBot",
+    "User-agent: Claude-User",
+    "User-agent: PerplexityBot",
+    "User-agent: Perplexity-User",
+    "Sitemap: https://terra-classic.money/sitemap.xml",
+  ]) {
+    if (!robots.includes(directive)) failures.push(`${built ? "dist" : "public"}/robots.txt is missing: ${directive}`);
+  }
+
+  const sitemap = await readText(baseDir, "sitemap.xml");
+  if (!sitemap.includes('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">') || [...sitemap.matchAll(/<url>/g)].length < 8) {
+    failures.push(`${built ? "dist" : "public"}/sitemap.xml is not a complete sitemap.`);
   }
 
   for (const relativePath of requiredPublicFiles.filter((file) => file.endsWith(".json"))) {

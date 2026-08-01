@@ -20,57 +20,57 @@
         },
         "tr": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
         },
         "id": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Indonesian route content is generated from source-controlled rendered text translations and published as the second non-English locale."
         },
         "de": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "German route content is generated from source-controlled rendered text translations and published as the third non-English locale."
         },
         "hi": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Hindi route content is generated from source-controlled rendered text translations and published as the fourth non-English locale."
         },
         "th": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Thai route content is generated from source-controlled rendered text translations and published as the fifth non-English locale."
         },
         "pt-BR": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Brazilian Portuguese route content is generated from source-controlled rendered text translations and published as the sixth non-English locale."
         },
         "zh-CN": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Simplified Chinese route content is generated from source-controlled rendered text translations and published as the seventh non-English locale."
         },
         "pl": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Polish route content is generated from source-controlled rendered text translations and published as the eighth non-English locale."
         },
         "ar": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Arabic route content is generated from source-controlled rendered text translations and published as the first RTL locale."
         },
         "es": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "Spanish route content is generated from source-controlled rendered text translations and published as the ninth non-English locale."
         },
         "fr": {
           "status": "reviewed",
-          "sourceHash": "b2a847dd1672bb1ae64b6f815d9d6893ddfb53d4405f39840b87e18670040102",
+          "sourceHash": "b320038c9b7ff3aff7424937699633b4b6f92df12ccae2415743f29c0f985f76",
           "notes": "French route content is generated from source-controlled rendered text translations and published as the tenth non-English locale."
         }
       }
@@ -300,6 +300,7 @@
         "decentralization.html",
         "src/entries/decentralization.tsx",
         "src/pages/DecentralizationPage.tsx",
+        "src/pages/DecentralizationSupportingSections.tsx",
         "src/pages/directory.tsx",
         "src/pages/community.tsx",
         "src/pages/shared.tsx",
@@ -312,57 +313,57 @@
         },
         "tr": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
         },
         "id": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Indonesian route content is generated from source-controlled rendered text translations and published as the second non-English locale."
         },
         "de": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "German route content is generated from source-controlled rendered text translations and published as the third non-English locale."
         },
         "hi": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Hindi route content is generated from source-controlled rendered text translations and published as the fourth non-English locale."
         },
         "th": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Thai route content is generated from source-controlled rendered text translations and published as the fifth non-English locale."
         },
         "pt-BR": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Brazilian Portuguese route content is generated from source-controlled rendered text translations and published as the sixth non-English locale."
         },
         "zh-CN": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Simplified Chinese route content is generated from source-controlled rendered text translations and published as the seventh non-English locale."
         },
         "pl": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Polish route content is generated from source-controlled rendered text translations and published as the eighth non-English locale."
         },
         "ar": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Arabic route content is generated from source-controlled rendered text translations and published as the first RTL locale."
         },
         "es": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "Spanish route content is generated from source-controlled rendered text translations and published as the ninth non-English locale."
         },
         "fr": {
           "status": "reviewed",
-          "sourceHash": "5b5e67843aa8bee30baedbaa3253b0504bfec5cac89458add2a7ad455acc221a",
+          "sourceHash": "510b7cacb5c943aa1d53a9c9ec7e71b3a17c316a25e12af375f5e972e5b59a5b",
           "notes": "French route content is generated from source-controlled rendered text translations and published as the tenth non-English locale."
         }
       }
@@ -454,57 +455,57 @@
         },
         "tr": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Turkish route content is generated from source-controlled rendered text translations and published as the first non-English pilot locale."
         },
         "id": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Indonesian route content is generated from source-controlled rendered text translations and published as the second non-English locale."
         },
         "de": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "German route content is generated from source-controlled rendered text translations and published as the third non-English locale."
         },
         "hi": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Hindi route content is generated from source-controlled rendered text translations and published as the fourth non-English locale."
         },
         "th": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Thai route content is generated from source-controlled rendered text translations and published as the fifth non-English locale."
         },
         "pt-BR": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Brazilian Portuguese route content is generated from source-controlled rendered text translations and published as the sixth non-English locale."
         },
         "zh-CN": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Simplified Chinese route content is generated from source-controlled rendered text translations and published as the seventh non-English locale."
         },
         "pl": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Polish route content is generated from source-controlled rendered text translations and published as the eighth non-English locale."
         },
         "ar": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Arabic route content is generated from source-controlled rendered text translations and published as the first RTL locale."
         },
         "es": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "Spanish route content is generated from source-controlled rendered text translations and published as the ninth non-English locale."
         },
         "fr": {
           "status": "reviewed",
-          "sourceHash": "90d4dbfc2a846e52a2110df68fb9a1df2d3a13be5449e4670f6fb73143f91e7b",
+          "sourceHash": "bbcc2b93327c3cecaf758bc53ecbdc5b80752eaa57433f0c6b9de95d876f8994",
           "notes": "French route content is generated from source-controlled rendered text translations and published as the tenth non-English locale."
         }
       }

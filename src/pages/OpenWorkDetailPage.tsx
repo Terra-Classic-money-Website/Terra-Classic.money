@@ -14,7 +14,7 @@ function OpenWorkDetailList({ title, items }: { title: string; items: string[] }
 }
 
 export function OpenWorkDetailPage() {
-  const id = new URLSearchParams(window.location.search).get("work") || "";
+  const id = typeof window === "undefined" ? "" : new URLSearchParams(window.location.search).get("work") || "";
   const workPackage = openWorkById.get(id);
 
   if (!workPackage) {

@@ -33,6 +33,8 @@ dist/
 # Generated AI-agent context files. Source of truth is scripts/generate-agent-context.mjs
 # plus the structured data modules under src/data.
 public/llms.txt
+public/llms-full.txt
+public/feed.xml
 public/ai-context/
 public/data/site-index.json
 public/data/ecosystem.json

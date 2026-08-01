@@ -178,6 +178,10 @@ function DomTranslator({ translations }: { translations: TextMap }) {
 }
 
 function LocaleLoadError() {
+  useLayoutEffect(() => {
+    document.documentElement.dataset.localizedDomReady = "true";
+  }, []);
+
   return (
     <main style={{ padding: "32px", fontFamily: "system-ui, sans-serif" }}>
       <p>Localized content could not be loaded. Please refresh the page.</p>

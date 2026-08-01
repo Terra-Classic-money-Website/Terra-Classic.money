@@ -108,6 +108,19 @@ function managedHeadTags(route: RouteConfig, locale: LocaleConfig) {
   const description = escapeHtml(meta.description);
   const url = escapeHtml(canonicalUrl);
   const structuredDataTag = route.robots ? "" : structuredDataScript(route, locale);
+  const discoveryTags = [
+    `    <link rel="sitemap" type="application/xml" href="${i18nConfig.siteUrl}/sitemap.xml" />`,
+    `    <link rel="alternate" type="text/markdown" href="${i18nConfig.siteUrl}/llms.txt" title="AI-readable site index" />`,
+    `    <link rel="alternate" type="application/atom+xml" href="${i18nConfig.siteUrl}/feed.xml" title="Terra Classic Website machine-readable updates" />`,
+  ].join("\n");
+  const localizedBootTags = locale.default ? "" : [
+    "    <script>document.documentElement.classList.add(\"tc-localized-boot\");</script>",
+    "    <style>.tc-localized-boot:not([data-localized-dom-ready]) #root{visibility:hidden}</style>",
+  ].join("\n");
+  const clientReplaceTags = route.id === "openWorkDetail" ? [
+    "    <script>document.documentElement.classList.add(\"tc-client-replace\");</script>",
+    "    <style>.tc-client-replace #root{visibility:hidden}</style>",
+  ].join("\n") : "";
 
   return [
     robotsTag,
@@ -128,6 +141,9 @@ function managedHeadTags(route: RouteConfig, locale: LocaleConfig) {
     `    <meta name="twitter:title" content="${title}" />`,
     `    <meta name="twitter:description" content="${description}" />`,
     `    <meta name="twitter:image" content="${i18nConfig.siteUrl}/assets/terra-classic-money-ogimage.png" />`,
+    discoveryTags,
+    localizedBootTags,
+    clientReplaceTags,
     structuredDataTag,
   ].filter(Boolean).join("\n");
 }
