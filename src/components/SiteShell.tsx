@@ -1,4 +1,4 @@
-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useState, type MouseEvent, type ReactNode } from "react";
 import {
   externalNav,
   sections,
@@ -13,9 +13,23 @@ export const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name
 export const page = (path = "") => withLocalePath(path || "index.html");
 
 function useStoredBoolean(key: string, fallback: boolean) {
-  const [value, setValue] = useState(() => localStorage.getItem(key) === null ? fallback : localStorage.getItem(key) === "true");
+  const [value, setValue] = useState(fallback);
+
+  useLayoutEffect(() => {
+    try {
+      const storedValue = localStorage.getItem(key);
+      if (storedValue !== null) setValue(storedValue === "true");
+    } catch {
+      // The fallback remains usable when browser storage is unavailable.
+    }
+  }, [fallback, key]);
+
   const update = (next: boolean) => {
-    localStorage.setItem(key, String(next));
+    try {
+      localStorage.setItem(key, String(next));
+    } catch {
+      // The in-memory state must still work when browser storage is unavailable.
+    }
     setValue(next);
   };
   return [value, update] as const;

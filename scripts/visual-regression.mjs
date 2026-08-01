@@ -122,7 +122,7 @@ async function waitForServer(child) {
   let lastError = "";
 
   while (Date.now() < deadline) {
-    if (child?.exitCode !== null) {
+    if (child && child.exitCode !== null) {
       throw new Error(`Preview server exited early with code ${child.exitCode}.`);
     }
 

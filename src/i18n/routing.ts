@@ -1,5 +1,18 @@
 import { defaultLocale, getPublishedLocale, localizedRoutes, publishedLocales, type LocaleId } from "./config";
 
+type PrerenderGlobal = typeof globalThis & {
+  __TC_PRERENDER_URL__?: string;
+};
+
+function currentUrl() {
+  if (typeof window !== "undefined") return window.location.href;
+  return (globalThis as PrerenderGlobal).__TC_PRERENDER_URL__ || "https://terra-classic.money/";
+}
+
+function currentPathname() {
+  return new URL(currentUrl()).pathname;
+}
+
 function trimBasePath(pathname: string) {
   const base = import.meta.env.BASE_URL || "/";
   if (base === "/" || !pathname.startsWith(base)) return pathname;
@@ -28,16 +41,16 @@ function stripLocalePrefix(pathname: string) {
   return { locale: defaultLocale.id, path: normalized };
 }
 
-export function getCurrentLocaleId(pathname = typeof window !== "undefined" ? window.location.pathname : "/"): LocaleId {
+export function getCurrentLocaleId(pathname = currentPathname()): LocaleId {
   const { locale } = stripLocalePrefix(pathname);
   return locale as LocaleId;
 }
 
-export function getCurrentRoutePath(pathname = typeof window !== "undefined" ? window.location.pathname : "/") {
+export function getCurrentRoutePath(pathname = currentPathname()) {
   return stripLocalePrefix(pathname).path;
 }
 
-export function getRouteForPath(pathname = typeof window !== "undefined" ? window.location.pathname : "/") {
+export function getRouteForPath(pathname = currentPathname()) {
   const routePath = getCurrentRoutePath(pathname);
   return localizedRoutes.find((route) => route.sourcePath === routePath || route.localizedPath === routePath);
 }
@@ -68,8 +81,8 @@ export function withLocalePath(path: string, localeId = getCurrentLocaleId()) {
   return `${import.meta.env.BASE_URL}${localizedPath}${suffix}`;
 }
 
-export function equivalentPathForLocale(localeId: LocaleId, currentUrl = typeof window !== "undefined" ? window.location.href : "/") {
-  const url = new URL(currentUrl, "https://terra-classic.money");
+export function equivalentPathForLocale(localeId: LocaleId, sourceUrl = currentUrl()) {
+  const url = new URL(sourceUrl, "https://terra-classic.money");
   const currentRoutePath = getCurrentRoutePath(url.pathname);
   const route = localizedRoutes.find((candidate) => (
     candidate.sourcePath === currentRoutePath || candidate.localizedPath === currentRoutePath

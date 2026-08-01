@@ -291,13 +291,18 @@ const siteIndex = {
     { id: "policies", url: absoluteUrl("/data/policies.json"), description: "Neutrality, contribution, support, and safety policy summary." },
     { id: "faq", url: absoluteUrl("/data/faq.json"), description: "FAQ questions and answers from public site sections." },
   ],
+  agentResources: [
+    { id: "llms", url: absoluteUrl("/llms.txt"), description: "Concise AI-readable site and resource index." },
+    { id: "llms-full", url: absoluteUrl("/llms-full.txt"), description: "Consolidated site, policy, FAQ, and open-work context." },
+    { id: "atom-feed", url: absoluteUrl("/feed.xml"), description: "Machine-readable snapshot feed for public routes." },
+  ],
 };
 
 function buildLlmsTxt() {
   return `${[
     "# Terra Classic Website",
     "",
-    "Independent, community-maintained, open-source information website for Terra Classic, LUNC, and USTC.",
+    "> Independent, community-maintained, open-source information website for Terra Classic, LUNC, and USTC.",
     "",
     "## Core Pages",
     "",
@@ -310,10 +315,17 @@ function buildLlmsTxt() {
     "## Agent Context",
     "",
     markdownList([
+      markdownLink("Full consolidated context", absoluteUrl("/llms-full.txt")),
       markdownLink("Site context", absoluteUrl("/ai-context/site.md")),
       markdownLink("Policy context", absoluteUrl("/ai-context/policies.md")),
       markdownLink("FAQ context", absoluteUrl("/ai-context/faq.md")),
       markdownLink("Open work context", absoluteUrl("/ai-context/open-work.md")),
+    ]),
+    "",
+    "## Updates",
+    "",
+    markdownList([
+      `${markdownLink("Atom route snapshot feed", absoluteUrl("/feed.xml"))} - Build-time snapshot of the public information surface.`,
     ]),
     "",
     "## Usage Notes",
@@ -416,8 +428,67 @@ function buildOpenWorkContext() {
   return `${["# Terra Classic Open Work Agent Context", "", globalDisclaimer, "", ...packages].join("\n")}\n`;
 }
 
+function nestMarkdownHeadings(markdown) {
+  return markdown.trim().replace(/^(#{1,5}) /gm, "$1# ");
+}
+
+function buildLlmsFullTxt() {
+  return `${[
+    "# Terra Classic Website: Full Agent Context",
+    "",
+    `> ${siteIndex.description}`,
+    "",
+    globalDisclaimer,
+    "",
+    nestMarkdownHeadings(buildSiteContext()),
+    "",
+    nestMarkdownHeadings(buildPoliciesContext()),
+    "",
+    nestMarkdownHeadings(buildFaqContext()),
+    "",
+    nestMarkdownHeadings(buildOpenWorkContext()),
+  ].join("\n")}\n`;
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function buildAtomFeed() {
+  const entries = publicRoutes.map((route) => [
+    "  <entry>",
+    `    <id>${escapeXml(route.canonicalUrl)}</id>`,
+    `    <title>${escapeXml(route.title)}</title>`,
+    `    <updated>${escapeXml(generatedAt)}</updated>`,
+    `    <link rel="alternate" href="${escapeXml(route.canonicalUrl)}" />`,
+    `    <summary>${escapeXml(route.description)}</summary>`,
+    "  </entry>",
+  ].join("\n")).join("\n");
+
+  return `${[
+    '<?xml version="1.0" encoding="utf-8"?>',
+    '<feed xmlns="http://www.w3.org/2005/Atom">',
+    "  <id>https://terra-classic.money/</id>",
+    "  <title>Terra Classic Website machine-readable updates</title>",
+    "  <subtitle>Build-time snapshot of public terra-classic.money routes for automated discovery.</subtitle>",
+    `  <updated>${escapeXml(generatedAt)}</updated>`,
+    '  <link rel="self" type="application/atom+xml" href="https://terra-classic.money/feed.xml" />',
+    '  <link rel="alternate" type="text/html" href="https://terra-classic.money/" />',
+    "  <author><name>terra-classic.money community maintainers</name></author>",
+    entries,
+    "</feed>",
+  ].join("\n")}\n`;
+}
+
 const writes = await Promise.all([
   writeTextIfChanged(path.join(publicDir, "llms.txt"), buildLlmsTxt()),
+  writeTextIfChanged(path.join(publicDir, "llms-full.txt"), buildLlmsFullTxt()),
+  writeTextIfChanged(path.join(publicDir, "feed.xml"), buildAtomFeed()),
   writeTextIfChanged(path.join(aiContextDir, "site.md"), buildSiteContext()),
   writeTextIfChanged(path.join(aiContextDir, "policies.md"), buildPoliciesContext()),
   writeTextIfChanged(path.join(aiContextDir, "faq.md"), buildFaqContext()),

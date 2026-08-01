@@ -31,6 +31,8 @@ It also generates the static AI-agent context layer before starting Vite:
 
 ```text
 public/llms.txt
+public/llms-full.txt
+public/feed.xml
 public/ai-context/
 public/data/site-index.json
 public/data/ecosystem.json
@@ -201,6 +203,20 @@ Validate the built `dist` copy, including generated JSON-LD in production HTML:
 AGENT_VALIDATE_DIST=1 npm run agent:validate
 ```
 
+Create static initial HTML for every published route and locale after a Vite build:
+
+```bash
+npm run agent:prerender
+```
+
+Validate the initial HTML for semantic content, route and locale markers, localization coverage, and discovery links:
+
+```bash
+npm run agent:validate-prerender
+```
+
+`npm run build` runs both commands. A successful production build confirms that all 144 route and locale files contain useful content before JavaScript runs.
+
 Run a full local agent-readability audit against a production build and Lighthouse's agentic browsing checks:
 
 ```bash
@@ -219,7 +235,7 @@ npm run check:build
 
 This runs the production build and `npm run perf:budget`.
 
-`npm run perf:budget` tracks the static AI-agent context files as their own capped bucket, separate from interactive runtime payload. This keeps `/llms.txt`, `/ai-context/*`, and generated agent JSON useful for assistants without hiding their published size cost.
+`npm run perf:budget` keeps separate caps for interactive runtime files, prerendered HTML, and static AI-agent context. The agent-context bucket includes `/llms.txt`, `/llms-full.txt`, `/feed.xml`, `/ai-context/*`, and generated agent JSON. Separating the buckets prevents the 144 static HTML files from hiding growth in JavaScript, CSS, fonts, or images.
 
 ### Translation checks
 
@@ -375,3 +391,4 @@ For the production domain `terra-classic.money`, use base path `/`. For temporar
 - If a page loads without images, run `npm run assets:build`, then `npm run build`, and send Codex the error output plus a screenshot.
 - If performance looks worse after an image-source change, run `FORCE_ASSET_BUILD=1 npm run assets:build`, then `npm run check`, and send Codex the full output.
 - If GitHub Pages deploy fails, open the failed Actions run and send Codex the failed step log.
+- If an agent or no-JavaScript audit reports an empty page, run `npm run build`, then `npm run agent:validate-prerender`, and send Codex the complete output.

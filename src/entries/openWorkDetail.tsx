@@ -6,4 +6,4 @@ import "../styles/chrome.css";
 import "../styles/components.css";
 import "../styles/pages/open-work.css";
 
-mountPage(<OpenWorkDetailPage />);
+mountPage(<OpenWorkDetailPage />, { forceClientRender: true });

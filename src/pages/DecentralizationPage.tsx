@@ -1,7 +1,8 @@
-import { lazy, Suspense, useEffect, useState, type CSSProperties } from "react";
-import { decentralizationArticleBlocks, decentralizationArticleLede, decentralizationReferences, decentralizationResourceGroups, decentralizationStats } from "../data/decentralization";
+import { useEffect, useState, type CSSProperties } from "react";
+import { decentralizationArticleBlocks, decentralizationArticleLede, decentralizationReferences, decentralizationStats } from "../data/decentralization";
 import { getCurrentLocaleId } from "../i18n/routing";
 import type { LocaleId } from "../i18n/config";
+import { DecentralizationSupportingSections } from "./DecentralizationSupportingSections";
 import { ARTICLE_WORDS_PER_MINUTE, asset, BOTTOM_GLOW_VARIANT, DotArrowIcon, Footer, ShareOnXButton } from "./shared";
 
 const planetPatternCells = Array.from({ length: 16 }, (_, index) => index);
@@ -34,58 +35,6 @@ function DecagonPattern() {
     </span>
   );
 }
-
-const DecentralizationResources = lazy(async () => {
-  const { DirectoryListItem } = await import("./directory");
-
-  return {
-    default: function DecentralizationResourcesContent() {
-      return (
-        <section className="section decentralization-resources" aria-labelledby="decentralization-resources-title">
-          <div className="decentralization-resources__intro">
-            <h2 className="tc-type-h2" id="decentralization-resources-title">Verify Terra Classic decentralization</h2>
-            <p className="tc-type-h4">Use the links below to inspect Terra Classic decentralization directly: validator activity, staking and governance data, explorers, public tools, documentation, and developer infrastructure.</p>
-          </div>
-          {decentralizationResourceGroups.map((group) => (
-            <section className="decentralization-resource-group" aria-labelledby={`${group.title.replace(/\s+/g, "-").toLowerCase()}-title`} key={group.title}>
-              <header className="ecosystem-category__header">
-                <div className="ecosystem-category__title">
-                  <div>
-                    <h3 className="tc-type-h3" id={`${group.title.replace(/\s+/g, "-").toLowerCase()}-title`}>{group.title}</h3>
-                    <p className="tc-type-body-small">{group.description}</p>
-                  </div>
-                </div>
-                <span className="ecosystem-category__rule" aria-hidden="true" />
-                <span className="ecosystem-category__count tc-type-h4">{group.entries.length}</span>
-              </header>
-              <div className="ecosystem-grid">
-                {group.entries.map((entry) => (
-                  <DirectoryListItem entry={entry} key={`${group.title}-${entry.name}-${entry.href || entry.status || "static"}`} />
-                ))}
-              </div>
-            </section>
-          ))}
-        </section>
-      );
-    },
-  };
-});
-
-const DecentralizationCommunitySections = lazy(async () => {
-  const { FAQ, FounderStories, JoinCommunity } = await import("./community");
-
-  return {
-    default: function DecentralizationCommunitySectionsContent() {
-      return (
-        <>
-          <FounderStories />
-          <JoinCommunity />
-          <FAQ />
-        </>
-      );
-    },
-  };
-});
 
 function ArticleListenControl({ label, text }: { label: string; text: string }) {
   const [speaking, setSpeaking] = useState(false);
@@ -256,12 +205,7 @@ export function DecentralizationPage() {
   return (
     <>
       <DecentralizationArticle />
-      <Suspense fallback={null}>
-        <DecentralizationResources />
-      </Suspense>
-      <Suspense fallback={null}>
-        <DecentralizationCommunitySections />
-      </Suspense>
+      <DecentralizationSupportingSections />
       <DecentralizationShare />
       <Footer />
     </>
