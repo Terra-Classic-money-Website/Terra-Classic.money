@@ -29,7 +29,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
       {
         name: "BigbangX",
         summary: "NFT marketplace",
-        href: "https://bigbangx.io",
+        href: "https://bigbangx.org/",
         avatar:
           "avatars/avatar-kbgylln8evukpwqywwkpk2vlxz8-2051758dcc.webp",
         avatarAlt: "BigbangX NFT marketplace for Terra Classic digital art.",
