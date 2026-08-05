@@ -21,4 +21,12 @@ No visual or design-system changes were required.
 - The final `npm run check` passed, including the production build, 144-page prerender validation, rendered i18n browser audit, paused-route guard, and performance budgets.
 - The built `dist/ecosystem.html` and generated `public/data/ecosystem.json` contain `https://bigbangx.org/` for the BigbangX entry.
 
-GitHub Pages promotion results will be recorded after the `dev` commit is promoted to `main`.
+## Release
+
+- Committed on `dev` as `27b0e46` (`Update BigbangX ecosystem link`).
+- Promoted through PR [#16](https://github.com/Terra-Classic-money-Website/Terra-Classic.money/pull/16), merged into `main` as `c2e86fb`.
+- All three required PR checks passed: quick, build, and rendered i18n.
+- GitHub Pages workflow `31023386819` passed: build in 4m55s and deploy in 8s.
+- Live `https://terra-classic.money/ecosystem.html` verification confirmed the BigbangX card uses `href="https://bigbangx.org/"`.
+- `https://bigbangx.org/` returned HTTP 200 during the live verification.
+- The local working context was returned to `dev`; local `main` is synchronized with `origin/main`.
