@@ -163,6 +163,13 @@ export const ecosystemCategories: EcosystemCategory[] = [
           "Sonic decentralized social/messenger dApp on Terra Classic.",
       },
       {
+        name: "Terra Oracle Classic",
+        summary: "Community platform",
+        href: "https://terraoracle.io/home",
+        avatarAlt: "Terra Oracle Classic community platform for Terra Classic users.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
         name: "Terra Casino",
         summary: "Leveraged trading",
         href: "https://terracasino.io/trading/BTC",
@@ -306,6 +313,13 @@ export const ecosystemCategories: EcosystemCategory[] = [
         avatar:
           "avatars/avatar-wdju2me4i6tqfhfzjioq5oexy7y-b329ff4541.webp",
         avatarAlt: "MIOFF music & arts festival powered by Terra Classic NFTs.",
+        badge: "ON-CHAIN NATIVE",
+      },
+      {
+        name: "Oracle Draw",
+        summary: "On-chain game",
+        href: "https://draw.terraoracle.io/home",
+        avatarAlt: "Oracle Draw on-chain game for Terra Classic users.",
         badge: "ON-CHAIN NATIVE",
       },
       {
