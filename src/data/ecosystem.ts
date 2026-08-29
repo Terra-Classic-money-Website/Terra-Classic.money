@@ -166,6 +166,7 @@ export const ecosystemCategories: EcosystemCategory[] = [
         name: "Terra Oracle Classic",
         summary: "Community platform",
         href: "https://terraoracle.io/home",
+        avatar: "avatars/terra-oracle.png",
         avatarAlt: "Terra Oracle Classic community platform for Terra Classic users.",
         badge: "ON-CHAIN NATIVE",
       },
@@ -318,7 +319,8 @@ export const ecosystemCategories: EcosystemCategory[] = [
       {
         name: "Oracle Draw",
         summary: "On-chain game",
-        href: "https://draw.terraoracle.io/home",
+        href: "https://draw.terraoracle.io/draw",
+        avatar: "avatars/oracle-draw.png",
         avatarAlt: "Oracle Draw on-chain game for Terra Classic users.",
         badge: "ON-CHAIN NATIVE",
       },
