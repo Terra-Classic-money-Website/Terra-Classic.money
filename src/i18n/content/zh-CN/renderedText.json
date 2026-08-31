@@ -1086,5 +1086,7 @@
   "A discovery phase that validates the RFC assumptions, identifies missing technical evidence, and defines which phase or work package the quote covers first.": "一个 discovery 阶段，用于验证 RFC 假设、识别缺失的技术证据，并定义报价首先覆盖哪个阶段或工作包。",
   "A milestone plan with separate pricing for research, architecture, prototype, testnet operation, audit coordination, documentation, and governance-support work.": "一个里程碑计划，为研究、架构、原型、testnet 运营、审计协调、文档和治理支持工作分别定价。",
   "Relevant experience with Cosmos SDK, CometBFT, IBC, validator infrastructure, wallet signing flows, cryptographic migrations, or post-quantum signature schemes.": "具备 Cosmos SDK、CometBFT、IBC、验证人基础设施、wallet 签名流程、密码学迁移或后量子签名方案相关经验。",
-  "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.": "风险登记册，覆盖 IBC 对手方依赖、relayer 集中度、验证人参与、密钥管理、性能成本、审计阻塞项和停止条件。"
+  "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.": "风险登记册，覆盖 IBC 对手方依赖、relayer 集中度、验证人参与、密钥管理、性能成本、审计阻塞项和停止条件。",
+  "Community platform": "社区平台",
+  "On-chain game": "链上游戏"
 }

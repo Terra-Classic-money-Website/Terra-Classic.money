@@ -1073,5 +1073,7 @@
   "A discovery phase that validates the RFC assumptions, identifies missing technical evidence, and defines which phase or work package the quote covers first.": "RFC varsayımlarını doğrulayan, eksik teknik kanıtları belirleyen ve teklifin önce hangi fazı veya iş paketini kapsadığını tanımlayan bir keşif fazı.",
   "A milestone plan with separate pricing for research, architecture, prototype, testnet operation, audit coordination, documentation, and governance-support work.": "Araştırma, mimari, prototip, testnet işletimi, denetim koordinasyonu, dokümantasyon ve yönetişim desteği için ayrı fiyatlandırmalı bir kilometre taşı planı.",
   "Relevant experience with Cosmos SDK, CometBFT, IBC, validator infrastructure, wallet signing flows, cryptographic migrations, or post-quantum signature schemes.": "Cosmos SDK, CometBFT, IBC, validator altyapısı, wallet imzalama akışları, kriptografik geçişler veya post-kuantum imza şemalarıyla ilgili deneyim.",
-  "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.": "IBC karşı taraf bağımlılığı, relayer yoğunlaşması, validator katılımı, anahtar yönetimi, performans maliyetleri, denetim engelleri ve durdurma koşullarını kapsayan bir risk kaydı."
+  "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.": "IBC karşı taraf bağımlılığı, relayer yoğunlaşması, validator katılımı, anahtar yönetimi, performans maliyetleri, denetim engelleri ve durdurma koşullarını kapsayan bir risk kaydı.",
+  "Community platform": "Topluluk platformu",
+  "On-chain game": "Zincir üstü oyun"
 }
