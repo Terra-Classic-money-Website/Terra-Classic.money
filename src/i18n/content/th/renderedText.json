@@ -1086,5 +1086,7 @@
   "A discovery phase that validates the RFC assumptions, identifies missing technical evidence, and defines which phase or work package the quote covers first.": "Discovery phase ที่ validate RFC assumptions, ระบุ missing technical evidence และกำหนดว่า quote ครอบคลุม phase หรือ work package ใดก่อน.",
   "A milestone plan with separate pricing for research, architecture, prototype, testnet operation, audit coordination, documentation, and governance-support work.": "Milestone plan พร้อม pricing แยกสำหรับ research, architecture, prototype, testnet operation, audit coordination, documentation และ governance-support work.",
   "Relevant experience with Cosmos SDK, CometBFT, IBC, validator infrastructure, wallet signing flows, cryptographic migrations, or post-quantum signature schemes.": "ประสบการณ์ที่เกี่ยวข้องกับ Cosmos SDK, CometBFT, IBC, validator infrastructure, wallet signing flows, cryptographic migrations หรือ post-quantum signature schemes.",
-  "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.": "Risk register ที่ครอบคลุม IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers และ stop conditions."
+  "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.": "Risk register ที่ครอบคลุม IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers และ stop conditions.",
+  "Community platform": "แพลตฟอร์มชุมชน",
+  "On-chain game": "เกมบนเชน"
 }

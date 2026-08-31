@@ -1075,5 +1075,7 @@
   "A discovery phase that validates the RFC assumptions, identifies missing technical evidence, and defines which phase or work package the quote covers first.": "مرحلة discovery تتحقق من افتراضات RFC، تحدد الأدلة التقنية الناقصة، وتوضح أي مرحلة أو حزمة عمل يغطيها العرض أولاً.",
   "A milestone plan with separate pricing for research, architecture, prototype, testnet operation, audit coordination, documentation, and governance-support work.": "خطة مراحل بتسعير منفصل للبحث، المعمارية، النموذج الأولي، تشغيل testnet، تنسيق التدقيق، التوثيق، ودعم الحوكمة.",
   "Relevant experience with Cosmos SDK, CometBFT, IBC, validator infrastructure, wallet signing flows, cryptographic migrations, or post-quantum signature schemes.": "خبرة ذات صلة مع Cosmos SDK أو CometBFT أو IBC أو بنية validator التحتية أو تدفقات توقيع wallet أو الهجرات التشفيرية أو مخططات توقيع ما بعد الكم.",
-  "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.": "سجل مخاطر يغطي اعتماد أطراف IBC المقابلة، تركّز relayer، مشاركة validator، إدارة المفاتيح، تكاليف الأداء، معوقات التدقيق، وشروط التوقف."
+  "A risk register covering IBC counterparty dependency, relayer concentration, validator participation, key management, performance costs, audit blockers, and stop conditions.": "سجل مخاطر يغطي اعتماد أطراف IBC المقابلة، تركّز relayer، مشاركة validator، إدارة المفاتيح، تكاليف الأداء، معوقات التدقيق، وشروط التوقف.",
+  "Community platform": "منصة مجتمعية",
+  "On-chain game": "لعبة على السلسلة"
 }
